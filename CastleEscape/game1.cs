@@ -38,6 +38,7 @@ namespace CastleEscape
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            this.Window.Title = "Escape from the Castle";
         }
 
         /// <summary>
