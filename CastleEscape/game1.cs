@@ -35,8 +35,6 @@ namespace CastleEscape
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
             this.Window.Title = "Escape from the Castle";
         }
@@ -49,8 +47,6 @@ namespace CastleEscape
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -82,7 +78,6 @@ namespace CastleEscape
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
     }
