@@ -67,6 +67,8 @@ namespace CastleEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (StateManager.IsEmpty())
+                Exit();
             StateManager.Update();
             base.Update(gameTime);
         }

@@ -67,5 +67,10 @@ namespace CastleEscape
             if (states.Count != 0)
                 states[states.Count - 1].Resume();
         }
+
+        public static bool IsEmpty()
+        {
+            return states.Count == 0;
+        }
     }
 }
