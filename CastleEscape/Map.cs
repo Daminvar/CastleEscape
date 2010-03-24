@@ -3,22 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Net;
+using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
     class Map
     {
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
+        private const string TILESET_RESOURCE_NAME = "tileset2";
 
         private int[][][] groundLayers;
         private int[][][] topLayers;
         private XmlDocument reader;
         private int width;
         private int height;
+        private int tilesize;
+        private Texture2D tileset;
 
         public enum Directions
         {
             North, South, East, West
+        }
+
+        public Map(Game game)
+        {
+            tileset = game.Content.Load<Texture2D>(TILESET_RESOURCE_NAME);
         }
 
         public void LoadMap(string filename)
@@ -33,6 +50,7 @@ namespace CastleEscape
             XmlNode mapNode = reader.GetElementsByTagName("map")[0];
             width = int.Parse(mapNode.Attributes["width"].Value);
             height = int.Parse(mapNode.Attributes["height"].Value);
+            tilesize = int.Parse(mapNode.Attributes["tilewidth"].Value);
 
             XmlNodeList layerNodes = reader.GetElementsByTagName("layer");
 
@@ -42,7 +60,7 @@ namespace CastleEscape
             for (int i = 0; i < layerNodes.Count; i++)
             {
                 string name = layerNodes[i].Attributes["name"].Value;
-                if (name == "bottom")
+                if (name == "ground")
                     numberOfGroundLayers++;
                 else if (name == "top")
                     numberOfTopLayers++;
@@ -59,7 +77,7 @@ namespace CastleEscape
                 string name = layerNodes[i].Attributes["name"].Value;
                 XmlNode layerData = layerNodes[i].ChildNodes[0];
 
-                if (name == "bottom")
+                if (name == "ground")
                 {
                     groundLayers[groundIndex] = parseLayer(layerData);
                     groundIndex++;
@@ -94,12 +112,36 @@ namespace CastleEscape
         {
         }
 
-        public void DrawBase()
+        public void DrawBase(SpriteBatch spriteBatch, int xPos, int yPos)
         {
+            drawLayers(groundLayers, spriteBatch, xPos, yPos);
         }
 
-        public void DrawTop()
+        public void DrawTop(SpriteBatch spriteBatch, int xPos, int yPos)
         {
+            drawLayers(topLayers, spriteBatch, xPos, yPos);
+        }
+
+        private void drawLayers(int[][][] layers, SpriteBatch spriteBatch, int xPos, int yPos)
+        {
+            int rowSize = tileset.Width / tilesize;
+
+            for (int z = 0; z < layers.Length; z++)
+            {
+                for (int y = 0; y < layers[0].Length; y++)
+                {
+                    for (int x = 0; x < layers[0][0].Length; x++)
+                    {
+                        int tileID = layers[z][y][x] - 1;
+                        if (tileID == -1)
+                            continue;
+                        var destRect = new Rectangle(xPos + x * tilesize, yPos + y * tilesize, tilesize, tilesize);
+                        var tileRect = new Rectangle((tileID % rowSize) * tilesize,
+                            (tileID / rowSize) * tilesize, tilesize, tilesize);
+                        spriteBatch.Draw(tileset, destRect, tileRect, Color.White);
+                    }
+                }
+            }
         }
 
         public bool IsCollisionAt(int x, int y)

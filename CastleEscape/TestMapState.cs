@@ -23,7 +23,7 @@ namespace CastleEscape
 
         public override void Initialize()
         {
-            map = new Map();
+            map = new Map(game);
             map.LoadMap("testmap.tmx");
             font = game.Content.Load<SpriteFont>("UI_Font");
         }
@@ -44,8 +44,8 @@ namespace CastleEscape
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "Testing the state manager",
-                new Vector2(200, 200), Color.Black);
+            map.DrawBase(spriteBatch, 0, 0);
+            map.DrawTop(spriteBatch, 0, 0);
         }
     }
 }
