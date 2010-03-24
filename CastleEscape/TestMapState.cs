@@ -23,10 +23,8 @@ namespace CastleEscape
 
         public override void Initialize()
         {
-            /*
             map = new Map();
-            map.LoadMap("Content/maps/testmap.tmx");
-            */
+            map.LoadMap("testmap.tmx");
             font = game.Content.Load<SpriteFont>("UI_Font");
         }
 
