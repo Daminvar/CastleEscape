@@ -37,6 +37,8 @@ namespace CastleEscape
         {
             base.Initialize();
             this.Window.Title = "Escape from the Castle";
+            StateManager.Initialize();
+            StateManager.PushState(new TestMapState(this));
         }
 
         /// <summary>
@@ -65,7 +67,7 @@ namespace CastleEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
+            StateManager.Update();
             base.Update(gameTime);
         }
 
@@ -76,8 +78,9 @@ namespace CastleEscape
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.AliceBlue);
-
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            StateManager.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

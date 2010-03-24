@@ -1,3 +1,4 @@
+*.cachefile
 *.suo
 Thumbs.db
 bin/
