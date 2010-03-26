@@ -18,7 +18,7 @@ namespace CastleEscape
     class Map
     {
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
-        private const string TILESET_RESOURCE_NAME = "tileset2";
+        private const string TILESET_RESOURCE_NAME = "tileset";
 
         private List<int[][]> baseLayers;
         private List<int[][]> topLayers;
