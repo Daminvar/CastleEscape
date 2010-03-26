@@ -20,12 +20,14 @@ namespace CastleEscape
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
         private const string TILESET_RESOURCE_NAME = "tileset";
 
+        private Game game;
         private List<int[][]> baseLayers;
         private List<int[][]> topLayers;
-        private int width;
-        private int height;
+        private int mapWidth;
+        private int mapHeight;
         private int tilesize;
         private Texture2D tileset;
+        private List<Rectangle> collisionRects;
 
         public enum Directions
         {
@@ -34,9 +36,15 @@ namespace CastleEscape
 
         public Map(Game game)
         {
+            this.game = game;
             tileset = game.Content.Load<Texture2D>(TILESET_RESOURCE_NAME);
+            collisionRects = new List<Rectangle>();
         }
 
+        /// <summary>
+        /// Loads a map from a file.
+        /// </summary>
+        /// <param name="filename">The filename</param>
         public void LoadMap(string filename)
         {
             var reader = new XmlDocument();
@@ -47,8 +55,8 @@ namespace CastleEscape
         private void ParseTMXFile(XmlDocument reader)
         {
             XmlNode mapNode = reader.GetElementsByTagName("map")[0];
-            width = int.Parse(mapNode.Attributes["width"].Value);
-            height = int.Parse(mapNode.Attributes["height"].Value);
+            mapWidth = int.Parse(mapNode.Attributes["width"].Value);
+            mapHeight = int.Parse(mapNode.Attributes["height"].Value);
             tilesize = int.Parse(mapNode.Attributes["tilewidth"].Value);
 
             XmlNodeList layerNodes = reader.GetElementsByTagName("layer");
@@ -57,6 +65,7 @@ namespace CastleEscape
             baseLayers = new List<int[][]>();
             topLayers = new List<int[][]>();
 
+            //Get layer data
             for (int i = 0; i < layerNodes.Count; i++)
             {
                 string name = layerNodes[i].Attributes["name"].Value;
@@ -66,35 +75,57 @@ namespace CastleEscape
                 else if (name == "top")
                     topLayers.Add(parseLayer(layerData));
             }
+
+            //Get collision data
+            XmlNode collisionNode = reader.GetElementsByTagName("objectgroup")[0];
+            XmlNodeList collisionRectNodes = collisionNode.ChildNodes;
+            for (int i = 0; i < collisionRectNodes.Count; i++)
+            {
+                XmlAttributeCollection attributes = collisionRectNodes[i].Attributes;
+                int xPos = int.Parse(attributes["x"].Value);
+                int yPos = int.Parse(attributes["y"].Value);
+                int width = int.Parse(attributes["width"].Value);
+                int height = int.Parse(attributes["height"].Value);
+                collisionRects.Add(new Rectangle(xPos, yPos, width, height));
+            }
         }
 
         private int[][] parseLayer(XmlNode layerData)
         {
-            int[][] layer = new int[height][];
-            for (int y = 0; y < height; y++)
+            int[][] layer = new int[mapHeight][];
+            for (int y = 0; y < mapHeight; y++)
             {
-                layer[y] = new int[width];
-                for (int x = 0; x < width; x++)
+                layer[y] = new int[mapWidth];
+                for (int x = 0; x < mapWidth; x++)
                 {
-                    layer[y][x] = int.Parse(layerData.ChildNodes[y * width + x].Attributes["gid"].Value);
+                    layer[y][x] = int.Parse(layerData.ChildNodes[y * mapWidth + x].Attributes["gid"].Value) - 1;
                 }
             }
             return layer;
         }
 
+        /// <summary>
+        /// Changes the map by loading the correct map
+        /// file for the specified direction.
+        /// </summary>
+        /// <param name="direction">The direction to use</param>
         public void ChangeMap(Directions direction)
         {
         }
 
-        public void Update()
-        {
-        }
-
+        /// <summary>
+        /// Renders the base of the map (everything below the player)
+        /// at the specified coordinates.
+        /// </summary>
         public void DrawBase(SpriteBatch spriteBatch, int xPos, int yPos)
         {
             drawLayers(baseLayers, spriteBatch, xPos, yPos);
         }
 
+        /// <summary>
+        /// Renders the top of the map (everything above the player)
+        /// at the specified coordinates.
+        /// </summary>
         public void DrawTop(SpriteBatch spriteBatch, int xPos, int yPos)
         {
             drawLayers(topLayers, spriteBatch, xPos, yPos);
@@ -110,10 +141,11 @@ namespace CastleEscape
                 {
                     for (int x = 0; x < layers[0][0].Length; x++)
                     {
-                        int tileID = layers[z][y][x] - 1;
+                        int tileID = layers[z][y][x];
                         if (tileID == -1)
                             continue;
-                        var destRect = new Rectangle(xPos + x * tilesize, yPos + y * tilesize, tilesize, tilesize);
+                        var destRect = new Rectangle(xPos + x * tilesize,
+                            yPos + y * tilesize, tilesize, tilesize);
                         var tileRect = new Rectangle((tileID % rowSize) * tilesize,
                             (tileID / rowSize) * tilesize, tilesize, tilesize);
                         spriteBatch.Draw(tileset, destRect, tileRect, Color.White);
@@ -122,9 +154,18 @@ namespace CastleEscape
             }
         }
 
+        /// <summary>
+        /// Tests to see if there is a collision
+        /// at the specified coordinates.
+        /// </summary>
+        /// <returns>"true" if there's a collision, "false" otherwise.</returns>
         public bool IsCollisionAt(int x, int y)
         {
-            //TODO
+            foreach (var rect in collisionRects)
+            {
+                if (rect.Intersects(new Rectangle(x * tilesize, y * tilesize, tilesize, tilesize)))
+                    return true;
+            }
             return false;
         }
     }
