@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("CastleEscape")]
 [assembly: AssemblyProduct("CastleEscape")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("A turn-based fantasy RPG")]
+[assembly: AssemblyCompany("MadC")]
 
 [assembly: AssemblyCopyright("Copyright ©  2010")]
 [assembly: AssemblyTrademark("")]
