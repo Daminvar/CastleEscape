@@ -38,13 +38,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI_Font.spritefont">
-      <Name>UI_Font</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="indoor-tileset.png">
       <Name>indoor-tileset</Name>
       <Importer>TextureImporter</Importer>

@@ -25,7 +25,6 @@ namespace CastleEscape
         {
             map = new Map(game);
             map.LoadMap("testmap.tmx");
-            font = game.Content.Load<SpriteFont>("UI_Font");
         }
 
         public override void Pause()
