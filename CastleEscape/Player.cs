@@ -22,15 +22,13 @@ namespace CastleEscape
 
         private int x;
         private int y;
-        private int tilesize = 32;
         private Map map;
 
-        public Player(int xPos, int yPos, Texture2D tx, Game game)
+        public Player(int xPos, int yPos, Texture2D tx)
         {
             x = xPos;
             y = yPos;
             texture = tx;
-            map = new Map(game);
         }
 
         public Texture2D Texture

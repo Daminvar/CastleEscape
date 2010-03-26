@@ -39,6 +39,11 @@ namespace CastleEscape
             get { return mapHeight; }
         }
 
+        public int TileSize
+        {
+            get { return tilesize; }
+        }
+
         public enum Directions
         {
             North, South, East, West

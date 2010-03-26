@@ -19,7 +19,6 @@ namespace CastleEscape
     {
         public Overworld(Game game) : base(game) { }
 
-        private const float TILE_SIZE = 32.0f;
         Player playerObj;
         Map mappy;
         // npes
@@ -29,7 +28,7 @@ namespace CastleEscape
 
         public override void Initialize()
         {
-            playerObj = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"), game);
+            playerObj = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
             mappy = new Map(game);
             mappy.LoadMap("testmap.tmx");
             timer = 0;
@@ -48,12 +47,12 @@ namespace CastleEscape
         public override void Update()
         {
             // checks for updates
-            HandleInput();
+            handleInput();
 
             timer++;
         }
 
-        public void HandleInput()
+        private void handleInput()
         {
             // handle input
             KeyboardState kbState = Keyboard.GetState();
@@ -113,7 +112,7 @@ namespace CastleEscape
             //playerObj.DrawForOverworld(spriteBatch);
             mappy.DrawBase(spriteBatch, 0, 0);
 
-            Vector2 v2 = new Vector2((float)playerObj.X * TILE_SIZE, (float)playerObj.Y * TILE_SIZE);
+            Vector2 v2 = new Vector2(playerObj.X * mappy.TileSize, playerObj.Y * mappy.TileSize);
 
             spriteBatch.Draw(playerObj.Texture, v2, Color.White);
 
