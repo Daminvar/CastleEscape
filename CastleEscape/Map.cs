@@ -20,7 +20,7 @@ namespace CastleEscape
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
         private const string TILESET_RESOURCE_NAME = "tileset2";
 
-        private int[][][] groundLayers;
+        private int[][][] baseLayers;
         private int[][][] topLayers;
         private XmlDocument reader;
         private int width;
@@ -54,22 +54,22 @@ namespace CastleEscape
 
             XmlNodeList layerNodes = reader.GetElementsByTagName("layer");
 
-            int numberOfGroundLayers = 0;
+            int numberOfBaseLayers = 0;
             int numberOfTopLayers = 0;
 
             for (int i = 0; i < layerNodes.Count; i++)
             {
                 string name = layerNodes[i].Attributes["name"].Value;
-                if (name == "ground")
-                    numberOfGroundLayers++;
+                if (name == "base")
+                    numberOfBaseLayers++;
                 else if (name == "top")
                     numberOfTopLayers++;
             }
 
-            groundLayers = new int[numberOfGroundLayers][][];
+            baseLayers = new int[numberOfBaseLayers][][];
             topLayers = new int[numberOfTopLayers][][];
 
-            int groundIndex = 0;
+            int baseIndex = 0;
             int topIndex = 0;
 
             for (int i = 0; i < layerNodes.Count; i++)
@@ -77,10 +77,10 @@ namespace CastleEscape
                 string name = layerNodes[i].Attributes["name"].Value;
                 XmlNode layerData = layerNodes[i].ChildNodes[0];
 
-                if (name == "ground")
+                if (name == "base")
                 {
-                    groundLayers[groundIndex] = parseLayer(layerData);
-                    groundIndex++;
+                    baseLayers[baseIndex] = parseLayer(layerData);
+                    baseIndex++;
                 }
                 else if (name == "top")
                 {
@@ -114,7 +114,7 @@ namespace CastleEscape
 
         public void DrawBase(SpriteBatch spriteBatch, int xPos, int yPos)
         {
-            drawLayers(groundLayers, spriteBatch, xPos, yPos);
+            drawLayers(baseLayers, spriteBatch, xPos, yPos);
         }
 
         public void DrawTop(SpriteBatch spriteBatch, int xPos, int yPos)
