@@ -20,8 +20,8 @@ namespace CastleEscape
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
         private const string TILESET_RESOURCE_NAME = "tileset2";
 
-        private int[][][] baseLayers;
-        private int[][][] topLayers;
+        private List<int[][]> baseLayers;
+        private List<int[][]> topLayers;
         private XmlDocument reader;
         private int width;
         private int height;
@@ -54,39 +54,18 @@ namespace CastleEscape
 
             XmlNodeList layerNodes = reader.GetElementsByTagName("layer");
 
-            int numberOfBaseLayers = 0;
-            int numberOfTopLayers = 0;
-
-            for (int i = 0; i < layerNodes.Count; i++)
-            {
-                string name = layerNodes[i].Attributes["name"].Value;
-                if (name == "base")
-                    numberOfBaseLayers++;
-                else if (name == "top")
-                    numberOfTopLayers++;
-            }
-
-            baseLayers = new int[numberOfBaseLayers][][];
-            topLayers = new int[numberOfTopLayers][][];
-
-            int baseIndex = 0;
-            int topIndex = 0;
+            //Clear baseLayers and topLayers
+            baseLayers = new List<int[][]>();
+            topLayers = new List<int[][]>();
 
             for (int i = 0; i < layerNodes.Count; i++)
             {
                 string name = layerNodes[i].Attributes["name"].Value;
                 XmlNode layerData = layerNodes[i].ChildNodes[0];
-
                 if (name == "base")
-                {
-                    baseLayers[baseIndex] = parseLayer(layerData);
-                    baseIndex++;
-                }
+                    baseLayers.Add(parseLayer(layerData));
                 else if (name == "top")
-                {
-                    topLayers[topIndex] = parseLayer(layerData);
-                    topIndex++;
-                }
+                    topLayers.Add(parseLayer(layerData));
             }
         }
 
@@ -122,11 +101,11 @@ namespace CastleEscape
             drawLayers(topLayers, spriteBatch, xPos, yPos);
         }
 
-        private void drawLayers(int[][][] layers, SpriteBatch spriteBatch, int xPos, int yPos)
+        private void drawLayers(List<int[][]> layers, SpriteBatch spriteBatch, int xPos, int yPos)
         {
             int rowSize = tileset.Width / tilesize;
 
-            for (int z = 0; z < layers.Length; z++)
+            for (int z = 0; z < layers.Count; z++)
             {
                 for (int y = 0; y < layers[0].Length; y++)
                 {
