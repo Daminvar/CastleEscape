@@ -22,7 +22,6 @@ namespace CastleEscape
 
         private List<int[][]> baseLayers;
         private List<int[][]> topLayers;
-        private XmlDocument reader;
         private int width;
         private int height;
         private int tilesize;
@@ -40,12 +39,12 @@ namespace CastleEscape
 
         public void LoadMap(string filename)
         {
-            reader = new XmlDocument();
+            var reader = new XmlDocument();
             reader.Load(MAP_DIRECTORY + filename);
-            LoadTMXFile();
+            ParseTMXFile(reader);
         }
 
-        private void LoadTMXFile()
+        private void ParseTMXFile(XmlDocument reader)
         {
             XmlNode mapNode = reader.GetElementsByTagName("map")[0];
             width = int.Parse(mapNode.Attributes["width"].Value);
@@ -125,6 +124,7 @@ namespace CastleEscape
 
         public bool IsCollisionAt(int x, int y)
         {
+            //TODO
             return false;
         }
     }
