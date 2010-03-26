@@ -17,13 +17,20 @@ namespace CastleEscape
     class Player : IOverworldEntity
     {
         // create a sprite for that
-        private Vector2 position;
+        //private Vector2 position;
         private Texture2D texture;
 
-        public Player(Vector2 pos, Texture2D tx)
+        private int x;
+        private int y;
+        private int tilesize = 32;
+        private Map map;
+
+        public Player(int xPos, int yPos, Texture2D tx, Game game)
         {
-            position = pos;
+            x = xPos;
+            y = yPos;
             texture = tx;
+            map = new Map(game);
         }
 
         public Texture2D Texture
@@ -31,15 +38,20 @@ namespace CastleEscape
             get { return texture; }
         }
 
-        public Vector2 Position
+        public int X
         {
-            get { return position; }
+            get { return x; }
         }
 
-        public void Move(float x, float y)
+        public int Y
         {
-            position.X += x;
-            position.Y += y;
+            get { return y; }
+        }
+
+        public void Move(int x2, int y2)
+        {
+            x += x2;
+            y += y2;
         }
 
         public void DrawForOverworld(SpriteBatch spriteBatch)

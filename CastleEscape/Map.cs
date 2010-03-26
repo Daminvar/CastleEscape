@@ -29,6 +29,16 @@ namespace CastleEscape
         private Texture2D tileset;
         private List<Rectangle> collisionRects;
 
+        public int MapWidth
+        {
+            get { return mapWidth; }
+        }
+
+        public int MapHeight
+        {
+            get { return mapHeight; }
+        }
+
         public enum Directions
         {
             North, South, East, West
