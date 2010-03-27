@@ -69,6 +69,12 @@ namespace CastleEscape
                             timer = 0;
                         }
                     }
+                    else
+                    {
+                        //mappy.ChangeMap(west);
+                        playerObj.Move(mappy.MapWidth - 1, 0);
+                        timer = 0;
+                    }
                 }
                 else if (kbState.IsKeyDown(Keys.Right))
                 {
@@ -79,6 +85,12 @@ namespace CastleEscape
                             playerObj.Move(1, 0);
                             timer = 0;
                         }
+                    }
+                    else
+                    {
+                        //mappy.ChangeMap(east);
+                        playerObj.Move(-(mappy.MapWidth) + 1, 0);
+                        timer = 0;
                     }
                 }
                 else if (kbState.IsKeyDown(Keys.Up))
@@ -91,6 +103,12 @@ namespace CastleEscape
                             timer = 0;
                         }
                     }
+                    else
+                    {
+                        //mappy.ChangeMap(north);
+                        playerObj.Move(0, mappy.MapHeight - 1);
+                        timer = 0;
+                    }
                 }
                 else if (kbState.IsKeyDown(Keys.Down))
                 {
@@ -101,6 +119,12 @@ namespace CastleEscape
                             playerObj.Move(0, 1);
                             timer = 0;
                         }
+                    }
+                    else
+                    {
+                        //mappy.ChangeMap(south);
+                        playerObj.Move(0, -(mappy.MapHeight) + 1);
+                        timer = 0;
                     }
                 }
             }
