@@ -349,7 +349,6 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="232"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -357,7 +356,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="232"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -391,7 +391,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="232"/>
+   <tile gid="0"/>
    <tile gid="2233"/>
    <tile gid="2234"/>
    <tile gid="2235"/>
@@ -407,22 +407,6 @@
    <tile gid="2233"/>
    <tile gid="2234"/>
    <tile gid="2235"/>
-   <tile gid="232"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="304"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -442,7 +426,23 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="232"/>
+   <tile gid="0"/>
+   <tile gid="304"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -653,7 +653,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="232"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="2089"/>
@@ -661,7 +661,7 @@
    <tile gid="2091"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="232"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="1572"/>
@@ -695,6 +695,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="232"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -710,8 +711,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="232"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -746,7 +746,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="232"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -925,10 +925,10 @@
   <object name="" x="96" y="352" width="96" height="64"/>
   <object name="" x="224" y="224" width="96" height="64"/>
   <object name="" x="352" y="96" width="96" height="64"/>
-  <object name="" x="64" y="128" width="32" height="64"/>
-  <object name="" x="0" y="64" width="32" height="64"/>
-  <object name="" x="416" y="192" width="32" height="64"/>
-  <object name="" x="256" y="64" width="32" height="64"/>
-  <object name="" x="576" y="128" width="32" height="64"/>
+  <object name="" x="64" y="160" width="32" height="32"/>
+  <object name="" x="0" y="96" width="32" height="32"/>
+  <object name="" x="416" y="224" width="32" height="32"/>
+  <object name="" x="256" y="96" width="32" height="32"/>
+  <object name="" x="576" y="160" width="32" height="32"/>
  </objectgroup>
 </map>
