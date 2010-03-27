@@ -144,13 +144,17 @@ namespace CastleEscape
         {
             var reader = new XmlDocument();
 
-            string filename = "";
+            string filename = null;
             if (direction == Directions.East) filename = eastMapFilename;
             if (direction == Directions.West) filename = westMapFilename;
             if (direction == Directions.North) filename = northMapFilename;
             if (direction == Directions.South) filename = southMapFilename;
 
-            reader.Load(MAP_DIRECTORY + filename);
+            if (filename != null)
+            {
+                reader.Load(MAP_DIRECTORY + filename);
+                ParseTMXFile(reader);
+            }
         }
 
         /// <summary>
