@@ -53,7 +53,6 @@ namespace CastleEscape
         {
             this.game = game;
             tileset = game.Content.Load<Texture2D>(TILESET_RESOURCE_NAME);
-            collisionRects = new List<Rectangle>();
         }
 
         /// <summary>
@@ -76,9 +75,10 @@ namespace CastleEscape
 
             XmlNodeList layerNodes = reader.GetElementsByTagName("layer");
 
-            //Clear baseLayers and topLayers
+            //Clear layer and collision data
             baseLayers = new List<int[][]>();
             topLayers = new List<int[][]>();
+            collisionRects = new List<Rectangle>();
 
             //Get layer data
             for (int i = 0; i < layerNodes.Count; i++)
