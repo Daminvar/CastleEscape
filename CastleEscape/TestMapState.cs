@@ -34,7 +34,7 @@ namespace CastleEscape
         {
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 StateManager.PopState();

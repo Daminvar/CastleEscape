@@ -44,7 +44,7 @@ namespace CastleEscape
             // resumes everything when returning to the overworld state
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             // checks for updates
             handleInput();
@@ -71,7 +71,7 @@ namespace CastleEscape
                     }
                     else
                     {
-                        //mappy.ChangeMap(west);
+                        mappy.ChangeMap(Map.Directions.West);
                         playerObj.Move(mappy.MapWidth - 1, 0);
                         timer = 0;
                     }
@@ -88,7 +88,7 @@ namespace CastleEscape
                     }
                     else
                     {
-                        //mappy.ChangeMap(east);
+                        mappy.ChangeMap(Map.Directions.East);
                         playerObj.Move(-(mappy.MapWidth) + 1, 0);
                         timer = 0;
                     }
@@ -105,7 +105,7 @@ namespace CastleEscape
                     }
                     else
                     {
-                        //mappy.ChangeMap(north);
+                        mappy.ChangeMap(Map.Directions.North);
                         playerObj.Move(0, mappy.MapHeight - 1);
                         timer = 0;
                     }
@@ -122,7 +122,7 @@ namespace CastleEscape
                     }
                     else
                     {
-                        //mappy.ChangeMap(south);
+                        mappy.ChangeMap(Map.Directions.South);
                         playerObj.Move(0, -(mappy.MapHeight) + 1);
                         timer = 0;
                     }

@@ -29,10 +29,10 @@ namespace CastleEscape
         /// <summary>
         /// Updates the top state. Called every frame.
         /// </summary>
-        public static void Update()
+        public static void Update(GameTime gameTime)
         {
             if (states.Count != 0)
-                states[states.Count - 1].Update();
+                states[states.Count - 1].Update(gameTime);
         }
 
         /// <summary>

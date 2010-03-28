@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Dialogue.cs" />
     <Compile Include="IOverworldEntity.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Overworld.cs" />
     <Compile Include="Player.cs" />

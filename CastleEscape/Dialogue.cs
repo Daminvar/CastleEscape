@@ -90,7 +90,7 @@ namespace CastleEscape
             // la dee da
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             // Check for keyboard input
             if (canMove)

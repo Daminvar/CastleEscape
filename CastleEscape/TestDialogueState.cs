@@ -40,9 +40,9 @@ namespace CastleEscape
         {
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            dlog.Update();
+            dlog.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

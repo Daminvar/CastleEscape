@@ -28,6 +28,7 @@ namespace CastleEscape
         private int tilesize;
         private Texture2D tileset;
         private List<Rectangle> collisionRects;
+        string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
 
         public int MapWidth
         {
@@ -72,6 +73,21 @@ namespace CastleEscape
             mapWidth = int.Parse(mapNode.Attributes["width"].Value);
             mapHeight = int.Parse(mapNode.Attributes["height"].Value);
             tilesize = int.Parse(mapNode.Attributes["tilewidth"].Value);
+            
+            XmlNodeList properties = reader.GetElementsByTagName("property");
+            for (int i = 0; i < properties.Count; i++)
+            {
+                string name = properties[i].Attributes["name"].Value;
+                string value = properties[i].Attributes["value"].Value;
+                if (name == "east")
+                    eastMapFilename = value;
+                else if (name == "west")
+                    westMapFilename = value;
+                else if (name == "north")
+                    northMapFilename = value;
+                else if (name == "south")
+                    southMapFilename = value;
+            }
 
             XmlNodeList layerNodes = reader.GetElementsByTagName("layer");
 
@@ -126,6 +142,19 @@ namespace CastleEscape
         /// <param name="direction">The direction to use</param>
         public void ChangeMap(Directions direction)
         {
+            var reader = new XmlDocument();
+
+            string filename = null;
+            if (direction == Directions.East) filename = eastMapFilename;
+            if (direction == Directions.West) filename = westMapFilename;
+            if (direction == Directions.North) filename = northMapFilename;
+            if (direction == Directions.South) filename = southMapFilename;
+
+            if (filename != null)
+            {
+                reader.Load(MAP_DIRECTORY + filename);
+                ParseTMXFile(reader);
+            }
         }
 
         /// <summary>
