@@ -38,7 +38,7 @@ namespace CastleEscape
             base.Initialize();
             this.Window.Title = "Escape from the Castle";
             StateManager.Initialize();
-            StateManager.PushState(new Overworld(this));
+            StateManager.PushState(new MainMenu(this));
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace CastleEscape
         {
             if (StateManager.IsEmpty())
                 Exit();
-            StateManager.Update();
+            StateManager.Update(gameTime);
             base.Update(gameTime);
         }
 

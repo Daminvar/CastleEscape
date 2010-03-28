@@ -44,7 +44,7 @@ namespace CastleEscape
             // resumes everything when returning to the overworld state
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             // checks for updates
             handleInput();
