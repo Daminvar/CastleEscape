@@ -14,16 +14,22 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
-    class TestMapState : State
+    class TestDialogueState : State
     {
-        private Map map;
+        private Dialogue dlog;
+        private SpriteFont font;
 
-        public TestMapState(Game game) : base(game) { }
+        public TestDialogueState(Game game)
+            : base(game)
+        {
+        }
 
         public override void Initialize()
         {
-            map = new Map(game);
-            map.LoadMap("testmap.tmx");
+            dlog = new Dialogue("Hello out there|Does this work?|IT'S BECAUSE OF YOU THERE'S A GIANT IN OUR MIDST AND MY WIFE IS DEAD BUT IT ISN'T MY FAULT I WAS GIVEN THOSE BEANS YOU PERSUADED ME TO TRADE AWAY MY COW FOR BEANS|something else|whaaat", game);
+            font = game.Content.Load<SpriteFont>("fonts\\fixedsys");
+            dlog.Initialize();
+
         }
 
         public override void Pause()
@@ -36,14 +42,12 @@ namespace CastleEscape
 
         public override void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                StateManager.PopState();
+            dlog.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            map.DrawBase(spriteBatch, 0, 0);
-            map.DrawTop(spriteBatch, 0, 0);
+            dlog.Draw(spriteBatch);
         }
     }
 }

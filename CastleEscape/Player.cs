@@ -22,7 +22,6 @@ namespace CastleEscape
 
         private int x;
         private int y;
-        private Map map;
 
         public Player(int xPos, int yPos, Texture2D tx)
         {
