@@ -16,6 +16,7 @@ namespace CastleEscape
 {
     class Dialogue : State
     {
+        // create necessary attributes
         private string message;
         private int height;
         private Texture2D bgColor;
@@ -24,7 +25,11 @@ namespace CastleEscape
         private bool canMove;
         private List<string> mList;
         
-        // constructor contains string with text that it will display
+        /// <summary>
+        /// The Dialogue constructor - takes 2 parameters
+        /// </summary>
+        /// <param name="text">The message that will be displayed</param>
+        /// <param name="game">The current game</param>
         public Dialogue(string text, Game game) : base(game)
         {
             // the text that it will display
@@ -33,24 +38,32 @@ namespace CastleEscape
             font = game.Content.Load<SpriteFont>("fonts\\fixedsys");
         }
 
+        /// <summary>
+        /// Initialize the Dialogue class. This sets the height, the canMove variable, and creates a List of lines that will be printed out.
+        /// </summary>
         public override void Initialize()
         {
-            // get the height that the dialogue box will be
+            // get the height that the dialogue box will be - 1/4th of the screen size
             height = game.GraphicsDevice.Viewport.Height / 4;
+
+            // set canMove to true so you can press the space bar!
             canMove = true;
+
+            // implement a list for the different lines
             mList = new List<string>();
 
-            //Also does something, but when people talk too much I only remember some things. 
-            //I think it was something about making an array, right?
-
+            // create an array of each line from the message
             mArray = message.Split('|');
 
+            // populate the list with the elements in the array
             for (int i = 0; i < mArray.Length; i++)
             {
+                // if the line is not too long, add it to the mList list
                 if (font.MeasureString(mArray[i]).X < game.GraphicsDevice.Viewport.Width - 32)
                 {
                     mList.Add(mArray[i]);
                 }
+                // if the line is too long, split it up by words.
                 else
                 {
                     string longLine = mArray[i];
@@ -58,19 +71,23 @@ namespace CastleEscape
                     string msg = null;
                     for (int j = 0; j < longLineArr.Length; j++)
                     {
+                        // if the next word + the current string is longer than the width we set, add the current string to the message list
                         if (font.MeasureString(longLineArr[j] + " " + msg).X > game.GraphicsDevice.Viewport.Width - 32)
                         {
                             mList.Add(msg);
                             msg = null;
                         }
+                        // this is so we don't start with a space.
                         if (j == 0)
                         {
                             msg = longLineArr[j];
                         }
+                        // add the next word to the string
                         else
                         {
                             msg += " " + longLineArr[j];
                         }
+                        // if you've reached the end of the array, add the current string to the mList.
                         if (j == longLineArr.Length)
                         {
                             mList.Add(msg);
@@ -82,14 +99,17 @@ namespace CastleEscape
 
         public override void Pause()
         {
-            // sits here
         }
 
         public override void Resume()
         {
-            // la dee da
         }
 
+        /// <summary>
+        /// Checks to see if the space key is down. If it is, the first element of the List is removed.
+        /// Holding down the space key sets canMove to false. Releasing sets canMove to true.
+        /// </summary>
+        /// <param name="gameTime">The game time</param>
         public override void Update(GameTime gameTime)
         {
             // Check for keyboard input
@@ -101,17 +121,23 @@ namespace CastleEscape
                     {
                         StateManager.PopState();
                     }
+                    // remove the first element of the list, making the dialogue move up by one line.
                     mList.RemoveAt(0);
                     canMove = false;
                 }
             }
 
+            // if the space key is up, then set canMove to true again so you can go to the next line.
             if (Keyboard.GetState().IsKeyUp(Keys.Space))
             {
                 canMove = true;
             }
         }
 
+        /// <summary>
+        /// Draws the textbox and four lines of text to the screen.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             // draws only the first four lines fo the array

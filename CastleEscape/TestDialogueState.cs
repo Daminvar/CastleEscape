@@ -14,8 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// A test class to make sure Dialogue works.
+    /// </summary>
     class TestDialogueState : State
     {
+        // You will need a Dialogue and a SpriteFont.
         private Dialogue dlog;
         private SpriteFont font;
 
@@ -24,10 +28,14 @@ namespace CastleEscape
         {
         }
 
+        /// <summary>
+        /// Initializes the Dialogue object.
+        /// </summary>
         public override void Initialize()
         {
+            // Initialize the dialogue by passing in a message and a game
             dlog = new Dialogue("Hello out there|Does this work?|IT'S BECAUSE OF YOU THERE'S A GIANT IN OUR MIDST AND MY WIFE IS DEAD BUT IT ISN'T MY FAULT I WAS GIVEN THOSE BEANS YOU PERSUADED ME TO TRADE AWAY MY COW FOR BEANS|something else|whaaat", game);
-            font = game.Content.Load<SpriteFont>("fonts\\fixedsys");
+            font = game.Content.Load<SpriteFont>("main menu font");
             dlog.Initialize();
 
         }
@@ -40,11 +48,19 @@ namespace CastleEscape
         {
         }
 
+        /// <summary>
+        /// Calls the Update method in Dialogue.
+        /// </summary>
+        /// <param name="gameTime">The game time to be passed in</param>
         public override void Update(GameTime gameTime)
         {
             dlog.Update(gameTime);
         }
 
+        /// <summary>
+        /// Calls the Draw method in Dialogue
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch to be passed in</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             dlog.Draw(spriteBatch);
