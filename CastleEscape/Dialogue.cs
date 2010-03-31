@@ -121,9 +121,10 @@ namespace CastleEscape
                     if (mList.Count <= 4)
                     {
                         StateManager.PopState();
+                        return;
                     }
                     // remove the first element of the list, making the dialogue move up by one line.
-                    mList.RemoveAt(0);
+                    mList.RemoveRange(0,4);
                     canMove = false;
                 }
             }
