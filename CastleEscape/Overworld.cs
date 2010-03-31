@@ -17,8 +17,6 @@ namespace CastleEscape
 {
     class Overworld : State
     {
-        public Overworld(Game game) : base(game) { }
-
         Player playerObj;
         Map mappy;
 
@@ -28,8 +26,7 @@ namespace CastleEscape
         // create a counter for steps
         int pedometer;
 
-
-        public override void Initialize()
+        public Overworld(Game game) : base(game)
         {
             playerObj = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
             mappy = new Map(game);

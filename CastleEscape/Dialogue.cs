@@ -37,13 +37,7 @@ namespace CastleEscape
             bgColor = game.Content.Load<Texture2D>("grey");
             font = game.Content.Load<SpriteFont>("dialogue-font");
             transparent = true;
-        }
 
-        /// <summary>
-        /// Initialize the Dialogue class. This sets the height, the canMove variable, and creates a List of lines that will be printed out.
-        /// </summary>
-        public override void Initialize()
-        {
             // get the height that the dialogue box will be - 1/4th of the screen size
             height = game.GraphicsDevice.Viewport.Height / 4;
 

@@ -32,12 +32,10 @@ namespace CastleEscape
         private float selectedSpacing;
         private bool canMove;
 
-        public MainMenu(Game game) : base(game) { }
-
-        public override void Initialize()
+        public MainMenu(Game game) : base(game)
         {
-            font = game.Content.Load<SpriteFont>("main menu font");
-            background = game.Content.Load<Texture2D>("main menu background");
+            font = game.Content.Load<SpriteFont>("main-menu-font");
+            background = game.Content.Load<Texture2D>("main-menu-background");
             defaultSpacing = font.Spacing;
             canMove = true;
         }

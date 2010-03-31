@@ -59,15 +59,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="main menu font.spritefont">
-      <Name>main menu font</Name>
+    <Compile Include="main-menu-font.spritefont">
+      <Name>main-menu-font</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="main menu background.png">
-      <Name>main menu background</Name>
+    <Compile Include="main-menu-background.png">
+      <Name>main-menu-background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

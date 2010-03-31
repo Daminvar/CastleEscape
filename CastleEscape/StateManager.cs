@@ -65,7 +65,6 @@ namespace CastleEscape
             if (states.Count != 0)
                 states[states.Count - 1].Pause();
 
-            newState.Initialize();
             states.Add(newState);
         }
 

@@ -23,21 +23,11 @@ namespace CastleEscape
         private Dialogue dlog;
         private SpriteFont font;
 
-        public TestDialogueState(Game game)
-            : base(game)
-        {
-        }
-
-        /// <summary>
-        /// Initializes the Dialogue object.
-        /// </summary>
-        public override void Initialize()
+        public TestDialogueState(Game game) : base(game)
         {
             // Initialize the dialogue by passing in a message and a game
             dlog = new Dialogue(game, "Hello out there|Does this work?|IT'S BECAUSE OF YOU THERE'S A GIANT IN OUR MIDST AND MY WIFE IS DEAD BUT IT ISN'T MY FAULT I WAS GIVEN THOSE BEANS YOU PERSUADED ME TO TRADE AWAY MY COW FOR BEANS|something else|whaaat");
             font = game.Content.Load<SpriteFont>("main menu font");
-            dlog.Initialize();
-
         }
 
         public override void Pause()

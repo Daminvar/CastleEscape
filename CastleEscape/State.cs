@@ -30,7 +30,6 @@ namespace CastleEscape
             get { return transparent; }
         }
 
-        public abstract void Initialize();
         public abstract void Pause();
         public abstract void Resume();
         public abstract void Update(GameTime gameTime);

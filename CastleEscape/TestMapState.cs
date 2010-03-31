@@ -18,12 +18,10 @@ namespace CastleEscape
     {
         private Map map;
 
-        public TestMapState(Game game) : base(game) { }
-
-        public override void Initialize()
+        public TestMapState(Game game) : base(game)
         {
             map = new Map(game);
-            map.LoadMap("testmap.tmx");
+            map.LoadMap("testmap.js");
         }
 
         public override void Pause()
