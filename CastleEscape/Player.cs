@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
-    class Player : IOverworldEntity
+    class Player : IOverworldEntity, IBattleCharacter
     {
         // create a sprite for that
         //private Vector2 position;
@@ -22,6 +22,25 @@ namespace CastleEscape
 
         private int x;
         private int y;
+
+        // player attributes
+        private int speed;
+        private int health;
+        private int attack;
+        private int defense;
+        private int level;
+        private int exp;
+        private int mana;
+        private int magicAtk;
+
+        // attribute for move accuracy
+        private int accuracy;
+
+        public int Accuracy
+        {
+            get { return accuracy; }
+            set { accuracy = value; }
+        }
 
         // I didn't know how else to make it draw itself correctly without making a constant for tilesize. I don't really think 
         // there's a need for a Map object in the Player class, but if you think differently, feel free to change it.
@@ -38,6 +57,18 @@ namespace CastleEscape
             x = xPos;
             y = yPos;
             texture = tx;
+
+            // the level 1 attributes of a player
+            level = 1;
+            exp = 0;
+            health = 60;
+            defense = 1;
+            speed = 2;
+            attack = 10;
+            mana = 10;
+            magicAtk = 8;
+
+            accuracy = 100;
         }
 
         public Texture2D Texture
@@ -69,6 +100,54 @@ namespace CastleEscape
         public void DrawForOverworld(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, new Vector2((float)x * TILE_SIZE, (float)y * TILE_SIZE), Color.White);
+        }
+
+        public void Attack(int enemyDef, int enemyHP)
+        {
+            // create a random number to see if the attack hit!
+            Random rgen = new Random();
+            int didHit = rgen.Next(1, 101);
+            if (didHit <= accuracy)
+            {
+                if (accuracy == 100)
+                {
+                    if ((int)((attack / 2) - enemyDef) > 0)
+                    {
+                        enemyHP -= ((int)((attack / 2) - enemyDef));
+                    }
+                }
+                if (accuracy == 80)
+                {
+                    if ((attack - enemyDef) > 0)
+                    {
+                        enemyHP -= (attack - enemyDef);
+                    }
+                }
+                if (accuracy == 55)
+                {
+                    if (((attack * 2) - enemyDef) > 0)
+                    {
+                        enemyHP -= ((attack * 2) - enemyDef);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if the Player is dead
+        /// </summary>
+        /// <param name="hp">The Player's current HP.</param>
+        /// <returns>True if the Player is dead; false if not.</returns>
+        public bool IsDead(int hp)
+        {
+            if (hp <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
