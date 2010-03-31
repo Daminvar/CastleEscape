@@ -9,7 +9,6 @@ bob.SetTexture("test-npe");
 if (getFlag("talked-to-bob")) {
 	bob.SetPosition(5, 5)
 } else {
-	System.Console.WriteLine("blah")
 	bob.SetPosition(12, 11)
 }
 
@@ -18,6 +17,7 @@ bob.SetInteractFunc(function() {
 		dialogue("I have nothing more to say to you.")
 	} else {
 		dialogue("Hi, it's nice to meet you.")
+		setFlag("talked-to-bob")
 	}
 })
 

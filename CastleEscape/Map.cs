@@ -84,6 +84,7 @@ namespace CastleEscape
 
             var engine = new Jint.JintEngine();
             engine.DisableSecurity();
+            engine.SetDebugMode(true);
             engine.SetFunction("east", new Action<string>(setEastMapfile));
             engine.SetFunction("west", new Action<string>(setWestMapfile));
             engine.SetFunction("north", new Action<string>(setNorthMapfile));
@@ -129,13 +130,12 @@ namespace CastleEscape
 
         private bool getFlag(string flag)
         {
-            //TODO
-            return false;
+            return Flags.GetFlag(flag);
         }
 
         private void setFlag(string flag)
         {
-            //TODO
+            Flags.SetFlag(flag);
         }
 
         private NPE newNPE()
