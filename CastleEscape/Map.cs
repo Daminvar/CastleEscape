@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -28,7 +29,9 @@ namespace CastleEscape
         private int tilesize;
         private Texture2D tileset;
         private List<Rectangle> collisionRects;
-        string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
+        private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
+        private string tmxMapFilename;
+        
 
         public int MapWidth
         {
@@ -62,32 +65,62 @@ namespace CastleEscape
         /// <param name="filename">The filename</param>
         public void LoadMap(string filename)
         {
-            var reader = new XmlDocument();
-            reader.Load(MAP_DIRECTORY + filename);
-            ParseTMXFile(reader);
+            ParseScriptFile(filename);
+            ParseTMXFile();
         }
 
-        private void ParseTMXFile(XmlDocument reader)
+        private void ParseScriptFile(string filename)
         {
+            //Clear neighboring room and mapfile strings
+            eastMapFilename = null;
+            westMapFilename = null;
+            northMapFilename = null;
+            southMapFilename = null;
+            tmxMapFilename = null;
+
+            var engine = new Jint.JintEngine();
+            engine.DisableSecurity();
+            engine.SetFunction("east", new Action<string>(setEastMapfile));
+            engine.SetFunction("west", new Action<string>(setWestMapfile));
+            engine.SetFunction("north", new Action<string>(setNorthMapfile));
+            engine.SetFunction("south", new Action<string>(setSouthMapfile));
+            engine.SetFunction("mapfile", new Action<string>(setTmxMapfile));
+            engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
+        }
+
+        private void setEastMapfile(string filename)
+        {
+            eastMapFilename = filename;
+        }
+
+        private void setWestMapfile(string filename)
+        {
+            westMapFilename = filename;
+        }
+
+        private void setNorthMapfile(string filename)
+        {
+            northMapFilename = filename;
+        }
+
+        private void setSouthMapfile(string filename)
+        {
+            southMapFilename = filename;
+        }
+
+        private void setTmxMapfile(string filename)
+        {
+            tmxMapFilename = filename;
+        }
+
+        private void ParseTMXFile()
+        {
+            var reader = new XmlDocument();
+            reader.Load(MAP_DIRECTORY + tmxMapFilename);
             XmlNode mapNode = reader.GetElementsByTagName("map")[0];
             mapWidth = int.Parse(mapNode.Attributes["width"].Value);
             mapHeight = int.Parse(mapNode.Attributes["height"].Value);
             tilesize = int.Parse(mapNode.Attributes["tilewidth"].Value);
-            
-            XmlNodeList properties = reader.GetElementsByTagName("property");
-            for (int i = 0; i < properties.Count; i++)
-            {
-                string name = properties[i].Attributes["name"].Value;
-                string value = properties[i].Attributes["value"].Value;
-                if (name == "east")
-                    eastMapFilename = value;
-                else if (name == "west")
-                    westMapFilename = value;
-                else if (name == "north")
-                    northMapFilename = value;
-                else if (name == "south")
-                    southMapFilename = value;
-            }
 
             XmlNodeList layerNodes = reader.GetElementsByTagName("layer");
 
@@ -142,8 +175,6 @@ namespace CastleEscape
         /// <param name="direction">The direction to use</param>
         public void ChangeMap(Directions direction)
         {
-            var reader = new XmlDocument();
-
             string filename = null;
             if (direction == Directions.East) filename = eastMapFilename;
             if (direction == Directions.West) filename = westMapFilename;
@@ -152,8 +183,8 @@ namespace CastleEscape
 
             if (filename != null)
             {
-                reader.Load(MAP_DIRECTORY + filename);
-                ParseTMXFile(reader);
+                ParseScriptFile(filename);
+                ParseTMXFile();
             }
         }
 

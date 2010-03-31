@@ -1,4 +1,4 @@
 
-mapfile = "testmap2.tmx"
+mapfile("testmap2.tmx")
 
-west = "testmap.js"
+west("testmap.js")

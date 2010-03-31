@@ -30,7 +30,7 @@ namespace CastleEscape
         {
             playerObj = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
             mappy = new Map(game);
-            mappy.LoadMap("testmap.tmx");
+            mappy.LoadMap("testmap.js");
             timer = 0;
         }
 

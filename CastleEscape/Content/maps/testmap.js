@@ -1,9 +1,9 @@
 
-mapfile = "testmap.tmx"
+mapfile("testmap.tmx")
 
-east = "testmap2.js"
+east("testmap2.js")
 
-var bob = new NPE()
+/*var bob = new NPE()
 
 if (getFlag("talked-to-bob")) {
 	bob.SetPosition(5, 5)
@@ -18,3 +18,4 @@ bob.SetInteractFunc(function() {
 		dialogue("Hi, it's nice to meet you.")
 	}
 })
+*/
