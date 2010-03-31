@@ -133,12 +133,12 @@ namespace CastleEscape
         public override void Draw(SpriteBatch spriteBatch)
         {
             // draws player, tells map to draw itself
-            //playerObj.DrawForOverworld(spriteBatch);
             mappy.DrawBase(spriteBatch, 0, 0);
+            playerObj.DrawForOverworld(spriteBatch);
 
-            Vector2 v2 = new Vector2(playerObj.X * mappy.TileSize, playerObj.Y * mappy.TileSize);
+            //Vector2 v2 = new Vector2(playerObj.X * mappy.TileSize, playerObj.Y * mappy.TileSize);
 
-            spriteBatch.Draw(playerObj.Texture, v2, Color.White);
+            //spriteBatch.Draw(playerObj.Texture, v2, Color.White);
 
             mappy.DrawTop(spriteBatch, 0, 0);
         }
