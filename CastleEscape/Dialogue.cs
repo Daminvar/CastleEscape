@@ -87,12 +87,9 @@ namespace CastleEscape
                         {
                             msg += " " + longLineArr[j];
                         }
-                        // if you've reached the end of the array, add the current string to the mList.
-                        if (j == longLineArr.Length)
-                        {
-                            mList.Add(msg);
-                        }
                     }
+                    // if you've reached the end of the array, add the current string to the mList.
+                    mList.Add(msg);
                 }
             }
         }
