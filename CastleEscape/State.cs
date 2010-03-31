@@ -17,10 +17,17 @@ namespace CastleEscape
     abstract class State
     {
         protected Game game;
+        protected bool transparent;
 
         public State(Game game)
         {
             this.game = game;
+            transparent = false;
+        }
+
+        public bool Transparent
+        {
+            get { return transparent; }
         }
 
         public abstract void Initialize();

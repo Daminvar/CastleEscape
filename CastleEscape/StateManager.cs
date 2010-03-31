@@ -41,8 +41,19 @@ namespace CastleEscape
         /// <param name="spriteBatch">The SpriteBatch object to use for drawing.</param>
         public static void Draw(SpriteBatch spriteBatch)
         {
-            if (states.Count != 0)
-                states[states.Count - 1].Draw(spriteBatch);
+            if (states.Count == 0)
+                return;
+
+            drawState(spriteBatch, states.Count - 1);
+        }
+
+        private static void drawState(SpriteBatch spriteBatch, int index)
+        {
+            if (index < 0)
+                return;
+            if (states[index].Transparent)
+                drawState(spriteBatch, index - 1);
+            states[index].Draw(spriteBatch);
         }
 
         /// <summary>
