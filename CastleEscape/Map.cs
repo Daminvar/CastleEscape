@@ -65,11 +65,11 @@ namespace CastleEscape
         /// <param name="filename">The filename</param>
         public void LoadMap(string filename)
         {
-            ParseScriptFile(filename);
-            ParseTMXFile();
+            parseScriptFile(filename);
+            parseTMXFile();
         }
 
-        private void ParseScriptFile(string filename)
+        private void parseScriptFile(string filename)
         {
             //Clear neighboring room and mapfile strings
             eastMapFilename = null;
@@ -113,7 +113,7 @@ namespace CastleEscape
             tmxMapFilename = filename;
         }
 
-        private void ParseTMXFile()
+        private void parseTMXFile()
         {
             var reader = new XmlDocument();
             reader.Load(MAP_DIRECTORY + tmxMapFilename);
@@ -183,8 +183,8 @@ namespace CastleEscape
 
             if (filename != null)
             {
-                ParseScriptFile(filename);
-                ParseTMXFile();
+                parseScriptFile(filename);
+                parseTMXFile();
             }
         }
 
