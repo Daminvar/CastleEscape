@@ -35,7 +35,7 @@ namespace CastleEscape
             // the text that it will display
             message = text;
             bgColor = game.Content.Load<Texture2D>("grey");
-            font = game.Content.Load<SpriteFont>("fonts\\fixedsys");
+            font = game.Content.Load<SpriteFont>("dialogue-font");
             transparent = true;
         }
 

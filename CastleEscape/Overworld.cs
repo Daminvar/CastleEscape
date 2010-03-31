@@ -25,6 +25,9 @@ namespace CastleEscape
         int timer;
         bool canPressZ;
 
+        // create a counter for steps
+        int pedometer;
+
 
         public override void Initialize()
         {
@@ -33,6 +36,7 @@ namespace CastleEscape
             mappy.LoadMap("testmap.js");
             timer = 0;
             canPressZ = false;
+            pedometer = 0;
         }
 
         public override void Pause()
@@ -52,7 +56,10 @@ namespace CastleEscape
 
             timer++;
         }
-
+        
+        /// <summary>
+        /// Handles the keyboard input by the player to move the character sprite onscreen. Also checks for collisions.
+        /// </summary>
         private void handleInput()
         {
             // handle input
@@ -88,6 +95,20 @@ namespace CastleEscape
                         if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
+                            {
+                                Console.WriteLine("Battle!");
+                                pedometer = 0;
+
+                                // this will either push the Battle state on or call something that will.
+                                // does battling pause overworld too?
+                                //this.Pause();
+                            }
+
                             timer = 0;
                         }
                     }
@@ -106,6 +127,20 @@ namespace CastleEscape
                         if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(1, 0);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
+                            {
+                                Console.WriteLine("Battle!");
+                                pedometer = 0;
+
+                                // this will either push the Battle state on or call something that will.
+                                // does battling pause overworld too?
+                                //this.Pause();
+                            }
+
                             timer = 0;
                         }
                     }
@@ -124,6 +159,19 @@ namespace CastleEscape
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                         {
                             playerObj.Move(0, -1);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
+                            {
+                                Console.WriteLine("Battle!");
+                                pedometer = 0;
+                                // this will either push the Battle state on or call something that will.
+                                // does battling pause overworld too?
+                                //this.Pause();
+                            }
+
                             timer = 0;
                         }
                     }
@@ -142,6 +190,20 @@ namespace CastleEscape
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                         {
                             playerObj.Move(0, 1);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
+                            {
+                                Console.WriteLine("Battle!");
+                                pedometer = 0;
+
+                                // this will either push the Battle state on or call something that will.
+                                // does battling pause overworld too?
+                                //this.Pause();
+                            }
+
                             timer = 0;
                         }
                     }
@@ -155,16 +217,32 @@ namespace CastleEscape
             }
         }
 
+        // This checks to see if a battle will start!
+        // you can move this code if you don't think it belongs here~
+        public bool RandomEncounter(int steps)
+        {
+            // create a random number generator
+            Random rng = new Random();
+
+            int rdmNum = rng.Next(1, 21);
+
+            if (rdmNum < (int)(5 * (steps / 6) ^ 2))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             // draws player, tells map to draw itself
-            //playerObj.DrawForOverworld(spriteBatch);
             mappy.DrawBase(spriteBatch, 0, 0);
-
-            Vector2 v2 = new Vector2(playerObj.XPos * mappy.TileSize, playerObj.YPos * mappy.TileSize);
-
-            spriteBatch.Draw(playerObj.Texture, v2, Color.White);
-
+            playerObj.DrawForOverworld(spriteBatch, mappy, 0, 0);
             mappy.DrawTop(spriteBatch, 0, 0);
         }
     }

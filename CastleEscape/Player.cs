@@ -14,14 +14,14 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
-    class Player : IOverworldEntity
+    class Player : IOverworldEntity, IBattleCharacter
     {
         // create a sprite for that
         //private Vector2 position;
         private Texture2D texture;
 
-        private int x;
-        private int y;
+        private int xPos;
+        private int yPos;
         private Directions direction;
 
         public enum Directions
@@ -35,11 +35,48 @@ namespace CastleEscape
             set { direction = value; }
         }
 
+        // player attributes
+        private int speed;
+        private int health;
+        private int attack;
+        private int defense;
+        private int level;
+        private int exp;
+        private int mana;
+        private int magicAtk;
+
+        // attribute for move accuracy
+        private int accuracy;
+
+        public int Accuracy
+        {
+            get { return accuracy; }
+            set { accuracy = value; }
+        }
+
+        /// <summary>
+        /// The Player constructor
+        /// </summary>
+        /// <param name="xPos">The starting x-position</param>
+        /// <param name="yPos">The starting y-position</param>
+        /// <param name="tx">The character image</param>
         public Player(int xPos, int yPos, Texture2D tx)
         {
-            x = xPos;
-            y = yPos;
+            this.xPos = xPos;
+            this.yPos = yPos;
             texture = tx;
+
+            // the level 1 attributes of a player
+            level = 1;
+            exp = 0;
+            health = 60;
+            defense = 1;
+            speed = 2;
+            attack = 10;
+            mana = 10;
+            magicAtk = 8;
+
+            accuracy = 100;
         }
 
         public Texture2D Texture
@@ -49,23 +86,76 @@ namespace CastleEscape
 
         public int XPos
         {
-            get { return x; }
+            get { return xPos; }
         }
 
         public int YPos
         {
-            get { return y; }
+            get { return yPos; }
         }
 
-        public void Move(int x2, int y2)
+        /// <summary>
+        /// Moves the character.
+        /// </summary>
+        /// <param name="x2">The number of spaces to be moved in the X direction. Positive moves right, negative moves left.</param>
+        /// <param name="y2">The number of spaces to be moved in the Y direction. Positive moves down, negative moves up.</param>
+        public void Move(int x, int y)
         {
-            x += x2;
-            y += y2;
+            xPos += x;
+            yPos += y;
         }
 
         public void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y)
         {
-            
+            spriteBatch.Draw(texture, new Vector2(x + xPos * map.TileSize, y + yPos * map.TileSize), Color.White);
+        }
+
+        public void Attack(int enemyDef, int enemyHP)
+        {
+            // create a random number to see if the attack hit!
+            Random rgen = new Random();
+            int didHit = rgen.Next(1, 101);
+            if (didHit <= accuracy)
+            {
+                if (accuracy == 100)
+                {
+                    if ((int)((attack / 2) - enemyDef) > 0)
+                    {
+                        enemyHP -= ((int)((attack / 2) - enemyDef));
+                    }
+                }
+                if (accuracy == 80)
+                {
+                    if ((attack - enemyDef) > 0)
+                    {
+                        enemyHP -= (attack - enemyDef);
+                    }
+                }
+                if (accuracy == 55)
+                {
+                    if (((attack * 2) - enemyDef) > 0)
+                    {
+                        enemyHP -= ((attack * 2) - enemyDef);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if the Player is dead
+        /// </summary>
+        /// <param name="hp">The Player's current HP.</param>
+        /// <returns>True if the Player is dead; false if not.</returns>
+        public bool IsDead(int hp)
+        {
+            if (hp <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
