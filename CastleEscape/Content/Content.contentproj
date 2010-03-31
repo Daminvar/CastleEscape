@@ -63,7 +63,7 @@
       <Name>fixedsys</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
-	</Compile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="main menu font.spritefont">
@@ -75,6 +75,13 @@
   <ItemGroup>
     <Compile Include="main menu background.png">
       <Name>main menu background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="test-npe.png">
+      <Name>test-npe</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

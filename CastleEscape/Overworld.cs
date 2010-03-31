@@ -21,9 +21,9 @@ namespace CastleEscape
 
         Player playerObj;
         Map mappy;
-        // npes
 
         int timer;
+        bool canPressZ;
 
 
         public override void Initialize()
@@ -32,6 +32,7 @@ namespace CastleEscape
             mappy = new Map(game);
             mappy.LoadMap("testmap.js");
             timer = 0;
+            canPressZ = false;
         }
 
         public override void Pause()
@@ -57,13 +58,34 @@ namespace CastleEscape
             // handle input
             KeyboardState kbState = Keyboard.GetState();
 
+            if (kbState.IsKeyUp(Keys.Z))
+                canPressZ = true;
+
+            if (canPressZ && kbState.IsKeyDown(Keys.Z))
+            {
+                NPE entity = null;
+                if (playerObj.Direction == Player.Directions.East)
+                    entity = mappy.GetNPEAt(playerObj.XPos + 1, playerObj.YPos);
+                else if (playerObj.Direction == Player.Directions.West)
+                    entity = mappy.GetNPEAt(playerObj.XPos - 1, playerObj.YPos);
+                else if (playerObj.Direction == Player.Directions.North)
+                    entity = mappy.GetNPEAt(playerObj.XPos, playerObj.YPos - 1);
+                else if (playerObj.Direction == Player.Directions.South)
+                    entity = mappy.GetNPEAt(playerObj.XPos, playerObj.YPos + 1);
+
+                if (entity != null)
+                    entity.Interact();
+                canPressZ = false;
+            }
+
             if (timer >= 15)
             {
                 if (kbState.IsKeyDown(Keys.Left))
                 {
-                    if (playerObj.X - 1 >= 0)
+                    playerObj.Direction = Player.Directions.West;
+                    if (playerObj.XPos - 1 >= 0)
                     {
-                        if (mappy.IsCollisionAt(playerObj.X - 1, playerObj.Y) == false)
+                        if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
                             timer = 0;
@@ -78,9 +100,10 @@ namespace CastleEscape
                 }
                 else if (kbState.IsKeyDown(Keys.Right))
                 {
-                    if (playerObj.X + 1 < mappy.MapWidth)
+                    playerObj.Direction = Player.Directions.East;
+                    if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
-                        if (mappy.IsCollisionAt(playerObj.X + 1, playerObj.Y) == false)
+                        if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(1, 0);
                             timer = 0;
@@ -95,9 +118,10 @@ namespace CastleEscape
                 }
                 else if (kbState.IsKeyDown(Keys.Up))
                 {
-                    if (playerObj.Y - 1 >= 0)
+                    playerObj.Direction = Player.Directions.North;
+                    if (playerObj.YPos - 1 >= 0)
                     {
-                        if (mappy.IsCollisionAt(playerObj.X, playerObj.Y - 1) == false)
+                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                         {
                             playerObj.Move(0, -1);
                             timer = 0;
@@ -112,9 +136,10 @@ namespace CastleEscape
                 }
                 else if (kbState.IsKeyDown(Keys.Down))
                 {
-                    if (playerObj.Y + 1 < mappy.MapHeight)
+                    playerObj.Direction = Player.Directions.South;
+                    if (playerObj.YPos + 1 < mappy.MapHeight)
                     {
-                        if (mappy.IsCollisionAt(playerObj.X, playerObj.Y + 1) == false)
+                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                         {
                             playerObj.Move(0, 1);
                             timer = 0;
@@ -136,7 +161,7 @@ namespace CastleEscape
             //playerObj.DrawForOverworld(spriteBatch);
             mappy.DrawBase(spriteBatch, 0, 0);
 
-            Vector2 v2 = new Vector2(playerObj.X * mappy.TileSize, playerObj.Y * mappy.TileSize);
+            Vector2 v2 = new Vector2(playerObj.XPos * mappy.TileSize, playerObj.YPos * mappy.TileSize);
 
             spriteBatch.Draw(playerObj.Texture, v2, Color.White);
 

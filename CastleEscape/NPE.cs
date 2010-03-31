@@ -17,10 +17,40 @@ namespace CastleEscape
     class NPE : IOverworldEntity
     {
         private Action interactFunc;
+        private Texture2D texture;
+        private int xPos, yPos;
+        private Game game;
 
-        public void DrawForOverworld(SpriteBatch spriteBatch)
+        public NPE(Game game)
         {
-            //TODO
+            this.game = game;
+        }
+
+        public int XPos
+        {
+            get { return xPos; }
+        }
+
+        public int YPos
+        {
+            get { return yPos; }
+        }
+
+        public void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y)
+        {
+            spriteBatch.Draw(texture,
+                new Vector2(x + xPos * map.TileSize, y + yPos * map.TileSize), Color.White);
+        }
+
+        public void SetPosition(int x, int y)
+        {
+            xPos = x;
+            yPos = y;
+        }
+
+        public void SetTexture(string textureName)
+        {
+            texture = game.Content.Load<Texture2D>(textureName);
         }
 
         public void SetInteractFunc(Action func)
@@ -30,6 +60,7 @@ namespace CastleEscape
 
         public void Interact()
         {
+            interactFunc();
         }
     }
 }

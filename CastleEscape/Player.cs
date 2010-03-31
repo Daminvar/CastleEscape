@@ -22,6 +22,18 @@ namespace CastleEscape
 
         private int x;
         private int y;
+        private Directions direction;
+
+        public enum Directions
+        {
+            North, South, East, West
+        }
+
+        public Directions Direction
+        {
+            get { return direction; }
+            set { direction = value; }
+        }
 
         public Player(int xPos, int yPos, Texture2D tx)
         {
@@ -35,12 +47,12 @@ namespace CastleEscape
             get { return texture; }
         }
 
-        public int X
+        public int XPos
         {
             get { return x; }
         }
 
-        public int Y
+        public int YPos
         {
             get { return y; }
         }
@@ -51,7 +63,7 @@ namespace CastleEscape
             y += y2;
         }
 
-        public void DrawForOverworld(SpriteBatch spriteBatch)
+        public void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y)
         {
             
         }

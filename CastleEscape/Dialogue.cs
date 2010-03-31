@@ -30,7 +30,7 @@ namespace CastleEscape
         /// </summary>
         /// <param name="text">The message that will be displayed</param>
         /// <param name="game">The current game</param>
-        public Dialogue(string text, Game game) : base(game)
+        public Dialogue(Game game, string text) : base(game)
         {
             // the text that it will display
             message = text;
@@ -46,8 +46,8 @@ namespace CastleEscape
             // get the height that the dialogue box will be - 1/4th of the screen size
             height = game.GraphicsDevice.Viewport.Height / 4;
 
-            // set canMove to true so you can press the space bar!
-            canMove = true;
+            // this is so the dialogue box doesn't instantly close
+            canMove = false;
 
             // implement a list for the different lines
             mList = new List<string>();
@@ -115,7 +115,7 @@ namespace CastleEscape
             // Check for keyboard input
             if (canMove)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                if (Keyboard.GetState().IsKeyDown(Keys.Z))
                 {
                     if (mList.Count <= 4)
                     {
@@ -128,7 +128,7 @@ namespace CastleEscape
             }
 
             // if the space key is up, then set canMove to true again so you can go to the next line.
-            if (Keyboard.GetState().IsKeyUp(Keys.Space))
+            if (Keyboard.GetState().IsKeyUp(Keys.Z))
             {
                 canMove = true;
             }

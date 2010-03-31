@@ -31,6 +31,7 @@ namespace CastleEscape
         private List<Rectangle> collisionRects;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
         private string tmxMapFilename;
+        private List<NPE> NPEs;
         
 
         public int MapWidth
@@ -78,6 +79,9 @@ namespace CastleEscape
             southMapFilename = null;
             tmxMapFilename = null;
 
+            //Empty NPE list
+            NPEs = new List<NPE>();
+
             var engine = new Jint.JintEngine();
             engine.DisableSecurity();
             engine.SetFunction("east", new Action<string>(setEastMapfile));
@@ -85,6 +89,11 @@ namespace CastleEscape
             engine.SetFunction("north", new Action<string>(setNorthMapfile));
             engine.SetFunction("south", new Action<string>(setSouthMapfile));
             engine.SetFunction("mapfile", new Action<string>(setTmxMapfile));
+            engine.SetFunction("newNPE", new Func<NPE>(newNPE));
+            engine.SetFunction("addNPE", new Action<NPE>(addNPE));
+            engine.SetFunction("getFlag", new Func<string, bool>(getFlag));
+            engine.SetFunction("setFlag", new Action<string>(setFlag));
+            engine.SetFunction("dialogue", new Action<string>(dialogue));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -111,6 +120,32 @@ namespace CastleEscape
         private void setTmxMapfile(string filename)
         {
             tmxMapFilename = filename;
+        }
+
+        private void addNPE(NPE newNPE)
+        {
+            NPEs.Add(newNPE);
+        }
+
+        private bool getFlag(string flag)
+        {
+            //TODO
+            return false;
+        }
+
+        private void setFlag(string flag)
+        {
+            //TODO
+        }
+
+        private NPE newNPE()
+        {
+            return new NPE(game);
+        }
+
+        private void dialogue(string text)
+        {
+            StateManager.PushState(new Dialogue(game, text));
         }
 
         private void parseTMXFile()
@@ -195,6 +230,7 @@ namespace CastleEscape
         public void DrawBase(SpriteBatch spriteBatch, int xPos, int yPos)
         {
             drawLayers(baseLayers, spriteBatch, xPos, yPos);
+            drawNPEs(spriteBatch, xPos, yPos);
         }
 
         /// <summary>
@@ -229,6 +265,28 @@ namespace CastleEscape
             }
         }
 
+        private void drawNPEs(SpriteBatch spriteBatch, int xPos, int yPos)
+        {
+            foreach (var entity in NPEs)
+            {
+                entity.DrawForOverworld(spriteBatch, this, xPos, yPos);
+            }
+        }
+
+        /// <summary>
+        /// Returns the NPE at the specified location
+        /// </summary>
+        /// <returns>The NPE, or null if there isn't one at that position.</returns>
+        public NPE GetNPEAt(int x, int y)
+        {
+            foreach (var entity in NPEs)
+            {
+                if (x == entity.XPos && y == entity.YPos)
+                    return entity;
+            }
+            return null;
+        }
+
         /// <summary>
         /// Tests to see if there is a collision
         /// at the specified coordinates.
@@ -239,6 +297,11 @@ namespace CastleEscape
             foreach (var rect in collisionRects)
             {
                 if (rect.Intersects(new Rectangle(x * tilesize, y * tilesize, tilesize, tilesize)))
+                    return true;
+            }
+            foreach (var entity in NPEs)
+            {
+                if (x == entity.XPos && y == entity.YPos)
                     return true;
             }
             return false;
