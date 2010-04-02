@@ -24,6 +24,12 @@ namespace CastleEscape
         private int yPos;
         private Directions direction;
 
+        private Rectangle sourceRectangle;
+        private int currentSpriteY;
+        private int currentSpriteX;
+        private int spriteWidth;
+        private int spriteHeight;
+
         public enum Directions
         {
             North, South, East, West
@@ -75,7 +81,11 @@ namespace CastleEscape
             attack = 10;
             mana = 10;
             magicAtk = 8;
-
+            currentSpriteY = 0;
+            currentSpriteX = 0;
+            spriteHeight = 53;
+            spriteWidth = 35;
+            
             accuracy = 100;
         }
 
@@ -101,13 +111,32 @@ namespace CastleEscape
         /// <param name="y2">The number of spaces to be moved in the Y direction. Positive moves down, negative moves up.</param>
         public void Move(int x, int y)
         {
+            if (x > 0)
+            {
+                currentSpriteY = 1;
+            }
+            if (x < 0)
+            {
+                currentSpriteY = 3;
+            }
+            if (y > 0)
+            {
+                currentSpriteY = 2;
+            }
+            if (y < 0)
+            {
+                currentSpriteY = 0;
+            }
+            
             xPos += x;
             yPos += y;
         }
 
         public void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y)
         {
-            spriteBatch.Draw(texture, new Vector2(x + xPos * map.TileSize, y + yPos * map.TileSize), Color.White);
+            sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
+
+            spriteBatch.Draw(texture, new Vector2(x - 2 + xPos * map.TileSize, y - 21 + yPos * map.TileSize), sourceRectangle, Color.White);
         }
 
         public void Attack(int enemyDef, int enemyHP)

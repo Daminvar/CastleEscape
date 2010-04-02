@@ -23,12 +23,31 @@ namespace CastleEscape
         int timer;
         bool canPressZ;
 
+        // size of sprite = 35px by 53px
+        int spriteHeight = 53;
+        int spriteWidth = 35;
+        
+        // determines which sprite to draw
+        int currentSpriteX;
+        int currentSpriteY;
+
+        // Rectangles
+        Rectangle sourceRectangle;
+        Rectangle destinationRectangle;
+
         // create a counter for steps
         int pedometer;
 
         public Overworld(Game game) : base(game)
         {
-            playerObj = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
+            //ghostie = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
+            currentSpriteX = 0;
+            currentSpriteY = 0;
+            playerObj = new Player(0,0, game.Content.Load<Texture2D>("player-spritesheet"));
+
+            //The destination rectangle is the location where the sprite will be drawn.
+            destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
+
             mappy = new Map(game);
             mappy.LoadMap("testmap.js");
             timer = 0;
@@ -49,15 +68,16 @@ namespace CastleEscape
         public override void Update(GameTime gameTime)
         {
             // checks for updates
-            handleInput();
+            handleInput(gameTime);
+            sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, 0, spriteWidth, spriteHeight);
 
-            timer++;
+            timer += gameTime.ElapsedGameTime.Milliseconds;
         }
         
         /// <summary>
         /// Handles the keyboard input by the player to move the character sprite onscreen. Also checks for collisions.
         /// </summary>
-        private void handleInput()
+        private void handleInput(GameTime gameTime)
         {
             // handle input
             KeyboardState kbState = Keyboard.GetState();
@@ -82,10 +102,11 @@ namespace CastleEscape
                 canPressZ = false;
             }
 
-            if (timer >= 15)
+            if (timer >= 200)
             {
                 if (kbState.IsKeyDown(Keys.Left))
                 {
+                    currentSpriteY = 3;
                     playerObj.Direction = Player.Directions.West;
                     if (playerObj.XPos - 1 >= 0)
                     {
@@ -106,6 +127,11 @@ namespace CastleEscape
                                 //this.Pause();
                             }
 
+                            if (timer >= 50)
+                            {
+                                
+                            }
+
                             timer = 0;
                         }
                     }
@@ -118,6 +144,7 @@ namespace CastleEscape
                 }
                 else if (kbState.IsKeyDown(Keys.Right))
                 {
+                    currentSpriteY = 1;
                     playerObj.Direction = Player.Directions.East;
                     if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
@@ -150,6 +177,7 @@ namespace CastleEscape
                 }
                 else if (kbState.IsKeyDown(Keys.Up))
                 {
+                    currentSpriteY = 0;
                     playerObj.Direction = Player.Directions.North;
                     if (playerObj.YPos - 1 >= 0)
                     {
@@ -181,6 +209,7 @@ namespace CastleEscape
                 }
                 else if (kbState.IsKeyDown(Keys.Down))
                 {
+                    currentSpriteY = 2;
                     playerObj.Direction = Player.Directions.South;
                     if (playerObj.YPos + 1 < mappy.MapHeight)
                     {
@@ -239,7 +268,9 @@ namespace CastleEscape
         {
             // draws player, tells map to draw itself
             mappy.DrawBase(spriteBatch, 0, 0);
+
             playerObj.DrawForOverworld(spriteBatch, mappy, 0, 0);
+
             mappy.DrawTop(spriteBatch, 0, 0);
         }
     }
