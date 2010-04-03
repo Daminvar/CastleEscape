@@ -34,7 +34,8 @@ namespace CastleEscape
         {
             // the text that it will display
             message = text;
-            bgColor = game.Content.Load<Texture2D>("grey");
+            bgColor = new Texture2D(game.GraphicsDevice, 1, 1);
+            bgColor.SetData<Color>(new Color[] { new Color(Color.Black, 200) });
             font = game.Content.Load<SpriteFont>("dialogue-font");
             transparent = true;
 
@@ -142,7 +143,7 @@ namespace CastleEscape
 
             for (int i = 0; i < 4 && i < mList.Count; i++)
             {
-                spriteBatch.DrawString(font, mList[i], new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 24) + 5 + font.LineSpacing * i), Color.Black);
+                spriteBatch.DrawString(font, mList[i], new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 24) + 5 + font.LineSpacing * i), Color.White);
             }
         }
     }
