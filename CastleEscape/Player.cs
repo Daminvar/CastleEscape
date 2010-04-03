@@ -29,6 +29,8 @@ namespace CastleEscape
         private int currentSpriteX;
         private int spriteWidth;
         private int spriteHeight;
+        private int pixelX;
+        private int pixelY;
 
         public enum Directions
         {
@@ -56,6 +58,34 @@ namespace CastleEscape
         private int exp;
         private int mana;
         private int magicAtk;
+
+
+        private int modX;
+        private int modY;
+
+        public int ModX
+        {
+            get { return modX; }
+            set { modX = value; }
+        }
+
+        public int ModY
+        {
+            get { return modY; }
+            set { modY = value; }
+        }
+
+        public int PixelX
+        {
+            get { return pixelX; }
+            set { pixelX = value; }
+        }
+
+        public int PixelY
+        {
+            get { return pixelY; }
+            set { pixelY = value; }
+        }
 
         // attribute for move accuracy
         private int accuracy;
@@ -88,11 +118,17 @@ namespace CastleEscape
             mana = 10;
             magicAtk = 8;
             currentSpriteY = 2;
-            currentSpriteX = 0;
+            currentSpriteX = 1;
             spriteHeight =40;
             spriteWidth = 35;
             
             accuracy = 100;
+
+            modX = 0;
+            modY = 0;
+
+            pixelX = 0;
+            pixelY = 0;
         }
 
         public Texture2D Texture
@@ -117,32 +153,35 @@ namespace CastleEscape
         /// <param name="y2">The number of spaces to be moved in the Y direction. Positive moves down, negative moves up.</param>
         public void Move(int x, int y)
         {
-            if (x > 0)
-            {
-                currentSpriteY = 1;
-            }
-            if (x < 0)
-            {
-                currentSpriteY = 3;
-            }
-            if (y > 0)
-            {
-                currentSpriteY = 2;
-            }
-            if (y < 0)
-            {
-                currentSpriteY = 0;
-            }
-            
             xPos += x;
             yPos += y;
+
+            pixelX = xPos * 32;
+            pixelY = yPos * 32;
         }
 
         public void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y)
         {
+            if (direction == Player.Directions.West)
+            {
+                currentSpriteY = 3;
+            }
+            else if (direction == Player.Directions.East)
+            {
+                currentSpriteY = 1;
+            }
+            else if (direction == Player.Directions.South)
+            {
+                currentSpriteY = 2;
+            }
+            else
+            {
+                currentSpriteY = 0;
+            }
+            
             sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
 
-            spriteBatch.Draw(texture, new Vector2(x - 2 + xPos * map.TileSize, y - 8 + yPos * map.TileSize), sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, new Vector2(x - 3 + xPos * map.TileSize + modX, y - 8 + yPos * map.TileSize + modY), sourceRectangle, Color.White);
         }
 
         public void Attack(int enemyDef, int enemyHP)
