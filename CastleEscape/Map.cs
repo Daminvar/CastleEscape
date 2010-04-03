@@ -16,6 +16,9 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Represents a map in the game.
+    /// </summary>
     class Map
     {
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
@@ -59,6 +62,9 @@ namespace CastleEscape
             get { return tilesize; }
         }
 
+        /// <summary>
+        /// The name of the current map.
+        /// </summary>
         public string MapName
         {
             get { return mapName; }
@@ -87,7 +93,7 @@ namespace CastleEscape
 
         private void parseScriptFile(string filename)
         {
-            //Clear neighboring room and mapfile strings
+            //Clear map script information
             mapName = "<name not set>";
             eastMapFilename = null;
             westMapFilename = null;
@@ -99,7 +105,7 @@ namespace CastleEscape
             NPEs = new List<NPE>();
 
             var engine = new Jint.JintEngine();
-            engine.DisableSecurity();
+            engine.DisableSecurity(); //Needed so the scripts can call methods on NPE objects.
             engine.SetDebugMode(true);
             engine.SetFunction("name", new Action<string>(setMapName));
             engine.SetFunction("east", new Action<string>(setEastMapfile));

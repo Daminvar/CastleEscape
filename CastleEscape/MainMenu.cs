@@ -14,10 +14,20 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// The initial state. Allows player to start a new game,
+    /// load a current game, display game info, or exit.
+    /// </summary>
     class MainMenu : State
     {
+        /// <summary>
+        /// The X coordinate of the unselected menu items.
+        /// </summary>
         private const int DEFAULT_XPOS = 520;
-        private const int STARTING_YPOS = 250;
+        /// <summary>
+        /// The Y coordinate of the first item on the menu.
+        /// </summary>
+        private const int STARTING_YPOS = 200;
         private static string[] options = {
             "New Game",
             "Load Game",
@@ -58,7 +68,7 @@ namespace CastleEscape
         {
             KeyboardState state = Keyboard.GetState();
 
-            if (state.IsKeyDown(Keys.Enter))
+            if (state.IsKeyDown(Keys.Z))
             {
                 if (options[selectedOption] == "Exit")
                     StateManager.PopState();
