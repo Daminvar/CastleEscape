@@ -29,6 +29,7 @@ namespace CastleEscape
         private int tilesize;
         private Texture2D tileset;
         private List<Rectangle> collisionRects;
+        private string mapName;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
         private string tmxMapFilename;
         private List<NPE> NPEs;
@@ -58,6 +59,11 @@ namespace CastleEscape
             get { return tilesize; }
         }
 
+        public string MapName
+        {
+            get { return mapName; }
+        }
+
         public enum Directions
         {
             North, South, East, West
@@ -82,6 +88,7 @@ namespace CastleEscape
         private void parseScriptFile(string filename)
         {
             //Clear neighboring room and mapfile strings
+            mapName = "<name not set>";
             eastMapFilename = null;
             westMapFilename = null;
             northMapFilename = null;
@@ -94,6 +101,7 @@ namespace CastleEscape
             var engine = new Jint.JintEngine();
             engine.DisableSecurity();
             engine.SetDebugMode(true);
+            engine.SetFunction("name", new Action<string>(setMapName));
             engine.SetFunction("east", new Action<string>(setEastMapfile));
             engine.SetFunction("west", new Action<string>(setWestMapfile));
             engine.SetFunction("north", new Action<string>(setNorthMapfile));
@@ -105,6 +113,11 @@ namespace CastleEscape
             engine.SetFunction("setFlag", new Action<string>(setFlag));
             engine.SetFunction("dialogue", new Action<string>(dialogue));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
+        }
+
+        private void setMapName(string name)
+        {
+            mapName = name;
         }
 
         private void setEastMapfile(string filename)

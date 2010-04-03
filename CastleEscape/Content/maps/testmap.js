@@ -1,4 +1,5 @@
 
+name("Test Map 1")
 mapfile("testmap.tmx")
 
 east("testmap2.js")

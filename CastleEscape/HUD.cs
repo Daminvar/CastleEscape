@@ -21,13 +21,15 @@ namespace CastleEscape
         Texture2D background;
         SpriteFont font;
         Player player;
+        Map map;
 
-        public HUD(Game game, Player player)
+        public HUD(Game game, Player player, Map map)
         {
             font = game.Content.Load<SpriteFont>("hud-font");
             background = new Texture2D(game.GraphicsDevice, 1, 1);
             background.SetData<Color>(new Color[] { new Color(Color.WhiteSmoke, 100) });
             this.player = player;
+            this.map = map;
         }
 
         public void Draw(SpriteBatch spriteBatch, int xPos, int yPos)
@@ -39,8 +41,7 @@ namespace CastleEscape
                  string.Format("MP: {0}/{1}", player.Mana, player.MaxMana),
                  string.Format("Gold: {0}", player.Gold),
                  string.Format("Level: {0}", player.Level),
-                 //TODO: Room name
-                 "Room Name",
+                 map.MapName,
              };
 
             for (int i = 0; i < stats.Length; i++)

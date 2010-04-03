@@ -23,13 +23,10 @@ namespace CastleEscape
         int timer;
         bool canPressZ;
 
-        // size of sprite = 35px by 53px
-        int spriteHeight = 53;
+        // size of sprite = 35px by 40px
+        int spriteHeight = 40;
         int spriteWidth = 35;
         
-        // determines which sprite to draw
-        int currentSpriteX;
-        int currentSpriteY;
 
         // Rectangles
         Rectangle sourceRectangle;
@@ -43,8 +40,6 @@ namespace CastleEscape
         public Overworld(Game game) : base(game)
         {
             //ghostie = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
-            currentSpriteX = 0;
-            currentSpriteY = 0;
             playerObj = new Player(0,0, game.Content.Load<Texture2D>("player-spritesheet"));
 
             //The destination rectangle is the location where the sprite will be drawn.
@@ -56,7 +51,7 @@ namespace CastleEscape
             canPressZ = false;
             pedometer = 0;
 
-            hud = new HUD(game, playerObj);
+            hud = new HUD(game, playerObj, mappy);
         }
 
         public override void Pause()
@@ -73,9 +68,10 @@ namespace CastleEscape
         {
             // checks for updates
             handleInput(gameTime);
-            sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, 0, spriteWidth, spriteHeight);
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
+
+            playerObj.PixelX = (timer / 200) * 32;
         }
         
         /// <summary>
@@ -108,143 +104,243 @@ namespace CastleEscape
 
             if (timer >= 200)
             {
+                playerObj.ModX = 0;
+                playerObj.ModY = 0;
+            }
+
                 if (kbState.IsKeyDown(Keys.Left))
                 {
-                    currentSpriteY = 3;
-                    playerObj.Direction = Player.Directions.West;
-                    if (playerObj.XPos - 1 >= 0)
+                    if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false && playerObj.XPos - 1 >= 0)
                     {
-                        if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
+                        /*if (timer >= 50 && timer < 100)
                         {
-                            playerObj.Move(-1, 0);
-                            pedometer++;
+                            playerObj.CurrentSpriteX = 1;
+                            playerObj.ModX = 8;
+                        }
+                        else*/ if (timer >= 100 && timer < 150)
+                        {
+                            playerObj.CurrentSpriteX = 2;
+                            playerObj.ModX = -16;
+                        }
+                            /*
+                        else if (timer >= 150 && timer < 200)
+                        {
+                            playerObj.CurrentSpriteX = 1;
+                            playerObj.ModX = 32;
+                        }*/
+                    }
 
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
+                    if (timer >= 200)
+                    {
+                        playerObj.ModX = 0;
+                        playerObj.CurrentSpriteX = 1;
+                        playerObj.Direction = Player.Directions.West;
+                        if (playerObj.XPos - 1 >= 0)
+                        {
+                            if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                             {
-                                Console.WriteLine("Battle!");
-                                pedometer = 0;
+                                playerObj.Move(-1, 0);
+                                pedometer++;
 
-                                // this will either push the Battle state on or call something that will.
-                                // does battling pause overworld too?
-                                //this.Pause();
-                            }
+                                // check for a random encounter!
+                                bool re = this.RandomEncounter(pedometer);
+                                if (re)
+                                {
+                                    Console.WriteLine("Battle!");
+                                    pedometer = 0;
 
-                            if (timer >= 50)
-                            {
+                                    // this will either push the Battle state on or call something that will.
+                                    // does battling pause overworld too?
+                                    //this.Pause();
+                                }
+
                                 
-                            }
 
+                                timer = 0;
+                            }
+                        }
+                        else
+                        {
+                            mappy.ChangeMap(Map.Directions.West);
+                            playerObj.Move(mappy.MapWidth - 1, 0);
                             timer = 0;
                         }
-                    }
-                    else
-                    {
-                        mappy.ChangeMap(Map.Directions.West);
-                        playerObj.Move(mappy.MapWidth - 1, 0);
-                        timer = 0;
                     }
                 }
                 else if (kbState.IsKeyDown(Keys.Right))
                 {
-                    currentSpriteY = 1;
-                    playerObj.Direction = Player.Directions.East;
-                    if (playerObj.XPos + 1 < mappy.MapWidth)
+                    if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false && playerObj.XPos + 1 < mappy.MapWidth)
                     {
-                        if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
+                        /*if (timer >= 50 && timer < 100)
                         {
-                            playerObj.Move(1, 0);
-                            pedometer++;
+                            playerObj.CurrentSpriteX = 2;
+                            playerObj.ModX = -8;
+                        }
+                        else*/ if (timer >= 100 && timer < 200)
+                        {
+                            playerObj.CurrentSpriteX = 2;
+                            playerObj.ModX = 16;
+                        }/*
+                        else if (timer >= 150 && timer < 200)
+                        {
+                            playerObj.CurrentSpriteX = 0;
+                            playerObj.ModX = -24;
+                        }*/
+                    }
 
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
+                    if (timer >= 200)
+                    {
+                        playerObj.ModX = 0;
+                        playerObj.CurrentSpriteX = 1;
+                        playerObj.Direction = Player.Directions.East;
+                        if (playerObj.XPos + 1 < mappy.MapWidth)
+                        {
+                            if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                             {
-                                Console.WriteLine("Battle!");
-                                pedometer = 0;
+                                playerObj.Move(1, 0);
+                                pedometer++;
 
-                                // this will either push the Battle state on or call something that will.
-                                // does battling pause overworld too?
-                                //this.Pause();
+                                // check for a random encounter!
+                                bool re = this.RandomEncounter(pedometer);
+                                if (re)
+                                {
+                                    Console.WriteLine("Battle!");
+                                    pedometer = 0;
+
+                                    // this will either push the Battle state on or call something that will.
+                                    // does battling pause overworld too?
+                                    //this.Pause();
+                                }
+
+                                timer = 0;
                             }
-
+                        }
+                        else
+                        {
+                            mappy.ChangeMap(Map.Directions.East);
+                            playerObj.Move(-(mappy.MapWidth) + 1, 0);
                             timer = 0;
                         }
-                    }
-                    else
-                    {
-                        mappy.ChangeMap(Map.Directions.East);
-                        playerObj.Move(-(mappy.MapWidth) + 1, 0);
-                        timer = 0;
                     }
                 }
                 else if (kbState.IsKeyDown(Keys.Up))
                 {
-                    currentSpriteY = 0;
-                    playerObj.Direction = Player.Directions.North;
-                    if (playerObj.YPos - 1 >= 0)
+
+                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false && playerObj.YPos - 1 >= 0)
                     {
-                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
+                        /*if (timer >= 50 && timer < 100)
                         {
-                            playerObj.Move(0, -1);
-                            pedometer++;
+                            playerObj.CurrentSpriteX = 2;
+                            playerObj.ModY = 8;
+                        }
+                        else
+                         */
+                        if (timer >= 100 && timer < 200)
+                        {
+                            playerObj.CurrentSpriteX = 0;
+                            playerObj.ModY = -16;
+                        }
+                            /*
+                        else if (timer >= 150 && timer < 200)
+                        {
+                            playerObj.CurrentSpriteX = 0;
+                            playerObj.ModY = 24;
+                        }
+                             */
+                    }
 
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
+                    if (timer >= 200)
+                    {
+                        playerObj.ModY = 0;
+                        playerObj.CurrentSpriteX = 2;
+                        playerObj.Direction = Player.Directions.North;
+                        if (playerObj.YPos - 1 >= 0)
+                        {
+                            if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                             {
-                                Console.WriteLine("Battle!");
-                                pedometer = 0;
-                                // this will either push the Battle state on or call something that will.
-                                // does battling pause overworld too?
-                                //this.Pause();
-                            }
+                                playerObj.Move(0, -1);
+                                pedometer++;
 
+                                // check for a random encounter!
+                                bool re = this.RandomEncounter(pedometer);
+                                if (re)
+                                {
+                                    Console.WriteLine("Battle!");
+                                    pedometer = 0;
+                                    // this will either push the Battle state on or call something that will.
+                                    // does battling pause overworld too?
+                                    //this.Pause();
+                                }
+
+                                timer = 0;
+                            }
+                        }
+                        else
+                        {
+                            mappy.ChangeMap(Map.Directions.North);
+                            playerObj.Move(0, mappy.MapHeight - 1);
                             timer = 0;
                         }
-                    }
-                    else
-                    {
-                        mappy.ChangeMap(Map.Directions.North);
-                        playerObj.Move(0, mappy.MapHeight - 1);
-                        timer = 0;
                     }
                 }
                 else if (kbState.IsKeyDown(Keys.Down))
                 {
-                    currentSpriteY = 2;
-                    playerObj.Direction = Player.Directions.South;
-                    if (playerObj.YPos + 1 < mappy.MapHeight)
+                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false && playerObj.YPos + 1 < mappy.MapHeight)
                     {
-                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
+                        /*if (timer >= 50 && timer < 100)
                         {
-                            playerObj.Move(0, 1);
-                            pedometer++;
+                            playerObj.CurrentSpriteX = 2;
+                            playerObj.ModY = -8;
+                        }*/
+                        if (timer >= 100 && timer < 200)
+                        {
+                            playerObj.CurrentSpriteX = 2;
+                            playerObj.ModY = 16;
+                        }
+                        /*
+                        else if (timer >= 150 && timer < 200)
+                        {
+                            playerObj.CurrentSpriteX = 0;
+                            playerObj.ModY = -24;
+                        }*/
+                    }
 
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
+                    if (timer >= 200)
+                    {
+                        playerObj.ModY = 0;
+                        playerObj.CurrentSpriteX = 0;
+                        playerObj.Direction = Player.Directions.South;
+                        if (playerObj.YPos + 1 < mappy.MapHeight)
+                        {
+                            if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                             {
-                                Console.WriteLine("Battle!");
-                                pedometer = 0;
+                                playerObj.Move(0, 1);
+                                pedometer++;
 
-                                // this will either push the Battle state on or call something that will.
-                                // does battling pause overworld too?
-                                //this.Pause();
+                                // check for a random encounter!
+                                bool re = this.RandomEncounter(pedometer);
+                                if (re)
+                                {
+                                    Console.WriteLine("Battle!");
+                                    pedometer = 0;
+
+                                    // this will either push the Battle state on or call something that will.
+                                    // does battling pause overworld too?
+                                    //this.Pause();
+                                }
+
+                                timer = 0;
                             }
-
+                        }
+                        else
+                        {
+                            mappy.ChangeMap(Map.Directions.South);
+                            playerObj.Move(0, -(mappy.MapHeight) + 1);
                             timer = 0;
                         }
                     }
-                    else
-                    {
-                        mappy.ChangeMap(Map.Directions.South);
-                        playerObj.Move(0, -(mappy.MapHeight) + 1);
-                        timer = 0;
-                    }
+                    
                 }
-            }
         }
 
         // This checks to see if a battle will start!
