@@ -25,6 +25,8 @@ namespace CastleEscape
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 480;
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace CastleEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.AliceBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             StateManager.Draw(spriteBatch);
             spriteBatch.End();
