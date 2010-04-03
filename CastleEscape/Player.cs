@@ -41,6 +41,12 @@ namespace CastleEscape
             set { direction = value; }
         }
 
+        public int CurrentSpriteX
+        {
+            get { return currentSpriteX; }
+            set { currentSpriteX = value; }
+        }
+
         // player attributes
         private int speed;
         private int health;
@@ -81,9 +87,9 @@ namespace CastleEscape
             attack = 10;
             mana = 10;
             magicAtk = 8;
-            currentSpriteY = 0;
+            currentSpriteY = 2;
             currentSpriteX = 0;
-            spriteHeight = 53;
+            spriteHeight =40;
             spriteWidth = 35;
             
             accuracy = 100;
@@ -136,7 +142,7 @@ namespace CastleEscape
         {
             sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
 
-            spriteBatch.Draw(texture, new Vector2(x - 2 + xPos * map.TileSize, y - 21 + yPos * map.TileSize), sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, new Vector2(x - 2 + xPos * map.TileSize, y - 8 + yPos * map.TileSize), sourceRectangle, Color.White);
         }
 
         public void Attack(int enemyDef, int enemyHP)

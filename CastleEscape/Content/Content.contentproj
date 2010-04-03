@@ -87,6 +87,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="player-spritesheet2.png">
+      <Name>player-spritesheet2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="player-spritesheet.png">
       <Name>player-spritesheet</Name>
       <Importer>TextureImporter</Importer>
