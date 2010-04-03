@@ -34,16 +34,25 @@ namespace CastleEscape
         private List<NPE> NPEs;
         
 
+        /// <summary>
+        /// The width of the map in tiles.
+        /// </summary>
         public int MapWidth
         {
             get { return mapWidth; }
         }
 
+        /// <summary>
+        /// The height of the map in tiles.
+        /// </summary>
         public int MapHeight
         {
             get { return mapHeight; }
         }
 
+        /// <summary>
+        /// The size of the individual tiles (in pixels).
+        /// </summary>
         public int TileSize
         {
             get { return tilesize; }

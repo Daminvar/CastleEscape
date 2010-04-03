@@ -52,13 +52,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="grey.png">
-      <Name>grey</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="main-menu-font.spritefont">
       <Name>main-menu-font</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -87,17 +80,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="player-spritesheet2.png">
-      <Name>player-spritesheet2</Name>
+    <Compile Include="player-spritesheet.png">
+      <Name>player-spritesheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="player-spritesheet.png">
-      <Name>player-spritesheet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+    <Compile Include="hud-font.spritefont">
+      <Name>hud-font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

@@ -38,6 +38,8 @@ namespace CastleEscape
         // create a counter for steps
         int pedometer;
 
+        HUD hud;
+
         public Overworld(Game game) : base(game)
         {
             //ghostie = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
@@ -53,6 +55,8 @@ namespace CastleEscape
             timer = 0;
             canPressZ = false;
             pedometer = 0;
+
+            hud = new HUD(game);
         }
 
         public override void Pause()
@@ -268,10 +272,9 @@ namespace CastleEscape
         {
             // draws player, tells map to draw itself
             mappy.DrawBase(spriteBatch, 0, 0);
-
             playerObj.DrawForOverworld(spriteBatch, mappy, 0, 0);
-
             mappy.DrawTop(spriteBatch, 0, 0);
+            hud.Draw(spriteBatch, mappy.MapWidth * mappy.TileSize, 0);
         }
     }
 }
