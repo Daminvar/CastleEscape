@@ -49,13 +49,16 @@ namespace CastleEscape
 
         // player attributes
         private int speed;
+        private int maxHealth;
         private int health;
         private int attack;
         private int defense;
         private int level;
         private int exp;
+        private int maxMana;
         private int mana;
         private int magicAtk;
+        private int gold;
 
         // attribute for move accuracy
         private int accuracy;
@@ -64,6 +67,36 @@ namespace CastleEscape
         {
             get { return accuracy; }
             set { accuracy = value; }
+        }
+
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+        }
+
+        public int Health
+        {
+            get { return health; }
+        }
+
+        public int MaxMana
+        {
+            get { return maxMana; }
+        }
+
+        public int Mana
+        {
+            get { return mana; }
+        }
+
+        public int Gold
+        {
+            get { return gold; }
+        }
+
+        public int Level
+        {
+            get { return level; }
         }
 
         /// <summary>
@@ -81,10 +114,12 @@ namespace CastleEscape
             // the level 1 attributes of a player
             level = 1;
             exp = 0;
+            maxHealth = 60;
             health = 60;
             defense = 1;
             speed = 2;
             attack = 10;
+            maxMana = 10;
             mana = 10;
             magicAtk = 8;
             currentSpriteY = 2;
@@ -93,6 +128,7 @@ namespace CastleEscape
             spriteWidth = 35;
             
             accuracy = 100;
+            gold = 0;
         }
 
         public Texture2D Texture

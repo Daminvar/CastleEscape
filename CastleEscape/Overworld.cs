@@ -56,7 +56,7 @@ namespace CastleEscape
             canPressZ = false;
             pedometer = 0;
 
-            hud = new HUD(game);
+            hud = new HUD(game, playerObj);
         }
 
         public override void Pause()

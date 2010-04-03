@@ -20,12 +20,14 @@ namespace CastleEscape
         private const int WIDTH = 160;
         Texture2D background;
         SpriteFont font;
+        Player player;
 
-        public HUD(Game game)
+        public HUD(Game game, Player player)
         {
             font = game.Content.Load<SpriteFont>("hud-font");
             background = new Texture2D(game.GraphicsDevice, 1, 1);
             background.SetData<Color>(new Color[] { new Color(Color.WhiteSmoke, 100) });
+            this.player = player;
         }
 
         public void Draw(SpriteBatch spriteBatch, int xPos, int yPos)
@@ -33,11 +35,12 @@ namespace CastleEscape
             spriteBatch.Draw(background, new Rectangle(xPos, yPos, WIDTH, HEIGHT), Color.White);
 
             string[] stats = new string[] {
-                 "HP: xxx/xxx",
-                 "MP: xxx/xxx",
-                 "Gold: xxx",
-                 "Level: x",
-                 "Name of Room",
+                 string.Format("HP: {0}/{1}", player.Health, player.MaxHealth),
+                 string.Format("MP: {0}/{1}", player.Mana, player.MaxMana),
+                 string.Format("Gold: {0}", player.Gold),
+                 string.Format("Level: {0}", player.Level),
+                 //TODO: Room name
+                 "Room Name",
              };
 
             for (int i = 0; i < stats.Length; i++)
