@@ -40,7 +40,6 @@ namespace CastleEscape
 
         public Overworld(Game game) : base(game)
         {
-            //ghostie = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
             playerObj = new Player(0,0, game.Content.Load<Texture2D>("player-spritesheet"));
 
             //The destination rectangle is the location where the sprite will be drawn.

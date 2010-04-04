@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+
+    /// <summary>
+    /// The HUD for the Overworld state. Displays basic player information
+    /// and the name of the current room.
+    /// </summary>
     class HUD
     {
         private const int HEIGHT = 120;
@@ -32,6 +37,12 @@ namespace CastleEscape
             this.map = map;
         }
 
+        /// <summary>
+        /// Draws the HUD.
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch to use.</param>
+        /// <param name="xPos">The X coordinate to draw at.</param>
+        /// <param name="yPos">The Y coordinate to draw at.</param>
         public void Draw(SpriteBatch spriteBatch, int xPos, int yPos)
         {
             spriteBatch.Draw(background, new Rectangle(xPos, yPos, WIDTH, HEIGHT), Color.White);
