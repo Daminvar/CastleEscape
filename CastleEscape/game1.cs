@@ -41,6 +41,7 @@ namespace CastleEscape
             this.Window.Title = "Escape from the Castle";
             StateManager.Initialize();
             StateManager.PushState(new Overworld(this));
+            
         }
 
         /// <summary>

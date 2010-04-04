@@ -19,14 +19,15 @@ namespace CastleEscape
     {
         Player playerObj;
         Map mappy;
-
+        
+        
         int timer;
         bool canPressZ;
 
         // size of sprite = 35px by 40px
         int spriteHeight = 40;
         int spriteWidth = 35;
-        
+        private bool canPressEscape;
 
         // Rectangles
         Rectangle sourceRectangle;
@@ -44,12 +45,13 @@ namespace CastleEscape
 
             //The destination rectangle is the location where the sprite will be drawn.
             destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
-
+            
             mappy = new Map(game);
             mappy.LoadMap("testmap.js");
             timer = 0;
             canPressZ = false;
             pedometer = 0;
+            canPressEscape = false;
 
             hud = new HUD(game, playerObj, mappy);
         }
@@ -341,6 +343,25 @@ namespace CastleEscape
                     }
                     
                 }
+
+                if (kbState.IsKeyUp(Keys.Escape))
+                {
+                    
+                    canPressEscape = true;
+                    return;
+
+                }
+
+            //Pauses the game
+            if(kbState.IsKeyDown(Keys.Escape) && canPressEscape)
+            {
+                
+                StateManager.PushState(new PauseState(game));
+                canPressEscape = false;
+                return;
+
+            }
+            
         }
 
         // This checks to see if a battle will start!
