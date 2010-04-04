@@ -16,7 +16,7 @@ namespace CastleEscape
 {
     class NPE : IOverworldEntity
     {
-        private Action interactFunc;
+        private Action<Player> interactFunc;
         private Texture2D texture;
         private int xPos, yPos;
         private Game game;
@@ -53,14 +53,14 @@ namespace CastleEscape
             texture = game.Content.Load<Texture2D>(textureName);
         }
 
-        public void SetInteractFunc(Action func)
+        public void SetInteractFunc(Action<Player> func)
         {
             interactFunc = func;
         }
 
-        public void Interact()
+        public void Interact(Player player)
         {
-            interactFunc();
+            interactFunc(player);
         }
     }
 }

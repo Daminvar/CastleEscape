@@ -33,6 +33,7 @@ namespace CastleEscape
         private Texture2D tileset;
         private List<Rectangle> collisionRects;
         private string mapName;
+        private string scriptFilename;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
         private string tmxMapFilename;
         private List<NPE> NPEs;
@@ -101,6 +102,8 @@ namespace CastleEscape
             southMapFilename = null;
             tmxMapFilename = null;
 
+            scriptFilename = filename;
+
             //Empty NPE list
             NPEs = new List<NPE>();
 
@@ -118,6 +121,7 @@ namespace CastleEscape
             engine.SetFunction("getFlag", new Func<string, bool>(getFlag));
             engine.SetFunction("setFlag", new Action<string>(setFlag));
             engine.SetFunction("dialogue", new Action<string>(dialogue));
+            engine.SetFunction("save", new Action<Player>(save));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -174,6 +178,11 @@ namespace CastleEscape
         private void dialogue(string text)
         {
             StateManager.PushState(new Dialogue(game, text));
+        }
+
+        private void save(Player player)
+        {
+            GameData.Save(scriptFilename, player);
         }
 
         private void parseTMXFile()

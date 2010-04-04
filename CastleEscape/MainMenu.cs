@@ -70,7 +70,28 @@ namespace CastleEscape
 
             if (state.IsKeyDown(Keys.Z))
             {
-                if (options[selectedOption] == "Exit")
+                if (options[selectedOption] == "New Game")
+                {
+                    var player = new Player(game, 2, 2);
+                    var map = new Map(game);
+                    map.LoadMap("testmap.js");
+                    StateManager.PushState(new Overworld(game, player, map));
+                }
+                else if (options[selectedOption] == "Load Game")
+                {
+                    object[] saveFile = GameData.Load();
+
+                    var player = (Player)saveFile[0];
+                    player.LoadTexture(game);
+                    var map = new Map(game);
+                    map.LoadMap((string)saveFile[1]);
+                    Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
+                    StateManager.PushState(new Overworld(game, player, map));
+                }
+                else if (options[selectedOption] == "About")
+                {
+                }
+                else if (options[selectedOption] == "Exit")
                     StateManager.PopState();
             }
 

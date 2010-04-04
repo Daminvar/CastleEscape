@@ -14,11 +14,13 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
     {
+        private const string PLAYER_TEXTURE = "player-spritesheet";
         // create a sprite for that
         //private Vector2 position;
-        private Texture2D texture;
+        [NonSerialized] private Texture2D texture;
 
         private int xPos;
         private int yPos;
@@ -135,11 +137,12 @@ namespace CastleEscape
         /// <param name="xPos">The starting x-position</param>
         /// <param name="yPos">The starting y-position</param>
         /// <param name="tx">The character image</param>
-        public Player(int xPos, int yPos, Texture2D tx)
+        public Player(Game game, int xPos, int yPos)
         {
             this.xPos = xPos;
             this.yPos = yPos;
-            texture = tx;
+            
+            LoadTexture(game);
 
             // the level 1 attributes of a player
             level = 1;
@@ -161,9 +164,9 @@ namespace CastleEscape
             gold = 0;
         }
 
-        public Texture2D Texture
+        public void LoadTexture(Game game)
         {
-            get { return texture; }
+            texture = game.Content.Load<Texture2D>(PLAYER_TEXTURE);
         }
 
         public int XPos

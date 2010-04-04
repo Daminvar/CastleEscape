@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Dialogue.cs" />
     <Compile Include="Flags.cs" />
+    <Compile Include="GameData.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="IBattleCharacter.cs" />
     <Compile Include="IOverworldEntity.cs" />

@@ -37,15 +37,14 @@ namespace CastleEscape
 
         HUD hud;
 
-        public Overworld(Game game) : base(game)
+        public Overworld(Game game, Player player, Map map) : base(game)
         {
-            playerObj = new Player(0,0, game.Content.Load<Texture2D>("player-spritesheet"));
+            playerObj = player;
+            mappy = map;
 
             //The destination rectangle is the location where the sprite will be drawn.
             destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
 
-            mappy = new Map(game);
-            mappy.LoadMap("testmap.js");
             timer = 0;
             canPressZ = false;
             pedometer = 0;
@@ -97,7 +96,9 @@ namespace CastleEscape
                     entity = mappy.GetNPEAt(playerObj.XPos, playerObj.YPos + 1);
 
                 if (entity != null)
-                    entity.Interact();
+                {
+                    entity.Interact(playerObj);
+                }
                 canPressZ = false;
             }
 
@@ -147,10 +148,6 @@ namespace CastleEscape
                                 {
                                     Console.WriteLine("Battle!");
                                     pedometer = 0;
-
-                                    // this will either push the Battle state on or call something that will.
-                                    // does battling pause overworld too?
-                                    //this.Pause();
                                 }
 
                                 
