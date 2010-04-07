@@ -18,6 +18,7 @@ namespace CastleEscape
     /// A test class to make sure Dialogue works.
     /// 
     /// Authors: ??
+    ///     Allyson Sadwin
     /// </summary>
     class TestDialogueState : State
     {

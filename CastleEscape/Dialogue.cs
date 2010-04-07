@@ -14,6 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// The dialogue state.
+    /// 
+    ///     Authors:
+    ///         Allyson Sadwin :)
+    /// </summary>
     class Dialogue : State
     {
         // create necessary attributes

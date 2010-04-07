@@ -20,6 +20,8 @@ namespace CastleEscape
     /// Authors: 
     ///     Dennis Honeyman
     ///     Matt Munns
+    ///     Allyson Sadwin
+    ///     
     /// </summary>
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
@@ -221,7 +223,7 @@ namespace CastleEscape
             
             sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
 
-            spriteBatch.Draw(texture, new Vector2(x - 3 + xPos * map.TileSize + modX, y - 8 + yPos * map.TileSize + modY), sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, new Vector2(x - 3 + xPos * map.TileSize - modX, y - 8 + yPos * map.TileSize - modY), sourceRectangle, Color.White);
         }
 
         public void Attack(int enemyDef, int enemyHP)

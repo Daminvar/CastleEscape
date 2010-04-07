@@ -20,8 +20,9 @@ namespace CastleEscape
     /// 
     /// Authors: 
     ///     Dennis Honeyman
-    ///     Matt Munns
-    ///     
+    ///     Matt Munns    
+    ///     Allyson Sadwin
+
     /// </summary>
     class Overworld : State
     {
@@ -31,6 +32,11 @@ namespace CastleEscape
         
         int timer;
         bool canPressZ;
+
+        bool movingLeft;
+        bool movingRight;
+        bool movingUp;
+        bool movingDown;
 
         // size of sprite = 35px by 40px
         int spriteHeight = 40;
@@ -58,6 +64,10 @@ namespace CastleEscape
             canPressZ = false;
             pedometer = 0;
             canPressEscape = false;
+            movingLeft = false;
+            movingRight = false;
+            movingUp = false;
+            movingDown = false;
 
             hud = new HUD(game, playerObj, mappy);
         }
@@ -118,33 +128,39 @@ namespace CastleEscape
                 playerObj.ModY = 0;
             }
 
-                if (kbState.IsKeyDown(Keys.Left))
+            if ( (kbState.IsKeyDown(Keys.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
                 {
+                    movingLeft = true;
+                    movingDown = false;
+                    movingRight = false;
+                    movingUp = false;
+
+                    playerObj.Direction = Player.Directions.West;
+
                     if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false && playerObj.XPos - 1 >= 0)
                     {
-                        /*if (timer >= 50 && timer < 100)
+                        if (timer >= 50 && timer < 100)
                         {
                             playerObj.CurrentSpriteX = 1;
                             playerObj.ModX = 8;
                         }
-                        else*/ if (timer >= 100 && timer < 150)
+                        else if (timer >= 100 && timer < 150)
                         {
                             playerObj.CurrentSpriteX = 2;
-                            playerObj.ModX = -16;
+                            playerObj.ModX = 16;
                         }
-                            /*
+                            
                         else if (timer >= 150 && timer < 200)
                         {
                             playerObj.CurrentSpriteX = 1;
                             playerObj.ModX = 32;
-                        }*/
+                        }
                     }
 
                     if (timer >= 200)
                     {
                         playerObj.ModX = 0;
                         playerObj.CurrentSpriteX = 1;
-                        playerObj.Direction = Player.Directions.West;
                         if (playerObj.XPos - 1 >= 0)
                         {
                             if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
@@ -171,34 +187,42 @@ namespace CastleEscape
                             playerObj.Move(mappy.MapWidth - 1, 0);
                             timer = 0;
                         }
+                        movingLeft = false;
                     }
                 }
-                else if (kbState.IsKeyDown(Keys.Right))
+                else if ( (kbState.IsKeyDown(Keys.Right) || movingRight) && !movingLeft && !movingDown && !movingUp)
                 {
+                    movingLeft = false;
+                    movingDown = false;
+                    movingRight = true;
+                    movingUp = false;
+
+                    playerObj.Direction = Player.Directions.East;
+
                     if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false && playerObj.XPos + 1 < mappy.MapWidth)
                     {
-                        /*if (timer >= 50 && timer < 100)
+                        if (timer >= 50 && timer < 100)
                         {
                             playerObj.CurrentSpriteX = 2;
                             playerObj.ModX = -8;
                         }
-                        else*/ if (timer >= 100 && timer < 200)
+                        else if (timer >= 100 && timer < 200)
                         {
                             playerObj.CurrentSpriteX = 2;
-                            playerObj.ModX = 16;
-                        }/*
+                            playerObj.ModX = -16;
+                        }
                         else if (timer >= 150 && timer < 200)
                         {
                             playerObj.CurrentSpriteX = 0;
                             playerObj.ModX = -24;
-                        }*/
+                        }
                     }
 
                     if (timer >= 200)
                     {
                         playerObj.ModX = 0;
                         playerObj.CurrentSpriteX = 1;
-                        playerObj.Direction = Player.Directions.East;
+                        movingRight = false;
                         if (playerObj.XPos + 1 < mappy.MapWidth)
                         {
                             if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
@@ -229,37 +253,38 @@ namespace CastleEscape
                         }
                     }
                 }
-                else if (kbState.IsKeyDown(Keys.Up))
+            else if ( (kbState.IsKeyDown(Keys.Up) || movingUp) && !movingLeft && !movingDown && !movingRight)
                 {
+                    movingLeft = false;
+                    movingDown = false;
+                    movingRight = false;
+                    movingUp = true;
 
+                    playerObj.Direction = Player.Directions.North;
                     if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false && playerObj.YPos - 1 >= 0)
                     {
-                        /*if (timer >= 50 && timer < 100)
+                        if (timer >= 50 && timer < 100)
                         {
                             playerObj.CurrentSpriteX = 2;
                             playerObj.ModY = 8;
                         }
-                        else
-                         */
-                        if (timer >= 100 && timer < 200)
+                        else if (timer >= 100 && timer < 200)
                         {
-                            playerObj.CurrentSpriteX = 0;
-                            playerObj.ModY = -16;
+                            playerObj.CurrentSpriteX = 1;
+                            playerObj.ModY = 16;
                         }
-                            /*
                         else if (timer >= 150 && timer < 200)
                         {
                             playerObj.CurrentSpriteX = 0;
                             playerObj.ModY = 24;
                         }
-                             */
                     }
 
                     if (timer >= 200)
                     {
                         playerObj.ModY = 0;
-                        playerObj.CurrentSpriteX = 2;
-                        playerObj.Direction = Player.Directions.North;
+                        playerObj.CurrentSpriteX = 1;
+                        movingUp = false;
                         if (playerObj.YPos - 1 >= 0)
                         {
                             if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
@@ -289,33 +314,39 @@ namespace CastleEscape
                         }
                     }
                 }
-                else if (kbState.IsKeyDown(Keys.Down))
+            else if ( (kbState.IsKeyDown(Keys.Down) || movingDown ) && !movingLeft && !movingRight && !movingUp)
                 {
+                    movingLeft = false;
+                    movingDown = true;
+                    movingRight = false;
+                    movingUp = false;
+
+                    playerObj.Direction = Player.Directions.South;
+
                     if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false && playerObj.YPos + 1 < mappy.MapHeight)
                     {
-                        /*if (timer >= 50 && timer < 100)
+                        if (timer >= 50 && timer < 100)
                         {
-                            playerObj.CurrentSpriteX = 2;
+                            playerObj.CurrentSpriteX = 1;
                             playerObj.ModY = -8;
-                        }*/
-                        if (timer >= 100 && timer < 200)
+                        }
+                        else if (timer >= 100 && timer < 200)
                         {
                             playerObj.CurrentSpriteX = 2;
-                            playerObj.ModY = 16;
+                            playerObj.ModY = -16;
                         }
-                        /*
                         else if (timer >= 150 && timer < 200)
                         {
                             playerObj.CurrentSpriteX = 0;
                             playerObj.ModY = -24;
-                        }*/
+                        }
                     }
 
                     if (timer >= 200)
                     {
+                        movingDown = false;
                         playerObj.ModY = 0;
-                        playerObj.CurrentSpriteX = 0;
-                        playerObj.Direction = Player.Directions.South;
+                        playerObj.CurrentSpriteX = 1;
                         if (playerObj.YPos + 1 < mappy.MapHeight)
                         {
                             if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
