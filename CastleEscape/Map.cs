@@ -18,6 +18,8 @@ namespace CastleEscape
 {
     /// <summary>
     /// Represents a map in the game.
+    /// 
+    /// Author: Dennis Honeyman
     /// </summary>
     class Map
     {

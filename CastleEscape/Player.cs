@@ -14,6 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Represents the player.
+    /// 
+    /// Authors: ??
+    ///     Dennis Honeyman
+    /// </summary>
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
     {

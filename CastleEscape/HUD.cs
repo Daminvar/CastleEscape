@@ -18,6 +18,8 @@ namespace CastleEscape
     /// <summary>
     /// The HUD for the Overworld state. Displays basic player information
     /// and the name of the current room.
+    /// 
+    /// Author: Dennis Honeyman
     /// </summary>
     class HUD
     {

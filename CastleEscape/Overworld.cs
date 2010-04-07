@@ -15,6 +15,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// The overworld state.
+    /// 
+    /// Authors: ??
+    ///     Dennis Honeyman
+    /// </summary>
     class Overworld : State
     {
         Player playerObj;

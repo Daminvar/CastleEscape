@@ -17,6 +17,8 @@ namespace CastleEscape
     /// <summary>
     /// The initial state. Allows player to start a new game,
     /// load a current game, display game info, or exit.
+    /// 
+    /// Author: Dennis Honeyman
     /// </summary>
     class MainMenu : State
     {

@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Represents a non-player entity.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class NPE : IOverworldEntity
     {
         private Action<Player> interactFunc;

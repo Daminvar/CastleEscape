@@ -8,7 +8,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace CastleEscape
 {
     /// <summary>
-    /// Used for saving and loading games
+    /// Used for saving and loading games.
+    /// 
+    /// Author: Dennis Honeyman
     /// </summary>
     class GameData
     {

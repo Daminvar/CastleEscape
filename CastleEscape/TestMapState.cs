@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Tests the map state.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class TestMapState : State
     {
         private Map map;
