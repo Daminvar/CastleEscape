@@ -83,9 +83,9 @@ namespace CastleEscape
 
                     var player = (Player)saveFile[0];
                     player.LoadTexture(game);
+                    Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
                     var map = new Map(game);
                     map.LoadMap((string)saveFile[1]);
-                    Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
                     StateManager.PushState(new Overworld(game, player, map));
                 }
                 else if (options[selectedOption] == "About")
