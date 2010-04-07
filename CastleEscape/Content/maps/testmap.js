@@ -1,10 +1,11 @@
 
+name("Test Map 1")
 mapfile("testmap.tmx")
 
 east("testmap2.js")
 
 var bob = newNPE()
-bob.SetTexture("test-npe");
+bob.SetTexture("test-npe")
 
 if (getFlag("talked-to-bob")) {
 	bob.SetPosition(5, 5)
@@ -12,7 +13,7 @@ if (getFlag("talked-to-bob")) {
 	bob.SetPosition(12, 11)
 }
 
-bob.SetInteractFunc(function() {
+bob.SetInteractFunc(function(player) {
 	if (getFlag("talked-to-bob")) {
 		dialogue("I have nothing more to say to you.")
 	} else {
@@ -22,3 +23,14 @@ bob.SetInteractFunc(function() {
 })
 
 addNPE(bob)
+
+var saveOrb = newNPE()
+saveOrb.SetTexture("orb-of-saving")
+saveOrb.SetPosition(1, 8)
+
+saveOrb.SetInteractFunc(function(player) {
+	save(player)
+	dialogue("Game has been saved.")
+})
+
+addNPE(saveOrb)

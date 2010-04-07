@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Represents a game state.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     abstract class State
     {
         protected Game game;

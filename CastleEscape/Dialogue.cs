@@ -137,7 +137,7 @@ namespace CastleEscape
         /// <param name="spriteBatch">The sprite batch</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            // draws only the first four lines fo the array
+            // draws only the first four lines of the array
             Rectangle rc = new Rectangle(0, game.GraphicsDevice.Viewport.Height * 3 / 4, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             spriteBatch.Draw(bgColor, rc, Color.White);
 

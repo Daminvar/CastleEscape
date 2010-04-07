@@ -16,6 +16,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Represents a map in the game.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class Map
     {
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
@@ -29,6 +34,8 @@ namespace CastleEscape
         private int tilesize;
         private Texture2D tileset;
         private List<Rectangle> collisionRects;
+        private string mapName;
+        private string scriptFilename;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
         private string tmxMapFilename;
         private List<NPE> NPEs;
@@ -58,6 +65,14 @@ namespace CastleEscape
             get { return tilesize; }
         }
 
+        /// <summary>
+        /// The name of the current map.
+        /// </summary>
+        public string MapName
+        {
+            get { return mapName; }
+        }
+
         public enum Directions
         {
             North, South, East, West
@@ -81,19 +96,23 @@ namespace CastleEscape
 
         private void parseScriptFile(string filename)
         {
-            //Clear neighboring room and mapfile strings
+            //Clear map script information
+            mapName = "<name not set>";
             eastMapFilename = null;
             westMapFilename = null;
             northMapFilename = null;
             southMapFilename = null;
             tmxMapFilename = null;
 
+            scriptFilename = filename;
+
             //Empty NPE list
             NPEs = new List<NPE>();
 
             var engine = new Jint.JintEngine();
-            engine.DisableSecurity();
+            engine.DisableSecurity(); //Needed so the scripts can call methods on NPE objects.
             engine.SetDebugMode(true);
+            engine.SetFunction("name", new Action<string>(setMapName));
             engine.SetFunction("east", new Action<string>(setEastMapfile));
             engine.SetFunction("west", new Action<string>(setWestMapfile));
             engine.SetFunction("north", new Action<string>(setNorthMapfile));
@@ -104,7 +123,13 @@ namespace CastleEscape
             engine.SetFunction("getFlag", new Func<string, bool>(getFlag));
             engine.SetFunction("setFlag", new Action<string>(setFlag));
             engine.SetFunction("dialogue", new Action<string>(dialogue));
+            engine.SetFunction("save", new Action<Player>(save));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
+        }
+
+        private void setMapName(string name)
+        {
+            mapName = name;
         }
 
         private void setEastMapfile(string filename)
@@ -155,6 +180,11 @@ namespace CastleEscape
         private void dialogue(string text)
         {
             StateManager.PushState(new Dialogue(game, text));
+        }
+
+        private void save(Player player)
+        {
+            GameData.Save(scriptFilename, player);
         }
 
         private void parseTMXFile()

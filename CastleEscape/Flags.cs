@@ -28,5 +28,23 @@ namespace CastleEscape
         {
             flags[flagName] = true;
         }
+
+        /// <summary>
+        /// For saving.
+        /// </summary>
+        /// <returns>The dictionary of flags</returns>
+        public static Dictionary<string, bool> GetAllFlags()
+        {
+            return flags;
+        }
+
+        /// <summary>
+        /// For loading.
+        /// </summary>
+        /// <param name="dict">The dictionary of flags.</param>
+        public static void SetAllFlags(Dictionary<string, bool> dict)
+        {
+            flags = dict;
+        }
     }
 }

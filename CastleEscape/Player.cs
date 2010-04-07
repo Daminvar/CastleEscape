@@ -14,11 +14,19 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Represents the player.
+    /// 
+    /// Authors: ??
+    ///     Dennis Honeyman
+    /// </summary>
+    [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
     {
+        private const string PLAYER_TEXTURE = "player-spritesheet";
         // create a sprite for that
         //private Vector2 position;
-        private Texture2D texture;
+        [NonSerialized] private Texture2D texture;
 
         private int xPos;
         private int yPos;
@@ -51,13 +59,16 @@ namespace CastleEscape
 
         // player attributes
         private int speed;
+        private int maxHealth;
         private int health;
         private int attack;
         private int defense;
         private int level;
         private int exp;
+        private int maxMana;
         private int mana;
         private int magicAtk;
+        private int gold;
 
 
         private int modX;
@@ -96,25 +107,58 @@ namespace CastleEscape
             set { accuracy = value; }
         }
 
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+        }
+
+        public int Health
+        {
+            get { return health; }
+        }
+
+        public int MaxMana
+        {
+            get { return maxMana; }
+        }
+
+        public int Mana
+        {
+            get { return mana; }
+        }
+
+        public int Gold
+        {
+            get { return gold; }
+        }
+
+        public int Level
+        {
+            get { return level; }
+        }
+
         /// <summary>
         /// The Player constructor
         /// </summary>
         /// <param name="xPos">The starting x-position</param>
         /// <param name="yPos">The starting y-position</param>
         /// <param name="tx">The character image</param>
-        public Player(int xPos, int yPos, Texture2D tx)
+        public Player(Game game, int xPos, int yPos)
         {
             this.xPos = xPos;
             this.yPos = yPos;
-            texture = tx;
+            
+            LoadTexture(game);
 
             // the level 1 attributes of a player
             level = 1;
             exp = 0;
+            maxHealth = 60;
             health = 60;
             defense = 1;
             speed = 2;
             attack = 10;
+            maxMana = 10;
             mana = 10;
             magicAtk = 8;
             currentSpriteY = 2;
@@ -123,17 +167,12 @@ namespace CastleEscape
             spriteWidth = 35;
             
             accuracy = 100;
-
-            modX = 0;
-            modY = 0;
-
-            pixelX = 0;
-            pixelY = 0;
+            gold = 0;
         }
 
-        public Texture2D Texture
+        public void LoadTexture(Game game)
         {
-            get { return texture; }
+            texture = game.Content.Load<Texture2D>(PLAYER_TEXTURE);
         }
 
         public int XPos

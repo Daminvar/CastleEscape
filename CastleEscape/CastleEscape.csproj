@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Dialogue.cs" />
     <Compile Include="Flags.cs" />
+    <Compile Include="GameData.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="IBattleCharacter.cs" />
     <Compile Include="IOverworldEntity.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Map.cs" />
     <Compile Include="NPE.cs" />
     <Compile Include="Overworld.cs" />
+    <Compile Include="PauseState.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

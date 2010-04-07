@@ -15,18 +15,25 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// The overworld state.
+    /// 
+    /// Authors: ??
+    ///     Dennis Honeyman
+    /// </summary>
     class Overworld : State
     {
         Player playerObj;
         Map mappy;
-
+        
+        
         int timer;
         bool canPressZ;
 
         // size of sprite = 35px by 40px
         int spriteHeight = 40;
         int spriteWidth = 35;
-        
+        private bool canPressEscape;
 
         // Rectangles
         Rectangle sourceRectangle;
@@ -37,21 +44,20 @@ namespace CastleEscape
 
         HUD hud;
 
-        public Overworld(Game game) : base(game)
+        public Overworld(Game game, Player player, Map map) : base(game)
         {
-            //ghostie = new Player(0, 0, game.Content.Load<Texture2D>("ghostie"));
-            playerObj = new Player(0,0, game.Content.Load<Texture2D>("player-spritesheet"));
+            playerObj = player;
+            mappy = map;
 
             //The destination rectangle is the location where the sprite will be drawn.
             destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
 
-            mappy = new Map(game);
-            mappy.LoadMap("testmap.js");
             timer = 0;
             canPressZ = false;
             pedometer = 0;
+            canPressEscape = false;
 
-            hud = new HUD(game);
+            hud = new HUD(game, playerObj, mappy);
         }
 
         public override void Pause()
@@ -98,7 +104,9 @@ namespace CastleEscape
                     entity = mappy.GetNPEAt(playerObj.XPos, playerObj.YPos + 1);
 
                 if (entity != null)
-                    entity.Interact();
+                {
+                    entity.Interact(playerObj);
+                }
                 canPressZ = false;
             }
 
@@ -148,10 +156,6 @@ namespace CastleEscape
                                 {
                                     Console.WriteLine("Battle!");
                                     pedometer = 0;
-
-                                    // this will either push the Battle state on or call something that will.
-                                    // does battling pause overworld too?
-                                    //this.Pause();
                                 }
 
                                 
@@ -341,6 +345,25 @@ namespace CastleEscape
                     }
                     
                 }
+
+                if (kbState.IsKeyUp(Keys.Escape))
+                {
+                    
+                    canPressEscape = true;
+                    return;
+
+                }
+
+            //Pauses the game
+            if(kbState.IsKeyDown(Keys.Escape) && canPressEscape)
+            {
+                
+                StateManager.PushState(new PauseState(game));
+                canPressEscape = false;
+                return;
+
+            }
+            
         }
 
         // This checks to see if a battle will start!

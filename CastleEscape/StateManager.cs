@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Manages the game states.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class StateManager
     {
         private static List<State> states;
