@@ -12,8 +12,19 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+
+
 namespace CastleEscape
 {
+
+
+    /// <summary>
+    /// Will draw a pause state 
+    /// 
+    /// 
+    /// Authors:
+    ///         Matt Munns
+    /// </summary>
     class PauseState : State
     {
         private string message;
@@ -55,12 +66,7 @@ namespace CastleEscape
                 StateManager.PopState();
 
             }
-            //else if (Keyboard.GetState().IsKeyDown(Keys.U))
-            //{
-            //    StateManager.PushState(pause);
-                
-
-            //}
+           
         }
 
         public override void Draw(SpriteBatch spriteBatch)
