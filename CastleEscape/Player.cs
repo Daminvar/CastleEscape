@@ -17,8 +17,9 @@ namespace CastleEscape
     /// <summary>
     /// Represents the player.
     /// 
-    /// Authors: ??
+    /// Authors: 
     ///     Dennis Honeyman
+    ///     Matt Munns
     /// </summary>
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter

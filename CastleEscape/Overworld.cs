@@ -18,8 +18,10 @@ namespace CastleEscape
     /// <summary>
     /// The overworld state.
     /// 
-    /// Authors: ??
+    /// Authors: 
     ///     Dennis Honeyman
+    ///     Matt Munns
+    ///     
     /// </summary>
     class Overworld : State
     {
