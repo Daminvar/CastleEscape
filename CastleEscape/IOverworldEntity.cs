@@ -14,6 +14,9 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// An interface for entities that can be drawn on the overworld.
+    /// </summary>
     interface IOverworldEntity
     {
         void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y);
