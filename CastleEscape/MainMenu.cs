@@ -75,7 +75,7 @@ namespace CastleEscape
                 if (options[selectedOption] == "New Game")
                 {
                     var player = new Player(game, 2, 2);
-                    var map = new Map(game);
+                    var map = new DrawableMap(game);
                     map.LoadMap("testmap.js");
                     StateManager.PushState(new Overworld(game, player, map));
                 }
@@ -86,7 +86,7 @@ namespace CastleEscape
                     var player = (Player)saveFile[0];
                     player.LoadTexture(game);
                     Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
-                    var map = new Map(game);
+                    var map = new DrawableMap(game);
                     map.LoadMap((string)saveFile[1]);
                     StateManager.PushState(new Overworld(game, player, map));
                 }

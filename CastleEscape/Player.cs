@@ -240,7 +240,7 @@ namespace CastleEscape
             pixelY = yPos * 32;
         }
 
-        public void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y)
+        public void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y)
         {
             if (direction == Player.Directions.West)
             {

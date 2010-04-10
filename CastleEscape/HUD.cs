@@ -28,9 +28,9 @@ namespace CastleEscape
         Texture2D background;
         SpriteFont font;
         Player player;
-        Map map;
+        ScriptableMap map;
 
-        public HUD(Game game, Player player, Map map)
+        public HUD(Game game, Player player, ScriptableMap map)
         {
             font = game.Content.Load<SpriteFont>("hud-font");
             background = new Texture2D(game.GraphicsDevice, 1, 1);
