@@ -154,77 +154,77 @@ namespace CastleEscape
             var engine = new Jint.JintEngine();
             engine.DisableSecurity(); //Needed so the scripts can call methods on NPE objects.
             engine.SetDebugMode(true);
-            engine.SetFunction("name", new Action<string>(setMapName));
-            engine.SetFunction("east", new Action<string>(setEastMapfile));
-            engine.SetFunction("west", new Action<string>(setWestMapfile));
-            engine.SetFunction("north", new Action<string>(setNorthMapfile));
-            engine.SetFunction("south", new Action<string>(setSouthMapfile));
-            engine.SetFunction("mapfile", new Action<string>(setTmxMapfile));
-            engine.SetFunction("newNPE", new Func<NPE>(newNPE));
-            engine.SetFunction("addNPE", new Action<NPE>(addNPE));
-            engine.SetFunction("getFlag", new Func<string, bool>(getFlag));
-            engine.SetFunction("setFlag", new Action<string>(setFlag));
-            engine.SetFunction("dialogue", new Action<string>(dialogue));
-            engine.SetFunction("save", new Action<Player>(save));
+            engine.SetFunction("name", new Action<string>(js_setMapName));
+            engine.SetFunction("east", new Action<string>(js_setEastMapfile));
+            engine.SetFunction("west", new Action<string>(js_setWestMapfile));
+            engine.SetFunction("north", new Action<string>(js_setNorthMapfile));
+            engine.SetFunction("south", new Action<string>(js_setSouthMapfile));
+            engine.SetFunction("mapfile", new Action<string>(js_setTmxMapfile));
+            engine.SetFunction("newNPE", new Func<NPE>(js_newNPE));
+            engine.SetFunction("addNPE", new Action<NPE>(js_addNPE));
+            engine.SetFunction("getFlag", new Func<string, bool>(js_getFlag));
+            engine.SetFunction("setFlag", new Action<string>(js_setFlag));
+            engine.SetFunction("dialogue", new Action<string>(js_dialogue));
+            engine.SetFunction("save", new Action<Player>(js_save));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
-        private void setMapName(string name)
+        private void js_setMapName(string name)
         {
             mapName = name;
         }
 
-        private void setEastMapfile(string filename)
+        private void js_setEastMapfile(string filename)
         {
             eastMapFilename = filename;
         }
 
-        private void setWestMapfile(string filename)
+        private void js_setWestMapfile(string filename)
         {
             westMapFilename = filename;
         }
 
-        private void setNorthMapfile(string filename)
+        private void js_setNorthMapfile(string filename)
         {
             northMapFilename = filename;
         }
 
-        private void setSouthMapfile(string filename)
+        private void js_setSouthMapfile(string filename)
         {
             southMapFilename = filename;
         }
 
-        private void setTmxMapfile(string filename)
+        private void js_setTmxMapfile(string filename)
         {
             tmxMapFilename = filename;
         }
 
-        private void addNPE(NPE newNPE)
+        private void js_addNPE(NPE newNPE)
         {
             NPEs.Add(newNPE);
         }
 
-        private bool getFlag(string flag)
+        private bool js_getFlag(string flag)
         {
             return Flags.GetFlag(flag);
         }
 
-        private void setFlag(string flag)
+        private void js_setFlag(string flag)
         {
             Flags.SetFlag(flag);
         }
 
-        private NPE newNPE()
+        private NPE js_newNPE()
         {
             return new NPE(game);
         }
 
-        private void dialogue(string text)
+        private void js_dialogue(string text)
         {
             StateManager.PushState(new Dialogue(game, text));
         }
 
-        private void save(Player player)
+        private void js_save(Player player)
         {
             GameData.Save(scriptFilename, player);
         }
