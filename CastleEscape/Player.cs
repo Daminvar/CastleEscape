@@ -26,10 +26,13 @@ namespace CastleEscape
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
     {
-        private const string PLAYER_TEXTURE = "player-spritesheet";
+        private const string PLAYER_OW_TEXTURE = "player-spritesheet";
         // create a sprite for that
         //private Vector2 position;
-        [NonSerialized] private Texture2D texture;
+        [NonSerialized] private Texture2D overworldTexture;
+
+        private const string PLAYER_BATTLE_TEXTURE = "orb-of-saving";
+        [NonSerialized] private Texture2D battleTexture;
 
         private int xPos;
         private int yPos;
@@ -179,7 +182,8 @@ namespace CastleEscape
 
         public void LoadTexture(Game game)
         {
-            texture = game.Content.Load<Texture2D>(PLAYER_TEXTURE);
+            overworldTexture = game.Content.Load<Texture2D>(PLAYER_OW_TEXTURE);
+            battleTexture = game.Content.Load<Texture2D>(PLAYER_BATTLE_TEXTURE);
         }
 
         public int XPos
@@ -227,12 +231,12 @@ namespace CastleEscape
             
             sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
 
-            spriteBatch.Draw(texture, new Vector2(x - 3 + xPos * map.TileSize - modX, y - 8 + yPos * map.TileSize - modY), sourceRectangle, Color.White);
+            spriteBatch.Draw(overworldTexture, new Vector2(x - 3 + xPos * map.TileSize - modX, y - 8 + yPos * map.TileSize - modY), sourceRectangle, Color.White);
         }
 
         public void DrawForBattle(SpriteBatch spriteBatch, int x, int y)
         {
-
+            spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
         }
 
         public void Attack(int enemyDef, int enemyHP)

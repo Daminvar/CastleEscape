@@ -18,13 +18,23 @@ namespace CastleEscape
     {
         Player play;
         Enemy en;
+        Texture2D backgroundTexture;
 
         // boolean to see who attacks first. if player, true. if enemy, false.
         bool attackFirst;
+
+        // can the player run?
+        bool canRun;
         
         // constructor
-        public Battle(Game game, Texture2D bgTex, Player p, Enemy e) : base(game)
+        public Battle(Game game, Texture2D bgTex, Player p, Enemy e, bool run) : base(game)
         {
+            play = p;
+            en = e;
+
+            canRun = run;
+
+            backgroundTexture = bgTex;
         }
 
         public override void Pause()
@@ -69,6 +79,9 @@ namespace CastleEscape
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), Color.White);
+            play.DrawForBattle(spriteBatch, 200, 200);
+            en.DrawForBattle(spriteBatch, 400, 200);
         }
     }
 }

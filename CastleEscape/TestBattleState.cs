@@ -19,10 +19,6 @@ namespace CastleEscape
         public TestBattleState(Game game)
             : base(game)
         {
-            Enemy en = new Enemy (game.Content.Load<Texture2D>("ghostie"));
-            Player pl = new Player(game, 0,0);
-
-            StateManager.PushState(new Battle(game, game.Content.Load<Texture2D>("main-menu-background"), pl, en));
         }
 
         public override void Pause()
@@ -35,6 +31,10 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
+            Enemy en = new Enemy(game.Content.Load<Texture2D>("ghostie"));
+            Player pl = new Player(game, 0, 0);
+
+            StateManager.PushState(new Battle(game, game.Content.Load<Texture2D>("main-menu-background"), pl, en));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
