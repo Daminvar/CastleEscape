@@ -88,7 +88,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle.cs" />
     <Compile Include="Dialogue.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="DrawableMap.cs" />
     <Compile Include="Flags.cs" />
     <Compile Include="GameData.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="ScriptableMap.cs" />
     <Compile Include="State.cs" />
     <Compile Include="StateManager.cs" />
+    <Compile Include="TestBattleState.cs" />
     <Compile Include="TestDialogueState.cs" />
     <Compile Include="TestMapState.cs" />
     <Compile Include="TMXMap.cs" />
