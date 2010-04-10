@@ -391,7 +391,7 @@ namespace CastleEscape
             if(kbState.IsKeyDown(Keys.Escape) && canPressEscape)
             {
                 
-                StateManager.PushState(new PauseState(game));
+                StateManager.PushState(new PauseState(game,playerObj));
                 canPressEscape = false;
                 return;
 

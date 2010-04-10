@@ -64,21 +64,57 @@ namespace CastleEscape
         }
 
         // player attributes
-        private int speed;
-        private int maxHealth;
-        private int health;
-        private int attack;
-        private int defense;
-        private int level;
-        private int exp;
-        private int maxMana;
-        private int mana;
-        private int magicAtk;
-        private int gold;
+        private int speed;//
+        private int maxHealth;//
+        private int health;//
+        private int attack;//
+        private int defense;//
+        private int level;//
+        private int exp;//
+        private int maxMana;//
+        private int mana;//
+        private int magicAtk;//
+        private int gold;//
+        private int exptolevel;
 
 
         private int modX;
         private int modY;
+
+        public int Attack
+        {
+            get { return attack; }
+            set { attack = value; }
+        }
+        public int Speed
+        {
+            get { return speed; }
+            set { speed = value; }
+        }
+        public int Defense
+        {
+            get { return defense; }
+            set { defense = value; }
+
+        }
+        public int MagicAtk
+        {
+            get { return magicAtk; }
+            set { magicAtk = value; }
+        }
+
+        public int Exp
+        {
+            get { return exp; }
+            set { exp = value; }
+        }
+
+        public int ExpToLevel
+        {
+            get { return exptolevel; }
+            set { exptolevel = value; }
+
+        }
 
         public int ModX
         {
@@ -104,6 +140,7 @@ namespace CastleEscape
             set { pixelY = value; }
         }
 
+        
         // attribute for move accuracy
         private int accuracy;
 
@@ -175,10 +212,11 @@ namespace CastleEscape
             currentSpriteX = 1;
             spriteHeight = 40;
             spriteWidth = 35;
-            
+            exptolevel = 100;
             accuracy = 100;
             gold = 0;
         }
+        
 
         public void LoadTexture(Game game)
         {
@@ -239,7 +277,7 @@ namespace CastleEscape
             spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
         }
 
-        public void Attack(int enemyDef, int enemyHP)
+        public void AttackDmg(int enemyDef, int enemyHP)
         {
             // create a random number to see if the attack hit!
             Random rgen = new Random();
