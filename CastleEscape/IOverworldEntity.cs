@@ -19,7 +19,7 @@ namespace CastleEscape
     /// </summary>
     interface IOverworldEntity
     {
-        void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y);
+        void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y);
         int XPos { get; }
         int YPos { get; }
     }
