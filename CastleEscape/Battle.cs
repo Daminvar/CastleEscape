@@ -26,12 +26,18 @@ namespace CastleEscape
         // can the player run?
         bool canRun;
         
+        TextMenu tMenu;
+
+        private static string[] choices = { "Light Attack","Medium Attack","Heavy Attack", "Run" };
+
         // constructor
         public Battle(Game game, Texture2D bgTex, Player p, Enemy e, bool run) : base(game)
         {
             play = p;
             en = e;
-
+            SpriteFont font = game.Content.Load<SpriteFont>("Test-Font");
+            tMenu = new TextMenu(font, choices);
+           
             canRun = run;
 
             backgroundTexture = bgTex;
@@ -75,6 +81,28 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
+            if (attackFirst)
+            {
+                play.Accuracy = 55;
+
+                en.Health = play.HealthAfterCombat(en);
+
+                if(en.IsDead(en.Health))
+                {
+                    //enemy dies, push back on overworld?
+                }
+            }
+            else
+            {
+               play.Health = en.HealthAfterCombat(play);
+
+
+            }
+
+            tMenu.Update(gameTime, Keyboard.GetState());
+
+            
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -82,6 +110,8 @@ namespace CastleEscape
             spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), Color.White);
             play.DrawForBattle(spriteBatch, 200, 200);
             en.DrawForBattle(spriteBatch, 400, 200);
+            tMenu.Draw(spriteBatch, 0, 0);
+
         }
     }
 }

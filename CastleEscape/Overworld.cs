@@ -89,7 +89,7 @@ namespace CastleEscape
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
 
-            playerObj.PixelX = (timer / 200) * 32;
+            
         }
         
         /// <summary>

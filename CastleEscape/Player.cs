@@ -43,8 +43,8 @@ namespace CastleEscape
         private int currentSpriteX;
         private int spriteWidth;
         private int spriteHeight;
-        private int pixelX;
-        private int pixelY;
+       
+        //
 
         public enum Directions
         {
@@ -128,18 +128,9 @@ namespace CastleEscape
             set { modY = value; }
         }
 
-        public int PixelX
-        {
-            get { return pixelX; }
-            set { pixelX = value; }
-        }
+        
 
-        public int PixelY
-        {
-            get { return pixelY; }
-            set { pixelY = value; }
-        }
-
+       
         
         // attribute for move accuracy
         private int accuracy;
@@ -158,6 +149,7 @@ namespace CastleEscape
         public int Health
         {
             get { return health; }
+            set { health = value; }
         }
 
         public int MaxMana
@@ -180,10 +172,7 @@ namespace CastleEscape
             get { return level; }
         }
 
-        public int Speed
-        {
-            get { return speed; }
-        }
+       
 
         /// <summary>
         /// The Player constructor
@@ -244,8 +233,7 @@ namespace CastleEscape
             xPos += x;
             yPos += y;
 
-            pixelX = xPos * 32;
-            pixelY = yPos * 32;
+           
         }
 
         public void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y)
@@ -277,35 +265,40 @@ namespace CastleEscape
             spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
         }
 
-        public void AttackDmg(int enemyDef, int enemyHP)
+        public int HealthAfterCombat(IBattleCharacter enemy)
         {
             // create a random number to see if the attack hit!
             Random rgen = new Random();
             int didHit = rgen.Next(1, 101);
+            int newHealth = enemy.Health;
+
             if (didHit <= accuracy)
             {
                 if (accuracy == 100)
                 {
-                    if ((int)((attack / 2) - enemyDef) > 0)
+                    if ((int)((attack / 2) - enemy.Defense) > 0)
                     {
-                        enemyHP -= ((int)((attack / 2) - enemyDef));
+                        newHealth -= ((int)((attack / 2) - enemy.Defense));
                     }
                 }
+
                 if (accuracy == 80)
                 {
-                    if ((attack - enemyDef) > 0)
+                    if ((attack - enemy.Defense) > 0)
                     {
-                        enemyHP -= (attack - enemyDef);
+                        newHealth -= (attack - enemy.Defense);
                     }
                 }
                 if (accuracy == 55)
                 {
-                    if (((attack * 2) - enemyDef) > 0)
+                    if (((attack * 2) - enemy.Defense) > 0)
                     {
-                        enemyHP -= ((attack * 2) - enemyDef);
+                        newHealth -= ((attack * 2) - enemy.Defense);
                     }
                 }
+                
             }
+            return newHealth;
         }
 
         /// <summary>

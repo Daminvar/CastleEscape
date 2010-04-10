@@ -23,7 +23,10 @@ namespace CastleEscape
     /// </summary>
     interface IBattleCharacter
     {
-        void AttackDmg(int defense, int hp);
+        int HealthAfterCombat(IBattleCharacter character);
+
+        int Defense { get; }
+        int Health { get; set; }
 
         bool IsDead(int hp);
 
