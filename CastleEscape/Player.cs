@@ -138,12 +138,16 @@ namespace CastleEscape
             get { return level; }
         }
 
+        public int Speed
+        {
+            get { return speed; }
+        }
+
         /// <summary>
         /// The Player constructor
         /// </summary>
         /// <param name="xPos">The starting x-position</param>
         /// <param name="yPos">The starting y-position</param>
-        /// <param name="tx">The character image</param>
         public Player(Game game, int xPos, int yPos)
         {
             this.xPos = xPos;
@@ -164,7 +168,7 @@ namespace CastleEscape
             magicAtk = 8;
             currentSpriteY = 2;
             currentSpriteX = 1;
-            spriteHeight =40;
+            spriteHeight = 40;
             spriteWidth = 35;
             
             accuracy = 100;
@@ -222,6 +226,11 @@ namespace CastleEscape
             sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
 
             spriteBatch.Draw(texture, new Vector2(x - 3 + xPos * map.TileSize - modX, y - 8 + yPos * map.TileSize - modY), sourceRectangle, Color.White);
+        }
+
+        public void DrawForBattle(SpriteBatch spriteBatch, int x, int y)
+        {
+
         }
 
         public void Attack(int enemyDef, int enemyHP)
