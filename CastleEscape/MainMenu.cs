@@ -29,7 +29,7 @@ namespace CastleEscape
         /// <summary>
         /// The Y coordinate of the first item on the menu.
         /// </summary>
-        private const int STARTING_YPOS = 200;
+        private const int DEFAULT_YPOS = 200;
         private static string[] options = {
             "New Game",
             "Load Game",
@@ -39,17 +39,13 @@ namespace CastleEscape
 
         private SpriteFont font;
         private Texture2D background;
-        private int selectedOption = 0;
-        private float defaultSpacing;
-        private float selectedSpacing;
-        private bool canMove;
+        private TextMenu menu;
 
         public MainMenu(Game game) : base(game)
         {
             font = game.Content.Load<SpriteFont>("main-menu-font");
             background = game.Content.Load<Texture2D>("main-menu-background");
-            defaultSpacing = font.Spacing;
-            canMove = true;
+            menu = new TextMenu(font, options);
         }
 
         public override void Pause()
@@ -62,73 +58,42 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
-            selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 5);
-            handleInput();
-        }
+            menu.Update(gameTime, Keyboard.GetState());
 
-        private void handleInput()
-        {
-            KeyboardState state = Keyboard.GetState();
-
-            if (state.IsKeyDown(Keys.Z))
-            {
-                if (options[selectedOption] == "New Game")
-                {
-                    var player = new Player(game, 2, 2);
-                    var map = new DrawableMap(game);
-                    map.LoadMap("testmap.js");
-                    StateManager.PushState(new Overworld(game, player, map));
-                }
-                else if (options[selectedOption] == "Load Game")
-                {
-                    object[] saveFile = GameData.Load();
-
-                    var player = (Player)saveFile[0];
-                    player.LoadTexture(game);
-                    Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
-                    var map = new DrawableMap(game);
-                    map.LoadMap((string)saveFile[1]);
-                    StateManager.PushState(new Overworld(game, player, map));
-                }
-                else if (options[selectedOption] == "About")
-                {
-                }
-                else if (options[selectedOption] == "Exit")
-                    StateManager.PopState();
-            }
-
-            if (state.IsKeyUp(Keys.Up) && state.IsKeyUp(Keys.Down))
-                canMove = true;
-            if (!canMove)
+            if (!menu.IsFinished)
                 return;
-            if (state.IsKeyDown(Keys.Up))
+
+            string selectedOption = options[menu.SelectedOption];
+
+            if (selectedOption == "New Game")
             {
-                selectedOption = (selectedOption - 1) % options.Length;
-                canMove = false;
+                var player = new Player(game, 2, 2);
+                var map = new DrawableMap(game);
+                map.LoadMap("testmap.js");
+                StateManager.PushState(new Overworld(game, player, map));
             }
-            else if (state.IsKeyDown(Keys.Down))
+            else if (selectedOption == "Load Game")
             {
-                selectedOption = (selectedOption + 1) % options.Length;
-                canMove = false;
+                object[] saveFile = GameData.Load();
+
+                var player = (Player)saveFile[0];
+                player.LoadTexture(game);
+                Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
+                var map = new DrawableMap(game);
+                map.LoadMap((string)saveFile[1]);
+                StateManager.PushState(new Overworld(game, player, map));
             }
+            else if (selectedOption == "About")
+            {
+            }
+            else if (selectedOption == "Exit")
+                StateManager.PopState();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-
-            for (int i = 0; i < options.Length; i++)
-            {
-                var pos = new Vector2(DEFAULT_XPOS, STARTING_YPOS + i * font.LineSpacing);
-                if (i == selectedOption)
-                {
-                    pos.X += 2 * selectedSpacing;
-                    font.Spacing = selectedSpacing;
-                }
-                else
-                    font.Spacing = defaultSpacing;
-                spriteBatch.DrawString(font, options[i], pos, Color.Black);
-            }
+            menu.Draw(spriteBatch, DEFAULT_XPOS, DEFAULT_YPOS);
         }
     }
 }

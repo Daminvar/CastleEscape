@@ -96,6 +96,7 @@
     <Compile Include="IBattleCharacter.cs" />
     <Compile Include="IOverworldEntity.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="NPE.cs" />
     <Compile Include="Overworld.cs" />
     <Compile Include="PauseState.cs" />
