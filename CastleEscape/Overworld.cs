@@ -18,14 +18,16 @@ namespace CastleEscape
     /// <summary>
     /// The overworld state.
     /// 
-    /// Authors: ??
+    /// Authors: 
     ///     Dennis Honeyman
+    ///     Matt Munns    
     ///     Allyson Sadwin
+
     /// </summary>
     class Overworld : State
     {
         Player playerObj;
-        Map mappy;
+        DrawableMap mappy;
         
         
         int timer;
@@ -50,7 +52,7 @@ namespace CastleEscape
 
         HUD hud;
 
-        public Overworld(Game game, Player player, Map map) : base(game)
+        public Overworld(Game game, Player player, DrawableMap map) : base(game)
         {
             playerObj = player;
             mappy = map;
@@ -181,7 +183,7 @@ namespace CastleEscape
                         }
                         else
                         {
-                            mappy.ChangeMap(Map.Directions.West);
+                            mappy.ChangeMap(ScriptableMap.Directions.West);
                             playerObj.Move(mappy.MapWidth - 1, 0);
                             timer = 0;
                         }
@@ -245,7 +247,7 @@ namespace CastleEscape
                         }
                         else
                         {
-                            mappy.ChangeMap(Map.Directions.East);
+                            mappy.ChangeMap(ScriptableMap.Directions.East);
                             playerObj.Move(-(mappy.MapWidth) + 1, 0);
                             timer = 0;
                         }
@@ -306,7 +308,7 @@ namespace CastleEscape
                         }
                         else
                         {
-                            mappy.ChangeMap(Map.Directions.North);
+                            mappy.ChangeMap(ScriptableMap.Directions.North);
                             playerObj.Move(0, mappy.MapHeight - 1);
                             timer = 0;
                         }
@@ -369,7 +371,7 @@ namespace CastleEscape
                         }
                         else
                         {
-                            mappy.ChangeMap(Map.Directions.South);
+                            mappy.ChangeMap(ScriptableMap.Directions.South);
                             playerObj.Move(0, -(mappy.MapHeight) + 1);
                             timer = 0;
                         }

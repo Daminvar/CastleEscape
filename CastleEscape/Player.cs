@@ -17,9 +17,11 @@ namespace CastleEscape
     /// <summary>
     /// Represents the player.
     /// 
-    /// Authors: ??
+    /// Authors: 
     ///     Dennis Honeyman
+    ///     Matt Munns
     ///     Allyson Sadwin
+    ///     
     /// </summary>
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
@@ -204,7 +206,7 @@ namespace CastleEscape
             pixelY = yPos * 32;
         }
 
-        public void DrawForOverworld(SpriteBatch spriteBatch, Map map, int x, int y)
+        public void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y)
         {
             if (direction == Player.Directions.West)
             {

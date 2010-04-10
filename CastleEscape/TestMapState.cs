@@ -21,11 +21,11 @@ namespace CastleEscape
     /// </summary>
     class TestMapState : State
     {
-        private Map map;
+        private DrawableMap map;
 
         public TestMapState(Game game) : base(game)
         {
-            map = new Map(game);
+            map = new DrawableMap(game);
             map.LoadMap("testmap.js");
         }
 

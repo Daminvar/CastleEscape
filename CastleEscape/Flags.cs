@@ -7,6 +7,8 @@ namespace CastleEscape
 {
     /// <summary>
     /// For events.
+    /// 
+    /// Author: Dennis Honeyman
     /// </summary>
     class Flags
     {
