@@ -146,7 +146,7 @@ namespace CastleEscape
             // draws only the first four lines of the array
             Rectangle rc = new Rectangle(0, game.GraphicsDevice.Viewport.Height * 3 / 4, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             spriteBatch.Draw(bgColor, rc, Color.White);
-
+            
             for (int i = 0; i < 4 && i < mList.Count; i++)
             {
                 spriteBatch.DrawString(font, mList[i], new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 24) + 5 + font.LineSpacing * i), Color.White);

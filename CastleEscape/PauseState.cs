@@ -71,6 +71,7 @@ namespace CastleEscape
            
         }
 
+        //Displays stats when pause state is pushed on to screen
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle rc = new Rectangle(0, game.GraphicsDevice.Viewport.Height * 25/100, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
