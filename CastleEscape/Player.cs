@@ -27,10 +27,7 @@ namespace CastleEscape
     class Player : IOverworldEntity, IBattleCharacter
     {
         private const string PLAYER_OW_TEXTURE = "player-spritesheet";
-        // create a sprite for that
-        //private Vector2 position;
         [NonSerialized] private Texture2D overworldTexture;
-
         private const string PLAYER_BATTLE_TEXTURE = "orb-of-saving";
         [NonSerialized] private Texture2D battleTexture;
 
@@ -43,8 +40,13 @@ namespace CastleEscape
         private int currentSpriteX;
         private int spriteWidth;
         private int spriteHeight;
-       
-        //
+
+        private List<Item> items;
+
+        public List<Item> Items
+        {
+            get { return items; }
+        }
 
         public enum Directions
         {
@@ -64,19 +66,19 @@ namespace CastleEscape
         }
 
         // player attributes
-        private int speed;//
-        private int maxHealth;//
-        private int health;//
-        private int attack;//
-        private int defense;//
-        private int level;//
-        private int exp;//
-        private int maxMana;//
-        private int mana;//
-        private int magicAtk;//
-        private int gold;//
+        private int speed;
+        private int maxHealth;
+        private int health;
+        private int attack;
+        private int defense;
+        private int level;
+        private int maxMana;
+        private int mana;
+        private int magicAtk;
+        private int gold;
+        private int exp;
         private int exptolevel;
-
+        private int accuracy;
 
         private int modX;
         private int modY;
@@ -113,7 +115,6 @@ namespace CastleEscape
         {
             get { return exptolevel; }
             set { exptolevel = value; }
-
         }
 
         public int ModX
@@ -127,13 +128,6 @@ namespace CastleEscape
             get { return modY; }
             set { modY = value; }
         }
-
-        
-
-       
-        
-        // attribute for move accuracy
-        private int accuracy;
 
         public int Accuracy
         {
@@ -172,8 +166,6 @@ namespace CastleEscape
             get { return level; }
         }
 
-       
-
         /// <summary>
         /// The Player constructor
         /// </summary>
@@ -204,6 +196,8 @@ namespace CastleEscape
             exptolevel = 100;
             accuracy = 100;
             gold = 0;
+
+            items = new List<Item>();
         }
         
 
@@ -232,8 +226,6 @@ namespace CastleEscape
         {
             xPos += x;
             yPos += y;
-
-           
         }
 
         public void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y)
@@ -304,18 +296,10 @@ namespace CastleEscape
         /// <summary>
         /// Checks if the Player is dead
         /// </summary>
-        /// <param name="hp">The Player's current HP.</param>
         /// <returns>True if the Player is dead; false if not.</returns>
-        public bool IsDead(int hp)
+        public bool IsDead()
         {
-            if (hp <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return health <= 0;
         }
     }
 }

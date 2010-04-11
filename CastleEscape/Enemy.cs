@@ -44,7 +44,6 @@ namespace CastleEscape
             set { defense = value; }
 
         }
-        
 
         public int Speed
         {
@@ -63,16 +62,9 @@ namespace CastleEscape
         }
 
         //Checks if enemy is dead
-        public bool IsDead(int hp)
+        public bool IsDead()
         {
-            if (hp <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return health <= 0;
         }
 
         public void DrawForBattle(SpriteBatch spriteBatch, int x, int y)

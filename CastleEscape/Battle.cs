@@ -87,7 +87,7 @@ namespace CastleEscape
 
                 en.Health = play.HealthAfterCombat(en);
 
-                if(en.IsDead(en.Health))
+                if(en.IsDead())
                 {
                     //enemy dies, push back on overworld?
                 }
@@ -95,14 +95,9 @@ namespace CastleEscape
             else
             {
                play.Health = en.HealthAfterCombat(play);
-
-
             }
 
             tMenu.Update(gameTime, Keyboard.GetState());
-
-            
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -111,7 +106,6 @@ namespace CastleEscape
             play.DrawForBattle(spriteBatch, 200, 200);
             en.DrawForBattle(spriteBatch, 400, 200);
             tMenu.Draw(spriteBatch, 0, 0);
-
         }
     }
 }

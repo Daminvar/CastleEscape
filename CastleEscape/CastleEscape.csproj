@@ -97,6 +97,8 @@
     <Compile Include="HUD.cs" />
     <Compile Include="IBattleCharacter.cs" />
     <Compile Include="IOverworldEntity.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="ItemState.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="TextMenu.cs" />
     <Compile Include="NPE.cs" />

@@ -28,7 +28,7 @@ namespace CastleEscape
         int Defense { get; }
         int Health { get; set; }
 
-        bool IsDead(int hp);
+        bool IsDead();
 
         void DrawForBattle(SpriteBatch spriteBatch, int x, int y);
     }
