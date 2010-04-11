@@ -46,7 +46,7 @@ namespace CastleEscape
         public void Update(GameTime gameTime, KeyboardState state)
         {
             if (!isFinished)
-                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 5);
+                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 2);
             else
             {
                 canMove = false;
