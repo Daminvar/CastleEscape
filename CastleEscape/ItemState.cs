@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// A state for viewing and using items.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class ItemState : State
     {
         private const int XPOS = 100;
@@ -32,7 +37,9 @@ namespace CastleEscape
             texture = new Texture2D(game.GraphicsDevice, 1, 1);
             texture.SetData<Color>(new Color[] { new Color(Color.Black, 150) });
             font = game.Content.Load<SpriteFont>("inventory-header-font");
-            menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
+            //The menu is only needed if the player has items.
+            if (player.Items.Count > 0)
+                menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
         }
 
         private string[] getStringOfPlayerItems()
@@ -53,14 +60,18 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
-            menu.Update(gameTime, Keyboard.GetState());
+            if (player.Items.Count > 0)
+                menu.Update(gameTime, Keyboard.GetState());
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, new Rectangle(XPOS, YPOS, WIDTH, HEIGHT), Color.White);
-            spriteBatch.DrawString(font, "Inventory", new Vector2(XPOS + 5, YPOS + 5), Color.White);
-            menu.Draw(spriteBatch, XPOS + 5, YPOS + 30);
+            spriteBatch.DrawString(font, "Inventory          Press 'Esc' to quit.", new Vector2(XPOS + 5, YPOS + 5), Color.White);
+            if (player.Items.Count > 0)
+                menu.Draw(spriteBatch, XPOS + 5, YPOS + 30);
+            else
+                spriteBatch.DrawString(font, "You don't have any items!", new Vector2(XPOS + 5, YPOS + 50), Color.White);
         }
     }
 }

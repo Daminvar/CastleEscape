@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// A scriptable map that can be drawn to the screen.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class DrawableMap : ScriptableMap
     {
         private const string TILESET_RESOURCE_NAME = "tileset";

@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// Allows the user to select from a list of options.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class TextMenu
     {
         private SpriteFont font;

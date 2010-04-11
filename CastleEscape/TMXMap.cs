@@ -15,6 +15,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// A map for the Tiled map format.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class TMXMap
     {
         private List<int[][]> baseLayers;
@@ -54,6 +59,10 @@ namespace CastleEscape
             get { return tilesize; }
         }
 
+        /// <summary>
+        /// Parses a TMX map.
+        /// </summary>
+        /// <param name="filename">The path to the map.</param>
         public void ParseTMXFile(string filename)
         {
             var reader = new XmlDocument();
@@ -109,6 +118,12 @@ namespace CastleEscape
             return layer;
         }
 
+        /// <summary>
+        /// Checks to see if there's a collision at the specified location.
+        /// </summary>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        /// <returns>"true" if there's a collision--"false" otherwise.</returns>
         public bool IsCollisionAt(int x, int y)
         {
             foreach (var rect in collisionRects)

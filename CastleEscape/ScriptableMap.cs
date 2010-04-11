@@ -15,6 +15,11 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    /// <summary>
+    /// A map that has an associated script.
+    /// 
+    /// Author: Dennis Honeyman
+    /// </summary>
     class ScriptableMap
     {
         private delegate Item NewItemDelegate(string textureName, string name, string description, int healthBonus, int manaBonus);
