@@ -29,6 +29,7 @@ namespace CastleEscape
         private Texture2D texture;
         private SpriteFont font;
         private TextMenu menu;
+        private bool canPressEscape;
 
         public ItemState(Game game, Player player)
             : base(game)
@@ -40,6 +41,7 @@ namespace CastleEscape
             //The menu is only needed if the player has items.
             if (player.Items.Count > 0)
                 menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
+            canPressEscape = false;
         }
 
         private string[] getStringOfPlayerItems()
@@ -62,6 +64,17 @@ namespace CastleEscape
         {
             if (player.Items.Count > 0)
                 menu.Update(gameTime, Keyboard.GetState());
+
+            KeyboardState state = Keyboard.GetState();
+
+            if (state.IsKeyUp(Keys.Escape))
+                canPressEscape = true;
+
+            if (!canPressEscape)
+                return;
+
+            if (state.IsKeyDown(Keys.Escape))
+                StateManager.PopState();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
