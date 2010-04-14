@@ -22,7 +22,7 @@ namespace CastleEscape
     /// </summary>
     class ScriptableMap
     {
-        private delegate Item NewItemDelegate(string textureName, string name, string description, int healthBonus, int manaBonus);
+        private delegate Item NewItemDelegate(string name, string description, int healthBonus, int manaBonus);
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
 
         protected Game game;
@@ -236,10 +236,9 @@ namespace CastleEscape
             GameData.Save(scriptFilename, player);
         }
 
-        private Item js_newItem(string textureName, string itemName, string description, int healthBonus, int manaBonus)
+        private Item js_newItem(string itemName, string description, int healthBonus, int manaBonus)
         {
-            Texture2D itemTexture = game.Content.Load<Texture2D>(textureName);
-            return new Item(itemTexture, itemName, description, healthBonus, manaBonus);
+            return new Item(itemName, description, healthBonus, manaBonus);
         }
     }
 }

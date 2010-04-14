@@ -58,17 +58,30 @@ namespace CastleEscape
 
         public override void Resume()
         {
+            if (player.Items.Count > 0)
+                menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (player.Items.Count > 0)
-                menu.Update(gameTime, Keyboard.GetState());
-
             KeyboardState state = Keyboard.GetState();
 
             if (state.IsKeyUp(Keys.Escape))
                 canPressEscape = true;
+
+            if (player.Items.Count > 0)
+            {
+                menu.Update(gameTime, state);
+                if (menu.IsFinished)
+                {
+                    //Use the selected item
+                    Item itemToUse = player.Items[menu.SelectedOption];
+                    player.Health += itemToUse.HealthBonus;
+                    player.Mana += itemToUse.ManaBonus;
+                    player.Items.RemoveAt(menu.SelectedOption);
+                    StateManager.PushState(new Dialogue(game, "You used a " + itemToUse.Name + "!"));
+                }
+            }
 
             if (!canPressEscape)
                 return;
