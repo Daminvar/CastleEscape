@@ -40,6 +40,7 @@ namespace CastleEscape
         private int currentSpriteX;
         private int spriteWidth;
         private int spriteHeight;
+        private string chosenAttack;
 
         private List<Item> items;
 
@@ -194,7 +195,7 @@ namespace CastleEscape
             spriteHeight = 40;
             spriteWidth = 35;
             exptolevel = 100;
-            accuracy = 100;
+            accuracy = 0;
             gold = 0;
 
             items = new List<Item>();
@@ -256,6 +257,29 @@ namespace CastleEscape
         {
             spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
         }
+        
+        public void getAccuracy(string attackType)
+        {
+            chosenAttack = attackType;
+
+            if (chosenAttack == ("Light Punch"))
+                accuracy = 100;
+
+            else if (chosenAttack == ("Double Punch"))
+                accuracy = 80;
+            else if (chosenAttack == ("Pummel"))
+                accuracy = 55;
+            else if (chosenAttack == ("Soul Cannon"))
+            {
+                accuracy = 99;
+                mana -= 1;
+            }
+            else if (chosenAttack == ("Mind Break"))
+            {
+                accuracy = 98;
+                mana -= 2;
+            }
+        }
 
         public int HealthAfterCombat(IBattleCharacter enemy)
         {
@@ -288,7 +312,25 @@ namespace CastleEscape
                         newHealth -= ((attack * 2) - enemy.Defense);
                     }
                 }
-                
+
+                if (accuracy == 99)
+                {
+                    if ((magicAtk - enemy.Defense) > 0 && magicAtk >= 2)
+                    {
+                        newHealth -= rgen.Next(2, magicAtk + 1) - enemy.Defense;
+                    }
+                }
+                if (accuracy == 98)
+                {
+                    if ((magicAtk - enemy.Defense) > 0 && magicAtk >= 6)
+                    {
+                        newHealth -= rgen.Next(4, magicAtk - 1) - enemy.Defense;
+                    }
+                }
+                if (newHealth < 0)
+                {
+                    newHealth = 0;
+                }
             }
             return newHealth;
         }

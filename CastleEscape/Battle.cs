@@ -29,7 +29,7 @@ namespace CastleEscape
         Texture2D backgroundTexture;
         Texture2D combatColor;
         private SpriteFont font;
-
+        private string chosenAttack;
         // boolean to see who attacks first. if player, true. if enemy, false.
         bool attackFirst;
 
@@ -97,24 +97,73 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
+            
+            tMenu.Update(gameTime, Keyboard.GetState());
+            //handleInput(gameTime);
+            this.CalculateSpeed();
             if (attackFirst)
             {
-                play.Accuracy = 55;
-
-                en.Health = play.HealthAfterCombat(en);
-
-                if(en.IsDead())
+                if (!en.IsDead() && !play.IsDead())
                 {
-                    //enemy dies, push back on overworld?
+                    handleInput(gameTime);
+                    play.getAccuracy(chosenAttack);
+                    en.Health = play.HealthAfterCombat(en);
+
+                    if(!en.IsDead() && chosenAttack != null)
+                    {
+                        play.Health = en.HealthAfterCombat(play);
+                    }
                 }
+                //StateManager.PopState();
             }
             else
             {
                play.Health = en.HealthAfterCombat(play);
             }
 
-            tMenu.Update(gameTime, Keyboard.GetState());
+            
+            
+
         }
+
+        public void handleInput(GameTime gametime)
+        {
+            tMenu.Update(gametime, Keyboard.GetState());
+            string selectedChoice = null;
+            if (!tMenu.IsFinished)
+                return;
+            
+            
+                selectedChoice = choices[tMenu.SelectedOption];
+
+                //"Light Punch","Double-Punch","Pummel", "Soul Cannon","Mind Break","Item", "Run" };
+                //Sets the chosen attack based on what the player selected
+                if (selectedChoice == "Light Punch")
+                    chosenAttack = "Light Punch";
+
+                else if (selectedChoice == "Double Punch")
+                
+                    chosenAttack = "Double Punch";
+
+                else if (selectedChoice == "Pummel")
+                    chosenAttack = "Pummel";
+
+                else if (selectedChoice == "Soul Cannon")
+                    chosenAttack = "Soul Cannon";
+
+                else if (selectedChoice == "Mind Break")
+                    chosenAttack = "Mind Break";
+
+                else if (selectedChoice == "Item")
+                    chosenAttack = "Item";
+
+                else if (selectedChoice == "Run")
+                    chosenAttack = "Run";
+            
+
+
+        }
+
 
         //Draws the combat screen
         public override void Draw(SpriteBatch spriteBatch)
@@ -134,8 +183,8 @@ namespace CastleEscape
             spriteBatch.DrawString(font, "HP: " + play.Health +"/"+ play.MaxHealth + 
                                         "\nMP: " + play.Mana+ "/" + play.MaxMana +
                                         "\n______________",
-              new Vector2(30.0f, (float)((game.GraphicsDevice.Viewport.Height * 7 / 100) )), Color.Black);  
-
+              new Vector2(30.0f, (float)((game.GraphicsDevice.Viewport.Height * 7 / 100) )), Color.Black);
+            spriteBatch.DrawString(font, " Enemy Hp: " + en.Health, new Vector2(260.0f, (float)((game.GraphicsDevice.Viewport.Height * 20 / 100) + 30)), Color.White);
             //Combat Menu
             tMenu.Draw(spriteBatch,29,110);
         }

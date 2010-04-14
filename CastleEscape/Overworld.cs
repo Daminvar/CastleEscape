@@ -174,6 +174,8 @@ namespace CastleEscape
                                 {
                                     Console.WriteLine("Battle!");
                                     pedometer = 0;
+                                    re = false;
+                                    StateManager.PushState(new TestBattleState(game));
                                 }
 
                                 
@@ -236,7 +238,8 @@ namespace CastleEscape
                                 {
                                     Console.WriteLine("Battle!");
                                     pedometer = 0;
-
+                                    re = false;
+                                    StateManager.PushState(new TestBattleState(game));
                                     // this will either push the Battle state on or call something that will.
                                     // does battling pause overworld too?
                                     //this.Pause();
@@ -298,6 +301,8 @@ namespace CastleEscape
                                 {
                                     Console.WriteLine("Battle!");
                                     pedometer = 0;
+                                    re = false;
+                                    StateManager.PushState(new TestBattleState(game));
                                     // this will either push the Battle state on or call something that will.
                                     // does battling pause overworld too?
                                     //this.Pause();
@@ -360,7 +365,8 @@ namespace CastleEscape
                                 {
                                     Console.WriteLine("Battle!");
                                     pedometer = 0;
-
+                                    re = false;
+                                    StateManager.PushState(new TestBattleState(game));
                                     // this will either push the Battle state on or call something that will.
                                     // does battling pause overworld too?
                                     //this.Pause();

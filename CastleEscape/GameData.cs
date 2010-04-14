@@ -24,13 +24,20 @@ namespace CastleEscape
         /// <param name="player"></param>
         public static void Save(string currentMapName, Player player)
         {
-            var saveFile = new object[] {
-                player, currentMapName, Flags.GetAllFlags(),
-            };
-            var formatter = new BinaryFormatter();
-            var stream = new FileStream(SAVE_FILE_LOCATION, FileMode.Create);
-            formatter.Serialize(stream, saveFile);
-            stream.Close();
+            try
+            {
+                var saveFile = new object[] {
+                    player, currentMapName, Flags.GetAllFlags(),
+                };
+                var formatter = new BinaryFormatter();
+                var stream = new FileStream(SAVE_FILE_LOCATION, FileMode.Create);
+                formatter.Serialize(stream, saveFile);
+                stream.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0} {1}", e.Message, e.StackTrace);
+            }
         }
 
         public static object[] Load()

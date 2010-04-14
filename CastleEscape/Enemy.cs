@@ -29,6 +29,10 @@ namespace CastleEscape
         public Enemy(Texture2D tx)
         {
             enemyTexture = tx;
+            speed = 0;
+            attack = 2;
+            defense = 1;
+            health = 10;
         }
 
         public int Health
