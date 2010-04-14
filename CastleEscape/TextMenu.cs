@@ -52,7 +52,9 @@ namespace CastleEscape
         {
             if (!isFinished)
             {
-                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 5);
+                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 20);
+                selectedSpacing = selectedSpacing / options[selectedOption].Length;
+
                 //selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * .7);
             }
             else
