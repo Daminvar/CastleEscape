@@ -94,6 +94,7 @@ namespace CastleEscape
                     font.Spacing = defaultSpacing;
                 spriteBatch.DrawString(font, options[i], pos, Color.Black);
             }
+            font.Spacing = defaultSpacing;
         }
     }
 }
