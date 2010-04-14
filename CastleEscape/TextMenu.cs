@@ -51,8 +51,10 @@ namespace CastleEscape
         public void Update(GameTime gameTime, KeyboardState state)
         {
             if (!isFinished)
-                //selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 5);
-                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * .7);
+            {
+                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 5);
+                //selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * .7);
+            }
             else
             {
                 canMove = false;
@@ -68,7 +70,7 @@ namespace CastleEscape
                 return;
             if (state.IsKeyDown(Keys.Up))
             {
-                selectedOption = (selectedOption - 1) % options.Length;
+                selectedOption = selectedOption > 0 ? selectedOption - 1 : options.Length - 1;
                 canMove = false;
             }
             else if (state.IsKeyDown(Keys.Down))
