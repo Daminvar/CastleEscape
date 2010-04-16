@@ -17,37 +17,61 @@ namespace CastleEscape
     class Enemy : IBattleCharacter
     {
         // speed varies on type of enemy
+        private string name;
         private int speed;
         private int attack;
         private int health;
         private int defense;
+        private int exp;
+        private Item[] items;
 
         Texture2D enemyTexture;
-
-
 
         public Enemy(Texture2D tx)
         {
             enemyTexture = tx;
         }
 
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
         public int Health
         {
             get { return health; }
             set { health = value; }
-
         }
 
         public int Defense
         {
             get { return defense; }
             set { defense = value; }
+        }
 
+        public int Attack
+        {
+            get { return attack; }
+            set { attack = value; }
         }
 
         public int Speed
         {
             get { return speed; }
+            set { speed = value; }
+        }
+
+        public int Exp
+        {
+            get { return exp; }
+            set { exp = value; }
+        }
+
+        public Item[] Items
+        {
+            get { return items; }
+            set { items = value; }
         }
 
         public int HealthAfterCombat(IBattleCharacter player)
@@ -70,6 +94,11 @@ namespace CastleEscape
         public void DrawForBattle(SpriteBatch spriteBatch, int x, int y)
         {
             spriteBatch.Draw(enemyTexture, new Vector2(x, y), Color.White);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("<Enemy> Name: {0}, Health: {1}, Defense: {2}, Exp: {3}", name, health, defense, exp);
         }
     }
 }

@@ -34,3 +34,6 @@ saveOrb.SetInteractFunc(function(player) {
 })
 
 addNPE(saveOrb)
+
+addRandomEncounter("ghostie", "Ghost of Doom", 500, 50, 50, 10, 10, null)
+addRandomEncounter("ghostie", "Pauper of Evil", 800, 50, 50, 10, 10, null)

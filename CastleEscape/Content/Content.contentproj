@@ -101,8 +101,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test-Font.spritefont">
-      <Name>Test-Font</Name>
+    <Compile Include="test-font.spritefont">
+      <Name>test-font</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -119,9 +119,9 @@
       <Name>inventory-list-font</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
-	</Compile>
-    <Compile Include="battlebackground.png">
-      <Name>battlebackground</Name>
+    </Compile>
+    <Compile Include="test-battle-background.png">
+      <Name>test-battle-background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -40,7 +40,7 @@ namespace CastleEscape
             base.Initialize();
             this.Window.Title = "Escape from the Castle";
             StateManager.Initialize();
-            StateManager.PushState(new TestItemState(this));
+            StateManager.PushState(new MainMenu(this));
         }
 
         /// <summary>

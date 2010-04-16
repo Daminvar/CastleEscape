@@ -22,7 +22,9 @@ namespace CastleEscape
     /// </summary>
     class ScriptableMap
     {
-        private delegate Item NewItemDelegate(string name, string description, int healthBonus, int manaBonus);
+        private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus);
+        private delegate void AddRandomEnounterDelegate(string textureName, string enemyName, double health,
+            double attack, double defense, double speed, double exp, Item[] items);
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
 
         protected Game game;
@@ -33,6 +35,9 @@ namespace CastleEscape
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
         private string tmxMapFilename;
         private string mapName;
+        private Texture2D battleTexture;
+        private List<Enemy> randomEncounters;
+        private Random rand;
 
         /// <summary>
         /// The width of the map in tiles.
@@ -66,6 +71,11 @@ namespace CastleEscape
             get { return mapName; }
         }
 
+        public Texture2D BattleTexture
+        {
+            get { return battleTexture; }
+        }
+
         public enum Directions
         {
             North, South, East, West
@@ -75,6 +85,7 @@ namespace CastleEscape
         {
             this.game = game;
             tmxMap = new TMXMap();
+            rand = new Random();
         }
 
         /// <summary>
@@ -125,6 +136,14 @@ namespace CastleEscape
             return null;
         }
 
+        public Enemy GetRandomEncounter()
+        {
+            if (randomEncounters.Count < 0)
+                return null;
+
+            return randomEncounters[rand.Next(0, randomEncounters.Count)];
+        }
+
         /// <summary>
         /// Tests to see if there is a collision
         /// at the specified coordinates.
@@ -154,13 +173,15 @@ namespace CastleEscape
 
             scriptFilename = filename;
 
-            //Empty NPE list
+            //Empty NPE and random encounter lists
             NPEs = new List<NPE>();
+            randomEncounters = new List<Enemy>();
 
             var engine = new Jint.JintEngine();
             engine.DisableSecurity(); //Needed so the scripts can call methods on NPE objects.
             engine.SetDebugMode(true);
             engine.SetFunction("name", new Action<string>(js_setMapName));
+            engine.SetFunction("battleTexture", new Action<string>(js_setBattleTexture));
             engine.SetFunction("east", new Action<string>(js_setEastMapfile));
             engine.SetFunction("west", new Action<string>(js_setWestMapfile));
             engine.SetFunction("north", new Action<string>(js_setNorthMapfile));
@@ -173,12 +194,18 @@ namespace CastleEscape
             engine.SetFunction("dialogue", new Action<string>(js_dialogue));
             engine.SetFunction("save", new Action<Player>(js_save));
             engine.SetFunction("newItem", new NewItemDelegate(js_newItem));
+            engine.SetFunction("addRandomEncounter", new AddRandomEnounterDelegate(js_addRandomEncounter));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
         private void js_setMapName(string name)
         {
             mapName = name;
+        }
+
+        private void js_setBattleTexture(string textureName)
+        {
+            battleTexture = game.Content.Load<Texture2D>(textureName);
         }
 
         private void js_setEastMapfile(string filename)
@@ -236,9 +263,23 @@ namespace CastleEscape
             GameData.Save(scriptFilename, player);
         }
 
-        private Item js_newItem(string itemName, string description, int healthBonus, int manaBonus)
+        private Item js_newItem(string itemName, string description, double healthBonus, double manaBonus)
         {
-            return new Item(itemName, description, healthBonus, manaBonus);
+            return new Item(itemName, description, (int)healthBonus, (int)manaBonus);
+        }
+
+        private void js_addRandomEncounter(string textureName, string enemyName, double health,
+            double attack, double defense, double speed, double exp, Item[] items)
+        {
+            var enemy = new Enemy(game.Content.Load<Texture2D>(textureName));
+            enemy.Name = enemyName;
+            enemy.Health = (int)health;
+            enemy.Speed = (int)speed;
+            enemy.Attack = (int)attack;
+            enemy.Defense = (int)defense;
+            enemy.Exp = (int)exp;
+            enemy.Items = items;
+            randomEncounters.Add(enemy);
         }
     }
 }
