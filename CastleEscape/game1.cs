@@ -46,7 +46,7 @@ namespace CastleEscape
             //player.Items.Add(new Item(null, "Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80));
             //player.Items.Add(new Item(null, "Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80));
 
-            StateManager.PushState(new ItemState(this, player));
+            StateManager.PushState(new MainMenu(this));
         }
 
         /// <summary>
