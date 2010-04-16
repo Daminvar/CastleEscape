@@ -14,9 +14,9 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
+    [Serializable]
     class Item
     {
-        private Texture2D itemTexture;
         private string name;
         private string description;
         private int healthBonus;
@@ -42,9 +42,8 @@ namespace CastleEscape
             get { return manaBonus; }
         }
 
-        public Item(Texture2D itemTexture, string name, string description, int healthBonus, int manaBonus)
+        public Item(string name, string description, int healthBonus, int manaBonus)
         {
-            this.itemTexture = itemTexture;
             this.name = name;
             this.description = description;
             this.healthBonus = healthBonus;
