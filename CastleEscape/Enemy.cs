@@ -33,7 +33,7 @@ namespace CastleEscape
             speed = 0;
             attack = 2;
             defense = 1;
-            health = 10;
+            health = 100;
         }
 
         public string Name
@@ -44,7 +44,12 @@ namespace CastleEscape
 
         public int Health
         {
-            get { return health; }
+            get {
+                if (health <= 0)
+                    return 0;
+                else
+                    return health;
+            }
             set { health = value; }
         }
 

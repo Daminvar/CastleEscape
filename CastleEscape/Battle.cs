@@ -38,7 +38,7 @@ namespace CastleEscape
 
         TextMenu tMenu;
 
-        private static string[] choices = { "Light Punch","Double-Punch","Pummel", "Soul Cannon","Mind Break","Item", "Run" };
+        private static string[] choices = { "Light Punch","Double Punch","Pummel", "Soul Cannon","Mind Break","Item", "Run" };
 
         // constructor
         public Battle(Game game, Texture2D bgTex, Player p, Enemy e, bool run) : base(game)
@@ -99,26 +99,37 @@ namespace CastleEscape
         {
             
             tMenu.Update(gameTime, Keyboard.GetState());
-            //handleInput(gameTime);
-            this.CalculateSpeed();
+            handleInput(gameTime);
+            attackFirst = true;
             if (attackFirst)
             {
-                if (!en.IsDead() && !play.IsDead())
-                {
-                    handleInput(gameTime);
-                    play.getAccuracy(chosenAttack);
-                    en.Health = play.HealthAfterCombat(en);
-
-                    if(!en.IsDead() && chosenAttack != null)
+                
+                    if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
                     {
-                        play.Health = en.HealthAfterCombat(play);
-                    }
+                        
+                        tMenu.Update(gameTime, Keyboard.GetState());
+                        handleInput(gameTime);
+                        play.getAccuracy(chosenAttack);
+                        Console.WriteLine(chosenAttack);
+                        en.Health = play.HealthAfterCombat(en);
+                        tMenu.IsFinished = false;
+                        chosenAttack = null;
+                        attackFirst = false;
+                        tMenu.Update(gameTime, Keyboard.GetState());
+                        
+                    tMenu.Update(gameTime, Keyboard.GetState());
+                    //StateManager.PopState();
                 }
-                //StateManager.PopState();
+                
             }
-            else
+           if (attackFirst == false)
+                    
             {
-               play.Health = en.HealthAfterCombat(play);
+                
+                    play.Health = en.HealthAfterCombat(play);
+                    attackFirst = true;
+                    
+                
             }
 
             
@@ -138,26 +149,31 @@ namespace CastleEscape
 
                 //"Light Punch","Double-Punch","Pummel", "Soul Cannon","Mind Break","Item", "Run" };
                 //Sets the chosen attack based on what the player selected
-                if (selectedChoice == "Light Punch")
+                if (selectedChoice == ("Light Punch"))
                     chosenAttack = "Light Punch";
 
-                else if (selectedChoice == "Double Punch")
-                
+                else if (selectedChoice == ("Double Punch"))
+
                     chosenAttack = "Double Punch";
 
-                else if (selectedChoice == "Pummel")
+                else if (selectedChoice == ("Pummel"))
                     chosenAttack = "Pummel";
 
-                else if (selectedChoice == "Soul Cannon")
-                    chosenAttack = "Soul Cannon";
+                else if (selectedChoice == ("Soul Cannon"))
+                    
+                        chosenAttack = "Soul Cannon";
+                    
 
-                else if (selectedChoice == "Mind Break")
-                    chosenAttack = "Mind Break";
+                else if (selectedChoice == ("Mind Break"))
+                    
+                        chosenAttack = "Mind Break";
+                    
 
-                else if (selectedChoice == "Item")
+
+                else if (selectedChoice == ("Item"))
                     chosenAttack = "Item";
 
-                else if (selectedChoice == "Run")
+                else if (selectedChoice == ("Run"))
                     chosenAttack = "Run";
             
 
