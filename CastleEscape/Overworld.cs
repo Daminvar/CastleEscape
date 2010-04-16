@@ -335,9 +335,6 @@ namespace CastleEscape
                 if (timer < 150)
                 {
                     movingDown = true;
-                    movingLeft = false;
-                    movingRight = false;
-                    movingUp = false;
                 }
                 else
                 {
