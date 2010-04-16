@@ -42,6 +42,7 @@ namespace CastleEscape
             if (player.Items.Count > 0)
                 menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
             canPressEscape = false;
+            transparent = true;
         }
 
         private string[] getStringOfPlayerItems()
