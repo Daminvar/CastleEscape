@@ -29,14 +29,16 @@ namespace CastleEscape
         SpriteFont font;
         Player player;
         ScriptableMap map;
+        int screenSize;
 
         public HUD(Game game, Player player, ScriptableMap map)
         {
             font = game.Content.Load<SpriteFont>("hud-font");
             background = new Texture2D(game.GraphicsDevice, 1, 1);
-            background.SetData<Color>(new Color[] { new Color(Color.WhiteSmoke, 100) });
+            background.SetData<Color>(new Color[] { new Color(100, 100, 100) });
             this.player = player;
             this.map = map;
+            screenSize = game.GraphicsDevice.Viewport.Height;
         }
 
         /// <summary>
@@ -48,6 +50,7 @@ namespace CastleEscape
         public void Draw(SpriteBatch spriteBatch, int xPos, int yPos)
         {
             spriteBatch.Draw(background, new Rectangle(xPos, yPos, WIDTH, HEIGHT), Color.White);
+            spriteBatch.Draw(background, new Rectangle(xPos, HEIGHT, WIDTH, screenSize - HEIGHT), Color.Black);
 
             string[] stats = new string[] {
                  string.Format("HP: {0}/{1}", player.Health, player.MaxHealth),

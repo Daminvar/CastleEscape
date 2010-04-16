@@ -86,10 +86,7 @@ namespace CastleEscape
         {
             // checks for updates
             handleInput(gameTime);
-
             timer += gameTime.ElapsedGameTime.Milliseconds;
-
-
         }
 
         /// <summary>
@@ -432,8 +429,6 @@ namespace CastleEscape
                 return false;
             }
         }
-
-
 
         public override void Draw(SpriteBatch spriteBatch)
         {
