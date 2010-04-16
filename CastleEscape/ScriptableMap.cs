@@ -138,7 +138,7 @@ namespace CastleEscape
 
         public Enemy GetRandomEncounter()
         {
-            if (randomEncounters.Count < 0)
+            if (randomEncounters.Count <= 0)
                 return null;
 
             return randomEncounters[rand.Next(0, randomEncounters.Count)];

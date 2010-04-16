@@ -44,7 +44,6 @@ namespace CastleEscape
         private bool canPressEscape;
 
         // Rectangles
-        Rectangle sourceRectangle;
         Rectangle destinationRectangle;
 
         // create a counter for steps
@@ -135,13 +134,17 @@ namespace CastleEscape
                 {
                     movingLeft = true;
                 }
+                else
+                {
+                    movingLeft = false;
+                }
                 movingDown = false;
                 movingRight = false;
                 movingUp = false;
 
                 playerObj.Direction = Player.Directions.West;
 
-                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos >= 0)
+                if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false && playerObj.XPos >= 0)
                 {
                     if (timer >= 50 && timer < 100)
                     {
@@ -150,7 +153,7 @@ namespace CastleEscape
                     }
                     else if (timer >= 100 && timer < 150)
                     {
-                        playerObj.CurrentSpriteX = 2;
+                        playerObj.CurrentSpriteX = 0;
                         playerObj.ModX = -8;
                     }
 
@@ -165,8 +168,8 @@ namespace CastleEscape
                 if (timer >= 200)
                 {
                     playerObj.ModX = -24;
-                    playerObj.CurrentSpriteX = 1;
-                    if (playerObj.XPos >= 0)
+                    playerObj.CurrentSpriteX = 2;
+                    if (playerObj.XPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false)
                         {
@@ -185,7 +188,7 @@ namespace CastleEscape
                     else
                     {
                         mappy.ChangeMap(ScriptableMap.Directions.West);
-                        playerObj.Move(mappy.MapWidth, 0);
+                        playerObj.Move(mappy.MapWidth - 1, 0);
                     }
                     timer = 0;
                 }
@@ -230,7 +233,7 @@ namespace CastleEscape
                 {
                     playerObj.ModX = 24;
                     playerObj.CurrentSpriteX = 1;
-                    if (playerObj.XPos < mappy.MapWidth)
+                    if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                         {
@@ -296,7 +299,7 @@ namespace CastleEscape
                         playerObj.ModY = -24;
                         playerObj.CurrentSpriteX = 1;
                     }
-                    if (playerObj.YPos >= 0)
+                    if (playerObj.YPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                         {
@@ -316,7 +319,7 @@ namespace CastleEscape
                     else
                     {
                         mappy.ChangeMap(ScriptableMap.Directions.North);
-                        playerObj.Move(0, mappy.MapHeight);
+                        playerObj.Move(0, mappy.MapHeight - 1);
                         timer = 0;
                     }
                 }
@@ -364,7 +367,7 @@ namespace CastleEscape
                         playerObj.ModY = 24;
                         playerObj.CurrentSpriteX = 1;
                     }
-                    if (playerObj.YPos < mappy.MapHeight)
+                    if (playerObj.YPos + 1 < mappy.MapHeight)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                         {
@@ -384,7 +387,7 @@ namespace CastleEscape
                     else
                     {
                         mappy.ChangeMap(ScriptableMap.Directions.South);
-                        playerObj.Move(0, -(mappy.MapHeight));
+                        playerObj.Move(0, -(mappy.MapHeight)+1);
                         timer = 0;
                     }
                 }
