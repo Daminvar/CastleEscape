@@ -155,6 +155,7 @@ namespace CastleEscape
         public int Mana
         {
             get { return mana; }
+            set { mana = value; }
         }
 
         public int Gold

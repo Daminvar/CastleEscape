@@ -100,6 +100,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="ItemState.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="TestItemState.cs" />
     <Compile Include="TextMenu.cs" />
     <Compile Include="NPE.cs" />
     <Compile Include="Overworld.cs" />

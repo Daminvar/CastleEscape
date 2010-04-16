@@ -29,6 +29,7 @@ namespace CastleEscape
         private Texture2D texture;
         private SpriteFont font;
         private TextMenu menu;
+        private bool canPressEscape;
 
         public ItemState(Game game, Player player)
             : base(game)
@@ -40,6 +41,8 @@ namespace CastleEscape
             //The menu is only needed if the player has items.
             if (player.Items.Count > 0)
                 menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
+            canPressEscape = false;
+            transparent = true;
         }
 
         private string[] getStringOfPlayerItems()
@@ -56,12 +59,36 @@ namespace CastleEscape
 
         public override void Resume()
         {
+            if (player.Items.Count > 0)
+                menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
         }
 
         public override void Update(GameTime gameTime)
         {
+            KeyboardState state = Keyboard.GetState();
+
+            if (state.IsKeyUp(Keys.Escape))
+                canPressEscape = true;
+
             if (player.Items.Count > 0)
-                menu.Update(gameTime, Keyboard.GetState());
+            {
+                menu.Update(gameTime, state);
+                if (menu.IsFinished)
+                {
+                    //Use the selected item
+                    Item itemToUse = player.Items[menu.SelectedOption];
+                    player.Health += itemToUse.HealthBonus;
+                    player.Mana += itemToUse.ManaBonus;
+                    player.Items.RemoveAt(menu.SelectedOption);
+                    StateManager.PushState(new Dialogue(game, "You used a " + itemToUse.Name + "!"));
+                }
+            }
+
+            if (!canPressEscape)
+                return;
+
+            if (state.IsKeyDown(Keys.Escape))
+                StateManager.PopState();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

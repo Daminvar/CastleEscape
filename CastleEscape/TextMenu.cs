@@ -28,15 +28,23 @@ namespace CastleEscape
         private float selectedSpacing;
         private bool canMove;
         private bool isFinished;
+        private bool canPressZ;
 
         public bool IsFinished
         {
             get { return isFinished; }
+            set { isFinished = value; }
         }
 
         public int SelectedOption
         {
             get { return selectedOption; }
+        }
+
+        public string[] Options
+        {
+            get { return options; }
+            set { options = value; }
         }
 
         public TextMenu(SpriteFont font, string[] options)
@@ -46,21 +54,30 @@ namespace CastleEscape
             defaultSpacing = font.Spacing;
             canMove = true;
             isFinished = false;
+            canPressZ = false;
         }
 
         public void Update(GameTime gameTime, KeyboardState state)
         {
             if (!isFinished)
-                //selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 5);
-                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * .7);
+            {
+                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 20);
+                selectedSpacing = selectedSpacing / options[selectedOption].Length;
+            }
             else
             {
                 canMove = false;
                 selectedSpacing = defaultSpacing;
             }
 
-            if (state.IsKeyDown(Keys.Z))
+            if (state.IsKeyUp(Keys.Z))
+                canPressZ = true;
+
+            if (canPressZ && state.IsKeyDown(Keys.Z))
+            {
                 isFinished = true;
+                canPressZ = false;
+            }
 
             if (state.IsKeyUp(Keys.Up) && state.IsKeyUp(Keys.Down))
                 canMove = true;
@@ -68,7 +85,7 @@ namespace CastleEscape
                 return;
             if (state.IsKeyDown(Keys.Up))
             {
-                selectedOption = (selectedOption - 1) % options.Length;
+                selectedOption = selectedOption > 0 ? selectedOption - 1 : options.Length - 1;
                 canMove = false;
             }
             else if (state.IsKeyDown(Keys.Down))
@@ -92,6 +109,7 @@ namespace CastleEscape
                     font.Spacing = defaultSpacing;
                 spriteBatch.DrawString(font, options[i], pos, Color.Black);
             }
+            font.Spacing = defaultSpacing;
         }
     }
 }

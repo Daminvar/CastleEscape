@@ -28,8 +28,8 @@ namespace CastleEscape
     {
         Player playerObj;
         DrawableMap mappy;
-        
-        
+
+
         int timer;
         bool canPressZ;
 
@@ -52,7 +52,8 @@ namespace CastleEscape
 
         HUD hud;
 
-        public Overworld(Game game, Player player, DrawableMap map) : base(game)
+        public Overworld(Game game, Player player, DrawableMap map)
+            : base(game)
         {
             playerObj = player;
             mappy = map;
@@ -89,9 +90,9 @@ namespace CastleEscape
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
 
-            
+
         }
-        
+
         /// <summary>
         /// Handles the keyboard input by the player to move the character sprite onscreen. Also checks for collisions.
         /// </summary>
@@ -128,281 +129,293 @@ namespace CastleEscape
                 playerObj.ModY = 0;
             }
 
-            if ( (kbState.IsKeyDown(Keys.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
+            if ((kbState.IsKeyDown(Keys.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
+            {
+                if (timer < 150)
                 {
                     movingLeft = true;
-                    movingDown = false;
-                    movingRight = false;
-                    movingUp = false;
+                }
+                movingDown = false;
+                movingRight = false;
+                movingUp = false;
 
-                    playerObj.Direction = Player.Directions.West;
+                playerObj.Direction = Player.Directions.West;
 
-                    if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false && playerObj.XPos - 1 >= 0)
+                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos >= 0)
+                {
+                    if (timer >= 50 && timer < 100)
                     {
-                        if (timer >= 50 && timer < 100)
-                        {
-                            playerObj.CurrentSpriteX = 1;
-                            playerObj.ModX = 8;
-                        }
-                        else if (timer >= 100 && timer < 150)
-                        {
-                            playerObj.CurrentSpriteX = 2;
-                            playerObj.ModX = 16;
-                        }
-                            
-                        else if (timer >= 150 && timer < 200)
-                        {
-                            playerObj.CurrentSpriteX = 1;
-                            playerObj.ModX = 32;
-                        }
+                        playerObj.CurrentSpriteX = 1;
+                        playerObj.ModX = -16;
+                    }
+                    else if (timer >= 100 && timer < 150)
+                    {
+                        playerObj.CurrentSpriteX = 2;
+                        playerObj.ModX = -8;
                     }
 
-                    if (timer >= 200)
+                    else if (timer >= 150 && timer < 200)
                     {
-                        playerObj.ModX = 0;
                         playerObj.CurrentSpriteX = 1;
-                        if (playerObj.XPos - 1 >= 0)
-                        {
-                            if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
-                            {
-                                playerObj.Move(-1, 0);
-                                pedometer++;
-
-                                // check for a random encounter!
-                                bool re = this.RandomEncounter(pedometer);
-                                if (re)
-                                {
-                                    Console.WriteLine("Battle!");
-                                    pedometer = 0;
-                                    re = false;
-                                    StateManager.PushState(new TestBattleState(game));
-                                }
-
-                                
-
-                                timer = 0;
-                            }
-                        }
-                        else
-                        {
-                            mappy.ChangeMap(ScriptableMap.Directions.West);
-                            playerObj.Move(mappy.MapWidth - 1, 0);
-                            timer = 0;
-                        }
+                        playerObj.ModX = 0;
                         movingLeft = false;
                     }
                 }
-                else if ( (kbState.IsKeyDown(Keys.Right) || movingRight) && !movingLeft && !movingDown && !movingUp)
+
+                if (timer >= 200)
                 {
-                    movingLeft = false;
-                    movingDown = false;
+                    playerObj.ModX = -24;
+                    playerObj.CurrentSpriteX = 1;
+                    if (playerObj.XPos >= 0)
+                    {
+                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false)
+                        {
+                            playerObj.Move(-1, 0);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
+                            {
+                                Console.WriteLine(mappy.GetRandomEncounter());
+                                StateManager.PushState(new TestBattleState(game));
+                                pedometer = 0;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        mappy.ChangeMap(ScriptableMap.Directions.West);
+                        playerObj.Move(mappy.MapWidth, 0);
+                    }
+                    timer = 0;
+                }
+            }
+            else if ((kbState.IsKeyDown(Keys.Right) || movingRight) && !movingLeft && !movingDown && !movingUp)
+            {
+                if (timer < 150)
+                {
                     movingRight = true;
-                    movingUp = false;
+                }
+                else
+                {
+                    movingRight = false;
+                }
+                movingLeft = false;
+                movingDown = false;
+                movingUp = false;
 
-                    playerObj.Direction = Player.Directions.East;
+                playerObj.Direction = Player.Directions.East;
 
-                    if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false && playerObj.XPos + 1 < mappy.MapWidth)
+                if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false && playerObj.XPos < mappy.MapWidth)
+                {
+                    if (timer >= 50 && timer < 100)
                     {
-                        if (timer >= 50 && timer < 100)
-                        {
-                            playerObj.CurrentSpriteX = 2;
-                            playerObj.ModX = -8;
-                        }
-                        else if (timer >= 100 && timer < 200)
-                        {
-                            playerObj.CurrentSpriteX = 2;
-                            playerObj.ModX = -16;
-                        }
-                        else if (timer >= 150 && timer < 200)
-                        {
-                            playerObj.CurrentSpriteX = 0;
-                            playerObj.ModX = -24;
-                        }
+                        playerObj.CurrentSpriteX = 2;
+                        playerObj.ModX = 16;
                     }
-
-                    if (timer >= 200)
+                    else if (timer >= 100 && timer < 200)
                     {
+                        playerObj.CurrentSpriteX = 1;
+                        playerObj.ModX = 8;
+                    }
+                    else if (timer >= 150 && timer < 200)
+                    {
+                        playerObj.CurrentSpriteX = 0;
                         playerObj.ModX = 0;
-                        playerObj.CurrentSpriteX = 1;
                         movingRight = false;
-                        if (playerObj.XPos + 1 < mappy.MapWidth)
+                    }
+                }
+
+                if (timer >= 200)
+                {
+                    playerObj.ModX = 24;
+                    playerObj.CurrentSpriteX = 1;
+                    if (playerObj.XPos < mappy.MapWidth)
+                    {
+                        if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                         {
-                            if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
+                            playerObj.Move(1, 0);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
                             {
-                                playerObj.Move(1, 0);
-                                pedometer++;
-
-                                // check for a random encounter!
-                                bool re = this.RandomEncounter(pedometer);
-                                if (re)
-                                {
-                                    Console.WriteLine("Battle!");
-                                    pedometer = 0;
-                                    re = false;
-                                    StateManager.PushState(new TestBattleState(game));
-                                    // this will either push the Battle state on or call something that will.
-                                    // does battling pause overworld too?
-                                    //this.Pause();
-                                }
-
-                                timer = 0;
+                                Console.WriteLine(mappy.GetRandomEncounter());
+                                StateManager.PushState(new TestBattleState(game));
+                                pedometer = 0;
                             }
-                        }
-                        else
-                        {
-                            mappy.ChangeMap(ScriptableMap.Directions.East);
-                            playerObj.Move(-(mappy.MapWidth) + 1, 0);
                             timer = 0;
                         }
                     }
+                    else
+                    {
+                        mappy.ChangeMap(ScriptableMap.Directions.East);
+                        playerObj.Move(-(mappy.MapWidth) + 1, 0);
+                        timer = 0;
+                    }
                 }
-            else if ( (kbState.IsKeyDown(Keys.Up) || movingUp) && !movingLeft && !movingDown && !movingRight)
+            }
+            else if ((kbState.IsKeyDown(Keys.Up) || movingUp) && !movingLeft && !movingDown && !movingRight)
+            {
+                movingLeft = false;
+                movingDown = false;
+                movingRight = false;
+                if (timer < 150)
                 {
-                    movingLeft = false;
-                    movingDown = false;
-                    movingRight = false;
                     movingUp = true;
+                }
+                else
+                {
+                    movingUp = false;
+                }
 
-                    playerObj.Direction = Player.Directions.North;
-                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false && playerObj.YPos - 1 >= 0)
+                playerObj.Direction = Player.Directions.North;
+                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.YPos >= 0)
+                {
+                    if (timer >= 50 && timer < 100)
                     {
-                        if (timer >= 50 && timer < 100)
-                        {
-                            playerObj.CurrentSpriteX = 2;
-                            playerObj.ModY = 8;
-                        }
-                        else if (timer >= 100 && timer < 200)
-                        {
-                            playerObj.CurrentSpriteX = 1;
-                            playerObj.ModY = 16;
-                        }
-                        else if (timer >= 150 && timer < 200)
-                        {
-                            playerObj.CurrentSpriteX = 0;
-                            playerObj.ModY = 24;
-                        }
+                        playerObj.CurrentSpriteX = 2;
+                        playerObj.ModY = -16;
                     }
-
-                    if (timer >= 200)
+                    else if (timer >= 100 && timer < 200)
                     {
-                        playerObj.ModY = 0;
                         playerObj.CurrentSpriteX = 1;
-                        movingUp = false;
-                        if (playerObj.YPos - 1 >= 0)
+                        playerObj.ModY = -8;
+                    }
+                    else if (timer >= 150 && timer < 200)
+                    {
+                        playerObj.CurrentSpriteX = 0;
+                        playerObj.ModY = 0;
+                    }
+                }
+
+                if (timer >= 200)
+                {
+                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
+                    {
+                        playerObj.ModY = -24;
+                        playerObj.CurrentSpriteX = 1;
+                    }
+                    if (playerObj.YPos >= 0)
+                    {
+                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                         {
-                            if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
+                            playerObj.Move(0, -1);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
                             {
-                                playerObj.Move(0, -1);
-                                pedometer++;
-
-                                // check for a random encounter!
-                                bool re = this.RandomEncounter(pedometer);
-                                if (re)
-                                {
-                                    Console.WriteLine("Battle!");
-                                    pedometer = 0;
-                                    re = false;
-                                    StateManager.PushState(new TestBattleState(game));
-                                    // this will either push the Battle state on or call something that will.
-                                    // does battling pause overworld too?
-                                    //this.Pause();
-                                }
-
-                                timer = 0;
+                                Console.WriteLine(mappy.GetRandomEncounter()); 
+                                StateManager.PushState(new TestBattleState(game));
+                                pedometer = 0;
                             }
-                        }
-                        else
-                        {
-                            mappy.ChangeMap(ScriptableMap.Directions.North);
-                            playerObj.Move(0, mappy.MapHeight - 1);
                             timer = 0;
                         }
                     }
+                    else
+                    {
+                        mappy.ChangeMap(ScriptableMap.Directions.North);
+                        playerObj.Move(0, mappy.MapHeight);
+                        timer = 0;
+                    }
                 }
-            else if ( (kbState.IsKeyDown(Keys.Down) || movingDown ) && !movingLeft && !movingRight && !movingUp)
+            }
+            else if ((kbState.IsKeyDown(Keys.Down) || movingDown) && !movingLeft && !movingRight && !movingUp)
+            {
+                if (timer < 150)
                 {
-                    movingLeft = false;
                     movingDown = true;
+                    movingLeft = false;
                     movingRight = false;
                     movingUp = false;
+                }
+                else
+                {
+                    movingDown = false;
+                }
 
-                    playerObj.Direction = Player.Directions.South;
+                movingLeft = false;
+                movingRight = false;
+                movingUp = false;
 
-                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false && playerObj.YPos + 1 < mappy.MapHeight)
+                playerObj.Direction = Player.Directions.South;
+
+                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.YPos < mappy.MapHeight)
+                {
+                    if (timer >= 50 && timer < 100)
                     {
-                        if (timer >= 50 && timer < 100)
-                        {
-                            playerObj.CurrentSpriteX = 1;
-                            playerObj.ModY = -8;
-                        }
-                        else if (timer >= 100 && timer < 200)
-                        {
-                            playerObj.CurrentSpriteX = 2;
-                            playerObj.ModY = -16;
-                        }
-                        else if (timer >= 150 && timer < 200)
-                        {
-                            playerObj.CurrentSpriteX = 0;
-                            playerObj.ModY = -24;
-                        }
+                        playerObj.CurrentSpriteX = 0;
+                        playerObj.ModY = 16;
                     }
-
-                    if (timer >= 200)
+                    else if (timer >= 100 && timer < 200)
                     {
-                        movingDown = false;
-                        playerObj.ModY = 0;
                         playerObj.CurrentSpriteX = 1;
-                        if (playerObj.YPos + 1 < mappy.MapHeight)
+                        playerObj.ModY = 8;
+                    }
+                    else if (timer >= 150 && timer < 200)
+                    {
+                        playerObj.CurrentSpriteX = 2;
+                        playerObj.ModY = 0;
+                    }
+                }
+
+                if (timer >= 200)
+                {
+                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
+                    {
+                        playerObj.ModY = 24;
+                        playerObj.CurrentSpriteX = 1;
+                    }
+                    if (playerObj.YPos < mappy.MapHeight)
+                    {
+                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                         {
-                            if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
+                            playerObj.Move(0, 1);
+                            pedometer++;
+
+                            // check for a random encounter!
+                            bool re = this.RandomEncounter(pedometer);
+                            if (re)
                             {
-                                playerObj.Move(0, 1);
-                                pedometer++;
-
-                                // check for a random encounter!
-                                bool re = this.RandomEncounter(pedometer);
-                                if (re)
-                                {
-                                    Console.WriteLine("Battle!");
-                                    pedometer = 0;
-                                    re = false;
-                                    StateManager.PushState(new TestBattleState(game));
-                                    // this will either push the Battle state on or call something that will.
-                                    // does battling pause overworld too?
-                                    //this.Pause();
-                                }
-
-                                timer = 0;
+                                Console.WriteLine(mappy.GetRandomEncounter());
+                                StateManager.PushState(new TestBattleState(game));
+                                pedometer = 0;
                             }
-                        }
-                        else
-                        {
-                            mappy.ChangeMap(ScriptableMap.Directions.South);
-                            playerObj.Move(0, -(mappy.MapHeight) + 1);
                             timer = 0;
                         }
                     }
-                    
+                    else
+                    {
+                        mappy.ChangeMap(ScriptableMap.Directions.South);
+                        playerObj.Move(0, -(mappy.MapHeight));
+                        timer = 0;
+                    }
                 }
 
-                if (kbState.IsKeyUp(Keys.Escape))
-                {
-                    
-                    canPressEscape = true;
-                    return;
+            }
 
-                }
+            if (kbState.IsKeyUp(Keys.Escape))
+            {
+
+                canPressEscape = true;
+                return;
+
+            }
 
             //Pauses the game
-            if(kbState.IsKeyDown(Keys.Escape) && canPressEscape)
+            if (kbState.IsKeyDown(Keys.Escape) && canPressEscape)
             {
-                
-                StateManager.PushState(new PauseState(game,playerObj));
+
+                StateManager.PushState(new PauseState(game, playerObj));
                 canPressEscape = false;
                 return;
 
             }
-            
+
         }
 
         // This checks to see if a battle will start!
@@ -428,6 +441,7 @@ namespace CastleEscape
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            game.GraphicsDevice.Clear(Color.Black);
             // draws player, tells map to draw itself
             mappy.DrawBase(spriteBatch, 0, 0);
             playerObj.DrawForOverworld(spriteBatch, mappy, 0, 0);

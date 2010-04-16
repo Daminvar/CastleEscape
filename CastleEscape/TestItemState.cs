@@ -14,14 +14,9 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
-    class TestBattleState : State
+    class TestItemState : State
     {
-
-
-
-
-        public TestBattleState(Game game)
-            : base(game)
+        public TestItemState(Game game) : base(game)
         {
         }
 
@@ -36,10 +31,11 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
-            Enemy en = new Enemy(game.Content.Load<Texture2D>("ghostie"));
-            Player pl = new Player(game, 0, 0);
+            var player = new Player(game, 0, 0);
+            player.Items.Add(new Item("Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80));
+            player.Items.Add(new Item("Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80));
 
-            StateManager.PushState(new Battle(game, game.Content.Load<Texture2D>("test-battle-background"), pl, en, true));
+            StateManager.PushState(new ItemState(game, player));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
