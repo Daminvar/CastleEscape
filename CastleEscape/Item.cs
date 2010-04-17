@@ -21,6 +21,7 @@ namespace CastleEscape
         private string description;
         private int healthBonus;
         private int manaBonus;
+        private int cost;
 
         public string Name
         {
@@ -42,12 +43,19 @@ namespace CastleEscape
             get { return manaBonus; }
         }
 
+        public int Cost
+        {
+            get { return cost; }
+            set { cost = value; }
+        }
+
         public Item(string name, string description, int healthBonus, int manaBonus)
         {
             this.name = name;
             this.description = description;
             this.healthBonus = healthBonus;
             this.manaBonus = manaBonus;
+            cost = 0;
         }
 
         public override string ToString()
