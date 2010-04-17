@@ -141,7 +141,7 @@ namespace CastleEscape
 
                 playerObj.Direction = Player.Directions.West;
 
-                if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false && playerObj.XPos >= 0)
+                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos >= 0)
                 {
                     if (timer >= 50 && timer < 100)
                     {
@@ -164,11 +164,14 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
-                    playerObj.ModX = -24;
-                    playerObj.CurrentSpriteX = 2;
+                    if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
+                    {
+                        playerObj.ModX = -24;
+                        playerObj.CurrentSpriteX = 2;
+                    }
                     if (playerObj.XPos - 1 >= 0)
                     {
-                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false)
+                        if (mappy.IsCollisionAt(playerObj.XPos -1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
                             pedometer++;
