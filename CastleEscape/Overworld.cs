@@ -80,6 +80,7 @@ namespace CastleEscape
         public override void Resume()
         {
             // resumes everything when returning to the overworld state
+            
         }
 
         public override void Update(GameTime gameTime)
@@ -182,7 +183,7 @@ namespace CastleEscape
                             {
                                 Enemy currentEnemy = mappy.GetRandomEncounter();
                                 StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                StateManager.PushState(new TestBattleState(game));
+                                
                                 pedometer = 0;
                             }
                         }
@@ -250,7 +251,7 @@ namespace CastleEscape
                             {
                                 Enemy currentEnemy = mappy.GetRandomEncounter();
                                 StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                StateManager.PushState(new TestBattleState(game));
+                               
                                 pedometer = 0;
                             }
                             timer = 0;
@@ -318,7 +319,7 @@ namespace CastleEscape
                             {
                                 Enemy currentEnemy = mappy.GetRandomEncounter();
                                 StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                StateManager.PushState(new TestBattleState(game));
+                               
                                 pedometer = 0;
                             }
                             timer = 0;
