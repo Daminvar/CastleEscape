@@ -199,8 +199,8 @@ namespace CastleEscape
             maxHealth = 60;
             health = 60;
             defense = 1;
-            speed = 2;
-            attack = 10;
+            speed = 100;
+            attack = 1000;
             maxMana = 10;
             mana = 10;
             magicAtk = 8;

@@ -80,6 +80,7 @@ namespace CastleEscape
         public override void Resume()
         {
             // resumes everything when returning to the overworld state
+            
         }
 
         public override void Update(GameTime gameTime)
