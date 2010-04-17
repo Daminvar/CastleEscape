@@ -181,6 +181,7 @@ namespace CastleEscape
                             if (re)
                             {
                                 Console.WriteLine(mappy.GetRandomEncounter());
+                                StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
                         }
@@ -245,6 +246,7 @@ namespace CastleEscape
                             if (re)
                             {
                                 Console.WriteLine(mappy.GetRandomEncounter());
+                                StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
                             timer = 0;
@@ -288,7 +290,7 @@ namespace CastleEscape
                     else if (timer >= 150 && timer < 200)
                     {
                         playerObj.CurrentSpriteX = 0;
-                        playerObj.ModY =0;
+                        playerObj.ModY = 0;
                     }
                 }
 
@@ -310,7 +312,8 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter());
+                                Console.WriteLine(mappy.GetRandomEncounter()); 
+                                StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
                             timer = 0;
@@ -379,6 +382,7 @@ namespace CastleEscape
                             if (re)
                             {
                                 Console.WriteLine(mappy.GetRandomEncounter());
+                                StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
                             timer = 0;
