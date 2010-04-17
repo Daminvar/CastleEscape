@@ -97,6 +97,12 @@ namespace CastleEscape
             // handle input
             KeyboardState kbState = Keyboard.GetState();
 
+            if (timer >= 200)
+            {
+                playerObj.ModX = 0;
+                playerObj.ModY = 0;
+            }
+
             if (kbState.IsKeyUp(Keys.Z))
                 canPressZ = true;
 
@@ -117,12 +123,6 @@ namespace CastleEscape
                     entity.Interact(playerObj);
                 }
                 canPressZ = false;
-            }
-
-            if (timer >= 200)
-            {
-                playerObj.ModX = 0;
-                playerObj.ModY = 0;
             }
 
             if ((kbState.IsKeyDown(Keys.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
@@ -171,7 +171,7 @@ namespace CastleEscape
                     }
                     if (playerObj.XPos - 1 >= 0)
                     {
-                        if (mappy.IsCollisionAt(playerObj.XPos -1, playerObj.YPos) == false)
+                        if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
                             pedometer++;
@@ -211,7 +211,7 @@ namespace CastleEscape
 
                 playerObj.Direction = Player.Directions.East;
 
-                if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false && playerObj.XPos < mappy.MapWidth)
+                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos < mappy.MapWidth)
                 {
                     if (timer >= 50 && timer < 100)
                     {
@@ -227,14 +227,16 @@ namespace CastleEscape
                     {
                         playerObj.CurrentSpriteX = 0;
                         playerObj.ModX = 0;
-                        movingRight = false;
                     }
                 }
 
                 if (timer >= 200)
                 {
-                    playerObj.ModX = 24;
-                    playerObj.CurrentSpriteX = 1;
+                    if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
+                    {
+                        playerObj.ModX = 24;
+                        playerObj.CurrentSpriteX = 1;
+                    }
                     if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
@@ -395,7 +397,7 @@ namespace CastleEscape
                     else
                     {
                         mappy.ChangeMap(ScriptableMap.Directions.South);
-                        playerObj.Move(0, -(mappy.MapHeight)+1);
+                        playerObj.Move(0, -(mappy.MapHeight) + 1);
                         timer = 0;
                     }
                 }
