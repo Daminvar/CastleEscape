@@ -110,8 +110,9 @@ namespace CastleEscape
             handleInput(gameTime);
             attackFirst = true;
             int tempDmg;
-            string playerAttack = "";
-            string enemyAttack = "";
+            //string playerAttack = "";
+           // string enemyAttack = "";
+            string status = "";
 
             if (attackFirst)
             {
@@ -124,50 +125,37 @@ namespace CastleEscape
 
                     play.getAccuracy(chosenAttack);
                     tempDmg = play.HealthAfterCombat(en);
-                    playerAttack = "Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
+                    status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
                     en.Health = tempDmg;
-                    if (en.IsDead())
-                    {
-                        StateManager.PushState(new Dialogue(game, "You have slain " + en.Name));
-                    }
                     tMenu.IsFinished = false;
                     chosenAttack = null;
                     attackFirst = false;
                     tMenu.Update(gameTime, Keyboard.GetState());
-
-                    tMenu.Update(gameTime, Keyboard.GetState());
                 }
-                //else
-                //{
-                    //If you slay enemy monster
-                    //if (en.IsDead())
-                    //{
-                    //    StateManager.PushState(new Dialogue(game, "You have slain " + en.Name));
 
-                    //}
-                    //If enemy monster kills you
-                    // if (play.IsDead())
-                    //{
-                    //    StateManager.PushState(new Dialogue(game, " You have been killed"));
+                //If you slay enemy monster
+                if (en.IsDead())
+                {
+                    status += "||||You have slain " + en.Name;
 
-                    //}
-                //}
+                }
+                // If enemy monster kills you
+                if (play.IsDead())
+                {
+                    status += "||||You have been killed";
+                }
             }
-            if (attackFirst == false)
+            if (!en.IsDead() && attackFirst == false)
             {
                 int tempDmg2;
                 tempDmg2 = en.HealthAfterCombat(play);
-                enemyAttack = "Enemy did : " + (play.Health - tempDmg2) + " damage";
+                status += "||||Enemy did : " + (play.Health - tempDmg2) + " damage";
                 play.Health = tempDmg2;
-                 if (play.IsDead())
-                {
-                    StateManager.PushState(new Dialogue(game, " You have been killed"));
 
-                }
                 attackFirst = true;
             }
-            if (playerAttack != "" && enemyAttack != "")
-                StateManager.PushState(new Dialogue(game, playerAttack + "||||" + enemyAttack));
+            if (status != "")
+                StateManager.PushState(new Dialogue(game, status.Remove(0, 4)));
         }
 
         public void handleInput(GameTime gametime)

@@ -183,7 +183,7 @@ namespace CastleEscape
                             {
                                 Enemy currentEnemy = mappy.GetRandomEncounter();
                                 StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                
+
                                 pedometer = 0;
                             }
                         }
@@ -251,7 +251,7 @@ namespace CastleEscape
                             {
                                 Enemy currentEnemy = mappy.GetRandomEncounter();
                                 StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                               
+
                                 pedometer = 0;
                             }
                             timer = 0;
@@ -319,7 +319,7 @@ namespace CastleEscape
                             {
                                 Enemy currentEnemy = mappy.GetRandomEncounter();
                                 StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                               
+
                                 pedometer = 0;
                             }
                             timer = 0;

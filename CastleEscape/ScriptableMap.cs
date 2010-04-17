@@ -141,7 +141,7 @@ namespace CastleEscape
             if (randomEncounters.Count <= 0)
                 return null;
 
-            return randomEncounters[rand.Next(0, randomEncounters.Count)];
+            return randomEncounters[rand.Next(0, randomEncounters.Count)].Clone();
         }
 
         /// <summary>

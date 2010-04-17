@@ -36,6 +36,19 @@ namespace CastleEscape
             health = 100;
         }
 
+        public Enemy Clone()
+        {
+            var enemy = new Enemy(enemyTexture);
+            enemy.name = name;
+            enemy.speed = speed;
+            enemy.attack = attack;
+            enemy.health = health;
+            enemy.defense = defense;
+            enemy.exp = exp;
+            enemy.Items = items != null ? (Item[])items.Clone() : null;
+            return enemy;
+        }
+
         public string Name
         {
             get { return name; }
