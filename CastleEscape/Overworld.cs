@@ -97,6 +97,12 @@ namespace CastleEscape
             // handle input
             KeyboardState kbState = Keyboard.GetState();
 
+            if (timer >= 200)
+            {
+                playerObj.ModX = 0;
+                playerObj.ModY = 0;
+            }
+
             if (kbState.IsKeyUp(Keys.Z))
                 canPressZ = true;
 
@@ -119,12 +125,6 @@ namespace CastleEscape
                 canPressZ = false;
             }
 
-            if (timer >= 200)
-            {
-                playerObj.ModX = 0;
-                playerObj.ModY = 0;
-            }
-
             if ((kbState.IsKeyDown(Keys.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
             {
                 if (timer < 150)
@@ -141,7 +141,7 @@ namespace CastleEscape
 
                 playerObj.Direction = Player.Directions.West;
 
-                if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false && playerObj.XPos >= 0)
+                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos >= 0)
                 {
                     if (timer >= 50 && timer < 100)
                     {
@@ -164,11 +164,14 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
-                    playerObj.ModX = -24;
-                    playerObj.CurrentSpriteX = 2;
+                    if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
+                    {
+                        playerObj.ModX = -24;
+                        playerObj.CurrentSpriteX = 2;
+                    }
                     if (playerObj.XPos - 1 >= 0)
                     {
-                        if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false)
+                        if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
                             pedometer++;
@@ -177,7 +180,8 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter());
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
@@ -207,7 +211,7 @@ namespace CastleEscape
 
                 playerObj.Direction = Player.Directions.East;
 
-                if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false && playerObj.XPos < mappy.MapWidth)
+                if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos < mappy.MapWidth)
                 {
                     if (timer >= 50 && timer < 100)
                     {
@@ -223,14 +227,16 @@ namespace CastleEscape
                     {
                         playerObj.CurrentSpriteX = 0;
                         playerObj.ModX = 0;
-                        movingRight = false;
                     }
                 }
 
                 if (timer >= 200)
                 {
-                    playerObj.ModX = 24;
-                    playerObj.CurrentSpriteX = 1;
+                    if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
+                    {
+                        playerObj.ModX = 24;
+                        playerObj.CurrentSpriteX = 1;
+                    }
                     if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
@@ -242,7 +248,8 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter());
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
@@ -309,7 +316,8 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter()); 
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
@@ -378,8 +386,9 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter());
-                                StateManager.PushState(new TestBattleState(game));
+                                //Console.WriteLine(mappy.GetRandomEncounter());
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 pedometer = 0;
                             }
                             timer = 0;
@@ -388,7 +397,7 @@ namespace CastleEscape
                     else
                     {
                         mappy.ChangeMap(ScriptableMap.Directions.South);
-                        playerObj.Move(0, -(mappy.MapHeight)+1);
+                        playerObj.Move(0, -(mappy.MapHeight) + 1);
                         timer = 0;
                     }
                 }
