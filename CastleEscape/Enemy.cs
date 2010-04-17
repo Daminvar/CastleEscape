@@ -38,14 +38,15 @@ namespace CastleEscape
 
         public Enemy Clone()
         {
-            var enemy = new Enemy();
+            var enemy = new Enemy(enemyTexture);
             enemy.name = name;
             enemy.speed = speed;
             enemy.attack = attack;
             enemy.health = health;
             enemy.defense = defense;
             enemy.exp = exp;
-            enemy.Items = items.Clone();
+            enemy.Items = (Item[])items.Clone();
+            return enemy;
         }
 
         public string Name
