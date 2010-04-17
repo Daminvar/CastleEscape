@@ -1,6 +1,7 @@
 
 name("Test Map 1")
 mapfile("testmap.tmx")
+battleTexture("test-battle-background")
 
 east("testmap2.js")
 
