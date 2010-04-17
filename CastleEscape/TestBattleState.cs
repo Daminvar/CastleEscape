@@ -31,6 +31,7 @@ namespace CastleEscape
 
         public override void Resume()
         {
+            StateManager.PopState();
         }
 
         public override void Update(GameTime gameTime)
