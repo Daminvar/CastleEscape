@@ -63,6 +63,13 @@ namespace CastleEscape
 
         public override void Resume()
         {
+            if (en.IsDead())
+                StateManager.PopState();
+            else
+            {
+                StateManager.PopAllStates();
+                StateManager.PushState(new MainMenu(game));
+            }
 
         }
 
@@ -101,40 +108,46 @@ namespace CastleEscape
             tMenu.Update(gameTime, Keyboard.GetState());
             handleInput(gameTime);
             attackFirst = true;
+            
             if (attackFirst)
             {
-                
-                    if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
-                    {
-                        
-                        tMenu.Update(gameTime, Keyboard.GetState());
-                        handleInput(gameTime);
-                        play.getAccuracy(chosenAttack);
-                        Console.WriteLine(chosenAttack);
-                        en.Health = play.HealthAfterCombat(en);
-                        tMenu.IsFinished = false;
-                        chosenAttack = null;
-                        attackFirst = false;
-                        tMenu.Update(gameTime, Keyboard.GetState());
-                        
+
+                if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
+                {
+
                     tMenu.Update(gameTime, Keyboard.GetState());
-                    //StateManager.PopState();
+                    handleInput(gameTime);
+                    play.getAccuracy(chosenAttack);
+                    Console.WriteLine(chosenAttack);
+                    en.Health = play.HealthAfterCombat(en);
+                    tMenu.IsFinished = false;
+                    chosenAttack = null;
+                    attackFirst = false;
+                    tMenu.Update(gameTime, Keyboard.GetState());
+
+                    tMenu.Update(gameTime, Keyboard.GetState());
                 }
-                
+                else 
+                {
+                    //If you slay enemy monster
+                    if (en.IsDead())
+                    {
+                        StateManager.PushState(new Dialogue(game,"You have slain " + en.Name));
+                      
+                    }
+                        //If enemy monster kills you
+                    else if (play.IsDead())
+                    {
+                        StateManager.PushState(new Dialogue(game," You have been killed"));
+                       
+                    }
+                }  
             }
            if (attackFirst == false)
-                    
             {
-                
-                    play.Health = en.HealthAfterCombat(play);
-                    attackFirst = true;
-                    
-                
+              play.Health = en.HealthAfterCombat(play);
+              attackFirst = true;
             }
-
-            
-            
-
         }
 
         public void handleInput(GameTime gametime)
@@ -180,7 +193,17 @@ namespace CastleEscape
 
         }
 
+        public void drawEnd(SpriteBatch spritebach,String whoDied)
+        {
 
+            Rectangle rc = new Rectangle(0, game.GraphicsDevice.Viewport.Height * 3 / 4, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
+            spritebach.Draw(backgroundTexture, rc, Color.White);
+            if (whoDied == "Player")
+                spritebach.DrawString(font, "You have died, revert to last saved game", new Vector2(350f, 250f), Color.WhiteSmoke);
+            else
+                spritebach.DrawString(font, "Enemy Slain", new Vector2(350f, 250f), Color.WhiteSmoke);
+
+        }
         //Draws the combat screen
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -192,7 +215,7 @@ namespace CastleEscape
             en.DrawForBattle(spriteBatch, 590, 365);
 
             //Transparent rectangle that "holds" the menu
-            Rectangle rec = new Rectangle(20, 20, 220, 380);
+            Rectangle rec = new Rectangle(17, 20, 220, 380);
             spriteBatch.Draw(combatColor, rec, Color.White);
 
             //Draws health,mana and divider
