@@ -180,7 +180,8 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter());
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
@@ -245,7 +246,8 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter());
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
@@ -312,7 +314,8 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter()); 
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 StateManager.PushState(new TestBattleState(game));
                                 pedometer = 0;
                             }
@@ -381,8 +384,9 @@ namespace CastleEscape
                             bool re = this.RandomEncounter(pedometer);
                             if (re)
                             {
-                                Console.WriteLine(mappy.GetRandomEncounter());
-                                StateManager.PushState(new TestBattleState(game));
+                                //Console.WriteLine(mappy.GetRandomEncounter());
+                                Enemy currentEnemy = mappy.GetRandomEncounter();
+                                StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
                                 pedometer = 0;
                             }
                             timer = 0;
