@@ -68,6 +68,7 @@ namespace CastleEscape
             {
                 canMove = false;
                 selectedSpacing = defaultSpacing;
+                return;
             }
 
             if (state.IsKeyUp(Keys.Z))
@@ -77,6 +78,7 @@ namespace CastleEscape
             {
                 isFinished = true;
                 canPressZ = false;
+                selectedSpacing = defaultSpacing;
             }
 
             if (state.IsKeyUp(Keys.Up) && state.IsKeyUp(Keys.Down))
