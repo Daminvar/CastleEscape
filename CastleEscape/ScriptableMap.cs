@@ -23,7 +23,7 @@ namespace CastleEscape
     class ScriptableMap
     {
         private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus);
-        private delegate void AddRandomEnounterDelegate(string textureName, string enemyName, double health,
+        private delegate Enemy NewEnemyDelegate(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, Item[] items);
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
 
@@ -101,6 +101,14 @@ namespace CastleEscape
         {
             parseScriptFile(filename);
             tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
+        }
+
+        /// <summary>
+        /// Reloads the current map.
+        /// </summary>
+        public void ReloadMap()
+        {
+            loadMapAndScript(scriptFilename);
         }
 
         /// <summary>
@@ -192,9 +200,12 @@ namespace CastleEscape
             engine.SetFunction("getFlag", new Func<string, bool>(js_getFlag));
             engine.SetFunction("setFlag", new Action<string>(js_setFlag));
             engine.SetFunction("dialogue", new Action<string>(js_dialogue));
+            engine.SetFunction("reloadMap", new Action(ReloadMap));
             engine.SetFunction("save", new Action<Player>(js_save));
             engine.SetFunction("newItem", new NewItemDelegate(js_newItem));
-            engine.SetFunction("addRandomEncounter", new AddRandomEnounterDelegate(js_addRandomEncounter));
+            engine.SetFunction("addRandomEncounter", new Action<Enemy>(js_addRandomEncounter));
+            engine.SetFunction("newEnemy", new NewEnemyDelegate(js_newEnemy));
+            engine.SetFunction("battle", new Action<Player, Enemy>(js_battle));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -255,7 +266,11 @@ namespace CastleEscape
 
         private void js_dialogue(string text)
         {
+            int currentStackSize = StateManager.StackSize;
             StateManager.PushState(new Dialogue(game, text));
+            while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
+            {
+            }
         }
 
         private void js_save(Player player)
@@ -268,7 +283,7 @@ namespace CastleEscape
             return new Item(itemName, description, (int)healthBonus, (int)manaBonus);
         }
 
-        private void js_addRandomEncounter(string textureName, string enemyName, double health,
+        private Enemy js_newEnemy(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, Item[] items)
         {
             var enemy = new Enemy(game.Content.Load<Texture2D>(textureName));
@@ -279,7 +294,21 @@ namespace CastleEscape
             enemy.Defense = (int)defense;
             enemy.Exp = (int)exp;
             enemy.Items = items;
+            return enemy;
+        }
+
+        private void js_addRandomEncounter(Enemy enemy)
+        {
             randomEncounters.Add(enemy);
+        }
+
+        private void js_battle(Player player, Enemy enemy)
+        {
+            int currentStackSize = StateManager.StackSize;
+            StateManager.PushState(new Battle(game, battleTexture, player, enemy, false));
+            while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
+            {
+            }
         }
     }
 }

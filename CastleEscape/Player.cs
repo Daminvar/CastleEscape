@@ -213,7 +213,7 @@ namespace CastleEscape
             spriteWidth = 35;
             exptolevel = 20;
             accuracy = 0;
-            gold = 100;
+            gold = 1000;
 
             items = new List<Item>();
         }

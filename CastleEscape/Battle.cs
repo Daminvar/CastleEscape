@@ -153,17 +153,24 @@ namespace CastleEscape
                     }
                     else if (chosenAttack == "Run")
                     {
-                        Random rgen = new Random();
-                        int chance = rgen.Next(1, 10);
-                        if (chance < 4)
+                        if (canRun)
                         {
-                            status += "||||Run failed!";
-                            playersTurn = false;
+                            Random rgen = new Random();
+                            int chance = rgen.Next(1, 10);
+                            if (chance < 4)
+                            {
+                                status += "||||Run failed!";
+                                playersTurn = false;
+                            }
+                            else
+                            {
+                                status += "||||You ran away!";
+                                hasRun = true;
+                            }
                         }
                         else
                         {
-                            status += "||||You ran away!";
-                            hasRun = true;
+                            status += "||||You can't run from this fight!";
                         }
                     }
                     else if (chosenAttack == "Item")
@@ -257,7 +264,7 @@ namespace CastleEscape
                                         "\nMP: " + play.Mana + "/" + play.MaxMana +
                                         "\n______________",
               new Vector2(30.0f, (float)((game.GraphicsDevice.Viewport.Height * 7 / 100))), Color.Black);
-            spriteBatch.DrawString(font, " Enemy Hp: " + en.Health, new Vector2(260.0f, (float)((game.GraphicsDevice.Viewport.Height * 20 / 100) + 30)), Color.White);
+            spriteBatch.DrawString(font, en.Name + "\nHP: " + en.Health, new Vector2(600, (game.GraphicsDevice.Viewport.Height * 20 / 100) + 30), Color.White);
             //Combat Menu
             tMenu.Draw(spriteBatch, 29, 110);
         }

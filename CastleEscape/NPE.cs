@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -65,7 +66,13 @@ namespace CastleEscape
 
         public void Interact(Player player)
         {
-            interactFunc(player);
+            var thread = new Thread(new ParameterizedThreadStart(interact));
+            thread.Start(player);
+        }
+
+        private void interact(object player)
+        {
+            interactFunc((Player)player);
         }
     }
 }
