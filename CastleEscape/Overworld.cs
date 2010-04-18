@@ -128,7 +128,8 @@ namespace CastleEscape
 
             if ((kbState.IsKeyDown(Keys.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
             {
-               
+                playerObj.Direction = Player.Directions.West;
+
                 if (timer < 150)
                 {
                     movingLeft = true;
@@ -141,25 +142,26 @@ namespace CastleEscape
                 movingRight = false;
                 movingUp = false;
 
-                playerObj.Direction = Player.Directions.West;
-
                 if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos >= 0)
                 {
                     if (timer >= 50 && timer < 100)
                     {
-                        playerObj.CurrentSpriteX = 2;
+                        playerObj.CurrentSpriteX = 1;
                         playerObj.ModX = -16;
                     }
                     else if (timer >= 100 && timer < 150)
                     {
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 0;
                         playerObj.ModX = -8;
                     }
-
                     else if (timer >= 150 && timer < 200)
                     {
                         playerObj.CurrentSpriteX = 1;
                         playerObj.ModX = 0;
+
+                        pedometer++;
+
+                        this.StartBattle(pedometer);
                     }
                 }
 
@@ -168,38 +170,29 @@ namespace CastleEscape
                     if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                     {
                         playerObj.ModX = -24;
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 2;
                     }
                     if (playerObj.XPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
-                            pedometer++;
-
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
-                            {
-                                Enemy currentEnemy = mappy.GetRandomEncounter();
-                                if (currentEnemy != null)
-                                {
-                                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                }
-                                pedometer = 0;
-                            }
+                            timer = 0;
                         }
                     }
                     else
                     {
                         mappy.ChangeMap(ScriptableMap.Directions.West);
                         playerObj.Move(mappy.MapWidth - 1, 0);
+
+                        timer = 0;
                     }
-                    timer = 0;
                 }
             }
             else if ((kbState.IsKeyDown(Keys.Right) || movingRight) && !movingLeft && !movingDown && !movingUp)
             {
+                playerObj.Direction = Player.Directions.East;
+
                 if (timer < 150)
                 {
                     movingRight = true;
@@ -212,24 +205,27 @@ namespace CastleEscape
                 movingDown = false;
                 movingUp = false;
 
-                playerObj.Direction = Player.Directions.East;
-
                 if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos) == false && playerObj.XPos < mappy.MapWidth)
                 {
                     if (timer >= 50 && timer < 100)
                     {
-                        playerObj.CurrentSpriteX = 2;
+                        playerObj.CurrentSpriteX = 1;
                         playerObj.ModX = 16;
                     }
-                    else if (timer >= 100 && timer < 200)
+                    else if (timer >= 100 && timer < 150)
                     {
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 0;
                         playerObj.ModX = 8;
                     }
                     else if (timer >= 150 && timer < 200)
                     {
-                        playerObj.CurrentSpriteX = 0;
+                        playerObj.CurrentSpriteX = 1;
                         playerObj.ModX = 0;
+
+                        pedometer++;
+
+                        this.StartBattle(pedometer);
+
                     }
                 }
 
@@ -238,26 +234,14 @@ namespace CastleEscape
                     if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                     {
                         playerObj.ModX = 24;
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 2;
                     }
                     if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(1, 0);
-                            pedometer++;
 
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
-                            {
-                                Enemy currentEnemy = mappy.GetRandomEncounter();
-                                if (currentEnemy != null)
-                                {
-                                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                }
-                                pedometer = 0;
-                            }
                             timer = 0;
                         }
                     }
@@ -288,18 +272,22 @@ namespace CastleEscape
                 {
                     if (timer >= 50 && timer < 100)
                     {
-                        playerObj.CurrentSpriteX = 2;
+                        playerObj.CurrentSpriteX = 1;
                         playerObj.ModY = -16;
                     }
-                    else if (timer >= 100 && timer < 200)
+                    else if (timer >= 100 && timer < 150)
                     {
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 2;
                         playerObj.ModY = -8;
                     }
                     else if (timer >= 150 && timer < 200)
                     {
-                        playerObj.CurrentSpriteX = 0;
+                        playerObj.CurrentSpriteX = 1;
                         playerObj.ModY = 0;
+
+                        pedometer++;
+
+                        this.StartBattle(pedometer);
                     }
                 }
 
@@ -308,26 +296,14 @@ namespace CastleEscape
                     if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                     {
                         playerObj.ModY = -24;
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 0;
                     }
                     if (playerObj.YPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                         {
                             playerObj.Move(0, -1);
-                            pedometer++;
 
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
-                            {
-                                Enemy currentEnemy = mappy.GetRandomEncounter();
-                                if (currentEnemy != null)
-                                {
-                                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                }
-                                pedometer = 0;
-                            }
                             timer = 0;
                         }
                     }
@@ -360,18 +336,22 @@ namespace CastleEscape
                 {
                     if (timer >= 50 && timer < 100)
                     {
-                        playerObj.CurrentSpriteX = 0;
+                        playerObj.CurrentSpriteX = 1;
                         playerObj.ModY = 16;
                     }
-                    else if (timer >= 100 && timer < 200)
+                    else if (timer >= 100 && timer < 150)
                     {
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 0;
                         playerObj.ModY = 8;
                     }
                     else if (timer >= 150 && timer < 200)
                     {
-                        playerObj.CurrentSpriteX = 2;
+                        playerObj.CurrentSpriteX = 1;
                         playerObj.ModY = 0;
+
+                        pedometer++;
+
+                        this.StartBattle(pedometer);
                     }
                 }
 
@@ -380,26 +360,14 @@ namespace CastleEscape
                     if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                     {
                         playerObj.ModY = 24;
-                        playerObj.CurrentSpriteX = 1;
+                        playerObj.CurrentSpriteX = 2;
                     }
                     if (playerObj.YPos + 1 < mappy.MapHeight)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                         {
                             playerObj.Move(0, 1);
-                            pedometer++;
-
-                            // check for a random encounter!
-                            bool re = this.RandomEncounter(pedometer);
-                            if (re)
-                            {
-                                Enemy currentEnemy = mappy.GetRandomEncounter();
-                                if (currentEnemy != null)
-                                {
-                                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
-                                }
-                                pedometer = 0;
-                            }
+                            
                             timer = 0;
                         }
                     }
@@ -433,8 +401,8 @@ namespace CastleEscape
 
         }
 
+
         // This checks to see if a battle will start!
-        // you can move this code if you don't think it belongs here~
         public bool RandomEncounter(int steps)
         {
             // create a random number generator
@@ -442,13 +410,30 @@ namespace CastleEscape
 
             int rdmNum = rng.Next(1, 21);
 
-            if (rdmNum < (int)(5 * (steps / 6) ^ 2))
+            if (rdmNum < (int)(7 * (steps / 6) ^ 2))
             {
                 return true;
             }
             else
             {
                 return false;
+            }
+        }
+
+        //Check to see if a battle will start
+        public void StartBattle(int ped)
+        {
+            pedometer = ped;
+
+            bool re = this.RandomEncounter(pedometer);
+            if (re)
+            {
+                Enemy currentEnemy = mappy.GetRandomEncounter();
+                if (currentEnemy != null)
+                {
+                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
+                }
+                pedometer = 0;
             }
         }
 
