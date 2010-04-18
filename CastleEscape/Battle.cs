@@ -31,11 +31,10 @@ namespace CastleEscape
         private SpriteFont font;
         private string chosenAttack;
         // boolean to see who attacks first. if player, true. if enemy, false.
-        bool attackFirst;
+        bool playersTurn;
         bool hasRun;
         // can the player run?
         bool canRun;
-
         TextMenu tMenu;
 
         private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon", "Mind Break", "Item", "Run" };
@@ -81,11 +80,11 @@ namespace CastleEscape
         {
             if (play.Speed > en.Speed)
             {
-                attackFirst = true;
+                playersTurn = true;
             }
             else if (play.Speed < en.Speed)
             {
-                attackFirst = false;
+                playersTurn = false;
             }
             else
             {
@@ -95,11 +94,11 @@ namespace CastleEscape
 
                 if (first == 1)
                 {
-                    attackFirst = false;
+                    playersTurn = false;
                 }
                 else
                 {
-                    attackFirst = true;
+                    playersTurn = true;
                 }
             }
         }
@@ -107,23 +106,23 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
-            int tempDmg;
-
             string status = "";
+            chosenAttack = null;
+            tMenu.Update(gameTime, Keyboard.GetState());
+            handleInput(gameTime);
 
-            if (attackFirst)
+            if (playersTurn)
             {
-
                 if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
                 {
                     if (chosenAttack != "Run" && chosenAttack != "Item")
                     {
 
                         play.getAccuracy(chosenAttack);
-                        tempDmg = play.HealthAfterCombat(en);
+                        int tempDmg = play.HealthAfterCombat(en);
                         status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
                         en.Health = tempDmg;
-                        attackFirst = false;
+                        playersTurn = false;
                     }
                     else if (chosenAttack == "Run")
                     {
@@ -132,7 +131,7 @@ namespace CastleEscape
                         if (chance < 4)
                         {
                             status += "||||Run failed!";
-                            attackFirst = false;
+                            playersTurn = false;
                         }
                         else
                         {
@@ -142,7 +141,7 @@ namespace CastleEscape
                     }
                     else if (chosenAttack == "Item")
                     {
-                        attackFirst = false;
+                        playersTurn = false;
                         StateManager.PushState(new ItemState(game, play));
                         chosenAttack = null;
                         return;
@@ -159,14 +158,13 @@ namespace CastleEscape
 
                 tMenu.IsFinished = false;
             }
-            if (!en.IsDead() && attackFirst == false)
+            if (!en.IsDead() && !playersTurn)
             {
-                int tempDmg2;
-                tempDmg2 = en.HealthAfterCombat(play);
-                status += "||||Enemy did : " + (play.Health - tempDmg2) + " damage";
-                play.Health = tempDmg2;
+                int tempDmg = en.HealthAfterCombat(play);
+                status += "||||Enemy did : " + (play.Health - tempDmg) + " damage";
+                play.Health = tempDmg;
 
-                attackFirst = true;
+                playersTurn = true;
                 tMenu.IsFinished = false;
 
                 // If enemy monster kills you
@@ -176,20 +174,15 @@ namespace CastleEscape
                 }
             }
 
-            chosenAttack = null;
-            tMenu.Update(gameTime, Keyboard.GetState());
-            handleInput(gameTime);
-
             if (status != "")
                 StateManager.PushState(new Dialogue(game, status.Remove(0, 4)));
         }
 
-        public void handleInput(GameTime gametime)
+        private void handleInput(GameTime gametime)
         {
             string selectedChoice = null;
             if (!tMenu.IsFinished)
                 return;
-
 
             selectedChoice = choices[tMenu.SelectedOption];
 
@@ -217,17 +210,6 @@ namespace CastleEscape
                 chosenAttack = "Run";
         }
 
-        public void drawEnd(SpriteBatch spritebach, String whoDied)
-        {
-
-            Rectangle rc = new Rectangle(0, game.GraphicsDevice.Viewport.Height * 3 / 4, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-            spritebach.Draw(backgroundTexture, rc, Color.White);
-            if (whoDied == "Player")
-                spritebach.DrawString(font, "You have died, revert to last saved game", new Vector2(350f, 250f), Color.WhiteSmoke);
-            else
-                spritebach.DrawString(font, "Enemy Slain", new Vector2(350f, 250f), Color.WhiteSmoke);
-
-        }
         //Draws the combat screen
         public override void Draw(SpriteBatch spriteBatch)
         {
