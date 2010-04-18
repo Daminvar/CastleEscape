@@ -139,6 +139,7 @@ namespace CastleEscape
         public int MaxHealth
         {
             get { return maxHealth; }
+            set { maxHealth = value; }
         }
 
         public int Health
@@ -156,6 +157,7 @@ namespace CastleEscape
         public int MaxMana
         {
             get { return maxMana; }
+            set { maxMana = value; }
         }
 
         public int Mana
@@ -179,6 +181,7 @@ namespace CastleEscape
         public int Level
         {
             get { return level; }
+            set { level = value; }
         }
 
         /// <summary>
@@ -208,7 +211,7 @@ namespace CastleEscape
             currentSpriteX = 1;
             spriteHeight = 40;
             spriteWidth = 35;
-            exptolevel = 100;
+            exptolevel = 20;
             accuracy = 0;
             gold = 100;
 

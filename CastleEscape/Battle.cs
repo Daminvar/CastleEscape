@@ -43,6 +43,8 @@ namespace CastleEscape
         public Battle(Game game, Texture2D bgTex, Player p, Enemy e, bool run)
             : base(game)
         {
+            StateManager.PushState(new LevelState(game, p));
+
             play = p;
             en = e;
             font = game.Content.Load<SpriteFont>("Test-Font");
@@ -177,8 +179,9 @@ namespace CastleEscape
                 //If you slay enemy monster
                 if (en.IsDead())
                 {
-                    status += "||||You have slain " + en.Name;
-
+                    status += "||||You have slain " + en.Name + " You gain " + en.Exp + " Exp";
+                    play.Exp += en.Exp;
+                    
                 }
 
                 tMenu.IsFinished = false;

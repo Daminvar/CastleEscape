@@ -99,6 +99,7 @@
     <Compile Include="IOverworldEntity.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemState.cs" />
+    <Compile Include="LevelState.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="TestItemState.cs" />
