@@ -29,21 +29,19 @@ namespace CastleEscape
     /// </summary>
     class PauseState : State
     {
-        private string message;
-        private Texture2D bgcolor;
         private int height;
         Player player;
 
 
         private SpriteFont font;
 
-        public PauseState(Game game,Player player)
+        public PauseState(Game game, Player player)
             : base(game)
         {
             transparent = true;
             height = game.GraphicsDevice.Viewport.Height;
             font = game.Content.Load<SpriteFont>("test-font");
-           this.player = player;
+            this.player = player;
 
         }
 
@@ -55,12 +53,12 @@ namespace CastleEscape
         //Displays stats when pause state is pushed on to screen
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font,"Attack:   " + player.Attack + 
-                                        "\nDefense: " + player.Defense +                           
+            spriteBatch.DrawString(font, "Attack:   " + player.Attack +
+                                        "\nDefense: " + player.Defense +
                                         "\nSpeed:   " + player.Speed +
                                         "\nMagic Atk: " + player.MagicAtk +
-                                        "\nExp: " + player.Exp + " / " +player.ExpToLevel,
-                                        new Vector2(647.0f, (float)((height * 20/ 100) + 30)), Color.WhiteSmoke);
+                                        "\nExp: " + player.Exp + " / " + player.ExpToLevel,
+                                        new Vector2(647.0f, (float)((height * 20 / 100) + 30)), Color.WhiteSmoke);
         }
 
         public override void Resume()

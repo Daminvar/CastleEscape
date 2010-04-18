@@ -18,7 +18,9 @@ bob.SetInteractFunc(function(player) {
 	if (getFlag("talked-to-bob")) {
 		dialogue("I have nothing more to say to you.")
 	} else {
-		dialogue("Hi, it's nice to meet you.")
+		dialogue("Hi, it's nice to meet you. Let's fight!")
+		var enemy = newEnemy("test-npe", "Bob: The Monarch of Entropy", 50000, 70, 1, 1, 10, null)
+		battle(player, enemy)
 		setFlag("talked-to-bob")
 		reloadMap()
 	}
@@ -37,5 +39,7 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-addRandomEncounter("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null) //texture, name, health, atk, def, speed, exp, items
-addRandomEncounter("snake", "Pauper of Evil", 80, 5, 1, 1, 10, null)
+var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null) //texture, name, health, atk, def, speed, exp, items
+var pauper = newEnemy("snake", "Pauper of Evil", 80, 5, 1, 1, 10, null)
+addRandomEncounter(ghost) 
+addRandomEncounter(pauper)
