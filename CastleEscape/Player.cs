@@ -173,6 +173,7 @@ namespace CastleEscape
         public int Gold
         {
             get { return gold; }
+            set { gold = value; }
         }
 
         public int Level
@@ -209,7 +210,7 @@ namespace CastleEscape
             spriteWidth = 35;
             exptolevel = 100;
             accuracy = 0;
-            gold = 0;
+            gold = 100;
 
             items = new List<Item>();
         }
