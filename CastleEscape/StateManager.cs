@@ -83,6 +83,14 @@ namespace CastleEscape
                 states[states.Count - 1].Resume();
         }
 
+        /// <summary>
+        /// Removes all states.
+        /// </summary>
+        public static void PopAllStates()
+        {
+            states.Clear();
+        }
+
         public static bool IsEmpty()
         {
             return states.Count == 0;

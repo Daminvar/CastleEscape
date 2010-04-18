@@ -173,6 +173,7 @@ namespace CastleEscape
         public int Gold
         {
             get { return gold; }
+            set { gold = value; }
         }
 
         public int Level
@@ -198,8 +199,8 @@ namespace CastleEscape
             maxHealth = 60;
             health = 60;
             defense = 1;
-            speed = 2;
-            attack = 10;
+            speed = 100;
+            attack = 1000;
             maxMana = 10;
             mana = 10;
             magicAtk = 8;
@@ -209,7 +210,7 @@ namespace CastleEscape
             spriteWidth = 35;
             exptolevel = 100;
             accuracy = 0;
-            gold = 0;
+            gold = 100;
 
             items = new List<Item>();
         }

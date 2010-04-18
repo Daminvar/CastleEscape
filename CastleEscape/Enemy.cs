@@ -45,7 +45,7 @@ namespace CastleEscape
             enemy.health = health;
             enemy.defense = defense;
             enemy.exp = exp;
-            enemy.Items = (Item[])items.Clone();
+            enemy.Items = items != null ? (Item[])items.Clone() : null;
             return enemy;
         }
 
