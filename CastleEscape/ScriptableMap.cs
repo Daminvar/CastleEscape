@@ -304,7 +304,11 @@ namespace CastleEscape
 
         private void js_battle(Player player, Enemy enemy)
         {
+            int currentStackSize = StateManager.StackSize;
             StateManager.PushState(new Battle(game, battleTexture, player, enemy, false));
+            while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
+            {
+            }
         }
     }
 }
