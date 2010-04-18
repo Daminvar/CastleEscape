@@ -23,9 +23,9 @@ namespace CastleEscape
     /// </summary>
     class Store : State
     {
-        public const int XPOS = 50;
+        public const int XPOS = 10;
         public const int YPOS = 40;
-        public const int STORE_WIDTH = 700;
+        public const int STORE_WIDTH = 640;
         public const int STORE_HEIGHT = 420;
         private Player player;
         private Item[] storeInventory;
@@ -51,7 +51,7 @@ namespace CastleEscape
             string[] itemNames = new string[storeInventory.Length];
             for (int i = 0; i < items.Length; i++)
             {
-                itemNames[i] = storeInventory[i].ToString() + "        Cost: " + storeInventory[i].Cost + " gold";
+                itemNames[i] = storeInventory[i].ToString() + "  Cost: " + storeInventory[i].Cost + " gold";
             }
 
             return itemNames;
@@ -103,12 +103,21 @@ namespace CastleEscape
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(storeTexture, new Rectangle(XPOS, YPOS, STORE_WIDTH, STORE_HEIGHT), Color.White);
-            spriteBatch.DrawString(spriteFont, "Welcome to the store.", new Vector2(XPOS + 5, YPOS + 5), Color.White);
-            spriteBatch.DrawString(spriteFont, "Current gold: " + player.Gold, new Vector2(XPOS + 500, YPOS + 5), Color.White);
+            spriteBatch.DrawString(spriteFont, "Welcome to the store.", new Vector2(XPOS + 10, YPOS + 5), Color.White);
+            spriteBatch.DrawString(spriteFont, "Current gold: " + player.Gold, new Vector2(XPOS + 440, YPOS + 5), Color.White);
             for (int i = 0; i < storeInventory.Length; i++)
             {
-                textInventory.Draw(spriteBatch, XPOS + 5, YPOS + 30);
+                textInventory.Draw(spriteBatch, XPOS + 10, YPOS + 30);
             }
+
+            spriteBatch.Draw(storeTexture, new Rectangle(XPOS + STORE_WIDTH + 10, YPOS, 200, STORE_HEIGHT), Color.Gray);
+            spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(XPOS + STORE_WIDTH + 45, YPOS + 5), Color.Wheat);
+
+            for(int i = 0; i < player.Items.Count; i++)
+            {
+                spriteBatch.DrawString(spriteFont, player.Items[i].Name, new Vector2(XPOS + STORE_WIDTH + 20, YPOS + 5 + ((i+1) * 14)), Color.White);
+            }
+
 
         }
     }
