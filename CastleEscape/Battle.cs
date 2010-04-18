@@ -37,7 +37,7 @@ namespace CastleEscape
         bool canRun;
         TextMenu tMenu;
 
-        private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon", "Mind Break", "Item", "Run" };
+        private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-1", "Mind Break MP-2", "Item", "Run" };
 
         // constructor
         public Battle(Game game, Texture2D bgTex, Player p, Enemy e, bool run)
@@ -115,14 +115,39 @@ namespace CastleEscape
             {
                 if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
                 {
-                    if (chosenAttack != "Run" && chosenAttack != "Item")
+                    if (chosenAttack == "Light Punch" || chosenAttack == "Double Punch" || chosenAttack == "Pummel")
                     {
-
                         play.getAccuracy(chosenAttack);
                         int tempDmg = play.HealthAfterCombat(en);
                         status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
                         en.Health = tempDmg;
                         playersTurn = false;
+                    }
+                    else if (chosenAttack == "Soul Cannon")
+                    {
+                        if (play.Mana < 1)
+                            status += "||||You don't have enough mana for that attack!";
+                        else
+                        {
+                            play.getAccuracy(chosenAttack);
+                            int tempDmg = play.HealthAfterCombat(en);
+                            status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
+                            en.Health = tempDmg;
+                            playersTurn = false;
+                        }
+                    }
+                    else if (chosenAttack == "Mind Break")
+                    {
+                        if (play.Mana < 2)
+                            status += "||||You don't have enough mana for that attack!";
+                        else
+                        {
+                            play.getAccuracy(chosenAttack);
+                            int tempDmg = play.HealthAfterCombat(en);
+                            status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
+                            en.Health = tempDmg;
+                            playersTurn = false;
+                        }
                     }
                     else if (chosenAttack == "Run")
                     {
@@ -197,10 +222,10 @@ namespace CastleEscape
             else if (selectedChoice == ("Pummel"))
                 chosenAttack = "Pummel";
 
-            else if (selectedChoice == ("Soul Cannon"))
+            else if (selectedChoice == ("Soul Cannon MP-1"))
                 chosenAttack = "Soul Cannon";
 
-            else if (selectedChoice == ("Mind Break"))
+            else if (selectedChoice == ("Mind Break MP-2"))
                 chosenAttack = "Mind Break";
 
             else if (selectedChoice == ("Item"))
