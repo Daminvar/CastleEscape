@@ -15,7 +15,17 @@
  </layer>
  <layer name="base" width="20" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgQIBMFgYUMJGZgaEATQwGpgPlZjCjiqGrBZknzMjAIALEokB8E49594FyD/CYp8YOMS8aaE4MEMcyQsRAalKh6tLQzP6BJIduXh7UvMVAc5YA8VJGiBhIzVqounVo5jmwIuRw+fc10Jw3QPyWEbsafABd7UYsendQYN5PbHpZyTfPEYteDwrM68SidwIF5lEKRpp5pKQtogAJcUcMAKUtADjysiGwBAAA
+   H4sIAAAAAAAAC2NgQIBMFgYUMJGZgaEATQwGpgPlZjCjiqGrBZknzMjAIALEokB8E49594FyD/CYp8YOMS8aaE4MEMcyQsRAalKh6tLQzP6BJIduXh7UvMVAc5YA8VJGiBhIzVqounVo5jmwIuRw+fc10Jw3QPyWEbsafABd7UYsendQYN5PbHpZUbkWHAwMxkBswkHYPEdWTDUeWMSqgWbVcEDMxmdeJxa9E7CI4QKkhPWoeZiAlLRFFCAh7ogBoLQFAHQWVVWwBAAA
+  </data>
+ </layer>
+ <layer name="top" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDHbxmZ2B4wz7QrhgFo4D2AACAvSjusAQAAA==
+  </data>
+ </layer>
+ <layer name="top" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDHTSxUte8U1Q2bxSMAmoBACI8m3qwBAAA
   </data>
  </layer>
  <objectgroup name="collision" width="20" height="15">
@@ -25,5 +35,6 @@
   <object name="" x="256" y="96" width="32" height="160"/>
   <object name="" x="96" y="96" width="32" height="160"/>
   <object name="" x="128" y="96" width="96" height="32"/>
+  <object name="" x="416" y="192" width="64" height="64"/>
  </objectgroup>
 </map>
