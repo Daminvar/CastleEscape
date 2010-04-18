@@ -32,7 +32,6 @@ namespace CastleEscape
         private Texture2D storeTexture;
         private SpriteFont spriteFont;
         private TextMenu textInventory;
-        private bool canExit;
 
         public Store(Game game, Player pl, Item[] items)
             : base(game)
@@ -43,7 +42,6 @@ namespace CastleEscape
             storeTexture.SetData<Color>(new Color[] { new Color(Color.Gray, 255) });
             spriteFont = game.Content.Load<SpriteFont>("inventory-list-font");
             textInventory = new TextMenu(spriteFont, this.getItemNames(storeInventory));
-            canExit = false;
         }
 
         private string[] getItemNames(Item[] items)
@@ -70,10 +68,8 @@ namespace CastleEscape
         {
             KeyboardState kbState = Keyboard.GetState();
 
-            if (kbState.IsKeyUp(Keys.Escape))
-            {
-                canExit = true;
-            }
+            if (kbState.IsKeyDown(Keys.Escape))
+                StateManager.PopState();
 
             if (storeInventory.Length != 0)
             {
@@ -93,17 +89,12 @@ namespace CastleEscape
                     }
                 }
             }
-
-            if (canExit == false)
-            {
-                return;
-            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(storeTexture, new Rectangle(XPOS, YPOS, STORE_WIDTH, STORE_HEIGHT), Color.White);
-            spriteBatch.DrawString(spriteFont, "Welcome to the store.", new Vector2(XPOS + 10, YPOS + 5), Color.White);
+            spriteBatch.DrawString(spriteFont, "Welcome to the store. Press 'Esc' to quit.", new Vector2(XPOS + 10, YPOS + 5), Color.White);
             spriteBatch.DrawString(spriteFont, "Current gold: " + player.Gold, new Vector2(XPOS + 440, YPOS + 5), Color.White);
             for (int i = 0; i < storeInventory.Length; i++)
             {

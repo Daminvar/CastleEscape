@@ -32,8 +32,8 @@ namespace CastleEscape
         public override void Update(GameTime gameTime)
         {
             var player = new Player(game, 0, 0);
-            player.Items.Add(new Item("Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80));
-            player.Items.Add(new Item("Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80));
+            player.Items.Add(new Item("Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80, 10));
+            player.Items.Add(new Item("Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80, 10));
 
             StateManager.PushState(new ItemState(game, player));
         }

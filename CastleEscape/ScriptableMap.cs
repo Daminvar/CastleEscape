@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace CastleEscape
     /// </summary>
     class ScriptableMap
     {
-        private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus);
+        private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus, double cost);
         private delegate Enemy NewEnemyDelegate(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, Item[] items);
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
@@ -206,6 +207,7 @@ namespace CastleEscape
             engine.SetFunction("addRandomEncounter", new Action<Enemy>(js_addRandomEncounter));
             engine.SetFunction("newEnemy", new NewEnemyDelegate(js_newEnemy));
             engine.SetFunction("battle", new Action<Player, Enemy>(js_battle));
+            engine.SetFunction("store", new Action<Player, ArrayList>(js_store));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -278,9 +280,9 @@ namespace CastleEscape
             GameData.Save(scriptFilename, player);
         }
 
-        private Item js_newItem(string itemName, string description, double healthBonus, double manaBonus)
+        private Item js_newItem(string itemName, string description, double healthBonus, double manaBonus, double cost)
         {
-            return new Item(itemName, description, (int)healthBonus, (int)manaBonus);
+            return new Item(itemName, description, (int)healthBonus, (int)manaBonus, (int)cost);
         }
 
         private Enemy js_newEnemy(string textureName, string enemyName, double health,
@@ -309,6 +311,26 @@ namespace CastleEscape
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {
             }
+        }
+
+        private void js_store(Player player, ArrayList itemsArrayList)
+        {
+            int currentStackSize = StateManager.StackSize;
+            Item[] items = null;
+            if (itemsArrayList != null)
+                items = createItemArray(itemsArrayList);
+            StateManager.PushState(new Store(game, player, items));
+            while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
+            {
+            }
+        }
+
+        private Item[] createItemArray(ArrayList itemArrayList)
+        {
+            Item[] items = new Item[itemArrayList.Count];
+            for (int i = 0; i < items.Length; i++)
+                items[i] = (Item)itemArrayList[i];
+            return items;
         }
     }
 }

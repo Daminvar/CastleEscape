@@ -34,9 +34,9 @@ namespace CastleEscape
         {
             Player pl = new Player(game, 0, 0);
             Item[] inventory = new Item[2];
-            inventory[0] = new Item("Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80);
+            inventory[0] = new Item("Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80, 10);
             inventory[0].Cost = 50;
-            inventory[1] = new Item("Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80);
+            inventory[1] = new Item("Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80, 10);
             inventory[1].Cost = 35;
 
             StateManager.PushState(new Store(game, pl, inventory));

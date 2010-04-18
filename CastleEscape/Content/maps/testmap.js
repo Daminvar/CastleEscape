@@ -39,6 +39,18 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
+var wormStore = newNPE()
+wormStore.SetTexture("snake")
+wormStore.SetPosition(15, 1)
+
+wormStore.SetInteractFunc(function(player) {
+	var items = []
+	items[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
+	store(player, items)
+})
+
+addNPE(wormStore)
+
 var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null) //texture, name, health, atk, def, speed, exp, items
 var pauper = newEnemy("snake", "Pauper of Evil", 80, 5, 1, 1, 10, null)
 addRandomEncounter(ghost) 

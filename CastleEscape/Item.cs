@@ -49,13 +49,13 @@ namespace CastleEscape
             set { cost = value; }
         }
 
-        public Item(string name, string description, int healthBonus, int manaBonus)
+        public Item(string name, string description, int healthBonus, int manaBonus, int cost)
         {
             this.name = name;
             this.description = description;
             this.healthBonus = healthBonus;
             this.manaBonus = manaBonus;
-            cost = 0;
+            this.cost = cost;
         }
 
         public override string ToString()
