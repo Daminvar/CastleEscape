@@ -151,17 +151,24 @@ namespace CastleEscape
                     }
                     else if (chosenAttack == "Run")
                     {
-                        Random rgen = new Random();
-                        int chance = rgen.Next(1, 10);
-                        if (chance < 4)
+                        if (canRun)
                         {
-                            status += "||||Run failed!";
-                            playersTurn = false;
+                            Random rgen = new Random();
+                            int chance = rgen.Next(1, 10);
+                            if (chance < 4)
+                            {
+                                status += "||||Run failed!";
+                                playersTurn = false;
+                            }
+                            else
+                            {
+                                status += "||||You ran away!";
+                                hasRun = true;
+                            }
                         }
                         else
                         {
-                            status += "||||You ran away!";
-                            hasRun = true;
+                            status += "||||You can't run from this fight!";
                         }
                     }
                     else if (chosenAttack == "Item")
