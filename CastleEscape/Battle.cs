@@ -254,7 +254,7 @@ namespace CastleEscape
                                         "\nMP: " + play.Mana + "/" + play.MaxMana +
                                         "\n______________",
               new Vector2(30.0f, (float)((game.GraphicsDevice.Viewport.Height * 7 / 100))), Color.Black);
-            spriteBatch.DrawString(font, " Enemy Hp: " + en.Health, new Vector2(260.0f, (float)((game.GraphicsDevice.Viewport.Height * 20 / 100) + 30)), Color.White);
+            spriteBatch.DrawString(font, en.Name + "\nHP: " + en.Health, new Vector2(600, (game.GraphicsDevice.Viewport.Height * 20 / 100) + 30), Color.White);
             //Combat Menu
             tMenu.Draw(spriteBatch, 29, 110);
         }

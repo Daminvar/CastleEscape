@@ -23,6 +23,15 @@ namespace CastleEscape
     {
         private static List<State> states;
 
+
+        /// <summary>
+        /// The number of states on the stack.
+        /// </summary>
+        public static int StackSize
+        {
+            get { return states.Count; }
+        }
+
         /// <summary>
         /// Initialize the state manager
         /// </summary>

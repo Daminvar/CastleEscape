@@ -104,6 +104,14 @@ namespace CastleEscape
         }
 
         /// <summary>
+        /// Reloads the current map.
+        /// </summary>
+        public void ReloadMap()
+        {
+            loadMapAndScript(scriptFilename);
+        }
+
+        /// <summary>
         /// Changes the map by loading the correct map
         /// file for the specified direction.
         /// </summary>
@@ -192,6 +200,7 @@ namespace CastleEscape
             engine.SetFunction("getFlag", new Func<string, bool>(js_getFlag));
             engine.SetFunction("setFlag", new Action<string>(js_setFlag));
             engine.SetFunction("dialogue", new Action<string>(js_dialogue));
+            engine.SetFunction("reloadMap", new Action(ReloadMap));
             engine.SetFunction("save", new Action<Player>(js_save));
             engine.SetFunction("newItem", new NewItemDelegate(js_newItem));
             engine.SetFunction("addRandomEncounter", new AddRandomEnounterDelegate(js_addRandomEncounter));
@@ -255,7 +264,11 @@ namespace CastleEscape
 
         private void js_dialogue(string text)
         {
+            int currentStackSize = StateManager.StackSize;
             StateManager.PushState(new Dialogue(game, text));
+            while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
+            {
+            }
         }
 
         private void js_save(Player player)

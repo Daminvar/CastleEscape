@@ -20,6 +20,7 @@ bob.SetInteractFunc(function(player) {
 	} else {
 		dialogue("Hi, it's nice to meet you.")
 		setFlag("talked-to-bob")
+		reloadMap()
 	}
 })
 
