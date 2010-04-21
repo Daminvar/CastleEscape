@@ -79,7 +79,8 @@ namespace CastleEscape
 
         public override void Resume()
         {
-            // resumes everything when returning to the overworld state
+            canPressEscape = false;
+            canPressZ = false;
             
         }
 
@@ -383,10 +384,8 @@ namespace CastleEscape
 
             if (kbState.IsKeyUp(Keys.Escape))
             {
-
                 canPressEscape = true;
                 return;
-
             }
 
             //Pauses the game
@@ -394,13 +393,9 @@ namespace CastleEscape
             {
 
                 StateManager.PushState(new PauseState(game, playerObj));
-                canPressEscape = false;
                 return;
-
             }
-
         }
-
 
         // This checks to see if a battle will start!
         public bool RandomEncounter(int steps)
