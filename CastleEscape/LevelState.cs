@@ -64,7 +64,7 @@ namespace CastleEscape
                 play.Health += 5;
                 play.MaxMana += 5;
                 play.Mana += 5;
-                play.Level++;
+                play.Level += 1;
                 increaseStats = false;
             }
 
@@ -74,16 +74,13 @@ namespace CastleEscape
                 handleInput(gameTime);
                 statIncrease(chosenStat);
 
-                StateManager.PushState(new Dialogue(game, "You increased " 
-                                             +chosenStat + " by 1 point!"));
-
                 tMenu.IsFinished = false;
             }
 
             if (pointsLeft < 0)
             {
                 play.Exp = (play.Exp - play.ExpToLevel);
-                play.ExpToLevel = (int)(play.ExpToLevel * 1.5);
+                play.ExpToLevel = (int)(play.ExpToLevel + (10 * 1.5));
                 
                 StateManager.PopState();
             }

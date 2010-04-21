@@ -338,7 +338,6 @@ namespace CastleEscape
                     {
                         playerObj.CurrentSpriteX = 1;
                         playerObj.ModY = 0;
-
                         pedometer++;
 
                         this.StartBattle(pedometer);
