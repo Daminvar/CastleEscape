@@ -51,7 +51,7 @@ wormStore.SetInteractFunc(function(player) {
 
 addNPE(wormStore)
 
-var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null) //texture, name, health, atk, def, speed, exp, items
-var pauper = newEnemy("snake", "Pauper of Evil", 80, 5, 1, 1, 10, null)
+var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 1000, null) //texture, name, health, atk, def, speed, exp, items
+var pauper = newEnemy("snake", "Pauper of Evil", 80, 5, 1, 1, 1000, null)
 addRandomEncounter(ghost) 
 addRandomEncounter(pauper)

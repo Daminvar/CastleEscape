@@ -30,8 +30,9 @@ namespace CastleEscape
         private SpriteFont font;
         private TextMenu menu;
         private bool canPressEscape;
+        private bool oneTimeUse;
 
-        public ItemState(Game game, Player player)
+        public ItemState(Game game, Player player, bool oneTimeUse)
             : base(game)
         {
             this.player = player;
@@ -43,6 +44,7 @@ namespace CastleEscape
                 menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
             canPressEscape = false;
             transparent = true;
+            this.oneTimeUse = oneTimeUse;
         }
 
         private string[] getStringOfPlayerItems()
@@ -61,6 +63,8 @@ namespace CastleEscape
         {
             if (player.Items.Count > 0)
                 menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
+            if (oneTimeUse)
+                StateManager.PopState();
         }
 
         public override void Update(GameTime gameTime)

@@ -34,7 +34,8 @@ namespace CastleEscape
         private static string[] choices = { "Attack", "Defense", "Magic Attack", "Speed" };
         //Health and mana will go up each level everytime
 
-        public LevelState(Game game, Player player) : base(game)
+        public LevelState(Game game, Player player)
+            : base(game)
         {
             this.play = player;
             font = game.Content.Load<SpriteFont>("Test-Font");
@@ -43,8 +44,8 @@ namespace CastleEscape
             tMenu = new TextMenu(font, choices);
             transparent = true;
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
-            combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 200)});
-            pointsLeft = 5;
+            combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 200) });
+            pointsLeft = 0;
             increaseStats = true;
         }
 
@@ -64,11 +65,18 @@ namespace CastleEscape
         {
             if (increaseStats)
             {
-                play.MaxHealth += 5;
-                play.Health += 5;
-                play.MaxMana += 5;
-                play.Mana += 5;
-                play.Level++;
+                while (play.Exp > play.ExpToLevel)
+                {
+                    play.MaxHealth += 5;
+                    play.Health += 5;
+                    play.MaxMana += 5;
+                    play.Mana += 5;
+                    play.Level += 1;
+
+                    play.Exp = play.Exp - play.ExpToLevel;
+                    play.ExpToLevel = (int)(play.ExpToLevel + (10 * 1.5));
+                    pointsLeft += 5;
+                }
                 increaseStats = false;
             }
 
@@ -82,9 +90,6 @@ namespace CastleEscape
 
             if (pointsLeft < 0)
             {
-                play.Exp = (play.Exp - play.ExpToLevel);
-                play.ExpToLevel = (int)(play.ExpToLevel * 1.5);
-                
                 StateManager.PopState();
             }
         }
@@ -132,25 +137,18 @@ namespace CastleEscape
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-           
-            
-
             Rectangle recLevel = new Rectangle(145, 15, 370, 400);
             spriteBatch.Draw(combatColor, recLevel, Color.White);
             tMenu.Draw(spriteBatch, 190, 190, Color.White);
-            //-50x,+50y
             spriteBatch.DrawString(font, play.Attack +
                                          "\n" + play.Defense +
                                          "\n" + play.MagicAtk +
-                                          "\n" + play.Speed,
-              new Vector2(385f, 195f), Color.White);
+                                         "\n" + play.Speed,
+                                         new Vector2(385f, 195f), Color.White);
             spriteBatch.DrawString(font, "Level up points left: " + pointsLeft,
                 new Vector2(200f, 315f), Color.White);
-
             spriteBatch.DrawString(fontLevel, "Level: " + play.Level,
-                    new Vector2(255f, 130f), Color.White);
-            
-
+                new Vector2(255f, 130f), Color.White);
             if (pointsLeft == 0)
             {
                 spriteBatch.DrawString(font, "Press Z to exit.",
@@ -162,7 +160,7 @@ namespace CastleEscape
 
 
         }
-        
+
 
 
 
