@@ -79,7 +79,8 @@ namespace CastleEscape
 
         public override void Resume()
         {
-            // resumes everything when returning to the overworld state
+            canPressEscape = false;
+            canPressZ = false;
             
         }
 
@@ -167,17 +168,14 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
-                    if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
-                    {
-                        playerObj.ModX = -24;
-                        playerObj.CurrentSpriteX = 2;
-                    }
                     if (playerObj.XPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
                             timer = 0;
+                            playerObj.ModX = -24;
+                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
@@ -231,18 +229,14 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
-                    if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
-                    {
-                        playerObj.ModX = 24;
-                        playerObj.CurrentSpriteX = 2;
-                    }
                     if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(1, 0);
-
                             timer = 0;
+                            playerObj.ModX = 24;
+                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
@@ -277,7 +271,7 @@ namespace CastleEscape
                     }
                     else if (timer >= 100 && timer < 150)
                     {
-                        playerObj.CurrentSpriteX = 2;
+                        playerObj.CurrentSpriteX = 0;
                         playerObj.ModY = -8;
                     }
                     else if (timer >= 150 && timer < 200)
@@ -293,18 +287,14 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
-                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
-                    {
-                        playerObj.ModY = -24;
-                        playerObj.CurrentSpriteX = 0;
-                    }
                     if (playerObj.YPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                         {
                             playerObj.Move(0, -1);
-
                             timer = 0;
+                            playerObj.ModY = -24;
+                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
@@ -357,18 +347,14 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
-                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
-                    {
-                        playerObj.ModY = 24;
-                        playerObj.CurrentSpriteX = 2;
-                    }
                     if (playerObj.YPos + 1 < mappy.MapHeight)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                         {
                             playerObj.Move(0, 1);
-                            
                             timer = 0;
+                            playerObj.ModY = 24;
+                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
@@ -383,10 +369,8 @@ namespace CastleEscape
 
             if (kbState.IsKeyUp(Keys.Escape))
             {
-
                 canPressEscape = true;
                 return;
-
             }
 
             //Pauses the game
@@ -394,13 +378,9 @@ namespace CastleEscape
             {
 
                 StateManager.PushState(new PauseState(game, playerObj));
-                canPressEscape = false;
                 return;
-
             }
-
         }
-
 
         // This checks to see if a battle will start!
         public bool RandomEncounter(int steps)
@@ -408,9 +388,9 @@ namespace CastleEscape
             // create a random number generator
             Random rng = new Random();
 
-            int rdmNum = rng.Next(1, 21);
+            int rdmNum = rng.Next(1, 51);
 
-            if (rdmNum < (int)(7 * (steps / 6) ^ 2))
+            if (rdmNum < (int)((steps / 6) ^ 2))
             {
                 return true;
             }
