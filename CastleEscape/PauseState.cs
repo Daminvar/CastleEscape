@@ -47,7 +47,7 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
-            StateManager.PushState(new ItemState(game, player));
+            StateManager.PushState(new ItemState(game, player, false));
         }
 
         //Displays stats when pause state is pushed on to screen

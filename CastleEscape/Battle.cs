@@ -36,6 +36,7 @@ namespace CastleEscape
         // can the player run?
         bool canRun;
         TextMenu tMenu;
+        int currentItemCount;
 
         private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-1", "Mind Break MP-2", "Item", "Run" };
 
@@ -57,6 +58,7 @@ namespace CastleEscape
 
             backgroundTexture = bgTex;
             hasRun = false;
+            currentItemCount = play.Items.Count;
             CalculateSpeed();
         }
 
@@ -75,6 +77,11 @@ namespace CastleEscape
                 StateManager.PushState(new MainMenu(game));
             }
 
+            if (currentItemCount != play.Items.Count)
+            {
+                playersTurn = false; // player used an item
+                currentItemCount = play.Items.Count;
+            }
         }
 
         // Sees who attacks first in a battle
@@ -175,8 +182,9 @@ namespace CastleEscape
                     }
                     else if (chosenAttack == "Item")
                     {
-                        playersTurn = false;
-                        StateManager.PushState(new ItemState(game, play));
+                        currentItemCount = play.Items.Count;
+                        tMenu.IsFinished = false;
+                        StateManager.PushState(new ItemState(game, play, true));
                         chosenAttack = null;
                         return;
                     }

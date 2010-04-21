@@ -35,7 +35,7 @@ namespace CastleEscape
             player.Items.Add(new Item("Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80, 10));
             player.Items.Add(new Item("Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80, 10));
 
-            StateManager.PushState(new ItemState(game, player));
+            StateManager.PushState(new ItemState(game, player, false));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
