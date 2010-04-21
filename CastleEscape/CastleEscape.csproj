@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutState.cs" />
     <Compile Include="Battle.cs" />
     <Compile Include="Dialogue.cs" />
     <Compile Include="Enemy.cs" />

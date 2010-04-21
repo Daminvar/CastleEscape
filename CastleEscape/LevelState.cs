@@ -46,8 +46,8 @@ namespace CastleEscape
 
         public override void Pause()
         {
-
         }
+
         public override void Resume()
         {
             if (play.Exp < play.ExpToLevel)

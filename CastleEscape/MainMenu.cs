@@ -85,6 +85,8 @@ namespace CastleEscape
             }
             else if (selectedOption == "About")
             {
+                StateManager.PushState(new AboutState(game));
+                menu.IsFinished = false;
             }
             else if (selectedOption == "Exit")
                 StateManager.PopState();
