@@ -28,6 +28,7 @@ namespace CastleEscape
         private int pointsLeft;
         private string chosenStat;
         private bool increaseStats;
+        private SpriteFont fontLevel;
 
         private static string[] choices = { "Attack", "Defense", "Magic Attack", "Speed" };
         //Health and mana will go up each level everytime
@@ -36,6 +37,7 @@ namespace CastleEscape
         {
             this.play = player;
             font = game.Content.Load<SpriteFont>("Test-Font");
+            fontLevel = game.Content.Load<SpriteFont>("LevelUpFont");
             tMenu = new TextMenu(font, choices);
             transparent = true;
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
@@ -138,24 +140,26 @@ namespace CastleEscape
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle rec = new Rectangle(225, 75, 350, 300);
+            Rectangle rec = new Rectangle(150, 150, 350, 300);
             spriteBatch.Draw(combatColor, rec, Color.White);
-
-            tMenu.Draw(spriteBatch, 275, 100);
-
+            
+            tMenu.Draw(spriteBatch, 200, 170);
+            //-50x,+50y
             spriteBatch.DrawString(font, play.Attack +
                                          "\n" + play.Defense +
                                          "\n" + play.MagicAtk +
                                           "\n" + play.Speed,
-              new Vector2(470f, 100f), Color.Black);
+              new Vector2(395f, 175f), Color.Black);
             spriteBatch.DrawString(font, "Level up points left: " + pointsLeft,
-                new Vector2(290f, 250f), Color.Black);
+                new Vector2(215f, 325f), Color.Black);
 
             if (pointsLeft == 0)
             {
                 spriteBatch.DrawString(font, "Press Z to exit.",
-                    new Vector2(290f, 300f), Color.Black);
+                    new Vector2(245f, 410f), Color.Black);
             }
+            spriteBatch.DrawString(fontLevel, "LEVEL UP!", new Vector2(75f, 10f), Color.WhiteSmoke);
+
 
         }
         
