@@ -30,6 +30,7 @@ namespace CastleEscape
         private Player player;
         private Item[] storeInventory;
         private Texture2D storeTexture;
+        private Texture2D background;
         private SpriteFont spriteFont;
         private TextMenu textInventory;
 
@@ -40,6 +41,7 @@ namespace CastleEscape
             storeInventory = items;
             storeTexture = new Texture2D(game.GraphicsDevice, 1, 1);
             storeTexture.SetData<Color>(new Color[] { new Color(Color.Gray, 255) });
+            background = game.Content.Load<Texture2D>("store-bg");
             spriteFont = game.Content.Load<SpriteFont>("inventory-list-font");
             textInventory = new TextMenu(spriteFont, this.getItemNames(storeInventory));
         }
@@ -93,7 +95,8 @@ namespace CastleEscape
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(storeTexture, new Rectangle(XPOS, YPOS, STORE_WIDTH, STORE_HEIGHT), Color.White);
+            spriteBatch.Draw(background, new Rectangle(0,0,800,520), Color.White);
+            spriteBatch.Draw(storeTexture, new Rectangle(XPOS, YPOS, STORE_WIDTH, STORE_HEIGHT), new Color(Color.Black, 200));
             spriteBatch.DrawString(spriteFont, "Welcome to the store. Press 'Esc' to quit.", new Vector2(XPOS + 10, YPOS + 5), Color.White);
             spriteBatch.DrawString(spriteFont, "Current gold: " + player.Gold, new Vector2(XPOS + 440, YPOS + 5), Color.White);
             for (int i = 0; i < storeInventory.Length; i++)
@@ -101,7 +104,7 @@ namespace CastleEscape
                 textInventory.Draw(spriteBatch, XPOS + 10, YPOS + 30, Color.White);
             }
 
-            spriteBatch.Draw(storeTexture, new Rectangle(XPOS + STORE_WIDTH + 10, YPOS, 200, STORE_HEIGHT), Color.Gray);
+            spriteBatch.Draw(storeTexture, new Rectangle(XPOS + STORE_WIDTH + 10, YPOS, 200, STORE_HEIGHT), new Color(Color.Black, 180));
             spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(XPOS + STORE_WIDTH + 45, YPOS + 5), Color.Wheat);
 
             for(int i = 0; i < player.Items.Count; i++)
