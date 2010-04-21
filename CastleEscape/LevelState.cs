@@ -39,7 +39,7 @@ namespace CastleEscape
             tMenu = new TextMenu(font, choices);
             transparent = true;
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
-            combatColor.SetData<Color>(new Color[] { new Color(Color.WhiteSmoke, 150)});
+            combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150)});
             pointsLeft = 5;
             increaseStats = true;
         }
@@ -132,7 +132,6 @@ namespace CastleEscape
             }
 
             pointsLeft--;
-
         }
 
 
@@ -141,20 +140,20 @@ namespace CastleEscape
             Rectangle rec = new Rectangle(225, 75, 350, 300);
             spriteBatch.Draw(combatColor, rec, Color.White);
 
-            tMenu.Draw(spriteBatch, 275, 100);
+            tMenu.Draw(spriteBatch, 275, 100, Color.White);
 
             spriteBatch.DrawString(font, play.Attack +
                                          "\n" + play.Defense +
                                          "\n" + play.MagicAtk +
                                           "\n" + play.Speed,
-              new Vector2(470f, 100f), Color.Black);
+              new Vector2(470f, 100f), Color.White);
             spriteBatch.DrawString(font, "Level up points left: " + pointsLeft,
-                new Vector2(290f, 250f), Color.Black);
+                new Vector2(290f, 250f), Color.White);
 
             if (pointsLeft == 0)
             {
                 spriteBatch.DrawString(font, "Press Z to exit.",
-                    new Vector2(290f, 300f), Color.Black);
+                    new Vector2(290f, 300f), Color.White);
             }
 
         }

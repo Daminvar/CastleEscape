@@ -93,7 +93,7 @@ namespace CastleEscape
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-            menu.Draw(spriteBatch, DEFAULT_XPOS, DEFAULT_YPOS);
+            menu.Draw(spriteBatch, DEFAULT_XPOS, DEFAULT_YPOS, Color.Black);
         }
     }
 }
