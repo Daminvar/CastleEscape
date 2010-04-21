@@ -168,14 +168,17 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
+                    if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
+                    {
+                        playerObj.ModX = -24;
+                        playerObj.CurrentSpriteX = 2;
+                    }
                     if (playerObj.XPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos - 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(-1, 0);
                             timer = 0;
-                            playerObj.ModX = -24;
-                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
@@ -229,14 +232,17 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
+                    if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
+                    {
+                        playerObj.ModX = 24;
+                        playerObj.CurrentSpriteX = 2;
+                    }
                     if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos + 1, playerObj.YPos) == false)
                         {
                             playerObj.Move(1, 0);
                             timer = 0;
-                            playerObj.ModX = 24;
-                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
@@ -287,14 +293,17 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
+                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
+                    {
+                        playerObj.ModY = -24;
+                        playerObj.CurrentSpriteX = 2;
+                    }
                     if (playerObj.YPos - 1 >= 0)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos - 1) == false)
                         {
                             playerObj.Move(0, -1);
                             timer = 0;
-                            playerObj.ModY = -24;
-                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
@@ -346,14 +355,17 @@ namespace CastleEscape
 
                 if (timer >= 200)
                 {
+                    if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
+                    {
+                        playerObj.ModY = 24;
+                        playerObj.CurrentSpriteX = 2;
+                    }
                     if (playerObj.YPos + 1 < mappy.MapHeight)
                     {
                         if (mappy.IsCollisionAt(playerObj.XPos, playerObj.YPos + 1) == false)
                         {
                             playerObj.Move(0, 1);
                             timer = 0;
-                            playerObj.ModY = 24;
-                            playerObj.CurrentSpriteX = 2;
                         }
                     }
                     else
