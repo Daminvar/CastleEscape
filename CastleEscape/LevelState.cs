@@ -42,7 +42,7 @@ namespace CastleEscape
             transparent = true;
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
             combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150)});
-            pointsLeft = 5;
+            pointsLeft = 0;
             increaseStats = true;
         }
 
@@ -62,11 +62,18 @@ namespace CastleEscape
         {
             if (increaseStats)
             {
-                play.MaxHealth += 5;
-                play.Health += 5;
-                play.MaxMana += 5;
-                play.Mana += 5;
-                play.Level += 1;
+                while (play.Exp > play.ExpToLevel)
+                {
+                    play.MaxHealth += 5;
+                    play.Health += 5;
+                    play.MaxMana += 5;
+                    play.Mana += 5;
+                    play.Level += 1;
+
+                    play.Exp = play.Exp - play.ExpToLevel;
+                    play.ExpToLevel = (int)(play.ExpToLevel + (10 * 1.5));
+                    pointsLeft += 5;
+                }
                 increaseStats = false;
             }
 
@@ -80,9 +87,6 @@ namespace CastleEscape
 
             if (pointsLeft < 0)
             {
-                play.Exp = (play.Exp - play.ExpToLevel);
-                play.ExpToLevel = (int)(play.ExpToLevel + (10 * 1.5));
-                
                 StateManager.PopState();
             }
         }
@@ -136,11 +140,6 @@ namespace CastleEscape
             
             tMenu.Draw(spriteBatch, 200, 170, Color.White);
             //-50x,+50y
-
-
-           
-
-
             spriteBatch.DrawString(font, play.Attack +
                                          "\n" + play.Defense +
                                          "\n" + play.MagicAtk +
@@ -149,7 +148,6 @@ namespace CastleEscape
               new Vector2(395f, 175f), Color.White);
             spriteBatch.DrawString(font, "Level up points left: " + pointsLeft,
                 new Vector2(215f, 325f), Color.White);
-
 
             if (pointsLeft == 0)
             {
