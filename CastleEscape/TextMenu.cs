@@ -52,7 +52,7 @@ namespace CastleEscape
             this.options = options;
             this.font = font;
             defaultSpacing = font.Spacing;
-            canMove = true;
+            canMove = false;
             isFinished = false;
             canPressZ = false;
         }
