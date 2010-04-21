@@ -85,6 +85,8 @@ namespace CastleEscape
             }
             else if (selectedOption == "About")
             {
+                StateManager.PushState(new AboutState(game));
+                menu.IsFinished = false;
             }
             else if (selectedOption == "Exit")
                 StateManager.PopState();
@@ -93,7 +95,7 @@ namespace CastleEscape
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-            menu.Draw(spriteBatch, DEFAULT_XPOS, DEFAULT_YPOS);
+            menu.Draw(spriteBatch, DEFAULT_XPOS, DEFAULT_YPOS, Color.Black);
         }
     }
 }

@@ -148,10 +148,24 @@ namespace CastleEscape
             {
                 if (health <= 0)
                     return 0;
+
                 else
                     return health;
             }
-            set { health = value; }
+
+            set
+            {
+
+                if (value >= maxHealth)
+                    health = maxHealth;
+
+                else if (value == 0)
+                    health = 0;
+
+                else
+                    health = value;
+
+            }
         }
 
         public int MaxMana
@@ -169,7 +183,14 @@ namespace CastleEscape
                 else
                     return mana;
             }
-            set { mana = value; }
+            set {
+                if (mana >= maxMana)
+                    mana = maxMana;
+                else if (value == 0)
+                    mana = 0;
+                else
+                    mana = value; 
+            }
         }
 
         public int Gold

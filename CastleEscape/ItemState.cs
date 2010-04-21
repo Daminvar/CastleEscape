@@ -94,9 +94,9 @@ namespace CastleEscape
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, new Rectangle(XPOS, YPOS, WIDTH, HEIGHT), Color.White);
-            spriteBatch.DrawString(font, "Inventory          Press 'Esc' to quit.", new Vector2(XPOS + 5, YPOS + 5), Color.White);
+            spriteBatch.DrawString(font, "Inventory - Press 'Esc' to quit.", new Vector2(XPOS + 5, YPOS + 5), Color.White);
             if (player.Items.Count > 0)
-                menu.Draw(spriteBatch, XPOS + 5, YPOS + 30);
+                menu.Draw(spriteBatch, XPOS + 5, YPOS + 30, Color.White);
             else
                 spriteBatch.DrawString(font, "You don't have any items!", new Vector2(XPOS + 5, YPOS + 50), Color.White);
         }

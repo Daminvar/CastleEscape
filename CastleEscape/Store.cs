@@ -98,7 +98,7 @@ namespace CastleEscape
             spriteBatch.DrawString(spriteFont, "Current gold: " + player.Gold, new Vector2(XPOS + 440, YPOS + 5), Color.White);
             for (int i = 0; i < storeInventory.Length; i++)
             {
-                textInventory.Draw(spriteBatch, XPOS + 10, YPOS + 30);
+                textInventory.Draw(spriteBatch, XPOS + 10, YPOS + 30, Color.White);
             }
 
             spriteBatch.Draw(storeTexture, new Rectangle(XPOS + STORE_WIDTH + 10, YPOS, 200, STORE_HEIGHT), Color.Gray);
