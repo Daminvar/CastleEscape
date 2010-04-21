@@ -141,8 +141,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LevelUpFont.spritefont">
-      <Name>LevelUpFont</Name>
+    <Compile Include="level-up-font.spritefont">
+      <Name>level-up-font</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

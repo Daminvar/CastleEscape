@@ -52,7 +52,7 @@ namespace CastleEscape
             this.options = options;
             this.font = font;
             defaultSpacing = font.Spacing;
-            canMove = true;
+            canMove = false;
             isFinished = false;
             canPressZ = false;
         }
@@ -97,7 +97,7 @@ namespace CastleEscape
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, int x, int y)
+        public void Draw(SpriteBatch spriteBatch, int x, int y, Color textColor)
         {
             for (int i = 0; i < options.Length; i++)
             {
@@ -109,7 +109,7 @@ namespace CastleEscape
                 }
                 else
                     font.Spacing = defaultSpacing;
-                spriteBatch.DrawString(font, options[i], pos, Color.Black);
+                spriteBatch.DrawString(font, options[i], pos, textColor);
             }
             font.Spacing = defaultSpacing;
         }

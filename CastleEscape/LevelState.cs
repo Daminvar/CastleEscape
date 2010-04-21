@@ -37,22 +37,22 @@ namespace CastleEscape
         {
             this.play = player;
             font = game.Content.Load<SpriteFont>("Test-Font");
-            fontLevel = game.Content.Load<SpriteFont>("LevelUpFont");
+            fontLevel = game.Content.Load<SpriteFont>("level-up-font");
             tMenu = new TextMenu(font, choices);
             transparent = true;
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
-            combatColor.SetData<Color>(new Color[] { new Color(Color.WhiteSmoke, 150)});
+            combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150)});
             pointsLeft = 5;
             increaseStats = true;
         }
 
         public override void Pause()
         {
-
         }
+
         public override void Resume()
         {
-            if (!(play.Exp >= play.ExpToLevel))
+            if (play.Exp < play.ExpToLevel)
             {
                 StateManager.PopState();
             }
@@ -75,10 +75,6 @@ namespace CastleEscape
             {
                 handleInput(gameTime);
                 statIncrease(chosenStat);
-
-                StateManager.PushState(new Dialogue(game, "You increased " 
-                                             +chosenStat + " by 1 point!"));
-
                 tMenu.IsFinished = false;
             }
 
@@ -111,10 +107,6 @@ namespace CastleEscape
 
             else if (selectedStat == "Speed")
                 chosenStat = "Speed";
-
-
-            
-
         }
         private void statIncrease(string stat)
         {
@@ -134,29 +126,37 @@ namespace CastleEscape
             }
 
             pointsLeft--;
-
         }
-
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle rec = new Rectangle(150, 150, 350, 300);
             spriteBatch.Draw(combatColor, rec, Color.White);
+
             
-            tMenu.Draw(spriteBatch, 200, 170);
+            tMenu.Draw(spriteBatch, 200, 170, Color.White);
             //-50x,+50y
+
+
+           
+
+
             spriteBatch.DrawString(font, play.Attack +
                                          "\n" + play.Defense +
                                          "\n" + play.MagicAtk +
                                           "\n" + play.Speed,
-              new Vector2(395f, 175f), Color.Black);
+
+              new Vector2(395f, 175f), Color.White);
             spriteBatch.DrawString(font, "Level up points left: " + pointsLeft,
-                new Vector2(215f, 325f), Color.Black);
+                new Vector2(215f, 325f), Color.White);
+
 
             if (pointsLeft == 0)
             {
                 spriteBatch.DrawString(font, "Press Z to exit.",
-                    new Vector2(245f, 410f), Color.Black);
+
+                    new Vector2(245f, 410f), Color.White);
+
             }
             spriteBatch.DrawString(fontLevel, "LEVEL UP!", new Vector2(75f, 10f), Color.WhiteSmoke);
 
