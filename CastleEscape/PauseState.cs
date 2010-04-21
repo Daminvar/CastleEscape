@@ -40,7 +40,7 @@ namespace CastleEscape
         {
             transparent = true;
             height = game.GraphicsDevice.Viewport.Height;
-            font = game.Content.Load<SpriteFont>("test-font");
+            font = game.Content.Load<SpriteFont>("hud-font");
             this.player = player;
 
         }
@@ -53,9 +53,9 @@ namespace CastleEscape
         //Displays stats when pause state is pushed on to screen
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "Attack:   " + player.Attack +
+            spriteBatch.DrawString(font, "Attack: " + player.Attack +
                                         "\nDefense: " + player.Defense +
-                                        "\nSpeed:   " + player.Speed +
+                                        "\nSpeed: " + player.Speed +
                                         "\nMagic Atk: " + player.MagicAtk +
                                         "\nExp: " + player.Exp + " / " + player.ExpToLevel,
                                         new Vector2(647.0f, (float)((height * 20 / 100) + 30)), Color.WhiteSmoke);
