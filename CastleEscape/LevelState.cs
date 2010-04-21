@@ -109,10 +109,6 @@ namespace CastleEscape
 
             else if (selectedStat == "Speed")
                 chosenStat = "Speed";
-
-
-            
-
         }
         private void statIncrease(string stat)
         {
@@ -133,7 +129,6 @@ namespace CastleEscape
 
             pointsLeft--;
         }
-
 
         public override void Draw(SpriteBatch spriteBatch)
         {
