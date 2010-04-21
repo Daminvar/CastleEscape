@@ -50,7 +50,7 @@ namespace CastleEscape
         }
         public override void Resume()
         {
-            if (!(play.Exp >= play.ExpToLevel))
+            if (play.Exp < play.ExpToLevel)
             {
                 StateManager.PopState();
             }
@@ -73,10 +73,6 @@ namespace CastleEscape
             {
                 handleInput(gameTime);
                 statIncrease(chosenStat);
-
-                StateManager.PushState(new Dialogue(game, "You increased " 
-                                             +chosenStat + " by 1 point!"));
-
                 tMenu.IsFinished = false;
             }
 
