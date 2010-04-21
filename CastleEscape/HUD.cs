@@ -30,7 +30,7 @@ namespace CastleEscape
         Player player;
         ScriptableMap map;
         int screenSize;
-
+        
         public HUD(Game game, Player player, ScriptableMap map)
         {
             font = game.Content.Load<SpriteFont>("hud-font");
