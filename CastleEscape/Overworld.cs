@@ -131,7 +131,7 @@ namespace CastleEscape
             {
                 playerObj.Direction = Player.Directions.West;
 
-                if (timer < 150)
+                if (timer <= 150)
                 {
                     movingLeft = true;
                 }
@@ -172,6 +172,7 @@ namespace CastleEscape
                     {
                         playerObj.ModX = -24;
                         playerObj.CurrentSpriteX = 2;
+                        movingLeft = true;
                     }
                     if (playerObj.XPos - 1 >= 0)
                     {
@@ -194,7 +195,7 @@ namespace CastleEscape
             {
                 playerObj.Direction = Player.Directions.East;
 
-                if (timer < 150)
+                if (timer <= 150)
                 {
                     movingRight = true;
                 }
@@ -236,6 +237,7 @@ namespace CastleEscape
                     {
                         playerObj.ModX = 24;
                         playerObj.CurrentSpriteX = 2;
+                        movingRight = true;
                     }
                     if (playerObj.XPos + 1 < mappy.MapWidth)
                     {
@@ -258,7 +260,7 @@ namespace CastleEscape
                 movingLeft = false;
                 movingDown = false;
                 movingRight = false;
-                if (timer < 150)
+                if (timer <= 150)
                 {
                     movingUp = true;
                 }
@@ -297,6 +299,7 @@ namespace CastleEscape
                     {
                         playerObj.ModY = -24;
                         playerObj.CurrentSpriteX = 2;
+                        movingUp = true;
                     }
                     if (playerObj.YPos - 1 >= 0)
                     {
@@ -316,7 +319,7 @@ namespace CastleEscape
             }
             else if ((kbState.IsKeyDown(Keys.Down) || movingDown) && !movingLeft && !movingRight && !movingUp)
             {
-                if (timer < 150)
+                if (timer <= 150)
                 {
                     movingDown = true;
                 }
@@ -359,6 +362,7 @@ namespace CastleEscape
                     {
                         playerObj.ModY = 24;
                         playerObj.CurrentSpriteX = 2;
+                        movingDown = true;
                     }
                     if (playerObj.YPos + 1 < mappy.MapHeight)
                     {
