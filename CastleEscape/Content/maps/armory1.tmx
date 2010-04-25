@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="../tileset.png"/>
+ </tileset>
+ <layer name="base" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgYGCQ4aAeZhg1b9S8UfNGzaOReQB1mqLbsAQAAA==
+  </data>
+ </layer>
+ <layer name="base" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC1NhZmBIYmVgSEHCSVCcDMR3mRhwgkQktSCswgzBq4DsNUh4FRSvBmJVZtzmrURSuwrJvE9A9hck/AmKPwNxLh7zPiKp/YRkHrXAqHmj5o2aR1/zAFij/IKwBAAA
+  </data>
+ </layer>
+ <layer name="base" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgwA662HBIYAFTWYAEkvpMdgaGLCDOBuIcIM4F4kskmHcXaJ4HkvqNQP2bgHgzEG8B4q1ALAXE+wmYsx+KVVkZGCYgmfcTqPcXEP8G4j9A/JcdIs7OiN88kDw2NY4cDAxOQOwMxC5A7MpBhCcHGKgzY2JKzCFVjhJAyFwtZgQm1VxSADH2kON/QuaSG6bUdudAAAD2iOC6sAQAAA==
+  </data>
+ </layer>
+ <layer name="top" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDAdxnwsSUmEOqHCWAkLmPmBCYVHNJAcTYQ47/CZlLbphS253DAQAA6r24+7AEAAA=
+  </data>
+ </layer>
+ <objectgroup name="collision" width="20" height="15">
+  <object name="" x="0" y="0" width="256" height="96"/>
+  <object name="" x="0" y="96" width="32" height="384"/>
+  <object name="" x="480" y="0" width="160" height="96"/>
+  <object name="" x="608" y="96" width="32" height="384"/>
+  <object name="" x="128" y="224" width="64" height="32"/>
+  <object name="" x="192" y="192" width="160" height="32"/>
+  <object name="" x="352" y="224" width="64" height="32"/>
+  <object name="" x="416" y="256" width="64" height="32"/>
+  <object name="" x="480" y="288" width="32" height="32"/>
+  <object name="" x="512" y="320" width="32" height="32"/>
+  <object name="" x="544" y="352" width="32" height="32"/>
+  <object name="" x="576" y="384" width="32" height="32"/>
+  <object name="" x="224" y="320" width="96" height="32"/>
+  <object name="" x="288" y="352" width="96" height="32"/>
+  <object name="" x="352" y="384" width="32" height="32"/>
+  <object name="" x="32" y="288" width="96" height="32"/>
+ </objectgroup>
+</map>
