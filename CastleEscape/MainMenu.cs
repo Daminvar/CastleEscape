@@ -54,6 +54,7 @@ namespace CastleEscape
 
         public override void Resume()
         {
+            menu.IsFinished = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -77,6 +78,12 @@ namespace CastleEscape
             {
                 object[] saveFile = GameData.Load();
 
+                if (saveFile == null)
+                {
+                    StateManager.PushState(new Dialogue(game, "Save file could not be loaded."));
+                    return;
+                }
+
                 var player = (Player)saveFile[0];
                 player.LoadTexture(game);
                 Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
@@ -87,7 +94,6 @@ namespace CastleEscape
             else if (selectedOption == "About")
             {
                 StateManager.PushState(new AboutState(game));
-                menu.IsFinished = false;
             }
             else if (selectedOption == "Exit")
                 StateManager.PopState();

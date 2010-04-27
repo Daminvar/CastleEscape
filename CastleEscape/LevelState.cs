@@ -131,7 +131,6 @@ namespace CastleEscape
                 else if (stat == "Speed")
                     play.Speed++;
             }
-
             pointsLeft--;
         }
 
@@ -152,17 +151,9 @@ namespace CastleEscape
             if (pointsLeft == 0)
             {
                 spriteBatch.DrawString(font, "Press Z to exit.",
-
                     new Vector2(235f, 360f), Color.White);
-
             }
             spriteBatch.DrawString(fontLevelUp, "LEVEL UP!", new Vector2(165f, 20f), Color.WhiteSmoke);
-
-
         }
-
-
-
-
     }
 }
