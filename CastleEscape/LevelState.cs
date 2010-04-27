@@ -38,7 +38,7 @@ namespace CastleEscape
             : base(game)
         {
             this.play = player;
-            font = game.Content.Load<SpriteFont>("Test-Font");
+            font = game.Content.Load<SpriteFont>("level-up-menu-font");
             fontLevelUp = game.Content.Load<SpriteFont>("level-up-font");
             fontLevel = game.Content.Load<SpriteFont>("level-font");
             tMenu = new TextMenu(font, choices);

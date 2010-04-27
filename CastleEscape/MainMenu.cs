@@ -67,6 +67,7 @@ namespace CastleEscape
 
             if (selectedOption == "New Game")
             {
+                Flags.SetAllFlags(new Dictionary<string, bool>());
                 var player = new Player(game, 2, 2);
                 var map = new DrawableMap(game);
                 map.LoadMap("testmap.js");
