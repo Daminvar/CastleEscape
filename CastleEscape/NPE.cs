@@ -44,8 +44,9 @@ namespace CastleEscape
 
         public void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y)
         {
-            spriteBatch.Draw(texture,
-                new Vector2(x + xPos * map.TileSize, y + yPos * map.TileSize), Color.White);
+            if (texture != null)
+                spriteBatch.Draw(texture,
+                    new Vector2(x + xPos * map.TileSize, y + yPos * map.TileSize), Color.White);
         }
 
         public void SetPosition(int x, int y)
