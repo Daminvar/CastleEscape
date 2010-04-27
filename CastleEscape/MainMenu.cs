@@ -41,7 +41,8 @@ namespace CastleEscape
         private Texture2D background;
         private TextMenu menu;
 
-        public MainMenu(Game game) : base(game)
+        public MainMenu(Game game)
+            : base(game)
         {
             font = game.Content.Load<SpriteFont>("main-menu-font");
             background = game.Content.Load<Texture2D>("main-menu-background");

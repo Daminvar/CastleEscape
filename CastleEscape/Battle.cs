@@ -190,13 +190,13 @@ namespace CastleEscape
                     }
                     chosenAttack = null;
                 }
-                
+
                 //If you slay enemy monster
                 if (en.IsDead())
                 {
                     status += "||||You have slain " + en.Name + " You gain " + en.Exp + " Exp";
                     play.Exp += en.Exp;
-                    
+
                 }
 
                 tMenu.IsFinished = false;

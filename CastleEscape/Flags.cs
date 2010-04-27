@@ -12,7 +12,7 @@ namespace CastleEscape
     /// </summary>
     class Flags
     {
-        private static Dictionary<string, bool> flags = new Dictionary<string,bool>();
+        private static Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
         public static bool GetFlag(string flagName)
         {
