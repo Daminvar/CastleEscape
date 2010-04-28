@@ -307,7 +307,7 @@
    <tile gid="1308"/>
   </data>
  </layer>
- <layer name="bottom" width="20" height="15">
+ <layer name="base" width="20" height="15">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -916,12 +916,12 @@
   </data>
  </layer>
  <objectgroup name="collision" width="20" height="15">
-  <object name="" x="0" y="160" width="544"/>
   <object name="" x="0" y="0" width="544" height="64"/>
-  <object name="" x="544" y="64" height="96"/>
   <object name="" x="480" y="224" width="96" height="32"/>
   <object name="" x="512" y="384" width="32" height="32"/>
   <object name="" x="544" y="384" width="32" height="32"/>
   <object name="" x="448" y="416" width="32" height="32"/>
+  <object name="" x="3" y="130" width="544" height="32"/>
+  <object name="" x="512" y="64" width="32" height="64"/>
  </objectgroup>
 </map>
