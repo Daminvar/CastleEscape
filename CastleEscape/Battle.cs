@@ -17,7 +17,6 @@ namespace CastleEscape
     /// <summary>
     /// Takes care of battle screen and the battle procedures
     /// 
-    /// 
     /// Authors:
     ///         Allyson Sadwin
     ///         Matt Munns
