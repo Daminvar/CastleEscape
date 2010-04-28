@@ -4,7 +4,7 @@ mapfile("HallWay1.tmx")
 battleTexture("test-battle-background")
 
 north("todo")
-west("testmap2.js")
+west("dungeon_4.js")
 east("Hallway2.js")
 
 
