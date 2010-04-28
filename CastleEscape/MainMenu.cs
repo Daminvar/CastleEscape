@@ -70,9 +70,9 @@ namespace CastleEscape
             if (selectedOption == "New Game")
             {
                 Flags.SetAllFlags(new Dictionary<string, bool>());
-                var player = new Player(game, 2, 2);
+                var player = new Player(game, 3, 11);
                 var map = new DrawableMap(game);
-                map.LoadMap("testmap.js");
+                map.LoadMap("dungeon_1.js");
                 StateManager.PushState(new Overworld(game, player, map));
             }
             else if (selectedOption == "Load Game")
