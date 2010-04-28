@@ -30,7 +30,7 @@ namespace CastleEscape
 
         protected Game game;
         protected TMXMap tmxMap;
-        protected List<NPE> NPEs;
+        protected CustomStructs.DennisArray<NPE> NPEs;
 
         private string scriptFilename;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
@@ -137,10 +137,10 @@ namespace CastleEscape
         /// <returns>The NPE, or null if there isn't one at that position.</returns>
         public NPE GetNPEAt(int x, int y)
         {
-            foreach (var entity in NPEs)
+            for (int i = 0; i < NPEs.Count; i++)
             {
-                if (x == entity.XPos && y == entity.YPos)
-                    return entity;
+                if (x == NPEs[i].XPos && y == NPEs[i].YPos)
+                    return NPEs[i];
             }
             return null;
         }
@@ -162,9 +162,9 @@ namespace CastleEscape
         {
             if (tmxMap.IsCollisionAt(x, y))
                 return true;
-            foreach (var entity in NPEs)
+            for (int i = 0; i < NPEs.Count; i++)
             {
-                if (x == entity.XPos && y == entity.YPos)
+                if (x == NPEs[i].XPos && y == NPEs[i].YPos)
                     return true;
             }
             return false;
@@ -183,7 +183,7 @@ namespace CastleEscape
             scriptFilename = filename;
 
             //Empty NPE and random encounter lists
-            NPEs = new List<NPE>();
+            NPEs = new CustomStructs.DennisArray<NPE>();
             randomEncounters = new List<Enemy>();
 
             var engine = new Jint.JintEngine();

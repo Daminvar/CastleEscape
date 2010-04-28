@@ -14,6 +14,7 @@
     <XnaCrossPlatformGroupID>071f70b3-8d5d-48fb-ac57-7705022f7732</XnaCrossPlatformGroupID>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,9 +27,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>CastleEscape.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,6 +91,8 @@
   <ItemGroup>
     <Compile Include="AboutState.cs" />
     <Compile Include="Battle.cs" />
+    <Compile Include="CustomStructs\DennisArray.cs" />
+    <Compile Include="CustomStructs\StructTests.cs" />
     <Compile Include="Dialogue.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="DrawableMap.cs" />

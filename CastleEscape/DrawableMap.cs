@@ -76,9 +76,9 @@ namespace CastleEscape
 
         private void drawNPEs(SpriteBatch spriteBatch, int xPos, int yPos)
         {
-            foreach (var entity in NPEs)
+            for (int i = 0; i < NPEs.Count; i++)
             {
-                entity.DrawForOverworld(spriteBatch, this, xPos, yPos);
+                NPEs[i].DrawForOverworld(spriteBatch, this, xPos, yPos);
             }
         }
     }
