@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="indoor" tilewidth="32" tileheight="32">
   <image source="../tileset.png"/>
  </tileset>
- <layer name="bottom" width="20" height="15">
+ <layer name="base" width="20" height="15">
   <data>
    <tile gid="508"/>
    <tile gid="509"/>
@@ -307,7 +307,7 @@
    <tile gid="1237"/>
   </data>
  </layer>
- <layer name="bottom" width="20" height="15">
+ <layer name="base" width="20" height="15">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -449,12 +449,12 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="1936"/>
+   <tile gid="1936"/>
+   <tile gid="1936"/>
+   <tile gid="1936"/>
+   <tile gid="1936"/>
+   <tile gid="1936"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -753,12 +753,12 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1220,12 +1220,8 @@
   </data>
  </layer>
  <objectgroup name="collision" width="20" height="15">
-  <object name="" x="96" y="64" width="32" height="32"/>
   <object name="" x="0" y="0" width="640" height="64"/>
-  <object name="" x="160" y="128" width="128" height="32"/>
-  <object name="" x="320" y="128" width="224" height="32"/>
-  <object name="" x="576" y="128" width="64" height="32"/>
-  <object name="" x="0" y="256" width="192"/>
+  <object name="" x="160" y="128" width="480" height="32"/>
   <object name="" x="160" y="160" width="32" height="96"/>
   <object name="" x="160" y="288" width="32" height="192"/>
   <object name="" x="64" y="288" width="64" height="32"/>
@@ -1233,10 +1229,10 @@
   <object name="" x="0" y="448" width="32" height="32"/>
   <object name="" x="32" y="128" width="32" height="32"/>
   <object name="" x="32" y="64" width="32" height="32"/>
-  <object name="" x="224" y="96" width="32" height="32"/>
   <object name="" x="256" y="64" width="32" height="32"/>
   <object name="" x="480" y="64" width="64" height="32"/>
   <object name="" x="512" y="96" width="32" height="32"/>
   <object name="" x="576" y="64" width="32" height="32"/>
+  <object name="" x="0" y="224" width="192" height="32"/>
  </objectgroup>
 </map>
