@@ -40,7 +40,7 @@ namespace CastleEscape
         private Texture2D battleTexture;
         private List<Enemy> randomEncounters;
         private Random rand;
-
+        
         /// <summary>
         /// The width of the map in tiles.
         /// </summary>

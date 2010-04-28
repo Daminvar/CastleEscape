@@ -23,6 +23,17 @@ namespace CastleEscape.CustomStructs
                 array.Remove(0);
             Console.WriteLine(array.Count);
             Console.WriteLine(array);
+
+            //Test matt's dictionary
+            MattDataStruct<string, int> hash = new MattDataStruct<string, int>();
+            hash.add("anything", 5);
+            hash.add("something", 10);
+            hash.add("food", 10);
+            Console.WriteLine( hash["anything"]);
+            Console.WriteLine(hash["something"]);
+            Console.WriteLine(hash["food"]);
+
+
         }
     }
 }
