@@ -22,7 +22,7 @@ guard.SetInteractFunc(function(player) { //Sets the interact function for the sp
 		if(getFlag("talked-to-demon"))
 		{
 			dialogue("I said, stay in there! Don't make me force you!")
-			var enemy = newEnemy("test-npe", "Disgruntled Guard", 100, 5, 1, 1, 20, null)
+			var enemy = newEnemy("test-npe", "Disgruntled Guard", 100, 5, 1, 1, 25, null)
 			battle(player, enemy)
 			setFlag("battled-guard")
 			reloadMap()

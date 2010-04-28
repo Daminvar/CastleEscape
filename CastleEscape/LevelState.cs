@@ -43,10 +43,10 @@ namespace CastleEscape
             fontLevel = game.Content.Load<SpriteFont>("level-font");
             tMenu = new TextMenu(font, choices);
             transparent = true;
+            increaseStats = true;
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
             combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 200) });
             pointsLeft = 0;
-            increaseStats = true;
         }
 
         public override void Pause()
@@ -65,7 +65,7 @@ namespace CastleEscape
         {
             if (increaseStats)
             {
-                while (play.Exp > play.ExpToLevel)
+                while (play.Exp >= play.ExpToLevel)
                 {
                     play.MaxHealth += 5;
                     play.Health += 5;

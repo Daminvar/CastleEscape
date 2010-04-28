@@ -11,7 +11,7 @@ guard.SetTexture("test-npe") // Sets the overworld texture for the NPE
 //var demon = newNPE()
 //demon.SetTexture("ghostie")
 
-guard.SetPosition(18,12)
+guard.SetPosition(19,7)
 
 //if (getFlag("has-hat")) { //getFlag(<string>) returns true if the key is set, false otherwise
 //	bob.SetPosition(21,16)
@@ -19,35 +19,18 @@ guard.SetPosition(18,12)
 //	bob.SetPosition(6, 9)
 //}
 
-drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for the specified NPE
+guard.SetInteractFunc(function(player) { //Sets the interact function for the specified NPE
 	if (getFlag("has-hat")) {
 		dialogue("Oh, you must be the plumber!|What are you doing in the dungeon? Please, go on through!|You're needed in the kitchens.") // Pushes on a dialogue state with the selected text
 		guard.SetPosition(17,11)
 	} else {
 		dialogue("Why are you out of your cell? Out, you!")
-		player.SetPosition(3, 7)
-		lockedDoor.SetPosition(4, 9)
-		reloadMap() // Reloads the map
 	}
 })
 
 // Adds an NPE to the room. It's important that you call this function.
 //Otherwise, the NPE won't appear in the room.
-addNPE(drunkenGuard)
-
-//if(getFlag("talked-to-guard")) {
-//	addNPE(ghostie)
-//}
-
-var lockedDoor = newNPE()
-lockedDoor.SetTexture("orb-of-saving")
-
-lockedDoor.SetInteractFunc(function(player) {
-	dialogue("You pick the lock. The door opens.")
-	lockedDoor.SetPosition(22,16)
-})
-
-addNPE(lockedDoor)
+addNPE(guard)
 
 //var wormStore = newNPE()
 //wormStore.SetTexture("snake")

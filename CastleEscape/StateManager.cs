@@ -22,6 +22,7 @@ namespace CastleEscape
     class StateManager
     {
         private static List<State> states;
+        private static bool running;
 
 
         /// <summary>
@@ -32,12 +33,19 @@ namespace CastleEscape
             get { return states.Count; }
         }
 
+        public static bool Running
+        {
+            get { return running; }
+            set { running = value; }
+        }
+
         /// <summary>
         /// Initialize the state manager
         /// </summary>
         public static void Initialize()
         {
             states = new List<State>();
+            running = true;
         }
 
         /// <summary>
@@ -45,6 +53,9 @@ namespace CastleEscape
         /// </summary>
         public static void Update(GameTime gameTime)
         {
+            if (!running)
+                return;
+
             if (states.Count != 0)
                 states[states.Count - 1].Update(gameTime);
         }
@@ -55,6 +66,9 @@ namespace CastleEscape
         /// <param name="spriteBatch">The SpriteBatch object to use for drawing.</param>
         public static void Draw(SpriteBatch spriteBatch)
         {
+            if (!running)
+                return;
+
             if (states.Count == 0)
                 return;
 

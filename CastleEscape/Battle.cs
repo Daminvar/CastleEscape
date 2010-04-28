@@ -17,7 +17,6 @@ namespace CastleEscape
     /// <summary>
     /// Takes care of battle screen and the battle procedures
     /// 
-    /// 
     /// Authors:
     ///         Allyson Sadwin
     ///         Matt Munns
@@ -53,7 +52,7 @@ namespace CastleEscape
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
             combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150) });
             transparent = true;
-
+            
             canRun = run;
 
             backgroundTexture = bgTex;

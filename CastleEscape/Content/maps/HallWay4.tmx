@@ -860,15 +860,15 @@
    <tile gid="1442"/>
    <tile gid="1442"/>
    <tile gid="1442"/>
-   <tile gid="1442"/>
-   <tile gid="1736"/>
+   <tile gid="1733"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="1734"/>
-   <tile gid="1442"/>
-   <tile gid="1442"/>
-   <tile gid="1442"/>
-   <tile gid="1442"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="1805"/>
    <tile gid="1442"/>
    <tile gid="1442"/>
    <tile gid="1442"/>
@@ -880,20 +880,19 @@
    <tile gid="1514"/>
    <tile gid="1514"/>
    <tile gid="1514"/>
-   <tile gid="1514"/>
    <tile gid="1515"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="1513"/>
    <tile gid="1514"/>
    <tile gid="1514"/>
    <tile gid="1514"/>
-   <tile gid="1514"/>
-   <tile gid="1514"/>
-   <tile gid="1514"/>
-   <tile gid="1514"/>
    <tile gid="1515"/>
-   <tile gid="1586"/>
    <tile gid="1586"/>
    <tile gid="1586"/>
    <tile gid="1586"/>
@@ -904,11 +903,12 @@
    <tile gid="1587"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="1585"/>
-   <tile gid="1586"/>
-   <tile gid="1586"/>
-   <tile gid="1586"/>
-   <tile gid="1586"/>
    <tile gid="1586"/>
    <tile gid="1586"/>
    <tile gid="1586"/>
@@ -1222,8 +1222,8 @@
  <objectgroup name="collision" width="20" height="15">
   <object name="" x="2" y="3" width="629" height="117"/>
   <object name="" x="614" y="126" width="21" height="254"/>
-  <object name="" x="1" y="391" width="276" height="85"/>
-  <object name="" x="356" y="389" width="277" height="84"/>
+  <object name="" x="1" y="391" width="243" height="87"/>
+  <object name="" x="487" y="389" width="142" height="85"/>
   <object name="" x="579" y="198" width="26" height="51"/>
  </objectgroup>
  <layer name="base" width="20" height="15">

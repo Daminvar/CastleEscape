@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="../tileset.png"/>
  </tileset>
- <layer name="bottom" width="20" height="15">
+ <layer name="base" width="20" height="15">
   <data>
    <tile gid="509"/>
    <tile gid="509"/>
@@ -389,23 +389,23 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="1935"/>
+   <tile gid="1933"/>
+   <tile gid="1935"/>
+   <tile gid="1936"/>
+   <tile gid="1936"/>
+   <tile gid="1935"/>
+   <tile gid="1936"/>
+   <tile gid="1933"/>
+   <tile gid="1934"/>
+   <tile gid="1935"/>
+   <tile gid="1936"/>
+   <tile gid="1933"/>
+   <tile gid="1933"/>
+   <tile gid="1936"/>
+   <tile gid="1933"/>
+   <tile gid="1936"/>
+   <tile gid="1936"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -566,7 +566,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="807"/>
-   <tile gid="0"/>
+   <tile gid="879"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -693,23 +693,23 @@
    <tile gid="1624"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1933"/>
-   <tile gid="1934"/>
-   <tile gid="1935"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
-   <tile gid="1936"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="1696"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -870,7 +870,7 @@
    <tile gid="880"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="879"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -921,7 +921,7 @@
   <object name="" x="512" y="384" width="32" height="32"/>
   <object name="" x="544" y="384" width="32" height="32"/>
   <object name="" x="448" y="416" width="32" height="32"/>
-  <object name="" x="3" y="130" width="544" height="32"/>
+  <object name="" x="3" y="130" width="538" height="21"/>
   <object name="" x="512" y="64" width="32" height="64"/>
  </objectgroup>
 </map>

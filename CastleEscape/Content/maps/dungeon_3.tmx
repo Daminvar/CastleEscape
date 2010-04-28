@@ -411,10 +411,10 @@
    <tile gid="0"/>
    <tile gid="322"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="593"/>
+   <tile gid="593"/>
+   <tile gid="593"/>
+   <tile gid="451"/>
    <tile gid="452"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -715,10 +715,10 @@
    <tile gid="326"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="593"/>
-   <tile gid="593"/>
-   <tile gid="593"/>
-   <tile gid="451"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -915,7 +915,7 @@
    <tile gid="326"/>
   </data>
  </layer>
- <objectgroup name="collision" width="20" height="15">
+ <objectgroup name="collision" width="20" height="15" visible="0">
   <object name="" x="0" y="0" width="640" height="64"/>
   <object name="" x="0" y="352" width="544" height="128"/>
   <object name="" x="352" y="128" width="64" height="64"/>

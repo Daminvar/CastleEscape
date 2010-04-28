@@ -5,7 +5,7 @@ battleTexture("test-battle-background")
 
 
 west("HallWay3.js")
-south("todo")
+south("armory1.js")
 
 
 var hallway4civ1 = newNPE()

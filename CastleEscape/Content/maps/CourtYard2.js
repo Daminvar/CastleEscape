@@ -5,7 +5,7 @@ battleTexture("test-battle-background")
 
 
 west("CourtYard1.js")
-north("todo")
+//north("todo")
 
 
 var courtyard2Civ1= newNPE()
