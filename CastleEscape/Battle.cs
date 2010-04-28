@@ -259,7 +259,7 @@ namespace CastleEscape
             spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), Color.White);
 
             //Player,enemy draw
-            play.DrawForBattle(spriteBatch, 380, 360);
+            play.DrawForBattle(spriteBatch, 380, 300);
             en.DrawForBattle(spriteBatch, 590, 365);
 
             //Transparent rectangle that "holds" the menu
