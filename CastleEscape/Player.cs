@@ -29,7 +29,7 @@ namespace CastleEscape
         private const string PLAYER_OW_TEXTURE = "player-spritesheet";
         [NonSerialized]
         private Texture2D overworldTexture;
-        private const string PLAYER_BATTLE_TEXTURE = "orb-of-saving";
+        private const string PLAYER_BATTLE_TEXTURE = "guy";
         [NonSerialized]
         private Texture2D battleTexture;
 
