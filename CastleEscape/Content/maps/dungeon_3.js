@@ -24,10 +24,8 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 		dialogue("uuuuggghhhh...") // Pushes on a dialogue state with the selected text
 	} else {
 		dialogue("Uuugghhh... my head...|Hey, who're you...?|||...ain't you that prishoner...?||||...hey, get backta yer cell!")
-		newEnemy() //creates a new enemy object. Parameters are...texture name, enemy name, health, attack, defense, speed, exp, array of items
 		var drunkItems = []
 		drunkItems[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
-		drunkItems[1] = newItem("Red hat", "This looks familiar...", 0, 0, 0)
 		var enemy = newEnemy("test-npe", "Drunken Guard", 200, 12, 3, 0, 30, drunkItems)
 		battle(player, enemy) //Starts a battle with the player and the enemy
 		setFlag("talked-to-guard") // Sets a flag to "true"
