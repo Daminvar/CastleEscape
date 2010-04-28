@@ -69,7 +69,7 @@ namespace CastleEscape
 
             if (selectedOption == "New Game")
             {
-                Flags.SetAllFlags(new Dictionary<string, bool>());
+                Flags.SetAllFlags(new CustomStructs.MattDataStruct<string, bool>());
                 var player = new Player(game, 3, 11);
                 var map = new DrawableMap(game);
                 map.LoadMap("dungeon_1.js");
@@ -87,7 +87,7 @@ namespace CastleEscape
 
                 var player = (Player)saveFile[0];
                 player.LoadTexture(game);
-                Flags.SetAllFlags((Dictionary<string, bool>)saveFile[2]);
+                Flags.SetAllFlags((CustomStructs.MattDataStruct<string, bool>)saveFile[2]);
                 var map = new DrawableMap(game);
                 map.LoadMap((string)saveFile[1]);
                 StateManager.PushState(new Overworld(game, player, map));

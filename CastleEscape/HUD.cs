@@ -49,6 +49,7 @@ namespace CastleEscape
         /// <param name="yPos">The Y coordinate to draw at.</param>
         public void Draw(SpriteBatch spriteBatch, int xPos, int yPos)
         {
+           
             spriteBatch.Draw(background, new Rectangle(xPos, yPos, WIDTH, HEIGHT), Color.White);
             spriteBatch.Draw(background, new Rectangle(xPos, HEIGHT, WIDTH, screenSize - HEIGHT), Color.Black);
 
