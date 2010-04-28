@@ -3,7 +3,7 @@ name("HallWay 1")
 mapfile("HallWay1.tmx")
 battleTexture("test-battle-background")
 
-north("todo")
+//north("todo")
 west("dungeon_4.js")
 east("Hallway2.js")
 

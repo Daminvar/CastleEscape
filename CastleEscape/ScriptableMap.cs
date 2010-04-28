@@ -118,7 +118,7 @@ namespace CastleEscape
         /// file for the specified direction.
         /// </summary>
         /// <param name="direction">The direction to use</param>
-        public void ChangeMap(Directions direction)
+        public bool ChangeMap(Directions direction)
         {
             string filename = null;
             if (direction == Directions.East) filename = eastMapFilename;
@@ -129,7 +129,9 @@ namespace CastleEscape
             if (filename != null)
             {
                 loadMapAndScript(filename);
+                return true;
             }
+            return false;
         }
 
         /// <summary>

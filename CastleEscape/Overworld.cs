@@ -184,10 +184,17 @@ namespace CastleEscape
                     }
                     else
                     {
-                        mappy.ChangeMap(ScriptableMap.Directions.West);
-                        playerObj.Move(mappy.MapWidth - 1, 0);
-
-                        timer = 0;
+                        if (mappy.ChangeMap(ScriptableMap.Directions.West))
+                        {
+                            playerObj.Move(mappy.MapWidth - 1, 0);
+                            timer = 0;
+                        }
+                        else
+                        {
+                            playerObj.ModX = 0;
+                            movingLeft = false;
+                            playerObj.CurrentSpriteX = 1;
+                        }
                     }
                 }
             }
@@ -249,9 +256,17 @@ namespace CastleEscape
                     }
                     else
                     {
-                        mappy.ChangeMap(ScriptableMap.Directions.East);
-                        playerObj.Move(-(mappy.MapWidth) + 1, 0);
-                        timer = 0;
+                        if (mappy.ChangeMap(ScriptableMap.Directions.East))
+                        {
+                            playerObj.Move(-(mappy.MapWidth) + 1, 0);
+                            timer = 0;
+                        }
+                        else
+                        {
+                            playerObj.ModX = 0;
+                            movingRight = false;
+                            playerObj.CurrentSpriteX = 1;
+                        }
                     }
                 }
             }
@@ -311,9 +326,17 @@ namespace CastleEscape
                     }
                     else
                     {
-                        mappy.ChangeMap(ScriptableMap.Directions.North);
-                        playerObj.Move(0, mappy.MapHeight - 1);
-                        timer = 0;
+                        if (mappy.ChangeMap(ScriptableMap.Directions.North))
+                        {
+                            playerObj.Move(0, mappy.MapHeight - 1);
+                            timer = 0;
+                        }
+                        else
+                        {
+                            playerObj.ModY = 0;
+                            movingUp = false;
+                            playerObj.CurrentSpriteX = 1;
+                        }
                     }
                 }
             }
@@ -374,9 +397,17 @@ namespace CastleEscape
                     }
                     else
                     {
-                        mappy.ChangeMap(ScriptableMap.Directions.South);
-                        playerObj.Move(0, -(mappy.MapHeight) + 1);
-                        timer = 0;
+                        if (mappy.ChangeMap(ScriptableMap.Directions.South))
+                        {
+                            playerObj.Move(0, -(mappy.MapHeight) + 1);
+                            timer = 0;
+                        }
+                        else
+                        {
+                            playerObj.ModY = 0;
+                            movingDown = false;
+                            playerObj.CurrentSpriteX = 1;
+                        }
                     }
                 }
 
