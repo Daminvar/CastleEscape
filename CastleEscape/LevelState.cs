@@ -38,7 +38,7 @@ namespace CastleEscape
             : base(game)
         {
             this.play = player;
-            font = game.Content.Load<SpriteFont>("Test-Font");
+            font = game.Content.Load<SpriteFont>("level-up-menu-font");
             fontLevelUp = game.Content.Load<SpriteFont>("level-up-font");
             fontLevel = game.Content.Load<SpriteFont>("level-font");
             tMenu = new TextMenu(font, choices);
@@ -131,7 +131,6 @@ namespace CastleEscape
                 else if (stat == "Speed")
                     play.Speed++;
             }
-
             pointsLeft--;
         }
 
@@ -152,17 +151,9 @@ namespace CastleEscape
             if (pointsLeft == 0)
             {
                 spriteBatch.DrawString(font, "Press Z to exit.",
-
                     new Vector2(235f, 360f), Color.White);
-
             }
             spriteBatch.DrawString(fontLevelUp, "LEVEL UP!", new Vector2(165f, 20f), Color.WhiteSmoke);
-
-
         }
-
-
-
-
     }
 }

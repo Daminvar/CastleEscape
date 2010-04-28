@@ -57,7 +57,8 @@ namespace CastleEscape
 
         public int Health
         {
-            get {
+            get
+            {
                 if (health <= 0)
                     return 0;
                 else

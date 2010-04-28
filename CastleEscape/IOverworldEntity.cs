@@ -23,6 +23,4 @@ namespace CastleEscape
         int XPos { get; }
         int YPos { get; }
     }
-
-
 }

@@ -31,7 +31,7 @@ namespace CastleEscape
                 + "\nChristina Cruz";
 
             background = game.Content.Load<Texture2D>("main-menu-background");
-            font = game.Content.Load<SpriteFont>("test-font");
+            font = game.Content.Load<SpriteFont>("about-font");
         }
 
         public override void Pause()

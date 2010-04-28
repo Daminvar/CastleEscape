@@ -41,7 +41,8 @@ namespace CastleEscape
         private Texture2D background;
         private TextMenu menu;
 
-        public MainMenu(Game game) : base(game)
+        public MainMenu(Game game)
+            : base(game)
         {
             font = game.Content.Load<SpriteFont>("main-menu-font");
             background = game.Content.Load<Texture2D>("main-menu-background");
@@ -54,6 +55,7 @@ namespace CastleEscape
 
         public override void Resume()
         {
+            menu.IsFinished = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -67,6 +69,7 @@ namespace CastleEscape
 
             if (selectedOption == "New Game")
             {
+                Flags.SetAllFlags(new Dictionary<string, bool>());
                 var player = new Player(game, 2, 2);
                 var map = new DrawableMap(game);
                 map.LoadMap("testmap.js");
@@ -75,6 +78,12 @@ namespace CastleEscape
             else if (selectedOption == "Load Game")
             {
                 object[] saveFile = GameData.Load();
+
+                if (saveFile == null)
+                {
+                    StateManager.PushState(new Dialogue(game, "Save file could not be loaded."));
+                    return;
+                }
 
                 var player = (Player)saveFile[0];
                 player.LoadTexture(game);
@@ -86,7 +95,6 @@ namespace CastleEscape
             else if (selectedOption == "About")
             {
                 StateManager.PushState(new AboutState(game));
-                menu.IsFinished = false;
             }
             else if (selectedOption == "Exit")
                 StateManager.PopState();

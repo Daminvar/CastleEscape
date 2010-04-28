@@ -27,9 +27,11 @@ namespace CastleEscape
     class Player : IOverworldEntity, IBattleCharacter
     {
         private const string PLAYER_OW_TEXTURE = "player-spritesheet";
-        [NonSerialized] private Texture2D overworldTexture;
+        [NonSerialized]
+        private Texture2D overworldTexture;
         private const string PLAYER_BATTLE_TEXTURE = "orb-of-saving";
-        [NonSerialized] private Texture2D battleTexture;
+        [NonSerialized]
+        private Texture2D battleTexture;
 
         private int xPos;
         private int yPos;
@@ -183,13 +185,14 @@ namespace CastleEscape
                 else
                     return mana;
             }
-            set {
+            set
+            {
                 if (mana >= maxMana)
                     mana = maxMana;
                 else if (value == 0)
                     mana = 0;
                 else
-                    mana = value; 
+                    mana = value;
             }
         }
 
@@ -214,7 +217,7 @@ namespace CastleEscape
         {
             this.xPos = xPos;
             this.yPos = yPos;
-            
+
             LoadTexture(game);
 
             // the level 1 attributes of a player
@@ -238,7 +241,7 @@ namespace CastleEscape
 
             items = new List<Item>();
         }
-        
+
 
         public void LoadTexture(Game game)
         {
@@ -285,7 +288,7 @@ namespace CastleEscape
             {
                 currentSpriteY = 0;
             }
-            
+
             sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
 
             spriteBatch.Draw(overworldTexture, new Vector2(x - 3 + xPos * map.TileSize - modX, y - 8 + yPos * map.TileSize - modY), sourceRectangle, Color.White);
@@ -295,24 +298,24 @@ namespace CastleEscape
         {
             spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
         }
-        
+
         public void getAccuracy(string attackType)
         {
             chosenAttack = attackType;
 
-            if (chosenAttack ==("Light Punch"))
+            if (chosenAttack == ("Light Punch"))
                 accuracy = 100;
 
-            else if (chosenAttack ==("Double Punch"))
+            else if (chosenAttack == ("Double Punch"))
                 accuracy = 80;
             else if (chosenAttack == ("Pummel"))
                 accuracy = 55;
             else if (chosenAttack == ("Soul Cannon"))
             {
-                
-                    accuracy = 99;
-                    mana -= 1;
-               
+
+                accuracy = 99;
+                mana -= 1;
+
             }
             else if (chosenAttack == ("Mind Break"))
             {

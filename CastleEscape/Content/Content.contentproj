@@ -101,8 +101,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="test-font.spritefont">
-      <Name>test-font</Name>
+    <Compile Include="battle-font.spritefont">
+      <Name>battle-font</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -157,6 +157,20 @@
       <Name>store-bg</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="level-up-menu-font.spritefont">
+      <Name>level-up-menu-font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="about-font.spritefont">
+      <Name>about-font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

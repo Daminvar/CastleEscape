@@ -14,7 +14,6 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace CastleEscape
 {
-
     /// <summary>
     /// It's a store! You can buy things here!
     /// 
@@ -95,7 +94,7 @@ namespace CastleEscape
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, new Rectangle(0,0,800,520), Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, 800, 520), Color.White);
             spriteBatch.Draw(storeTexture, new Rectangle(XPOS, YPOS, STORE_WIDTH, STORE_HEIGHT), new Color(Color.Black, 200));
             spriteBatch.DrawString(spriteFont, "Welcome to the store. Press 'Esc' to quit.", new Vector2(XPOS + 10, YPOS + 5), Color.White);
             spriteBatch.DrawString(spriteFont, "Current gold: " + player.Gold, new Vector2(XPOS + 440, YPOS + 5), Color.White);
@@ -107,9 +106,9 @@ namespace CastleEscape
             spriteBatch.Draw(storeTexture, new Rectangle(XPOS + STORE_WIDTH + 10, YPOS, 200, STORE_HEIGHT), new Color(Color.Black, 180));
             spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(XPOS + STORE_WIDTH + 45, YPOS + 5), Color.Wheat);
 
-            for(int i = 0; i < player.Items.Count; i++)
+            for (int i = 0; i < player.Items.Count; i++)
             {
-                spriteBatch.DrawString(spriteFont, player.Items[i].Name, new Vector2(XPOS + STORE_WIDTH + 20, YPOS + 5 + ((i+1) * 14)), Color.White);
+                spriteBatch.DrawString(spriteFont, player.Items[i].Name, new Vector2(XPOS + STORE_WIDTH + 20, YPOS + 5 + ((i + 1) * 14)), Color.White);
             }
 
 

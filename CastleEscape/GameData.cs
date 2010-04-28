@@ -42,11 +42,18 @@ namespace CastleEscape
 
         public static object[] Load()
         {
-            var formatter = new BinaryFormatter();
-            var stream = new FileStream(SAVE_FILE_LOCATION, FileMode.Open);
-            var saveFile = (object[])formatter.Deserialize(stream);
-            stream.Close();
-            return saveFile;
+            try
+            {
+                var formatter = new BinaryFormatter();
+                var stream = new FileStream(SAVE_FILE_LOCATION, FileMode.Open);
+                var saveFile = (object[])formatter.Deserialize(stream);
+                stream.Close();
+                return saveFile;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
