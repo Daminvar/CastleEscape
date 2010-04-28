@@ -5,6 +5,7 @@ battleTexture("test-battle-background") //TODO
 
 //north("todo")
 west("bedroom2.js")
+north("HallWay2.js")
 
 //TODO: Change textures
 var john = newNPE()
