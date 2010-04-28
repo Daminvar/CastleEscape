@@ -7,7 +7,7 @@ north("todo")
 west("testmap2.js")
 east("Hallway2.js")
 
-//TODO: Change textures
+
 var guardRob = newNPE()
 guardRob.SetTexture("test-npe")
 
