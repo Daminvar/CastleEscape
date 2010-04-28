@@ -4,7 +4,7 @@ mapfile("dungeon_4.tmx") // The tmx map file being used
 battleTexture("test-battle-background") // The texture for the background in battles
 
 north("dungeon_2.js")
-east("hallway1.js")
+east("HallWay1.js")
 
 var guard = newNPE() // New NPE creates a new NPE object.
 guard.SetTexture("test-npe") // Sets the overworld texture for the NPE
