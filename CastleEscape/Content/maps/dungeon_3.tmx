@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="indoor" tilewidth="32" tileheight="32">
+  <image source="../tileset.png"/>
+ </tileset>
+ <layer name="bottom" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC5NhZWC4ysLAIAOkZVkhNCX8KywQPoimBp9S94y6b9R9o+4bPu4DAPZt6tKwBAAA
+  </data>
+ </layer>
+ <layer name="bottom" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC/vDyMDwl4rYhYmBwZWK2AloJgg4AmlmFgYGA2YGhmog2wQqTiqAmecNNMsHiCuIMM+Mg4HBnAPBZwfq42BBNQ8ZgMyrwSL+kp2B4RU7ce5DB0ewiBsC3WQExMZAbMKBKY9sHhcTAnMDMQ8TqjoLoP5KIK4C4mogriFgHjnAAouZpJqHHheUmkcIUNu8HKB52ynAeWju+QPk/6cA/6OxeaDywJ0C7IaWTgEHGT3VsAQAAA==
+  </data>
+ </layer>
+ <layer name="top" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgoB5wY6SiYXQ0z4JMe3CZ14DHPHOg3Gt2BoY37PjNC2RC4MME3GeGQ36oxseoeaPm4TIPAI7tOVywBAAA
+  </data>
+ </layer>
+ <objectgroup name="collision" width="20" height="15">
+  <object name="" x="0" y="0" width="640" height="64"/>
+  <object name="" x="0" y="64" height="416"/>
+  <object name="" x="0" y="352" width="544" height="128"/>
+  <object name="" x="352" y="128" width="64" height="64"/>
+  <object name="" x="416" y="160" width="64" height="32"/>
+  <object name="" x="544" y="96" width="64" height="32"/>
+  <object name="" x="160" y="64" width="32" height="128"/>
+  <object name="" x="64" y="192" width="96"/>
+  <object name="" x="64" y="64" width="96" height="64"/>
+  <object name="" x="640" y="64" height="416"/>
+ </objectgroup>
+</map>
