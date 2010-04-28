@@ -53,7 +53,7 @@ namespace CastleEscape
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
             combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150) });
             transparent = true;
-
+            
             canRun = run;
 
             backgroundTexture = bgTex;

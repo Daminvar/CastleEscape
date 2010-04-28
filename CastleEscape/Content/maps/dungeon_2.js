@@ -3,7 +3,7 @@ name("Dungeon 2") // The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile("dungeon_2.tmx") // The tmx map file being used
 battleTexture("test-battle-background") // The texture for the background in battles
 
-west("starting_location.js") // The map to the east.
+west("dungeon_1.js") 
 north("dungeon_3.js")
 south("dungeon_4.js")
 

@@ -28,7 +28,7 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 		var drunkItems = []
 		drunkItems[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
 		drunkItems[1] = newItem("Red hat", "This looks familiar...", 0, 0, 0)
-		var enemy = newEnemy("test-npe", "Drunken Guard", 200, 12, 3, 0, 30, drunkItems[])
+		var enemy = newEnemy("test-npe", "Drunken Guard", 200, 12, 3, 0, 30, drunkItems)
 		battle(player, enemy) //Starts a battle with the player and the enemy
 		setFlag("talked-to-guard") // Sets a flag to "true"
 		reloadMap() // Reloads the map
@@ -73,7 +73,9 @@ spirits[0] = newItem("Spirit's Spirit", "An aged bottle of wine.", 20, 20, 10)
 
 var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
 var pauper = newEnemy("snake", "Pauper of Evil", 80, 7, 1, 1, 15, null)
-var spirit = newEnemy("ghostie", "Spirit", 85, 5, 1, 2, 17, spirit[])
+var spirit = newEnemy("ghostie", "Spirit", 85, 5, 1, 2, 17, spirits)
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)
-addRandomEncoutner(spirit)
+addRandomEncounter(spirit)
+
+setFlag("has-hat") //REMOVE THIS WHEN DOING MAPS FO REALS.

@@ -26,7 +26,7 @@ namespace CastleEscape
     {
         private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus, double cost);
         private delegate Enemy NewEnemyDelegate(string textureName, string enemyName, double health,
-            double attack, double defense, double speed, double exp, Item[] items);
+            double attack, double defense, double speed, double exp, ArrayList items);
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
 
         protected Game game;
@@ -269,8 +269,10 @@ namespace CastleEscape
 
         private void js_dialogue(string text)
         {
+            StateManager.Running = false;
             int currentStackSize = StateManager.StackSize;
             StateManager.PushState(new Dialogue(game, text));
+            StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {
             }
@@ -287,7 +289,7 @@ namespace CastleEscape
         }
 
         private Enemy js_newEnemy(string textureName, string enemyName, double health,
-            double attack, double defense, double speed, double exp, Item[] items)
+            double attack, double defense, double speed, double exp, ArrayList items)
         {
             var enemy = new Enemy(game.Content.Load<Texture2D>(textureName));
             enemy.Name = enemyName;
@@ -296,19 +298,21 @@ namespace CastleEscape
             enemy.Attack = (int)attack;
             enemy.Defense = (int)defense;
             enemy.Exp = (int)exp;
-            enemy.Items = items;
+            enemy.Items = createItemArray(items);
             return enemy;
         }
 
         private void js_addRandomEncounter(Enemy enemy)
         {
-            randomEncounters.Add(enemy);
+            //randomEncounters.Add(enemy);
         }
 
         private void js_battle(Player player, Enemy enemy)
         {
+            StateManager.Running = false;
             int currentStackSize = StateManager.StackSize;
             StateManager.PushState(new Battle(game, battleTexture, player, enemy, false));
+            StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {
             }
@@ -318,11 +322,13 @@ namespace CastleEscape
 
         private void js_store(Player player, ArrayList itemsArrayList)
         {
+            StateManager.Running = false;
             int currentStackSize = StateManager.StackSize;
             Item[] items = null;
             if (itemsArrayList != null)
                 items = createItemArray(itemsArrayList);
             StateManager.PushState(new Store(game, player, items));
+            StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {
             }
@@ -330,6 +336,8 @@ namespace CastleEscape
 
         private Item[] createItemArray(ArrayList itemArrayList)
         {
+            if (itemArrayList == null)
+                return null;
             Item[] items = new Item[itemArrayList.Count];
             for (int i = 0; i < items.Length; i++)
                 items[i] = (Item)itemArrayList[i];

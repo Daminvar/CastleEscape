@@ -589,26 +589,26 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="1835"/>
-   <tile gid="1186"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="1835"/>
+   <tile gid="361"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="362"/>
+   <tile gid="363"/>
   </data>
  </layer>
  <layer name="top" width="20" height="15">
@@ -897,29 +897,30 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
-   <tile gid="1786"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
   </data>
  </layer>
  <objectgroup name="collision" width="20" height="15">
   <object name="" x="0" y="32" width="128" height="64"/>
-  <object name="" x="96" y="96" width="32" height="160"/>
+  <object name="" x="96" y="96" width="32" height="192"/>
   <object name="" x="608" y="0" width="32" height="224"/>
   <object name="" x="608" y="256" width="32" height="224"/>
   <object name="" x="96" y="288" width="32" height="192"/>
+  <object name="" x="128" y="448" width="480" height="32"/>
  </objectgroup>
 </map>

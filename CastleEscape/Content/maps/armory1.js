@@ -4,5 +4,5 @@ mapfile("armory1.tmx")
 battleTexture("test-battle-background") // TODO
 
 //TODO
-//north("blah")
+north("HallWay4.js")
 south("armory2.js")
