@@ -91,9 +91,6 @@
   <ItemGroup>
     <Compile Include="AboutState.cs" />
     <Compile Include="Battle.cs" />
-    <Compile Include="CustomStructs\DennisArray.cs" />
-    <Compile Include="CustomStructs\MattDataStruct.cs" />
-    <Compile Include="CustomStructs\StructTests.cs" />
     <Compile Include="Dialogue.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="DrawableMap.cs" />

@@ -1,1 +1,5 @@
-name("Kitchen")mapfile("Kitchen2.tmx")battleTexture("test-battle-background")south("Kitchen1.js")east("Kitchen3.js")
+name("Kitchen")
+mapfile("Kitchen2.tmx")
+battleTexture("test-battle-background")
+south("Kitchen1.js")
+east("Kitchen3.js")

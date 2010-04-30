@@ -12,7 +12,7 @@ namespace CastleEscape
     /// </summary>
     class Flags
     {
-        private static CustomStructs.MattDataStruct<string, bool> flags = new CustomStructs.MattDataStruct<string, bool>();
+        private static Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
         public static bool GetFlag(string flagName)
         {
@@ -35,7 +35,7 @@ namespace CastleEscape
         /// For saving.
         /// </summary>
         /// <returns>The dictionary of flags</returns>
-        public static CustomStructs.MattDataStruct<string, bool> GetAllFlags()
+        public static Dictionary<string, bool> GetAllFlags()
         {
             return flags;
         }
@@ -44,7 +44,7 @@ namespace CastleEscape
         /// For loading.
         /// </summary>
         /// <param name="dict">The dictionary of flags.</param>
-        public static void SetAllFlags(CustomStructs.MattDataStruct<string, bool> dict)
+        public static void SetAllFlags(Dictionary<string, bool> dict)
         {
             flags = dict;
         }
