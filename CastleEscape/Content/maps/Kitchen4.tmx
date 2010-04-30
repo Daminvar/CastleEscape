@@ -616,8 +616,8 @@
    <tile gid="1897"/>
    <tile gid="1898"/>
    <tile gid="1899"/>
-   <tile gid="1900"/>
-   <tile gid="1901"/>
+   <tile gid="657"/>
+   <tile gid="658"/>
    <tile gid="940"/>
    <tile gid="940"/>
    <tile gid="1897"/>
@@ -694,8 +694,7 @@
    <tile gid="2117"/>
    <tile gid="0"/>
    <tile gid="1332"/>
-   <tile gid="1333"/>
-   <tile gid="371"/>
+   <tile gid="156"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -705,19 +704,20 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="657"/>
+   <tile gid="658"/>
+   <tile gid="513"/>
+   <tile gid="514"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="1332"/>
-   <tile gid="1405"/>
-   <tile gid="443"/>
    <tile gid="0"/>
+   <tile gid="228"/>
    <tile gid="0"/>
+   <tile gid="589"/>
    <tile gid="590"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -778,7 +778,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="589"/>
    <tile gid="590"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -838,9 +838,9 @@
    <tile gid="0"/>
    <tile gid="520"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="589"/>
    <tile gid="590"/>
-   <tile gid="0"/>
+   <tile gid="589"/>
    <tile gid="590"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -902,9 +902,9 @@
    <tile gid="42"/>
    <tile gid="42"/>
    <tile gid="42"/>
+   <tile gid="42"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="42"/>
    <tile gid="42"/>
    <tile gid="42"/>
    <tile gid="42"/>
@@ -1008,10 +1008,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="657"/>
-   <tile gid="658"/>
-   <tile gid="513"/>
-   <tile gid="514"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1021,7 +1021,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="589"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1082,7 +1082,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="589"/>
+   <tile gid="0"/>
    <tile gid="591"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1142,9 +1142,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="589"/>
    <tile gid="0"/>
-   <tile gid="589"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1220,33 +1220,24 @@
   </data>
  </layer>
  <objectgroup name="collision" width="20" height="15">
-  <object name="" x="31" y="245" width="28" height="184"/>
-  <object name="" x="0" y="468" width="290" height="10"/>
-  <object name="" x="384" y="467" width="262" height="11"/>
-  <object name="" x="516" y="223" width="57" height="203"/>
-  <object name="" x="194" y="416" width="64" height="29"/>
-  <object name="" x="268" y="382" width="20" height="28"/>
-  <object name="" x="221" y="369" width="38" height="31"/>
-  <object name="" x="158" y="370" width="39" height="32"/>
-  <object name="" x="94" y="309" width="36" height="62"/>
-  <object name="" x="191" y="290" width="33" height="17"/>
-  <object name="" x="125" y="174" width="36" height="34"/>
-  <object name="" x="68" y="152" width="21" height="19"/>
-  <object name="" x="5" y="168" width="21" height="23"/>
-  <object name="" x="0" y="97" width="8" height="378"/>
-  <object name="" x="632" y="92" width="11" height="374"/>
-  <object name="" x="446" y="188" width="38" height="23"/>
-  <object name="" x="578" y="154" width="32" height="39"/>
-  <object name="" x="-2" y="-3" width="641" height="99"/>
-  <object name="" x="24" y="91" width="112" height="28"/>
-  <object name="" x="245" y="92" width="115" height="29"/>
-  <object name="" x="392" y="95" width="51" height="21"/>
-  <object name="" x="472" y="95" width="116" height="28"/>
-  <object name="" x="31" y="148" width="33" height="20"/>
-  <object name="" x="4" y="138" width="22" height="22"/>
-  <object name="" x="361" y="109" width="46" height="34"/>
-  <object name="" x="425" y="126" width="48" height="38"/>
-  <object name="" x="188" y="88" width="37" height="27"/>
-  <object name="" x="158" y="270" width="35" height="38"/>
+  <object name="" x="0" y="0" width="640" height="96"/>
+  <object name="" x="352" y="96" width="64" height="32"/>
+  <object name="" x="416" y="128" width="64" height="32"/>
+  <object name="" x="576" y="160" width="32" height="32"/>
+  <object name="" x="448" y="192" width="32" height="32"/>
+  <object name="" x="512" y="224" width="64" height="192"/>
+  <object name="" x="160" y="256" width="32" height="32"/>
+  <object name="" x="160" y="352" width="32" height="32"/>
+  <object name="" x="224" y="352" width="32" height="32"/>
+  <object name="" x="192" y="416" width="64" height="32"/>
+  <object name="" x="256" y="384" width="32" height="32"/>
+  <object name="" x="32" y="256" width="32" height="160"/>
+  <object name="" x="0" y="128" width="32" height="64"/>
+  <object name="" x="32" y="128" width="32" height="32"/>
+  <object name="" x="64" y="160" width="32" height="32"/>
+  <object name="" x="128" y="160" width="32" height="32"/>
+  <object name="" x="96" y="288" width="32" height="64"/>
+  <object name="" x="192" y="288" width="32" height="32"/>
+  <object name="" x="192" y="96" width="32" height="32"/>
  </objectgroup>
 </map>

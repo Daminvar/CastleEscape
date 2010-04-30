@@ -149,7 +149,7 @@ namespace CastleEscape
             
             for (int i = 0; i < 4 && i < mList.Count; i++)
             {
-                spriteBatch.DrawString(font, mList[i], new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 24) + 5 + font.LineSpacing * i), Color.White);
+                spriteBatch.DrawString(font, mList[i], new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 10) + 5 + font.LineSpacing * i), Color.White);
             }
         }
     }

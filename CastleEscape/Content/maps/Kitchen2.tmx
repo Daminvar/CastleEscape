@@ -1524,42 +1524,27 @@
   </data>
  </layer>
  <objectgroup name="collision" width="20" height="15">
-  <object name="" x="448" y="143" width="62" height="338"/>
-  <object name="" x="-2" y="61" width="8" height="420"/>
-  <object name="" x="0" y="-2" width="640" height="65"/>
-  <object name="" x="632" y="155" width="10" height="328"/>
-  <object name="" x="520" y="447" width="49" height="28"/>
-  <object name="" x="584" y="415" width="48" height="35"/>
-  <object name="" x="552" y="350" width="47" height="33"/>
-  <object name="" x="545" y="285" width="34" height="36"/>
-  <object name="" x="583" y="285" width="47" height="37"/>
-  <object name="" x="582" y="219" width="49" height="38"/>
-  <object name="" x="34" y="322" width="26" height="24"/>
-  <object name="" x="100" y="322" width="23" height="25"/>
-  <object name="" x="164" y="323" width="23" height="26"/>
-  <object name="" x="227" y="319" width="23" height="27"/>
-  <object name="" x="228" y="451" width="23" height="24"/>
-  <object name="" x="164" y="451" width="23" height="24"/>
-  <object name="" x="100" y="454" width="23" height="24"/>
-  <object name="" x="35" y="451" width="23" height="24"/>
-  <object name="" x="261" y="388" width="22" height="26"/>
-  <object name="" x="195" y="388" width="23" height="27"/>
-  <object name="" x="132" y="389" width="22" height="25"/>
-  <object name="" x="68" y="388" width="23" height="27"/>
-  <object name="" x="68" y="260" width="23" height="26"/>
-  <object name="" x="132" y="261" width="23" height="27"/>
-  <object name="" x="196" y="260" width="22" height="26"/>
-  <object name="" x="260" y="260" width="23" height="27"/>
-  <object name="" x="228" y="195" width="23" height="25"/>
-  <object name="" x="164" y="196" width="23" height="27"/>
-  <object name="" x="99" y="195" width="23" height="27"/>
-  <object name="" x="36" y="192" width="23" height="26"/>
-  <object name="" x="67" y="130" width="23" height="26"/>
-  <object name="" x="133" y="130" width="23" height="26"/>
-  <object name="" x="196" y="130" width="23" height="26"/>
-  <object name="" x="262" y="129" width="23" height="26"/>
-  <object name="" x="32" y="159" width="255" height="33"/>
-  <object name="" x="29" y="286" width="259" height="36"/>
-  <object name="" x="32" y="415" width="251" height="32"/>
+  <object name="" x="0" y="0" width="640" height="64"/>
+  <object name="" x="448" y="160" width="64" height="320"/>
+  <object name="" x="512" y="448" width="64" height="32"/>
+  <object name="" x="576" y="416" width="64" height="32"/>
+  <object name="" x="544" y="352" width="64" height="32"/>
+  <object name="" x="544" y="288" width="96" height="32"/>
+  <object name="" x="576" y="224" width="64" height="32"/>
+  <object name="" x="32" y="160" width="256" height="32"/>
+  <object name="" x="32" y="288" width="256" height="32"/>
+  <object name="" x="32" y="416" width="256" height="32"/>
+  <object name="" x="64" y="128" width="32" height="32"/>
+  <object name="" x="128" y="128" width="32" height="32"/>
+  <object name="" x="192" y="128" width="32" height="32"/>
+  <object name="" x="256" y="128" width="32" height="32"/>
+  <object name="" x="64" y="256" width="32" height="32"/>
+  <object name="" x="128" y="256" width="32" height="32"/>
+  <object name="" x="192" y="256" width="32" height="32"/>
+  <object name="" x="256" y="256" width="32" height="32"/>
+  <object name="" x="192" y="384" width="32" height="32"/>
+  <object name="" x="256" y="384" width="32" height="32"/>
+  <object name="" x="128" y="384" width="32" height="32"/>
+  <object name="" x="64" y="384" width="32" height="32"/>
  </objectgroup>
 </map>
