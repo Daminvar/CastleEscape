@@ -3,10 +3,8 @@ name("CourtYard 2")
 mapfile("CourtYard2.tmx")
 battleTexture("test-battle-background")
 
-
+north("Graveyard1.js")
 west("CourtYard1.js")
-//north("todo")
-
 
 var courtyard2Civ1= newNPE()
 courtyard2Civ1.SetTexture("ghostie")
