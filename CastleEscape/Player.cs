@@ -370,11 +370,18 @@ namespace CastleEscape
                         newHealth -= rgen.Next(4, magicAtk - 1) - enemy.Defense;
                     }
                 }
-                else if (newHealth < 0)
+
+                if (newHealth < 0)
                 {
                     newHealth = 0;
                 }
+
             }
+            else
+            {
+                return -1;
+            }
+            
             return newHealth;
         }
 

@@ -127,8 +127,15 @@ namespace CastleEscape
                     {
                         play.getAccuracy(chosenAttack);
                         int tempDmg = play.HealthAfterCombat(en);
-                        status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
-                        en.Health = tempDmg;
+                        if (tempDmg == -1)
+                        {
+                            status += "||||Your attack missed!";
+                        }
+                        else
+                        {
+                            status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
+                            en.Health = tempDmg;
+                        }
                         playersTurn = false;
                     }
                     else if (chosenAttack == "Soul Cannon")
@@ -139,8 +146,15 @@ namespace CastleEscape
                         {
                             play.getAccuracy(chosenAttack);
                             int tempDmg = play.HealthAfterCombat(en);
-                            status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
-                            en.Health = tempDmg;
+                            if (tempDmg == -1)
+                            {
+                                status += "||||Your attack missed!";
+                            }
+                            else
+                            {
+                                status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
+                                en.Health = tempDmg;
+                            }
                             playersTurn = false;
                         }
                     }
@@ -152,8 +166,15 @@ namespace CastleEscape
                         {
                             play.getAccuracy(chosenAttack);
                             int tempDmg = play.HealthAfterCombat(en);
-                            status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
-                            en.Health = tempDmg;
+                            if (tempDmg == -1)
+                            {
+                                status += "||||Your attack missed!";
+                            }
+                            else
+                            {
+                                status += "||||Your attack : " + chosenAttack + " did " + (en.Health - tempDmg) + " damage";
+                                en.Health = tempDmg;
+                            }
                             playersTurn = false;
                         }
                     }
