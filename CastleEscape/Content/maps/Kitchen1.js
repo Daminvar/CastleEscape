@@ -77,3 +77,9 @@ addNPE(cook3)
 addNPE(cook4)
 addNPE(cook5)
 addNPE(cook6)
+
+var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
+var salad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
+
+addRandomEncounter(vegetable)
+addRandomEncounter(salad)
