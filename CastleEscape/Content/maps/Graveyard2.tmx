@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="out" tilewidth="32" tileheight="32">
-  <image source="../../../../../../Daminvar-CastleEscape-08429f7/CastleEscape/Content/outdoor-tileset.png"/>
+  <image source="../outdoor-tileset.png"/>
  </tileset>
  <layer name="base" width="20" height="15">
   <data>
