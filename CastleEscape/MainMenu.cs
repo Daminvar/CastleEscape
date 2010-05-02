@@ -72,7 +72,7 @@ namespace CastleEscape
                 Flags.SetAllFlags(new Dictionary<string, bool>());
                 var player = new Player(game, 3, 11);
                 var map = new DrawableMap(game);
-                map.LoadMap("dungeon_1.js");
+                map.LoadMap("CourtYard2.js");
                 StateManager.PushState(new Overworld(game, player, map));
             }
             else if (selectedOption == "Load Game")
