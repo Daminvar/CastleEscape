@@ -57,7 +57,7 @@ namespace CastleEscape
                 return;
 
             var sourceRect = new Rectangle(0, 0, map.TileSize, texture.Height - map.TileSize);
-            var destRect = new Rectangle(x + xPos * map.TileSize, y + yPos * map.TileSize - (texture.Height - map.TileSize), map.TileSize, map.TileSize - (texture.Height - map.TileSize));
+            var destRect = new Rectangle(x + xPos * map.TileSize, y + yPos * map.TileSize - (texture.Height - map.TileSize - 2), map.TileSize, map.TileSize - (texture.Height - map.TileSize));
             spriteBatch.Draw(texture, destRect, sourceRect, Color.White);
         }
 
