@@ -9,24 +9,24 @@ south("armory1.js")
 
 
 var hallway4civ1 = newNPE()
-hallway4civ1.SetTexture("ghostie")
+hallway4civ1.SetTexture("lady_left")
 hallway4civ1.SetPosition(10,5)
 
 hallway4civ1.SetInteractFunc(function(player) 
 {
-	dialogue("I do love this painting")	
+	dialogue("Kelly: I do love this painting |||| Jordan: Who is that a portrait of? |||| Kelly: How do you not know NAME, he's our castle's best knight. |||| Jordan: (Looks like thats the guy i have to chat with)")	
 
 })
 
 addNPE(hallway4civ1)
 
 var hallway4civ2 = newNPE()
-hallway4civ2.SetTexture("ghostie")
+hallway4civ2.SetTexture("waiter_left")
 hallway4civ2.SetPosition(12,10)
 
 hallway4civ2.SetInteractFunc(function(player) 
 {
-	dialogue("I hear the head knight spends most of his time in the armory ")	
+	dialogue("Harry: NAME is in the armory, right now. Be careful if you happen to travel south to him, I hear he's not in the best of moods. ")	
 
 })
 

@@ -9,11 +9,12 @@ east("HallWay4.js")
 
 
 var armoryGuard = newNPE()
-armoryGuard.SetTexture("snake")
+armoryGuard.SetTexture("guard1_left")
 
 if(getFlag("talked-to-ag"))
 { 
 	armoryGuard.SetPosition(9,5)
+	
 }
 else
 {
@@ -24,11 +25,11 @@ armoryGuard.SetInteractFunc(function(player)
 {
 	if(getFlag("talked-to-ag"))
 	{
-		dialogue("Enter the armory if you dare..")
+		dialogue("Guard Ryan: Enter the armory if you dare..")
 	}	
 	else
 	{
-		dialogue("The armory is past me but you can't go without a weapon")
+		dialogue("Guard Ryan: Past this point is off-limits, I would need someone of authority to tell me to let you through. |||| Jordan: What, like the king? |||| Guard Ryan: That would definitely help, but since i haven't been given orders, you're stuck")
 		//Some sort of test/check to see if they have the neccessary item
 		setFlag("talked-to-ag")
 		reloadMap()

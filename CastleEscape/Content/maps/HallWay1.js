@@ -9,7 +9,7 @@ east("Hallway2.js")
 
 
 var guardRob = newNPE()
-guardRob.SetTexture("test-npe")
+guardRob.SetTexture("guard1_left")
 
 if(getFlag("talked-to-guardRob")) {
 	guardRob.SetPosition(11,10)
@@ -21,11 +21,12 @@ if(getFlag("talked-to-guardRob")) {
 
 guardRob.SetInteractFunc(function(player) {
 	if(getFlag("talked-to-guardRob")) {
-	    	dialogue("You're not that strong...")
+	    	dialogue("Guard Zach: You're not that strong...")
 	} else {
-		dialogue("Hey! You don't belong here!")
+		dialogue("Guard Zach: Hey! You don't belong here |||| Jordan: I'm the plumber, just heading to the kitchen. |||| Guard Zach: That might have worked on the dungeon guards, but not on us intelligent hallway guards! ")
 		var enemy = newEnemy("test-npe", "Guard Robert",50,3,2,2,10,null)
       		battle(player,enemy)
+		
 		setFlag("talked-to-guardRob")
 		reloadMap()
 	}

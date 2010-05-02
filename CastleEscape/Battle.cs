@@ -216,7 +216,8 @@ namespace CastleEscape
                 {
                     status += "||||You have slain " + en.Name + " You gain " + en.Exp + " Exp";
                     play.Exp += en.Exp;
-
+                    //TODO(Add a way for enemies to drop gold based on level or something)
+                    
                 }
 
                 tMenu.IsFinished = false;
