@@ -19,6 +19,7 @@ john.SetInteractFunc(function(player) {
 addNPE(john)
 
 var treasureChest1 = newNPE()
+//TODO: Add treasure chest texture
 treasureChest1.SetPosition(2, 3)
 
 treasureChest1.SetInteractFunc(function(player) {
@@ -34,6 +35,7 @@ treasureChest1.SetInteractFunc(function(player) {
 addNPE(treasureChest1)
 
 var treasureChest2 = newNPE()
+//TODO: Add treasure chest texture
 treasureChest2.SetPosition(7, 3)
 
 treasureChest2.SetInteractFunc(function(player) {
