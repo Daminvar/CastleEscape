@@ -17,10 +17,10 @@ drunkenGuard.SetPosition(18,3)
 //}
 
 drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for the specified NPE
-	if (getFlag("talked-to-drunk")) {
-		dialogue("uuuuggghhhh...") // Pushes on a dialogue state with the selected text
+	if (getFlag("has-hat")) {
+		dialogue("Marim: uuuuggghhhh...||||Jordan: (Good riddance.)") // Pushes on a dialogue state with the selected text
 	} else {
-		dialogue("Uuugghhh... my head...|Hey, who're you...?|||...ain't you that prishoner...?||||...hey, get backta yer cell!")
+		dialogue("Marim: Uuugghhh... my head...|Hey, who're you...?|||Jordan: ...No one important...|(I need to find an exit somewhere!)|||Marim: ...ain't you that prishoner...?||||Jordan: (No! He's really drunk... maybe I can fool him!)|No, I'm... a janitor!|||Marim: ...get backta yer cell!")
 		var drunkItems = []
 		drunkItems[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
 		var enemy = newEnemy("test-npe", "Drunken Guard", 200, 12, 3, 0, 30, null)
