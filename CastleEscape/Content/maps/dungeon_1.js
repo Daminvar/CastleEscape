@@ -8,7 +8,7 @@ east("dungeon_2.js") // The map to the east.
 //etc...
 
 var guard = newNPE() // New NPE creates a new NPE object.
-guard.SetTexture("test-npe") // Sets the overworld texture for the NPE
+guard.SetTexture("guard2_left") // Sets the overworld texture for the NPE
 var demon = newNPE()
 demon.SetTexture("ghostie")
 demon.SetPosition(3,11)
@@ -77,20 +77,6 @@ saveOrb.SetInteractFunc(function(player) {
 })
 
 addNPE(saveOrb)
-
-//var wormStore = newNPE()
-//wormStore.SetTexture("snake")
-//wormStore.SetPosition(15, 1)
-
-/*wormStore.SetInteractFunc(function(player) {
-	var items = [] //Create a Javascript array as such.
-	//newItem() creates a new item object. Parameters are...
-	// Item name, item description, health bonus, mana bonus, cost
-	items[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
-	store(player, items) // Pushes on a store state. Parameters are the player and an array of items.
-})*/
-
-//addNPE(wormStore)
 
 var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
 var pauper = newEnemy("snake", "Pauper of Evil", 80, 5, 1, 1, 10, null)

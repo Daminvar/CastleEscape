@@ -38,7 +38,8 @@ namespace CastleEscape
         public void DrawBase(SpriteBatch spriteBatch, int xPos, int yPos)
         {
             drawLayers(tmxMap.BaseLayers, spriteBatch, xPos, yPos);
-            drawNPEs(spriteBatch, xPos, yPos);
+            foreach (var npe in NPEs)
+                npe.DrawBase(spriteBatch, this, xPos, yPos);
         }
 
         /// <summary>
@@ -47,6 +48,8 @@ namespace CastleEscape
         /// </summary>
         public void DrawTop(SpriteBatch spriteBatch, int xPos, int yPos)
         {
+            foreach (var npe in NPEs)
+                npe.DrawTop(spriteBatch, this, xPos, yPos);
             drawLayers(tmxMap.TopLayers, spriteBatch, xPos, yPos);
         }
 
@@ -71,14 +74,6 @@ namespace CastleEscape
                         spriteBatch.Draw(tileset, destRect, tileRect, Color.White);
                     }
                 }
-            }
-        }
-
-        private void drawNPEs(SpriteBatch spriteBatch, int xPos, int yPos)
-        {
-            foreach (var npe in NPEs)
-            {
-                npe.DrawForOverworld(spriteBatch, this, xPos, yPos);
             }
         }
     }

@@ -10,28 +10,28 @@ var cook3 = newNPE()
 var cook4 = newNPE()
 
 cook1.SetPosition(17,13)
-cook1.SetTexture("snake")
+cook1.SetTexture("chef_left")
 cook1.SetInteractFunc(function(player)
 {
 	dialogue("Who's there?!|I'm off duty, I swear!|||Oh, it's just some newbie cook.")
 } )
 
 cook2.SetPosition(3,6)
-cook2.SetTexture("snake")
+cook2.SetTexture("chef_front")
 cook2.SetInteractFunc(function(player)
 {
 	dialogue("I always wanted to be a tailor...")
 } )
 
 cook3.SetPosition(7,12)
-cook3.SetTexture("ghostie")
+cook3.SetTexture("waiter_front")
 cook3.SetInteractFunc(function(player)
 {
 	dialogue("La la la~|Cleaning the tables~|||Mother says my talents are wasted here, but it's just so easy to do!")
 } )
 
 cook4.SetPosition(13,9)
-cook4.SetTexture("ghostie")
+cook4.SetTexture("chef_left")
 cook4.SetInteractFunc(function(player)
 {
 	dialogue("Are you new here?")

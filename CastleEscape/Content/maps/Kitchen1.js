@@ -12,21 +12,21 @@ var cook5 = newNPE()
 var cook6 = newNPE()
 
 cook1.SetPosition(17,5)
-cook1.SetTexture("ghostie")
+cook1.SetTexture("chef_left")
 cook1.SetInteractFunc(function(player)
 {
 	dialogue("Oh, it's such a lovely day to work in the kitchens!|Everyone, chop chop!")
 } )
 
 cook2.SetPosition(3,3)
-cook2.SetTexture("snake")
+cook2.SetTexture("waiter_front")
 cook2.SetInteractFunc(function(player)
 {
 	dialogue("I'm on dish duty today...")
 } )
 
 cook3.SetPosition(13,13)
-cook3.SetTexture("ghostie")
+cook3.SetTexture("waiter_left")
 cook3.SetInteractFunc(function(player)
 {
 	if(getFlag("talked-to-head-chef"))
@@ -51,21 +51,21 @@ cook3.SetInteractFunc(function(player)
 } )
 
 cook4.SetPosition(14,8)
-cook4.SetTexture("ghostie")
+cook4.SetTexture("chef_right")
 cook4.SetInteractFunc(function(player)
 {
 	dialogue("Chop chop chop chop chop|chop chop chop chop chop|chop chop chop chop chop|chop chop chop chop chop|OWWW! MY FINGER!!")
 } )
 
 cook5.SetPosition(1,7)
-cook5.SetTexture("snake")
+cook5.SetTexture("waiter_front")
 cook5.SetInteractFunc(function(player)
 {
 	dialogue("Is it Friday yet?")
 } )
 
 cook6.SetPosition(0,13)
-cook6.SetTexture("test-npe")
+cook6.SetTexture("waiter_right")
 cook6.SetInteractFunc(function(player)
 {
 	dialogue("Last night, I had a weird dream about a restaurant on the sea.|How silly is that?")
