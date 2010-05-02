@@ -74,7 +74,7 @@ namespace CastleEscape
                     for (int j = 0; j < longLineArr.Length; j++)
                     {
                         // if the next word + the current string is longer than the width we set, add the current string to the message list
-                        if (font.MeasureString(longLineArr[j] + " " + msg).X > game.GraphicsDevice.Viewport.Width - 32)
+                        if (font.MeasureString(longLineArr[j] + " " + msg).X > game.GraphicsDevice.Viewport.Width - 64)
                         {
                             mList.Add(msg);
                             msg = null;
