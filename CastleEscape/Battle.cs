@@ -36,6 +36,7 @@ namespace CastleEscape
         bool canRun;
         TextMenu tMenu;
         int currentItemCount;
+        Random rgen;
 
         private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-1", "Mind Break MP-2", "Item", "Run" };
 
@@ -52,6 +53,7 @@ namespace CastleEscape
             combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
             combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150) });
             transparent = true;
+            rgen = new Random();
             
             canRun = run;
 
@@ -97,7 +99,6 @@ namespace CastleEscape
             else
             {
                 // randomly generate who attacks first if the speeds are equal.
-                Random rgen = new Random();
                 int first = rgen.Next(1, 3);
 
                 if (first == 1)
@@ -182,7 +183,6 @@ namespace CastleEscape
                     {
                         if (canRun)
                         {
-                            Random rgen = new Random();
                             int chance = rgen.Next(1, 10);
                             if (chance < 4)
                             {
@@ -214,10 +214,19 @@ namespace CastleEscape
                 //If you slay enemy monster
                 if (en.IsDead())
                 {
-                    status += "||||You have slain " + en.Name + " You gain " + en.Exp + " Exp";
                     play.Exp += en.Exp;
-                    //TODO(Add a way for enemies to drop gold based on level or something)
-                    
+                    int gold = rgen.Next(0, en.Attack);
+                    status += string.Format("||||You have slain {0}. You gain {1} exp. You got {2} gold.", en.Name, en.Exp, gold);
+                    play.Gold += gold;
+                    if (en.Items != null)
+                    {
+                        int itemIndex = rgen.Next(0, en.Items.Length + 20);
+                        if (itemIndex < en.Items.Length)
+                        {
+                            status += string.Format("||||You found a {0}!", en.Items[itemIndex].Name);
+                            play.Items.Add(en.Items[itemIndex]);
+                        }
+                    }
                 }
 
                 tMenu.IsFinished = false;

@@ -29,7 +29,6 @@ namespace CastleEscape
         Player playerObj;
         DrawableMap mappy;
 
-
         int timer;
         bool canPressZ;
 
