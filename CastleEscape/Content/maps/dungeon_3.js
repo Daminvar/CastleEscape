@@ -4,12 +4,9 @@ mapfile("dungeon_3.tmx") // The tmx map file being used
 battleTexture("test-battle-background") // The texture for the background in battles
 
 south("dungeon_2.js")
-//east("hallway1.js")
 
 var drunkenGuard = newNPE() // New NPE creates a new NPE object.
-drunkenGuard.SetTexture("test-npe") // Sets the overworld texture for the NPE
-//var demon = newNPE()
-//demon.SetTexture("ghostie")
+drunkenGuard.SetTexture("guard1_front") // Sets the overworld texture for the NPE
 
 drunkenGuard.SetPosition(18,3)
 
@@ -26,9 +23,9 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 		dialogue("Uuugghhh... my head...|Hey, who're you...?|||...ain't you that prishoner...?||||...hey, get backta yer cell!")
 		var drunkItems = []
 		drunkItems[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
-		var enemy = newEnemy("test-npe", "Drunken Guard", 200, 12, 3, 0, 30, drunkItems)
+		var enemy = newEnemy("test-npe", "Drunken Guard", 200, 12, 3, 0, 30, null)
 		battle(player, enemy) //Starts a battle with the player and the enemy
-		setFlag("talked-to-guard") // Sets a flag to "true"
+		setFlag("has-hat") // Sets a flag to "true"
 		reloadMap() // Reloads the map
 	}
 })
@@ -37,26 +34,11 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 //Otherwise, the NPE won't appear in the room.
 addNPE(drunkenGuard)
 
-//if(getFlag("talked-to-guard")) {
-//	addNPE(ghostie)
-//}
+var bar = newNPE()
+bar.SetTexture("waiter_left")
+bar.SetPosition(4, 4)
 
-//var saveOrb = newNPE()
-//saveOrb.SetTexture("orb-of-saving")
-//saveOrb.SetPosition(2, 15)
-
-//saveOrb.SetInteractFunc(function(player) {
-//	save(player) // Saves the game. Try to use this function only with the orb of saving.
-//	dialogue("Game has been saved.")
-//})
-
-//addNPE(saveOrb)
-
-var wormStore = newNPE()
-wormStore.SetTexture("snake")
-wormStore.SetPosition(5, 5)
-
-wormStore.SetInteractFunc(function(player) {
+bar.SetInteractFunc(function(player) {
 	var items = [] //Create a Javascript array as such.
 	//newItem() creates a new item object. Parameters are...
 	// Item name, item description, health bonus, mana bonus, cost
@@ -64,16 +46,14 @@ wormStore.SetInteractFunc(function(player) {
 	store(player, items) // Pushes on a store state. Parameters are the player and an array of items.
 })
 
-addNPE(wormStore)
+addNPE(bar)
 
 var spirits = []
 spirits[0] = newItem("Spirit's Spirit", "An aged bottle of wine.", 20, 20, 10)
 
 var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
 var pauper = newEnemy("snake", "Pauper of Evil", 80, 7, 1, 1, 15, null)
-var spirit = newEnemy("ghostie", "Spirit", 85, 5, 1, 2, 17, spirits)
+//var spirit = newEnemy("ghostie", "Spirit", 85, 5, 1, 2, 17, spirits)
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)
-addRandomEncounter(spirit)
-
-setFlag("has-hat") //REMOVE THIS WHEN DOING MAPS FO REALS.
+//addRandomEncounter(spirit)

@@ -7,7 +7,7 @@ north("dungeon_2.js")
 east("HallWay1.js")
 
 var guard = newNPE() // New NPE creates a new NPE object.
-guard.SetTexture("test-npe") // Sets the overworld texture for the NPE
+guard.SetTexture("guard1_left") // Sets the overworld texture for the NPE
 //var demon = newNPE()
 //demon.SetTexture("ghostie")
 
@@ -34,7 +34,6 @@ addNPE(guard)
 
 var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
 var pauper = newEnemy("snake", "Pauper of Evil", 80, 7, 1, 1, 15, null)
-//var spirit = newEnemy("ghostie", "Spirit", 85, 5, 1, 2, 17, spirit[])
+
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)
-//addRandomEncoutner(spirit)
