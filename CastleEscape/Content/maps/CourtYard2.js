@@ -7,12 +7,12 @@ north("Graveyard1.js")
 west("CourtYard1.js")
 
 var courtyard2Civ1= newNPE()
-courtyard2Civ1.SetTexture("ghostie")
+courtyard2Civ1.SetTexture("test-npe")
 courtyard2Civ1.SetPosition(9,8)
 
 courtyard2Civ1.SetInteractFunc(function(player) 
 {
-	dialogue("i don't believe i've seen you before..")	
+	dialogue("Dan: I don't believe i've seen you before..|||| Jordan: Yeah, i get that a lot.")	
 
 })
 
@@ -25,7 +25,7 @@ courtyard2Civ2.SetPosition(12,8)
 
 courtyard2Civ2.SetInteractFunc(function(player) 
 {
-	dialogue("Nothing quite like reading a book on England's kind and peaceful rulers")	
+	dialogue("Chris: Nothing quite like reading a book on England's kind and peaceful rulers")	
 
 })
 

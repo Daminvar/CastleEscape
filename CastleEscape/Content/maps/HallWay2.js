@@ -9,17 +9,17 @@ east("HallWay3.js")
 south("bedroom1.js")
 
 var courtyardGuard1 = newNPE()
-courtyardGuard1.SetTexture("test-npe")
+courtyardGuard1.SetTexture("guard2_front")
 
 courtyardGuard1.SetPosition(4,5)
 
 courtyardGuard1.SetInteractFunc(function(player){
-	dialogue("Get away, the courtyard is off-limits!")
+	dialogue("Guard Allan: Get away, the courtyard is off-limits! |||| Jordan: I just need to pass by real quick, i won't cause any problems. |||| Guard Allan: GO AWAY!")
 })
 addNPE(courtyardGuard1)
 
 var courtyardGuard2 = newNPE()
-courtyardGuard2.SetTexture("snake")
+courtyardGuard2.SetTexture("guard1_front")
 
 if(getFlag("talked-to-cyg2"))
 { 
@@ -34,11 +34,12 @@ courtyardGuard2.SetInteractFunc(function(player)
 {
 	if(getFlag("talked-to-cyg2"))
 	{
-		dialogue("Be quick about it if you need to go through the courtyard.")
+		dialogue("Guard Mark: Be quick about if you need to go through the courtyard.")
+		courtyardGuard2.SetTexture("guard1_left")
 	}	
 	else
 	{
-		dialogue("I'm not suposed to let you into the courtyard but if you bring me something i might change my mind")
+		dialogue("Jordan: Can i please get by to the courtyard, it's of utmost importance. |||| Guard Mark: Sorry, it's against the rules to let just anyone have access to the courtyard or further. |||| Jordan: Please, i really need to go.. |||| Guard Mark: Okay, i might be able to slip you through, if you get me SOMETHING from family's bedroom")
 		//Some sort of test/check to see if they have the neccessary item
 		setFlag("talked-to-cyg2")
 		reloadMap()
@@ -49,11 +50,12 @@ addNPE(courtyardGuard2)
 
 
 var bedroomGuard = newNPE()
-bedroomGuard.SetTexture("ghostie")
+bedroomGuard.SetTexture("girl_left")
 
 if(getFlag("talked-to-bedroomGuard"))
 { 
 	bedroomGuard.SetPosition(7,10)
+	bedroomGuard.SetTexture("girl_front")
 }
 else
 {
@@ -64,11 +66,11 @@ bedroomGuard.SetInteractFunc(function(player)
 {
 	if(getFlag("talked-to-bedroomGuard"))
 	{
-		dialogue("Took you long enough, hurry up and get to work")
+		dialogue("Lady Mary: Oh you bought food for the family? Well i can't deny them food.. Go ahead")
 	}	
 	else
 	{
-		dialogue("I'm sorry but at this time no one may enter the bedrooms, the maid hasnt arrived yet")
+		dialogue("Lady Mary: I'm sorry but at this time no one may enter the bedrooms, the maid hasnt arrived yet. |||| Lady Mary: Unless you have food or something for the family quarters, you can't pass ")
 		//Some sort of test/check to see if they have the neccessary item
 		setFlag("talked-to-bedroomGuard")
 		reloadMap()

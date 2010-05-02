@@ -299,6 +299,8 @@ namespace CastleEscape
             spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
         }
 
+        
+
         public void getAccuracy(string attackType)
         {
             chosenAttack = attackType;
