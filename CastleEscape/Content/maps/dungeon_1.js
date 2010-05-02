@@ -14,7 +14,7 @@ guard.SetInteractFunc(function(player) { //Sets the interact function for the sp
 	if (getFlag("talked-to-guard")) {
 		//dialogue("I have nothing more to say to you.") // Pushes on a dialogue state with the selected text
 		dialogue("Basden: I said, stay in there! Don't make me force you!")
-		var enemy = newEnemy("test-npe", "Disgruntled Guard", 100, 5, 1, 1, 25, null)
+		var enemy = newEnemy("test-npe", "Disgruntled Guard Basden", 50, 5, 2, 1, 25, null)
 		battle(player, enemy)
 		setFlag("battled-guard")
 		reloadMap()
@@ -45,8 +45,8 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
-var pauper = newEnemy("snake", "Pauper of Evil", 80, 5, 1, 1, 10, null)
+var ghost = newEnemy("ghostie", "Ghost of Doom", 30, 7, 1, 1, 10, null)
+var pauper = newEnemy("snake", "Pauper of Evil", 50, 5, 1, 1, 10, null)
 
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)

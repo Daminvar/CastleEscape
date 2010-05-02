@@ -32,6 +32,18 @@ guard.SetInteractFunc(function(player) { //Sets the interact function for the sp
 
 addNPE(guard)
 
+var saveOrb = newNPE()
+saveOrb.SetTexture("orb-of-saving")
+saveOrb.SetPosition(4, 13)
+
+saveOrb.SetInteractFunc(function(player) {
+	save(player) // Saves the game. Try to use this function only with the orb of saving.
+	dialogue("Game has been saved.")
+})
+
+addNPE(saveOrb)
+
+
 var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
 var pauper = newEnemy("snake", "Pauper of Evil", 80, 7, 1, 1, 15, null)
 

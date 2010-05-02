@@ -11,6 +11,23 @@ var cook4 = newNPE()
 var cook5 = newNPE()
 var cook6 = newNPE()
 
+var person1 = newNPE()
+var person2 = newNPE()
+
+person1.SetPosition(1,3)
+person1.SetTexture("girl_front")
+person1.SetInteractFunc(function(player)
+{
+	dialogue("Arianne: This food is wonderful! The herring pie is to die for!||Jordan: (I hate herring pie...)")
+} )
+
+person2.SetPosition(5,7)
+person2.SetTexture("man_front")
+person2.SetInteractFunc(function(player)
+{
+	dialogue("Aron: Quite a good meal, quite a good meal...|I wish it weren't so pricey, though!")
+} )
+
 cook1.SetPosition(17,5)
 cook1.SetTexture("chef_left")
 cook1.SetInteractFunc(function(player)
@@ -38,8 +55,9 @@ cook3.SetInteractFunc(function(player)
 		else
 		{
 			dialogue("Bodus: Our specials today are lampreys and herring pie.||Jordan: I'd like some herring pie, please.||Bodus: Coming right up, sir.|May I inquire as to how you will be paying?||Jordan: (Payment?! I'm not wasting gold on this stuff!)|Bodus: ...No money?! Out of my sight!")
-			var angryWaiter = newEnemy("ghostie", "Angry Waiter", 120, 15, 4, 3, 45)
+			var angryWaiter = newEnemy("ghostie", "Angry Waiter Bodus", 120, 15, 4, 3, 45)
 			battle(player, angryWaiter)
+			dialogue("Jordan snatches the steaming hot herring pie from the defeated waiter.")
 			setFlag("herring-pie")
 			reloadMap()
 		}
@@ -77,6 +95,27 @@ addNPE(cook3)
 addNPE(cook4)
 addNPE(cook5)
 addNPE(cook6)
+addNPE(person1)
+addNPE(person2)
+
+var treasure = newNPE()
+
+treasure.SetPosition(19,6)
+treasure.SetInteractFunc(function(player)
+{
+	if(getFlag("got-treasure"))
+	{
+		dialogue("An empty treasure chest.")
+	}
+	else
+	{
+		dialogue("The chest contained Salad!")
+		player.AddItem("Salad", "A fresh green salad.", 30, 10, 25)
+		setFlag("got-treasure")
+	}
+} )
+
+addNPE(treasure)
 
 var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
 var salad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)

@@ -227,7 +227,7 @@ namespace CastleEscape
             health = 60;
             defense = 1;
             speed = 100;
-            attack = 1000;
+            attack = 10;
             maxMana = 10;
             mana = 10;
             magicAtk = 8;
@@ -257,6 +257,13 @@ namespace CastleEscape
         public int YPos
         {
             get { return yPos; }
+        }
+
+        public void AddItem(string name, string description, int healthBonus, int manaBonus, int cost)
+        {
+            Item item = new Item(name, description, healthBonus, manaBonus, cost);
+
+            items.Add(item);
         }
 
         /// <summary>
