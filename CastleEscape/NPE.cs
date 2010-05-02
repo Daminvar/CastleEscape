@@ -20,7 +20,7 @@ namespace CastleEscape
     /// 
     /// Author: Dennis Honeyman
     /// </summary>
-    class NPE : IOverworldEntity
+    class NPE
     {
         private Action<Player> interactFunc;
         private Texture2D texture;
@@ -42,11 +42,23 @@ namespace CastleEscape
             get { return yPos; }
         }
 
-        public void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y)
+        public void DrawBase(SpriteBatch spriteBatch, ScriptableMap map, int x, int y)
         {
-            if (texture != null)
-                spriteBatch.Draw(texture,
-                    new Vector2(x + xPos * map.TileSize, y + yPos * map.TileSize), Color.White);
+            if (texture == null)
+                return;
+            var sourceRect = new Rectangle(0, texture.Height - map.TileSize, map.TileSize, map.TileSize);
+            var destRect = new Rectangle(x + xPos * map.TileSize, y + yPos * map.TileSize, map.TileSize, map.TileSize);
+            spriteBatch.Draw(texture, destRect, sourceRect, Color.White);
+        }
+
+        public void DrawTop(SpriteBatch spriteBatch, ScriptableMap map, int x, int y)
+        {
+            if (texture == null)
+                return;
+
+            var sourceRect = new Rectangle(0, 0, map.TileSize, texture.Height - map.TileSize);
+            var destRect = new Rectangle(x + xPos * map.TileSize, y + yPos * map.TileSize - (texture.Height - map.TileSize), map.TileSize, map.TileSize - (texture.Height - map.TileSize));
+            spriteBatch.Draw(texture, destRect, sourceRect, Color.White);
         }
 
         public void SetPosition(int x, int y)
