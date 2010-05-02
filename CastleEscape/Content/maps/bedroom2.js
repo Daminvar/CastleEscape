@@ -45,11 +45,11 @@ sign.SetInteractFunc(function(player) {
 
 addNPE(sign)
 
-var note = newNPE()
-note.SetPosition(8, 8)
+var essay = newNPE()
+essay.SetPosition(8, 8)
 
-note.SetInteractFunc(function(player) {
+essay.SetInteractFunc(function(player) {
 	dialogue("It looks like an essay that one of the children started writing.")
 })
 
-addNPE(note)
+addNPE(essay)
