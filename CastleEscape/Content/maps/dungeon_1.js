@@ -10,27 +10,6 @@ guard.SetTexture("guard2_left") // Sets the overworld texture for the NPE
 
 guard.SetPosition(5, 8)
 
-var block = newNPE()
-
-block.SetPosition(1,13)
-
-block.SetInteractFunc(function(player) {
-	if(getFlag("intro-dialogue")) {
-	}
-	else {
-		setFlag("intro-dialogue")
-		dialogue("Jordan: ...Ugh...|(Wh... where am I...?)|(So... hungry...)||???: What? How are you still conscious?!||Jordan: (Woah! Where is that voice coming from?!)||???: You've been lying here without food for a week! I was sure you'd be dead by now!!||Jordan: Who's there?|Ludovic: I'm Ludovic, a demon, and I've taken over your body.|I kind of was hoping you were a bit more DEAD, though...||Jordan: Gee, thanks...|Ludovic: You don't have to talk aloud, you know. I can hear your thoughts. And that guard over there is looking suspicious.|Anyway, we have to get out of this castle.||Jordan: (What is going on here?!)")
-		reloadMap()
-	}
-} )
-
-if(getFlag("intro-dialogue"))
-{}
-else
-{
-	addNPE(block)
-}
-
 guard.SetInteractFunc(function(player) { //Sets the interact function for the specified NPE
 	if (getFlag("talked-to-guard")) {
 		//dialogue("I have nothing more to say to you.") // Pushes on a dialogue state with the selected text

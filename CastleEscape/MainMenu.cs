@@ -70,10 +70,11 @@ namespace CastleEscape
             if (selectedOption == "New Game")
             {
                 Flags.SetAllFlags(new Dictionary<string, bool>());
-                var player = new Player(game, 1, 14);
+                var player = new Player(game, 0, 9);
                 var map = new DrawableMap(game);
-                map.LoadMap("Graveyard1.js");
+                map.LoadMap("dungeon_1.js");
                 StateManager.PushState(new Overworld(game, player, map));
+                StateManager.PushState(new Dialogue(game, "Jordan: ...Ugh...|(Wh... where am I...?)|(So... hungry...)||???: What? How are you still conscious?!||Jordan: (Woah! Where is that voice coming from?!)||???: You've been lying here without food for a week! I was sure you'd be dead by now!!||Jordan: Who's there?|Ludovic: I'm Ludovic, a demon, and I've taken over your body.|I kind of was hoping you were a bit more DEAD, though...||Jordan: Gee, thanks...|Ludovic: You don't have to talk aloud, you know. I can hear your thoughts. And that guard over there is looking suspicious.|Anyway, we have to get out of this castle.||Jordan: (What is going on here?!)"));
             }
             else if (selectedOption == "Load Game")
             {
