@@ -29,9 +29,27 @@ lillina.SetInteractFunc(function(player) {
 
 addNPE(lillina)
 
-var tempGuard = newNPE()
-tempGuard.SetTexture("guard-back")
-tempGuard.SetPosition(13, 5)
 if (getFlag("lillina-guard-attack") && !getFlag("defeated-lillina-guard")) {
+	var tempGuard = newNPE()
+	tempGuard.SetTexture("guard-back")
+	tempGuard.SetPosition(13, 5)
 	addNPE(tempGuard)
 }
+
+var sign = newNPE()
+sign.SetPosition(5, 2)
+
+sign.SetInteractFunc(function(player) {
+	dialogue("Don't play with the candles kids ~ The King")
+})
+
+addNPE(sign)
+
+var note = newNPE()
+note.SetPosition(8, 8)
+
+note.SetInteractFunc(function(player) {
+	dialogue("It looks like an essay that one of the children started writing.")
+})
+
+addNPE(note)
