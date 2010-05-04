@@ -1,4 +1,6 @@
 *.o
+.pydevproject
+.lock-wscript
+.waf*
 Thumbs.db
-Debug/
-Release/
+build/
