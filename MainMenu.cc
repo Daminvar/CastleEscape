@@ -10,12 +10,16 @@ using namespace std;
 
 namespace CastleEscape {
 
+const int MENU_X = 520;
+const int MENU_Y = 200;
+const int MENU_FONT_SIZE = 40;
+
 MainMenu::MainMenu() {
 	background.LoadFromFile("Content/main-menu-background.png");
 	bgSprite.SetImage(background);
 
 	sf::Font font;
-	font.LoadFromFile("Content/fonts/diavlo-bold.otf");
+	font.LoadFromFile("Content/fonts/diavlo-bold.otf", MENU_FONT_SIZE);
 	vector<string> options;
 	options.push_back("New Game");
 	options.push_back("Load Game");
@@ -43,7 +47,7 @@ void MainMenu::Update(const sf::Clock& clock, const sf::Input& input) {
 
 void MainMenu::Draw(sf::RenderWindow& window) {
 	window.Draw(bgSprite);
-	menu->Draw(window, 300, 300, sf::Color(0, 0, 0));
+	menu->Draw(window, MENU_X, MENU_Y, sf::Color(0, 0, 0));
 }
 
 } // namespace CastleEscape
