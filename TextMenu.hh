@@ -13,8 +13,8 @@ private:
 	sf::Font font;
 	std::vector<std::string> options;
 	uint selectedOption;
-	float defaultSpacing;
-	float selectedSpacing;
+	float defaultStretch;
+	float selectedStretch;
 	bool canMove;
 	bool isFinished;
 	bool canPressZ;
@@ -22,7 +22,8 @@ private:
 public:
 	TextMenu(const std::vector<std::string>& options, const sf::Font& font);
 	bool IsFinished();
-	int GetSelectedOption();
+	void Restart();
+	uint GetSelectedOption();
 	std::vector<std::string> GetOptions();
 	std::vector<std::string> SetOptions(std::vector<std::string> options);
 	void Update(const sf::Clock& clock, const sf::Input& input);

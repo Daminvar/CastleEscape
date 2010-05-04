@@ -19,6 +19,7 @@ public:
 private:
 	sf::Image background;
 	sf::Sprite bgSprite;
+	std::vector<std::string> options;
 	TextMenu* menu;
 };
 
