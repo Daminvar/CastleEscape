@@ -1,5 +1,4 @@
-*.cachefile
-*.suo
+*.o
 Thumbs.db
-bin/
-obj/
+Debug/
+Release/

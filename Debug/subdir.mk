@@ -5,21 +5,24 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CC_SRCS += \
 ../Main.cc \
+../MainMenu.cc \
 ../State.cc \
 ../StateManager.cc \
-../TestState.cc 
+../TextMenu.cc 
 
 OBJS += \
 ./Main.o \
+./MainMenu.o \
 ./State.o \
 ./StateManager.o \
-./TestState.o 
+./TextMenu.o 
 
 CC_DEPS += \
 ./Main.d \
+./MainMenu.d \
 ./State.d \
 ./StateManager.d \
-./TestState.d 
+./TextMenu.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

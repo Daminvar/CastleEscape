@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "StateManager.hh"
-#include "TestState.hh"
+#include "MainMenu.hh"
 using namespace CastleEscape;
 
 int main() {
@@ -8,7 +8,7 @@ int main() {
 	sf::Clock clock;
 	app.SetFramerateLimit(60);
 	StateManager::Initialize();
-	StateManager::PushState(new TestState());
+	StateManager::PushState(new MainMenu());
 
 	while (app.IsOpened()) {
 		sf::Event event;

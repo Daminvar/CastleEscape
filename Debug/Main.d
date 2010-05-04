@@ -1,7 +1,10 @@
-Main.d Main.o: ../Main.cc ../StateManager.hh ../State.hh ../TestState.hh
+Main.d Main.o: ../Main.cc ../StateManager.hh ../State.hh ../MainMenu.hh \
+ ../TextMenu.hh
 
 ../StateManager.hh:
 
 ../State.hh:
 
-../TestState.hh:
+../MainMenu.hh:
+
+../TextMenu.hh:

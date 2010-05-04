@@ -1,15 +1,16 @@
-#ifndef TESTSTATE_HH
-#define TESTSTATE_HH
+#ifndef MAINMENU_HH
+#define MAINMENU_HH
 
 #include <SFML/Graphics.hpp>
 #include "State.hh"
+#include "TextMenu.hh"
 
 namespace CastleEscape {
 
-class TestState: public State {
+class MainMenu: public State {
 public:
-	TestState();
-	virtual ~TestState();
+	MainMenu();
+	virtual ~MainMenu();
 	virtual void Pause();
 	virtual void Resume();
 	virtual void Update(const sf::Clock& clock);
@@ -18,8 +19,9 @@ public:
 private:
 	sf::Image background;
 	sf::Sprite bgSprite;
+	TextMenu* menu;
 };
 
 } // namespace CastleEscape
 
-#endif // TESTSTATE_HH
+#endif // MAINMENU_HH
