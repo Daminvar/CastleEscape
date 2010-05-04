@@ -4,22 +4,22 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CC_SRCS += \
+../DrawableMap.cc \
 ../Main.cc \
-../MainMenu.cc \
 ../State.cc \
 ../StateManager.cc \
 ../TextMenu.cc 
 
 OBJS += \
+./DrawableMap.o \
 ./Main.o \
-./MainMenu.o \
 ./State.o \
 ./StateManager.o \
 ./TextMenu.o 
 
 CC_DEPS += \
+./DrawableMap.d \
 ./Main.d \
-./MainMenu.d \
 ./State.d \
 ./StateManager.d \
 ./TextMenu.d 

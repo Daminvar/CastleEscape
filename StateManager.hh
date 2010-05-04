@@ -13,9 +13,10 @@ private:
 	static bool running;
 
 public:
-	static int GetStackSize();
-	static bool IsRunning();
 	static void Initialize();
+	static int GetStackSize();
+	static void Stop();
+	static void Continue();
 	static void Update(const sf::Clock& clock, const sf::Input& input);
 	static void Draw(sf::RenderWindow& window);
 	static void PushState(State* newState);

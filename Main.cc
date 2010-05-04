@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "StateManager.hh"
-#include "MainMenu.hh"
+#include "States/MainMenu.hh"
 using namespace CastleEscape;
 
 int main() {
@@ -17,6 +17,8 @@ int main() {
 				app.Close();
 		}
 		StateManager::Update(clock, app.GetInput());
+		if (StateManager::IsEmpty())
+			app.Close();
 		app.Clear();
 		StateManager::Draw(app);
 		app.Display();

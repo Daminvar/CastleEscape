@@ -8,20 +8,33 @@
 namespace CastleEscape {
 
 std::vector<State*> StateManager::states;
+bool StateManager::running;
 
 void StateManager::Initialize() {
-	std::cout << "Initializing!" << std::endl;
+	running = true;
+}
+
+int StateManager::GetStackSize() {
+	return states.size();
+}
+
+void StateManager::Stop() {
+	running = false;
+}
+
+void StateManager::Continue() {
+	running = true;
 }
 
 void StateManager::Update(const sf::Clock& clock, const sf::Input& input) {
-	if (states.empty())
+	if (states.empty() || !running)
 		return;
 
 	states.back()->Update(clock, input);
 }
 
 void StateManager::Draw(sf::RenderWindow& window) {
-	if (states.empty())
+	if (states.empty() || !running)
 		return;
 
 	states.back()->Draw(window);

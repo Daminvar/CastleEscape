@@ -7,7 +7,8 @@ using namespace std;
 
 #include <SFML/Graphics.hpp>
 
-#include "TextMenu.hh"
+#include "../StateManager.hh"
+#include "../TextMenu.hh"
 
 namespace CastleEscape {
 
@@ -50,7 +51,13 @@ void MainMenu::Update(const sf::Clock& clock, const sf::Input& input) {
 
 	if (selectedOption == "New Game") {
 		cout << "Working, at least =/" << endl;
-		menu->Restart();
+		menu->Restart(); //TODO: New Game
+	} else if (selectedOption == "Load Game") {
+		menu->Restart(); //TODO: Load Game
+	} else if (selectedOption == "About") {
+		menu->Restart(); //TODO: Port about state
+	} else if (selectedOption == "Quit") {
+		StateManager::PopAllStates();
 	}
 }
 

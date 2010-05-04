@@ -1,66 +1,22 @@
-﻿namespace CastleEscape
-{
-    /// <summary>
-    /// A scriptable map that can be drawn to the screen.
-    /// 
-    /// Author: Dennis Honeyman
-    /// </summary>
-    class DrawableMap : ScriptableMap
-    {
-        private const string TILESET_RESOURCE_NAME = "tileset";
+﻿#ifndef DRAWABLEMAP_HH
+#define DRAWABLEMAP_HH
 
-        private Texture2D tileset;
+#include <SFML/Graphics.hpp>
 
-        public DrawableMap(Game game)
-            : base(game)
-        {
-            tileset = game.Content.Load<Texture2D>(TILESET_RESOURCE_NAME);
-        }
+namespace CastleEscape {
 
-        /// <summary>
-        /// Renders the base of the map (everything below the player)
-        /// at the specified coordinates.
-        /// </summary>
-        public void DrawBase(SpriteBatch spriteBatch, int xPos, int yPos)
-        {
-            drawLayers(tmxMap.BaseLayers, spriteBatch, xPos, yPos);
-            foreach (var npe in NPEs)
-                npe.DrawBase(spriteBatch, this, xPos, yPos);
-        }
+class DrawableMap { //TODO: Add inheritance
+public:
+	DrawableMap();
+	virtual ~DrawableMap();
+	void DrawBase(sf::RenderWindow& window, int x, int y);
+	void DrawTop(sf::RenderWindow& window, int x, int y);
 
-        /// <summary>
-        /// Renders the top of the map (everything above the player)
-        /// at the specified coordinates.
-        /// </summary>
-        public void DrawTop(SpriteBatch spriteBatch, int xPos, int yPos)
-        {
-            foreach (var npe in NPEs)
-                npe.DrawTop(spriteBatch, this, xPos, yPos);
-            drawLayers(tmxMap.TopLayers, spriteBatch, xPos, yPos);
-        }
+private:
+	sf::Image tileset;
+	void drawLayers();
+};
 
-        private void drawLayers(List<int[][]> layers, SpriteBatch spriteBatch, int xPos, int yPos)
-        {
-            int tilesize = tmxMap.TileSize;
-            int rowSize = tileset.Width / tilesize;
+} // namespace CastleEscape
 
-            for (int z = 0; z < layers.Count; z++)
-            {
-                for (int y = 0; y < layers[0].Length; y++)
-                {
-                    for (int x = 0; x < layers[0][0].Length; x++)
-                    {
-                        int tileID = layers[z][y][x];
-                        if (tileID == -1)
-                            continue;
-                        var destRect = new Rectangle(xPos + x * tilesize,
-                            yPos + y * tilesize, tilesize, tilesize);
-                        var tileRect = new Rectangle((tileID % rowSize) * tilesize,
-                            (tileID / rowSize) * tilesize, tilesize, tilesize);
-                        spriteBatch.Draw(tileset, destRect, tileRect, Color.White);
-                    }
-                }
-            }
-        }
-    }
-}
+#endif // DRAWABLEMAP_HH
