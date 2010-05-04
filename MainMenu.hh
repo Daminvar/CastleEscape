@@ -13,7 +13,7 @@ public:
 	virtual ~MainMenu();
 	virtual void Pause();
 	virtual void Resume();
-	virtual void Update(const sf::Clock& clock);
+	virtual void Update(const sf::Clock& clock, const sf::Input& input);
 	virtual void Draw(sf::RenderWindow& window);
 
 private:

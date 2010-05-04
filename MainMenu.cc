@@ -26,6 +26,7 @@ MainMenu::MainMenu() {
 }
 
 MainMenu::~MainMenu() {
+	delete menu;
 }
 
 void MainMenu::Pause() {
@@ -36,8 +37,8 @@ void MainMenu::Resume() {
 	// TODO
 }
 
-void MainMenu::Update(const sf::Clock& clock) {
-
+void MainMenu::Update(const sf::Clock& clock, const sf::Input& input) {
+	menu->Update(clock, input);
 }
 
 void MainMenu::Draw(sf::RenderWindow& window) {

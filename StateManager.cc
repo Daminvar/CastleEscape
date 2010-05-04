@@ -13,23 +13,23 @@ void StateManager::Initialize() {
 	std::cout << "Initializing!" << std::endl;
 }
 
-void StateManager::Update(const sf::Clock& clock) {
+void StateManager::Update(const sf::Clock& clock, const sf::Input& input) {
 	if (states.empty())
 		return;
 
-	states[states.size() - 1]->Update(clock);
+	states.back()->Update(clock, input);
 }
 
 void StateManager::Draw(sf::RenderWindow& window) {
 	if (states.empty())
 		return;
 
-	states[states.size() - 1]->Draw(window);
+	states.back()->Draw(window);
 }
 
 void StateManager::PushState(State* newState) {
 	if (!states.empty())
-		states[states.size() - 1]->Pause();
+		states.back()->Pause();
 	states.push_back(newState);
 }
 

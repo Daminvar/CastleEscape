@@ -16,7 +16,7 @@ public:
 	static int GetStackSize();
 	static bool IsRunning();
 	static void Initialize();
-	static void Update(const sf::Clock& clock);
+	static void Update(const sf::Clock& clock, const sf::Input& input);
 	static void Draw(sf::RenderWindow& window);
 	static void PushState(State* newState);
 	static void PopState();

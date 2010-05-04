@@ -12,7 +12,7 @@ class TextMenu {
 private:
 	sf::Font font;
 	std::vector<std::string> options;
-	int selectedOption;
+	uint selectedOption;
 	float defaultSpacing;
 	float selectedSpacing;
 	bool canMove;
@@ -25,7 +25,7 @@ public:
 	int GetSelectedOption();
 	std::vector<std::string> GetOptions();
 	std::vector<std::string> SetOptions(std::vector<std::string> options);
-	void Update(const sf::Clock& clock);
+	void Update(const sf::Clock& clock, const sf::Input& input);
 	void Draw(sf::RenderWindow& window, int x, int y, const sf::Color& color);
 };
 

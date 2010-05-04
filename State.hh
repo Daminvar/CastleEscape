@@ -16,7 +16,7 @@ public:
 
 	virtual void Pause() = 0;
 	virtual void Resume() = 0;
-	virtual void Update(const sf::Clock& clock) = 0;
+	virtual void Update(const sf::Clock& clock, const sf::Input& input) = 0;
 	virtual void Draw(sf::RenderWindow& window) = 0;
 };
 

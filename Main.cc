@@ -16,11 +16,10 @@ int main() {
 			if (event.Type == sf::Event::Closed)
 				app.Close();
 		}
-		StateManager::Update(clock);
+		StateManager::Update(clock, app.GetInput());
 		app.Clear();
 		StateManager::Draw(app);
 		app.Display();
-		clock.Reset();
 	}
 	return 0;
 }
