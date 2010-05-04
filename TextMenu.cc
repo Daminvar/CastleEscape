@@ -67,7 +67,7 @@ void TextMenu::Draw(sf::RenderWindow& window, int x, int y,
 	 }
 	 font.Spacing = defaultSpacing;
 	 */
-	for (int i = 0; i < options.size(); i++) {
+	for (unsigned int i = 0; i < options.size(); i++) {
 		sf::String item(options[i], font);
 		item.SetPosition(x, y + i * font.GetCharacterSize());
 		window.Draw(item);
