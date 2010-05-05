@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -25,8 +19,8 @@ namespace CastleEscape
         // create necessary attributes
         private string message;
         private int height;
-        private Texture2D bgColor;
-        private SpriteFont font;
+        private Image bgColor;
+        private Font font;
         private string[] mArray;
         private bool canMove;
         private List<string> mList;
@@ -36,17 +30,16 @@ namespace CastleEscape
         /// </summary>
         /// <param name="text">The message that will be displayed</param>
         /// <param name="game">The current game</param>
-        public Dialogue(Game game, string text) : base(game)
+        public Dialogue(string text) : base()
         {
             // the text that it will display
             message = text;
-            bgColor = new Texture2D(game.GraphicsDevice, 1, 1);
-            bgColor.SetData<Color>(new Color[] { new Color(Color.Black, 200) });
-            font = game.Content.Load<SpriteFont>("dialogue-font");
+            bgColor = new Image(1, 1, new Color(150, 150, 150, 150));
+            font = Font.DefaultFont; //TODO fix
             transparent = true;
 
             // get the height that the dialogue box will be - 1/4th of the screen size
-            height = game.GraphicsDevice.Viewport.Height / 4;
+            height = 480 / 4; //TODO
 
             // this is so the dialogue box doesn't instantly close
             canMove = false;
@@ -61,7 +54,7 @@ namespace CastleEscape
             for (int i = 0; i < mArray.Length; i++)
             {
                 // if the line is not too long, add it to the mList list
-                if (font.MeasureString(mArray[i]).X < game.GraphicsDevice.Viewport.Width - 32)
+                if (font.MeasureString(mArray[i]).X < 800 - 32) //TODO fix
                 {
                     mList.Add(mArray[i]);
                 }
@@ -74,7 +67,7 @@ namespace CastleEscape
                     for (int j = 0; j < longLineArr.Length; j++)
                     {
                         // if the next word + the current string is longer than the width we set, add the current string to the message list
-                        if (font.MeasureString(longLineArr[j] + " " + msg).X > game.GraphicsDevice.Viewport.Width - 64)
+                        if (font.MeasureString(longLineArr[j] + " " + msg).X > 800 - 64) //TODO fix
                         {
                             mList.Add(msg);
                             msg = null;
@@ -112,12 +105,12 @@ namespace CastleEscape
         /// Holding down the space key sets canMove to false. Releasing sets canMove to true.
         /// </summary>
         /// <param name="gameTime">The game time</param>
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
             // Check for keyboard input
             if (canMove)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Z))
+                if (input.IsKeyDown(KeyCode.Z))
                 {
                     if (mList.Count <= 4)
                     {
@@ -130,8 +123,8 @@ namespace CastleEscape
                 }
             }
 
-            // if the space key is up, then set canMove to true again so you can go to the next line.
-            if (Keyboard.GetState().IsKeyUp(Keys.Z))
+            // if Z is up, then set canMove to true again so you can go to the next line.
+            if (!input.IsKeyDown(KeyCode.Z))
             {
                 canMove = true;
             }
@@ -141,15 +134,19 @@ namespace CastleEscape
         /// Draws the textbox and four lines of text to the screen.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
             // draws only the first four lines of the array
-            Rectangle rc = new Rectangle(0, game.GraphicsDevice.Viewport.Height * 3 / 4, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-            spriteBatch.Draw(bgColor, rc, Color.White);
+			var boxSprite = new Sprite(bgColor);
+            boxSprite.Position = new Vector2(0, window.Height * 3 / 4);
+			boxSprite.Scale = new Vector2(game.GraphicsDevice.Viewport.Width, window.Height - window.Height * 3 / 4);
+            window.Draw(boxSprite);
             
             for (int i = 0; i < 4 && i < mList.Count; i++)
             {
-                spriteBatch.DrawString(font, mList[i], new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 10) + 5 + font.LineSpacing * i), Color.White);
+				var str = new String2D(mList[i], font);
+				str.Position = new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 10) + 5 + font.LineSpacing * i);
+				window.Draw(str);
             }
         }
     }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B1676F4E-9D9D-4A53-AA9F-2D5C876066B2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CastleEscape</RootNamespace>
+    <AssemblyName>CastleEscape</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="AboutState.cs" />
+    <Compile Include="Battle.cs" />
+    <Compile Include="Dialogue.cs" />
+    <Compile Include="DrawableMap.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Flags.cs" />
+    <Compile Include="GameData.cs" />
+    <Compile Include="HUD.cs" />
+    <Compile Include="IBattleCharacter.cs" />
+    <Compile Include="IOverworldEntity.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="ItemState.cs" />
+    <Compile Include="LevelState.cs" />
+    <Compile Include="MainMenu.cs" />
+    <Compile Include="NPE.cs" />
+    <Compile Include="Overworld.cs" />
+    <Compile Include="PauseState.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ScriptableMap.cs" />
+    <Compile Include="State.cs" />
+    <Compile Include="StateManager.cs" />
+    <Compile Include="Store.cs" />
+    <Compile Include="TestBattleState.cs" />
+    <Compile Include="TestDialogueState.cs" />
+    <Compile Include="TestItemState.cs" />
+    <Compile Include="TestMapState.cs" />
+    <Compile Include="TestStoreState.cs" />
+    <Compile Include="TextMenu.cs" />
+    <Compile Include="TMXMap.cs" />
+    <Compile Include="Clock.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Jint, Version=0.8.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Jint.dll</HintPath>
+    </Reference>
+    <Reference Include="sfmlnet-audio, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\sfmlnet-audio.dll</HintPath>
+    </Reference>
+    <Reference Include="sfmlnet-graphics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\sfmlnet-graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="sfmlnet-window, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\sfmlnet-window.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+</Project>

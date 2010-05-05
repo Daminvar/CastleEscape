@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -21,11 +15,11 @@ namespace CastleEscape
     /// </summary>
     class TextMenu
     {
-        private SpriteFont font;
+        private Font font;
         private string[] options;
         private int selectedOption = 0;
-        private float defaultSpacing;
-        private float selectedSpacing;
+        private float defaultStretch;
+        private float selectedStretch;
         private bool canMove;
         private bool isFinished;
         private bool canPressZ;
@@ -47,27 +41,27 @@ namespace CastleEscape
             set { options = value; }
         }
 
-        public TextMenu(SpriteFont font, string[] options)
+        public TextMenu(Font font, string[] options)
         {
             this.options = options;
             this.font = font;
-            defaultSpacing = font.Spacing;
+            defaultStretch = 1;
             canMove = false;
             isFinished = false;
             canPressZ = false;
         }
 
-        public void Update(GameTime gameTime, KeyboardState state)
+        public void Update(Clock clock, Input input)
         {
             if (!isFinished)
             {
-                selectedSpacing = (float)(defaultSpacing + Math.Sin(Math.Log(gameTime.TotalGameTime.Milliseconds)) * 20);
-                selectedSpacing = selectedSpacing / options[selectedOption].Length;
+                selectedStretch = (float)(defaultStretch + Math.Sin(clock.TotalTime.Second * 20));
+                selectedStretch = selectedStretch / options[selectedOption].Length;
             }
             else
             {
                 canMove = false;
-                selectedSpacing = defaultSpacing;
+                selectedStretch = defaultStretch;
                 return;
             }
 
@@ -78,7 +72,7 @@ namespace CastleEscape
             {
                 isFinished = true;
                 canPressZ = false;
-                selectedSpacing = defaultSpacing;
+                selectedStretch = defaultStretch;
             }
 
             if (state.IsKeyUp(Keys.Up) && state.IsKeyUp(Keys.Down))
@@ -97,21 +91,21 @@ namespace CastleEscape
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, int x, int y, Color textColor)
+        public void Draw(RenderWindow window, int x, int y, Color textColor)
         {
             for (int i = 0; i < options.Length; i++)
             {
-                var pos = new Vector2(x, y + i * font.LineSpacing);
+				var optionText = new String2D(options[i], font);
+                var pos = new Vector2(x, y + i * font.CharacterSize);
                 if (i == selectedOption && !isFinished)
                 {
-                    pos.X += 2 * selectedSpacing;
-                    font.Spacing = selectedSpacing;
+                    pos.X += 2 * selectedStretch;
+                    optionText.Scale = new Vector2(selectedStretch, 0);
                 }
-                else
-                    font.Spacing = defaultSpacing;
-                spriteBatch.DrawString(font, options[i], pos, textColor);
+				optionText.Position = pos;
+				optionText.Color = textColor;
+				window.Draw(optionText);
             }
-            font.Spacing = defaultSpacing;
         }
     }
 }

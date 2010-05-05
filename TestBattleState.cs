@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,10 +16,6 @@ namespace CastleEscape
 {
     class TestBattleState : State
     {
-
-
-
-
         public TestBattleState(Game game)
             : base(game)
         {

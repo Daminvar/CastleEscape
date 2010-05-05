@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -26,12 +20,12 @@ namespace CastleEscape
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
     {
-        private const string PLAYER_OW_TEXTURE = "player-spritesheet";
+        private const string PLAYER_OW_TEXTURE = "player-spritesheet.png";
         [NonSerialized]
-        private Texture2D overworldTexture;
-        private const string PLAYER_BATTLE_TEXTURE = "guy";
+        private Image overworldTexture;
+        private const string PLAYER_BATTLE_TEXTURE = "guy.png";
         [NonSerialized]
-        private Texture2D battleTexture;
+        private Image battleTexture;
 
         private int xPos;
         private int yPos;
@@ -213,12 +207,12 @@ namespace CastleEscape
         /// </summary>
         /// <param name="xPos">The starting x-position</param>
         /// <param name="yPos">The starting y-position</param>
-        public Player(Game game, int xPos, int yPos)
+        public Player(int xPos, int yPos)
         {
             this.xPos = xPos;
             this.yPos = yPos;
 
-            LoadTexture(game);
+            LoadTexture();
 
             // the level 1 attributes of a player
             level = 1;
@@ -243,10 +237,10 @@ namespace CastleEscape
         }
 
 
-        public void LoadTexture(Game game)
+        public void LoadTexture()
         {
-            overworldTexture = game.Content.Load<Texture2D>(PLAYER_OW_TEXTURE);
-            battleTexture = game.Content.Load<Texture2D>(PLAYER_BATTLE_TEXTURE);
+            overworldTexture = new Image("Content\\" + PLAYER_OW_TEXTURE);
+            battleTexture = new Image("Content\\" + PLAYER_BATTLE_TEXTURE);
         }
 
         public int XPos
@@ -270,7 +264,7 @@ namespace CastleEscape
             yPos += y;
         }
 
-        public void DrawForOverworld(SpriteBatch spriteBatch, DrawableMap map, int x, int y)
+        public void DrawForOverworld(RenderWindow window, DrawableMap map, int x, int y)
         {
             if (direction == Player.Directions.West)
             {
@@ -289,9 +283,14 @@ namespace CastleEscape
                 currentSpriteY = 0;
             }
 
-            sourceRectangle = new Rectangle(currentSpriteX * spriteWidth, currentSpriteY * spriteHeight, spriteWidth, spriteHeight);
+			var playerSprite = new Sprite(overworldTexture);
+			playerSprite.Position = new Vector2(x - 3 + xPos * map.TileSize - modX, y - 8 + yPos * map.TileSize - modY);
+			int sourceX = currentSpriteX * spriteWidth;
+			int sourceY = currentSpriteY * spriteHeight;
+			playerSprite.SubRect = new IntRect(sourceX, sourceY, sourceX + spriteWidth, sourceY + spriteHeight);
+			window.Draw(playerSprite);
 
-            spriteBatch.Draw(overworldTexture, new Vector2(x - 3 + xPos * map.TileSize - modX, y - 8 + yPos * map.TileSize - modY), sourceRectangle, Color.White);
+            spriteBatch.Draw(overworldTexture, sourceRectangle, Color.White);
         }
 
         public void DrawForBattle(SpriteBatch spriteBatch, int x, int y)

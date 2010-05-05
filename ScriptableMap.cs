@@ -1,19 +1,13 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -29,7 +23,6 @@ namespace CastleEscape
             double attack, double defense, double speed, double exp, ArrayList items);
         private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
 
-        protected Game game;
         protected TMXMap tmxMap;
         protected List<NPE> NPEs;
 
@@ -37,7 +30,7 @@ namespace CastleEscape
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
         private string tmxMapFilename;
         private string mapName;
-        private Texture2D battleTexture;
+        private Image battleTexture;
         private List<Enemy> randomEncounters;
         private Random rand;
 
@@ -73,7 +66,7 @@ namespace CastleEscape
             get { return mapName; }
         }
 
-        public Texture2D BattleTexture
+        public Image BattleTexture
         {
             get { return battleTexture; }
         }
@@ -83,9 +76,8 @@ namespace CastleEscape
             North, South, East, West
         }
 
-        public ScriptableMap(Game game)
+        public ScriptableMap()
         {
-            this.game = game;
             tmxMap = new TMXMap();
             rand = new Random();
         }
@@ -266,14 +258,14 @@ namespace CastleEscape
 
         private NPE js_newNPE()
         {
-            return new NPE(game);
+            return new NPE();
         }
 
         private void js_dialogue(string text)
         {
             StateManager.Running = false;
             int currentStackSize = StateManager.StackSize;
-            StateManager.PushState(new Dialogue(game, text));
+            StateManager.PushState(new Dialogue(text));
             StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {
@@ -329,7 +321,7 @@ namespace CastleEscape
             Item[] items = null;
             if (itemsArrayList != null)
                 items = createItemArray(itemsArrayList);
-            StateManager.PushState(new Store(game, player, items));
+            StateManager.PushState(new Store(player, items));
             StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {

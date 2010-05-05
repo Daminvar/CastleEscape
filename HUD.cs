@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -25,20 +19,19 @@ namespace CastleEscape
     {
         private const int HEIGHT = 120;
         private const int WIDTH = 160;
-        Texture2D background;
-        SpriteFont font;
+        Image background;
+        Font font;
         Player player;
         ScriptableMap map;
         int screenSize;
         
-        public HUD(Game game, Player player, ScriptableMap map)
+        public HUD(Player player, ScriptableMap map)
         {
-            font = game.Content.Load<SpriteFont>("hud-font");
-            background = new Texture2D(game.GraphicsDevice, 1, 1);
-            background.SetData<Color>(new Color[] { new Color(100, 100, 100) });
+            font = Font.DefaultFont; //TODO fix
+            background = new Image(1, 1, new Color(100, 100, 100, 100));
             this.player = player;
             this.map = map;
-            screenSize = game.GraphicsDevice.Viewport.Height;
+            screenSize = 480; //TODO fix
         }
 
         /// <summary>
@@ -47,11 +40,15 @@ namespace CastleEscape
         /// <param name="spriteBatch">The SpriteBatch to use.</param>
         /// <param name="xPos">The X coordinate to draw at.</param>
         /// <param name="yPos">The Y coordinate to draw at.</param>
-        public void Draw(SpriteBatch spriteBatch, int xPos, int yPos)
+        public void Draw(RenderWindow window, int xPos, int yPos)
         {
-           
-            spriteBatch.Draw(background, new Rectangle(xPos, yPos, WIDTH, HEIGHT), Color.White);
-            spriteBatch.Draw(background, new Rectangle(xPos, HEIGHT, WIDTH, screenSize - HEIGHT), Color.Black);
+			var bgSprite = new Sprite(background);
+			bgSprite.Position = new Vector2(xPos, yPos);
+			bgSprite.Scale = new Vector2(WIDTH, HEIGHT);
+			window.Draw(bgSprite);
+			bgSprite.Position = new Vector2(xPos, HEIGHT);
+			bgSprite.Scale = new Vector2(WIDTH, screenSize - HEIGHT);
+			window.Draw(bgSprite);
 
             string[] stats = new string[] {
                  string.Format("HP: {0}/{1}", player.Health, player.MaxHealth),
@@ -63,8 +60,9 @@ namespace CastleEscape
 
             for (int i = 0; i < stats.Length; i++)
             {
-                var pos = new Vector2(xPos + 5, yPos + i * font.LineSpacing + 5);
-                spriteBatch.DrawString(font, stats[i], pos, Color.White);
+				var statString = new String2D(stats[i], font);
+                statString.Position = new Vector2(xPos + 5, yPos + i * font.LineSpacing + 5);
+                window.Draw(statString);
             }
         }
     }

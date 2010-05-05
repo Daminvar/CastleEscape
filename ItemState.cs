@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -26,19 +20,18 @@ namespace CastleEscape
         private const int WIDTH = 500;
         private const int HEIGHT = 400;
         private Player player;
-        private Texture2D texture;
+        private Image background;
         private SpriteFont font;
         private TextMenu menu;
         private bool canPressEscape;
         private bool oneTimeUse;
 
-        public ItemState(Game game, Player player, bool oneTimeUse)
-            : base(game)
+        public ItemState(Player player, bool oneTimeUse)
+            : base()
         {
             this.player = player;
-            texture = new Texture2D(game.GraphicsDevice, 1, 1);
-            texture.SetData<Color>(new Color[] { new Color(Color.Black, 150) });
-            font = game.Content.Load<SpriteFont>("inventory-header-font");
+            background = new Image(1, 1, Color.Black); //TODO
+            font = Font.DefaultFont; //TODO
             //The menu is only needed if the player has items.
             if (player.Items.Count > 0)
                 menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
@@ -62,21 +55,19 @@ namespace CastleEscape
         public override void Resume()
         {
             if (player.Items.Count > 0)
-                menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
+                menu = new TextMenu(Font.DefaultFont, getStringOfPlayerItems());
             if (oneTimeUse)
                 StateManager.PopState();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
-            KeyboardState state = Keyboard.GetState();
-
-            if (state.IsKeyUp(Keys.Escape))
+            if (!input.IsKeyDown(KeyCode.Escape))
                 canPressEscape = true;
 
             if (player.Items.Count > 0)
             {
-                menu.Update(gameTime, state);
+                menu.Update(clock, input);
                 if (menu.IsFinished)
                 {
                     //Use the selected item
@@ -91,18 +82,29 @@ namespace CastleEscape
             if (!canPressEscape)
                 return;
 
-            if (state.IsKeyDown(Keys.Escape))
+            if (input.IsKeyDown(KeyCode.Escape))
                 StateManager.PopState();
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
-            spriteBatch.Draw(texture, new Rectangle(XPOS, YPOS, WIDTH, HEIGHT), Color.White);
-            spriteBatch.DrawString(font, "Inventory - Press 'Esc' to quit.", new Vector2(XPOS + 5, YPOS + 5), Color.White);
+			var bgSprite = new Sprite(background);
+			bgSprite.Position = new Vector2(XPOS, YPOS);
+			bgSprite.Scale = new Vector2(WIDTH, HEIGHT);
+			window.Draw(bgSprite);
+			var header = new String2D("Inventory - Press 'Esc' to quit.", font);
+			header.Position = new Vector2(XPOS + 5, YPOS + 5);
+			header.Color = Color.White;
+            window.Draw(header);
             if (player.Items.Count > 0)
-                menu.Draw(spriteBatch, XPOS + 5, YPOS + 30, Color.White);
+                menu.Draw(window, XPOS + 5, YPOS + 30, Color.White);
             else
-                spriteBatch.DrawString(font, "You don't have any items!", new Vector2(XPOS + 5, YPOS + 50), Color.White);
+			{
+				var errorText = new Sprite("You don't have any items!", font);
+				errorText.Position = new Vector2(XPOS + 5, YPOS + 50);
+				errorText.Color = Color.White;
+                menu.Draw(errorText);
+			}
         }
     }
 }

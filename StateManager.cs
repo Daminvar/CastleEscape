@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Window;
+using SFML.Graphics;
 
 namespace CastleEscape
 {
@@ -51,20 +45,19 @@ namespace CastleEscape
         /// <summary>
         /// Updates the top state. Called every frame.
         /// </summary>
-        public static void Update(GameTime gameTime)
+        public static void Update(Clock clock, Input input)
         {
             if (!running)
                 return;
 
             if (states.Count != 0)
-                states[states.Count - 1].Update(gameTime);
+                states[states.Count - 1].Update(clock, input);
         }
 
         /// <summary>
         /// Draws the top state.
         /// </summary>
-        /// <param name="spriteBatch">The SpriteBatch object to use for drawing.</param>
-        public static void Draw(SpriteBatch spriteBatch)
+        public static void Draw(RenderWindow window)
         {
             if (!running)
                 return;
@@ -72,16 +65,16 @@ namespace CastleEscape
             if (states.Count == 0)
                 return;
 
-            drawState(spriteBatch, states.Count - 1);
+            drawState(window, states.Count - 1);
         }
 
-        private static void drawState(SpriteBatch spriteBatch, int index)
+        private static void drawState(RenderWindow window, int index)
         {
             if (index < 0)
                 return;
             if (states[index].Transparent)
-                drawState(spriteBatch, index - 1);
-            states[index].Draw(spriteBatch);
+                drawState(window, index - 1);
+            states[index].Draw(window);
         }
 
         /// <summary>

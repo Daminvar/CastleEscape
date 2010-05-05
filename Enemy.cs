@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -25,9 +19,9 @@ namespace CastleEscape
         private int exp;
         private Item[] items;
 
-        Texture2D enemyTexture;
+        Image enemyTexture;
 
-        public Enemy(Texture2D tx)
+        public Enemy(Image tx)
         {
             enemyTexture = tx;
             speed = 0;
@@ -114,9 +108,11 @@ namespace CastleEscape
             return health <= 0;
         }
 
-        public void DrawForBattle(SpriteBatch spriteBatch, int x, int y)
+        public void DrawForBattle(RenderWindow window, int x, int y)
         {
-            spriteBatch.Draw(enemyTexture, new Vector2(x, y), Color.White);
+			var sprite = new Sprite(enemyTexture);
+			sprite.Position = new Vector2(x, y);
+			window.Draw(sprite);
         }
 
         public override string ToString()
