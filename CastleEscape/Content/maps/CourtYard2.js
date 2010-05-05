@@ -12,7 +12,7 @@ courtyard2Civ1.SetPosition(9,8)
 
 courtyard2Civ1.SetInteractFunc(function(player) 
 {
-	dialogue("Dan: I don't believe i've seen you before..|| Jordan: Yeah, i get that a lot.")	
+	dialogue("Dan: I don't believe i've seen you before..| Jordan: Yeah, i get that a lot.")	
 
 })
 

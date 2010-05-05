@@ -14,7 +14,7 @@ courtyardGuard1.SetTexture("bGuard-front")
 courtyardGuard1.SetPosition(4,5)
 
 courtyardGuard1.SetInteractFunc(function(player){
-	dialogue("Guard Allan: Get away, the courtyard is off-limits! || Jordan: I just need to pass by real quick, i won't cause any problems. || Guard Allan: GO AWAY!")
+	dialogue("Guard Allan: Get away, the courtyard is off-limits! | Jordan: I just need to pass by real quick, i won't cause any problems. | Guard Allan: GO AWAY!")
 })
 addNPE(courtyardGuard1)
 
@@ -41,7 +41,7 @@ courtyardGuard2.SetInteractFunc(function(player)
 	}	
 	else
 	{
-		dialogue("Jordan: Can i please get by to the courtyard, it's of utmost importance. || Guard Mark: Sorry, it's against the rules to let just anyone have access to the courtyard or further. || Jordan: Is there any way you might let me go?|| Guard Mark: Past this point is royalty only, and right now i don't see anything royal about you.")
+		dialogue("Jordan: Can i please get by to the courtyard, it's of utmost importance. | Guard Mark: Sorry, it's against the rules to let just anyone have access to the courtyard or further. | Jordan: Is there any way you might let me go?| Guard Mark: Past this point is royalty only, and right now i don't see anything royal about you.")
 		//Some sort of test/check to see if they have the neccessary item
 			}
 })
@@ -73,7 +73,7 @@ bedroomGuard.SetInteractFunc(function(player)
 	}	
 	else
 	{
-		dialogue("Lady Mary: I'm sorry but at this time no one may enter the bedrooms, the maid hasnt arrived yet. || Lady Mary: Unless you have food or something for the family quarters, you can't pass ")
+		dialogue("Lady Mary: I'm sorry but at this time no one may enter the bedrooms, the maid hasnt arrived yet. | Lady Mary: Unless you have food or something for the family quarters, you can't pass ")
 	}
 })
 
