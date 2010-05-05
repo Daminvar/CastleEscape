@@ -310,12 +310,12 @@
   <ItemGroup>
     <Compile Include="treasure.png">
       <Name>treasure</Name>
-	  <Importer>TextureImporter</Importer>
+      <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-	</Compile>
+    </Compile>
     <Compile Include="librarian.png">
       <Name>librarian</Name>
-	  <Importer>TextureImporter</Importer>
+      <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
     <Compile Include="bGuard-back.png">
@@ -390,6 +390,20 @@
   <ItemGroup>
     <Compile Include="guyHat-right.png">
       <Name>guyHat-right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="stone-wall.png">
+      <Name>stone-wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="restaurant-kitchen.png">
+      <Name>restaurant-kitchen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

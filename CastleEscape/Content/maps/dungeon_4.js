@@ -1,7 +1,7 @@
 
 name("Dungeon 4") // The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile("dungeon_4.tmx") // The tmx map file being used
-battleTexture("test-battle-background") // The texture for the background in battles
+battleTexture("stone-wall") // The texture for the background in battles
 
 north("dungeon_2.js")
 east("HallWay1.js")

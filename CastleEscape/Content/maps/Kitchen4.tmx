@@ -380,8 +380,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="2117"/>
    <tile gid="0"/>
-   <tile gid="657"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -616,13 +616,13 @@
    <tile gid="1897"/>
    <tile gid="1898"/>
    <tile gid="1899"/>
-   <tile gid="657"/>
-   <tile gid="658"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="940"/>
    <tile gid="940"/>
    <tile gid="1897"/>
    <tile gid="1898"/>
-   <tile gid="1899"/>
+   <tile gid="0"/>
    <tile gid="1900"/>
    <tile gid="1901"/>
    <tile gid="940"/>
@@ -665,8 +665,8 @@
    <tile gid="2043"/>
    <tile gid="2044"/>
    <tile gid="2045"/>
-   <tile gid="585"/>
-   <tile gid="586"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="2041"/>
    <tile gid="2042"/>
    <tile gid="2043"/>
@@ -686,7 +686,7 @@
    <tile gid="2116"/>
    <tile gid="585"/>
    <tile gid="586"/>
-   <tile gid="658"/>
+   <tile gid="0"/>
    <tile gid="2113"/>
    <tile gid="2114"/>
    <tile gid="2115"/>
@@ -1544,5 +1544,8 @@
   <object name="" x="0" y="448" width="320" height="32"/>
   <object name="" x="0" y="448" width="320" height="32"/>
   <object name="" x="352" y="448" width="288" height="32"/>
+  <object name="" x="32" y="96" width="96" height="32"/>
+  <object name="" x="256" y="96" width="96" height="32"/>
+  <object name="" x="480" y="96" width="96" height="32"/>
  </objectgroup>
 </map>
