@@ -308,9 +308,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="treasure.png">
+      <Name>treasure</Name>
+	  <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+	</Compile>
     <Compile Include="librarian.png">
       <Name>librarian</Name>
-	  <Importer>TextureImporter</Importer>
+      <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
     <Compile Include="bGuard-back.png">
@@ -385,6 +390,13 @@
   <ItemGroup>
     <Compile Include="guyHat-right.png">
       <Name>guyHat-right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="final-boss.png">
+      <Name>final-boss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -25,14 +25,14 @@ person2.SetPosition(5,7)
 person2.SetTexture("man_front")
 person2.SetInteractFunc(function(player)
 {
-	dialogue("Aron: Quite a good meal, quite a good meal...|I wish it weren't so pricey, though!")
+	dialogue("Aron: Quite a good meal, quite a good meal... I wish it weren't so pricey, though!")
 } )
 
 cook1.SetPosition(17,5)
 cook1.SetTexture("chef_left")
 cook1.SetInteractFunc(function(player)
 {
-	dialogue("Jerol: Oh, it's such a lovely day to work in the kitchens!|Everyone, chop chop!")
+	dialogue("Jerol: Oh, it's such a lovely day to work in the kitchens! Everyone, chop chop!")
 } )
 
 cook2.SetPosition(3,3)
@@ -50,11 +50,11 @@ cook3.SetInteractFunc(function(player)
 	{
 		if(getFlag("herring-pie"))
 		{
-			dialogue("Bodus: Thief! Scoundrel!||Jordan: ...||Bodus: You better enjoy that delicious pie!")
+			dialogue("Bodus: Thief! Scoundrel!|Jordan: ...|||Bodus: You better enjoy that delicious pie!")
 		}
 		else
 		{
-			dialogue("Bodus: Our specials today are lampreys and herring pie.||Jordan: I'd like some herring pie, please.||Bodus: Coming right up, sir.|May I inquire as to how you will be paying?||Jordan: (Payment?! I'm not wasting gold on this stuff!)|Bodus: ...No money?! Out of my sight!")
+			dialogue("Bodus: Our specials today are lampreys and herring pie.|Jordan: I'd like some herring pie, please.|Bodus: Coming right up, sir. May I inquire as to how you will be paying?|Jordan: (Payment?! I'm not wasting gold on this stuff!)|Bodus: ...No money?! Out of my sight!")
 			var angryWaiter = newEnemy("ghostie", "Angry Waiter Bodus", 120, 15, 4, 3, 45)
 			battle(player, angryWaiter)
 			dialogue("Jordan snatches the steaming hot herring pie from the defeated waiter.")
@@ -72,7 +72,7 @@ cook4.SetPosition(14,8)
 cook4.SetTexture("chef_right")
 cook4.SetInteractFunc(function(player)
 {
-	dialogue("Chip: Chop chop chop chop chop|chop chop chop chop chop|chop chop chop chop chop|chop chop chop chop chop|Chip: OWWW! MY FINGER!!||Jordan: (I hope he doesn't serve that fish...)")
+	dialogue("Chip: Chop chop chop chop chop|chop chop chop chop chop|chop chop chop chop chop|chop chop chop chop chop|Chip: OWWW! MY FINGER!!||||Jordan: (I hope he doesn't serve that fish...)")
 } )
 
 cook5.SetPosition(1,7)
@@ -86,7 +86,7 @@ cook6.SetPosition(0,13)
 cook6.SetTexture("waiter_right")
 cook6.SetInteractFunc(function(player)
 {
-	dialogue("Ijnas: Last night, I had a weird dream about a restaurant on the sea.|How silly is that?")
+	dialogue("Ijnas: Last night, I had a weird dream about a restaurant on the sea. How silly is that?")
 } )
 
 addNPE(cook1)
@@ -100,25 +100,30 @@ addNPE(person2)
 
 var treasure = newNPE()
 
-treasure.SetPosition(19,6)
+treasure.SetPosition(18,6)
+treasure.SetTexture("treasure")
 treasure.SetInteractFunc(function(player)
 {
-	if(getFlag("got-treasure"))
-	{
-		dialogue("An empty treasure chest.")
-	}
-	else
+	if(!getFlag("got-treasure"))
 	{
 		dialogue("The chest contained Salad!")
-		player.AddItem("Salad", "A fresh green salad.", 30, 10, 25)
+		var salad = newItem("Salad", "A fresh green salad.", 30, 10, 25)
+		player.AddItem(salad)
 		setFlag("got-treasure")
+		reloadMap()
 	}
 } )
 
-addNPE(treasure)
+if(getFlag("got-treasure"))
+{
+}
+else
+{
+	addNPE(treasure)
+}
 
 var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
-var salad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
+var evSalad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
 
 addRandomEncounter(vegetable)
-addRandomEncounter(salad)
+addRandomEncounter(evSalad)
