@@ -9,7 +9,7 @@ east("HallWay3.js")
 south("bedroom1.js")
 
 var courtyardGuard1 = newNPE()
-courtyardGuard1.SetTexture("guard2_front")
+courtyardGuard1.SetTexture("bGuard-front")
 
 courtyardGuard1.SetPosition(4,5)
 
@@ -21,7 +21,7 @@ addNPE(courtyardGuard1)
 var courtyardGuard2 = newNPE()
 courtyardGuard2.SetTexture("guard1_front")
 
-if(getFlag("talked-to-cyg2"))
+if(getFlag("courtyard-and-chapel-open"))
 { 
 	courtyardGuard2.SetPosition(6,6)
 }
@@ -32,18 +32,18 @@ else
 
 courtyardGuard2.SetInteractFunc(function(player) 
 {
-	if(getFlag("talked-to-cyg2"))
+	if(getFlag("defeated-librarian-and-got-pendant"))
 	{
-		dialogue("Guard Mark: Be quick about if you need to go through the courtyard.")
-		courtyardGuard2.SetTexture("guard1_left")
+		dialogue("Guard Mark: Be quick about if you need to go through to the courtyard and chapel.")		
+		setFlag("courtyard-and-chapel-open")
+		reloadMap()
+
 	}	
 	else
 	{
-		dialogue("Jordan: Can i please get by to the courtyard, it's of utmost importance. |||| Guard Mark: Sorry, it's against the rules to let just anyone have access to the courtyard or further. |||| Jordan: Please, i really need to go.. |||| Guard Mark: Okay, i might be able to slip you through, if you get me SOMETHING from family's bedroom")
+		dialogue("Jordan: Can i please get by to the courtyard, it's of utmost importance. |||| Guard Mark: Sorry, it's against the rules to let just anyone have access to the courtyard or further. |||| Jordan: Is there any way you might let me go?|||| Guard Mark: Past this point is royalty only, and right now i don't see anything royal about you.")
 		//Some sort of test/check to see if they have the neccessary item
-		setFlag("talked-to-cyg2")
-		reloadMap()
-	}
+			}
 })
 
 addNPE(courtyardGuard2)
@@ -52,7 +52,7 @@ addNPE(courtyardGuard2)
 var bedroomGuard = newNPE()
 bedroomGuard.SetTexture("girl_left")
 
-if(getFlag("talked-to-bedroomGuard"))
+if(getFlag("bedroom-open"))
 { 
 	bedroomGuard.SetPosition(7,10)
 	bedroomGuard.SetTexture("girl_front")
@@ -64,16 +64,16 @@ else
 
 bedroomGuard.SetInteractFunc(function(player) 
 {
-	if(getFlag("talked-to-bedroomGuard"))
+	if(getFlag("go-to-bedroom"))
 	{
 		dialogue("Lady Mary: Oh you bought food for the family? Well i can't deny them food.. Go ahead")
+		
+		setFlag("bedroom-open")
+		reloadMap()
 	}	
 	else
 	{
 		dialogue("Lady Mary: I'm sorry but at this time no one may enter the bedrooms, the maid hasnt arrived yet. |||| Lady Mary: Unless you have food or something for the family quarters, you can't pass ")
-		//Some sort of test/check to see if they have the neccessary item
-		setFlag("talked-to-bedroomGuard")
-		reloadMap()
 	}
 })
 
@@ -81,6 +81,8 @@ bedroomGuard.SetInteractFunc(function(player)
 addNPE(bedroomGuard)
 
 
-//TODO: Change textures
-//addRandomEncounter("ghostie", "Fanatic Servant", 100, 50, 10, 10, 30, null)
-//addRandomEncounter("ghostie", "Lazy Guard", 200, 60, 10, 5, 80, null)
+var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
+
+addRandomEncounter(snake)
+addRandomEncounter(ghost)

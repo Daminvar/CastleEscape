@@ -26,7 +26,7 @@ namespace CastleEscape
         private Item[] items;
 
         Texture2D enemyTexture;
-
+            
         public Enemy(Texture2D tx)
         {
             enemyTexture = tx;

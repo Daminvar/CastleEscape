@@ -35,7 +35,7 @@ courtyard1Civ2.SetInteractFunc(function(player)
 addNPE(courtyard1Civ2)
 
 var courtyard1Civ3 = newNPE()
-courtyard1Civ3.SetTexture("guard2_left")
+courtyard1Civ3.SetTexture("guyHat-left")
 courtyard1Civ3.SetPosition(13,9)
 
 courtyard1Civ3.SetInteractFunc(function(player) 
@@ -46,6 +46,8 @@ courtyard1Civ3.SetInteractFunc(function(player)
 
 addNPE(courtyard1Civ3)
 
-//TODO: Change textures
-//addRandomEncounter("ghostie", "Fanatic Servant", 100, 50, 10, 10, 30, null)
-//addRandomEncounter("ghostie", "Lazy Guard", 200, 60, 10, 5, 80, null)
+var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
+
+addRandomEncounter(snake)
+addRandomEncounter(ghost)
