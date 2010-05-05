@@ -9,11 +9,11 @@ var cook2 = newNPE()
 var cook3 = newNPE()
 var cook4 = newNPE()
 
-cook1.SetPosition(17,13)
+cook1.SetPosition(18,12)
 cook1.SetTexture("chef_left")
 cook1.SetInteractFunc(function(player)
 {
-	dialogue("Devon: Who's there?!|I'm off duty, I swear!|||Devon: Oh, it's just some newbie cook.")
+	dialogue("Doven: Who's there?! I'm off duty, I swear!||||Devon: Oh, it's just some newbie cook.")
 } )
 
 cook2.SetPosition(3,6)

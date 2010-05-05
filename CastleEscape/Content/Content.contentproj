@@ -308,6 +308,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="treasure.png">
+      <Name>treasure</Name>
+	  <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+	</Compile>
     <Compile Include="librarian.png">
       <Name>librarian</Name>
       <Importer>TextureImporter</Importer>

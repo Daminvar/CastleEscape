@@ -747,7 +747,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="663"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -799,7 +799,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="661"/>
-   <tile gid="663"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1267,7 +1267,7 @@
    <tile gid="0"/>
    <tile gid="1604"/>
    <tile gid="2197"/>
-   <tile gid="591"/>
+   <tile gid="0"/>
    <tile gid="1605"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1287,7 +1287,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="663"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1335,7 +1335,6 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="591"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1355,7 +1354,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="663"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="2057"/>
    <tile gid="2059"/>
@@ -1387,7 +1387,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="591"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1528,7 +1528,6 @@
   <object name="" x="352" y="96" width="64" height="32"/>
   <object name="" x="416" y="128" width="64" height="32"/>
   <object name="" x="576" y="160" width="32" height="32"/>
-  <object name="" x="448" y="192" width="32" height="32"/>
   <object name="" x="512" y="224" width="64" height="192"/>
   <object name="" x="160" y="256" width="32" height="32"/>
   <object name="" x="160" y="352" width="32" height="32"/>
@@ -1541,8 +1540,6 @@
   <object name="" x="64" y="160" width="32" height="32"/>
   <object name="" x="128" y="160" width="32" height="32"/>
   <object name="" x="96" y="288" width="32" height="64"/>
-  <object name="" x="192" y="288" width="32" height="32"/>
-  <object name="" x="192" y="96" width="32" height="32"/>
   <object name="" x="352" y="448" width="288" height="32"/>
   <object name="" x="0" y="448" width="320" height="32"/>
   <object name="" x="0" y="448" width="320" height="32"/>

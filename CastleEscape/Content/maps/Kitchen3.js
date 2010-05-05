@@ -13,7 +13,7 @@ cook1.SetPosition(4,6)
 cook1.SetTexture("chef_front")
 cook1.SetInteractFunc(function(player)
 {
-	dialogue("Finn: The master chef isn't letting anyone into storage today.|I think someone must have stolen something again...|||Jordan: (It actually wasn't me this time... Though I am pretty hungry.)")
+	dialogue("Finn: The master chef isn't letting anyone into storage today. I think someone must have stolen something again...|Jordan: (It actually wasn't me this time... Though I am pretty hungry.)")
 } )
 
 cook2.SetPosition(17,10)
@@ -27,10 +27,10 @@ cook3.SetPosition(14,9)
 cook3.SetTexture("chef_left")
 cook3.SetInteractFunc(function(player)
 {
-	dialogue("Ixel: The master chef is such a tyrant!|And his cooking sucks!|||Jordan: You might want to lower your voice.")
+	dialogue("Ixel: The master chef is such a tyrant! And his cooking sucks!|Jordan: You might want to lower your voice.")
 } )
 
-if(getFlag("go-to-storage"))
+if(getFlag("go-to-bedroom"))
 {
 	headChef.SetPosition(9,2)
 }
@@ -42,7 +42,7 @@ headChef.SetTexture("headchef_front")
 
 headChef.SetInteractFunc(function(player)
 {
-	if(getFlag("go-to-storage"))
+	if(getFlag("go-to-bedroom"))
 	{
 		dialogue("Sayech: Go on, get that spice! The lady cannot eat such a bland pie!")
 	}
@@ -50,8 +50,8 @@ headChef.SetInteractFunc(function(player)
 	{
 		if(getFlag("herring-pie"))
 		{
-			dialogue("Sayech: Hm...||Jordan: (He just ate a slice of the pie!)||Sayech: This is... decent, I suppose.|But it is far too bland!|||Sayech: You must go into the storage room and get some cinnamon.|That should do the trick.|||Sayech: Then, deliver it to the lady in her chambers!")
-			setFlag("go-to-storage")
+			dialogue("Sayech: Hm...|Jordan: (He just ate a slice of the pie!)|Sayech: This is... decent, I suppose. But it is far too bland! You must go into the storage room and get some cinnamon. That should do the trick. Then, deliver it to the lady in her chambers!")
+			setFlag("go-to-bedroom")
 			reloadMap()
 		}
 		else 
@@ -62,7 +62,7 @@ headChef.SetInteractFunc(function(player)
 			}
 			else
 			{
-				dialogue("Sayech: No one is allowed in the storage room today!||||Sayech: Hm? Who are you?||Jordan: I'm... a new chef.||Sayech: Oh, that's YOU?|You're supposed to be delivering the lady her food! Why are you standing around here?!||Sayech: Quick, go make some herring pie. It is her favorite.||||Jordan: (I don't know how to cook herring pie! It's disgusting!!)|(Wait a second... where have I heard 'herring pie' before?)")
+				dialogue("Sayech: No one is allowed in the storage room today!||||Sayech: Hm? Who are you?|Jordan: I'm... a new chef.|Sayech: Oh, that's YOU? You're supposed to be delivering the lady her food! Why are you standing around here?! Quick, go make some herring pie. It is her favorite.|Jordan: (I don't know how to cook herring pie! It's disgusting!! ... Wait a second... where have I heard 'herring pie' before?)")
 				setFlag("talked-to-master-chef")
 				reloadMap()
 			}
