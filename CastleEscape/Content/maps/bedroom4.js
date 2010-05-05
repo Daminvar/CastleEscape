@@ -1,7 +1,7 @@
 
 name("Royal Library")
 mapfile("bedroom4.tmx")
-battleTexture("test-battle-background")
+battleTexture("bedroom-bg")
 
 east("bedroom3.js")
 
