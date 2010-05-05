@@ -6,6 +6,7 @@ namespace CastleEscape
 	public class Clock
 	{
 		private DateTime snapshot;
+		
 		public Clock()
 		{
 			snapshot = DateTime.Now;

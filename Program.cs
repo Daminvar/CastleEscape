@@ -13,7 +13,7 @@ namespace CastleEscape
         static void Main(string[] args)
         {
 			var app = new SFML.Graphics.RenderWindow(new VideoMode(800, 480, 32), "Escape from the Castle");
-			app.SetFramerateLimit(60);
+			//app.SetFramerateLimit(60);
 			app.Closed += delegate {
 				app.Close();
 			};
@@ -35,6 +35,7 @@ namespace CastleEscape
 					StateManager.Draw(app);
 				}
 				app.Display();
+				clock.Reset();
 			}
         }
     }
