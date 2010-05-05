@@ -1,5 +1,5 @@
 
-name("Royal Study")
+name("Royal Library")
 mapfile("bedroom4.tmx")
 battleTexture("test-battle-background")
 
