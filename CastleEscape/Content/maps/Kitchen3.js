@@ -30,7 +30,7 @@ cook3.SetInteractFunc(function(player)
 	dialogue("Ixel: The master chef is such a tyrant!|And his cooking sucks!|||Jordan: You might want to lower your voice.")
 } )
 
-if(getFlag("go-to-storage"))
+if(getFlag("go-to-bedroom"))
 {
 	headChef.SetPosition(9,2)
 }
@@ -42,7 +42,7 @@ headChef.SetTexture("headchef_front")
 
 headChef.SetInteractFunc(function(player)
 {
-	if(getFlag("go-to-storage"))
+	if(getFlag("go-to-bedroom"))
 	{
 		dialogue("Sayech: Go on, get that spice! The lady cannot eat such a bland pie!")
 	}
@@ -51,7 +51,7 @@ headChef.SetInteractFunc(function(player)
 		if(getFlag("herring-pie"))
 		{
 			dialogue("Sayech: Hm...||Jordan: (He just ate a slice of the pie!)||Sayech: This is... decent, I suppose.|But it is far too bland!|||Sayech: You must go into the storage room and get some cinnamon.|That should do the trick.|||Sayech: Then, deliver it to the lady in her chambers!")
-			setFlag("go-to-storage")
+			setFlag("go-to-bedroom")
 			reloadMap()
 		}
 		else 

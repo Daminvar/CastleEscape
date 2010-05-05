@@ -120,6 +120,8 @@ namespace CastleEscape
             tMenu.Update(gameTime, Keyboard.GetState());
             handleInput(gameTime);
 
+            int gold = rgen.Next(0, en.Attack);
+
             if (playersTurn)
             {
                 if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
@@ -215,7 +217,6 @@ namespace CastleEscape
                 if (en.IsDead())
                 {
                     play.Exp += en.Exp;
-                    int gold = rgen.Next(0, en.Attack);
                     status += string.Format("||||You have slain {0}. You gain {1} exp. You got {2} gold.", en.Name, en.Exp, gold);
                     play.Gold += gold;
                     if (en.Items != null)

@@ -101,24 +101,28 @@ addNPE(person2)
 var treasure = newNPE()
 
 treasure.SetPosition(19,6)
+treasure.SetTexture("treasure")
 treasure.SetInteractFunc(function(player)
 {
-	if(getFlag("got-treasure"))
-	{
-		dialogue("An empty treasure chest.")
-	}
-	else
+	if(!getFlag("got-treasure"))
 	{
 		dialogue("The chest contained Salad!")
-		player.AddItem("Salad", "A fresh green salad.", 30, 10, 25)
+		var salad = newItem("Salad", "A fresh green salad.", 30, 10, 25)
+		player.AddItem(salad)
 		setFlag("got-treasure")
 	}
 } )
 
-addNPE(treasure)
+if(getFlag("got-treasure"))
+{
+}
+else
+{
+	addNPE(treasure)
+}
 
 var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
-var salad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
+var evSalad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
 
 addRandomEncounter(vegetable)
-addRandomEncounter(salad)
+addRandomEncounter(evSalad)
