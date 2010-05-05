@@ -395,6 +395,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="stone-wall.png">
+      <Name>stone-wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="restaurant-kitchen.png">
+      <Name>restaurant-kitchen</Name>
+	  <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="final-boss.png">
       <Name>final-boss</Name>
       <Importer>TextureImporter</Importer>

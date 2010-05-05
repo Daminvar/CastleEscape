@@ -1,6 +1,6 @@
 name("Kitchen")
 mapfile("Kitchen1.tmx")
-battleTexture("test-battle-background")
+battleTexture("restaurant-kitchen")
 north("Kitchen2.js")
 south("Hallway1.js")
 

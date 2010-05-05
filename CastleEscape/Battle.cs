@@ -291,8 +291,8 @@ namespace CastleEscape
             spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), Color.White);
 
             //Player,enemy draw
-            play.DrawForBattle(spriteBatch, 380, 300);
-            en.DrawForBattle(spriteBatch, 590, 365);
+            play.DrawForBattle(spriteBatch, 380, 240);
+            en.DrawForBattle(spriteBatch, 590, 265);
 
             //Transparent rectangle that "holds" the menu
             Rectangle rec = new Rectangle(17, 20, 220, 380);
@@ -302,10 +302,10 @@ namespace CastleEscape
             spriteBatch.DrawString(font, "HP: " + play.Health + "/" + play.MaxHealth +
                                         "\nMP: " + play.Mana + "/" + play.MaxMana +
                                         "\n______________",
-              new Vector2(30.0f, (float)((game.GraphicsDevice.Viewport.Height * 7 / 100))), Color.Black);
-            spriteBatch.DrawString(font, en.Name + "\nHP: " + en.Health, new Vector2(600, (game.GraphicsDevice.Viewport.Height * 20 / 100) + 30), Color.White);
+              new Vector2(30.0f, (float)((game.GraphicsDevice.Viewport.Height * 7 / 100))), Color.White);
+            spriteBatch.DrawString(font, en.Name + "\nHP: " + en.Health, new Vector2(530, (game.GraphicsDevice.Viewport.Height * 20 / 100) + 30), Color.White);
             //Combat Menu
-            tMenu.Draw(spriteBatch, 29, 110, Color.Black);
+            tMenu.Draw(spriteBatch, 29, 110, Color.White);
         }
     }
 }

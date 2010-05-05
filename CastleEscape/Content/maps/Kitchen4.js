@@ -1,6 +1,6 @@
 name("Kitchen")
 mapfile("Kitchen4.tmx")
-battleTexture("test-battle-background")
+battleTexture("restaurant-kitchen")
 south("Kitchen3.js")
 
 var treasure1 = newNPE()
@@ -64,7 +64,16 @@ if(!getFlag("got-treasure3"))
 	addNPE(treasure3)
 }
 
+var saveOrb = newNPE()
+saveOrb.SetTexture("orb-of-saving")
+saveOrb.SetPosition(13, 7)
 
+saveOrb.SetInteractFunc(function(player) {
+	save(player) // Saves the game. Try to use this function only with the orb of saving.
+	dialogue("Game has been saved.")
+})
+
+addNPE(saveOrb)
 
 var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
 var salad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
