@@ -81,5 +81,6 @@
       <HintPath>Libs\sfmlnet-window.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@ namespace CastleEscape
         private const int HEIGHT = 400;
         private Player player;
         private Image background;
-        private SpriteFont font;
+        private Font font;
         private TextMenu menu;
         private bool canPressEscape;
         private bool oneTimeUse;
@@ -34,7 +34,7 @@ namespace CastleEscape
             font = Font.DefaultFont; //TODO
             //The menu is only needed if the player has items.
             if (player.Items.Count > 0)
-                menu = new TextMenu(game.Content.Load<SpriteFont>("inventory-list-font"), getStringOfPlayerItems());
+                menu = new TextMenu(Font.DefaultFont, getStringOfPlayerItems()); //TODO fix
             canPressEscape = false;
             transparent = true;
             this.oneTimeUse = oneTimeUse;

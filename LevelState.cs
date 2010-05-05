@@ -1,17 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
-
+using SFML;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace CastleEscape
 {
@@ -23,29 +16,28 @@ namespace CastleEscape
     {
         Player play;
         TextMenu tMenu;
-        private SpriteFont font;
-        Texture2D combatColor;
+        private Font font;
+        Image combatColor;
         private int pointsLeft;
         private string chosenStat;
         private bool increaseStats;
-        private SpriteFont fontLevelUp;
-        private SpriteFont fontLevel;
+        private Font fontLevelUp;
+        private Font fontLevel;
 
         private static string[] choices = { "Attack", "Defense", "Magic Attack", "Speed" };
         //Health and mana will go up each level everytime
 
-        public LevelState(Game game, Player player)
-            : base(game)
+        public LevelState(Player player)
+            : base()
         {
             this.play = player;
-            font = game.Content.Load<SpriteFont>("level-up-menu-font");
-            fontLevelUp = game.Content.Load<SpriteFont>("level-up-font");
-            fontLevel = game.Content.Load<SpriteFont>("level-font");
+            font = Font.DefaultFont; //TODO
+            fontLevelUp = Font.DefaultFont; //TODO
+            fontLevel = Font.DefaultFont; //TODO
             tMenu = new TextMenu(font, choices);
             transparent = true;
             increaseStats = true;
-            combatColor = new Texture2D(game.GraphicsDevice, 1, 1);
-            combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 200) });
+            combatColor = new Image(1, 1, Color.Black); //TODO
             pointsLeft = 0;
         }
 
@@ -134,7 +126,7 @@ namespace CastleEscape
             pointsLeft--;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
             Rectangle recLevel = new Rectangle(145, 15, 370, 400);
             spriteBatch.Draw(combatColor, recLevel, Color.White);
