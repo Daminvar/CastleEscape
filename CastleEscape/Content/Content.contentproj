@@ -404,6 +404,11 @@
   <ItemGroup>
     <Compile Include="restaurant-kitchen.png">
       <Name>restaurant-kitchen</Name>
+	  <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="final-boss.png">
+      <Name>final-boss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
