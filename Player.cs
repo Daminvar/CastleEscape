@@ -19,10 +19,10 @@ namespace CastleEscape
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
     {
-        private const string PLAYER_OW_TEXTURE = "player-spritesheet.png";
+        private const string PLAYER_OW_TEXTURE = "player-spritesheet";
         [NonSerialized]
         private Image overworldTexture;
-        private const string PLAYER_BATTLE_TEXTURE = "guy.png";
+        private const string PLAYER_BATTLE_TEXTURE = "guy";
         [NonSerialized]
         private Image battleTexture;
 
@@ -236,8 +236,8 @@ namespace CastleEscape
 
         public void LoadTexture()
         {
-            overworldTexture = new Image("Content\\" + PLAYER_OW_TEXTURE);
-            battleTexture = new Image("Content\\" + PLAYER_BATTLE_TEXTURE);
+            overworldTexture = ContentManager.LoadImage(PLAYER_OW_TEXTURE);
+            battleTexture = ContentManager.LoadImage(PLAYER_BATTLE_TEXTURE);
         }
 
         public int XPos

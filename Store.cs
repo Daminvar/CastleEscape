@@ -32,7 +32,7 @@ namespace CastleEscape
             player = pl;
             storeInventory = items;
             storeTexture = new Image(1, 1, new Color(200, 200, 200, 155));
-            background = new Image("store-bg");
+            background = ContentManager.LoadImage("store-bg");
             spriteFont = Font.DefaultFont; //TODO fix
             textInventory = new TextMenu(spriteFont, this.getItemNames(storeInventory));
         }

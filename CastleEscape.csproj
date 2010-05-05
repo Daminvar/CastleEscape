@@ -62,6 +62,7 @@
     <Compile Include="TextMenu.cs" />
     <Compile Include="TMXMap.cs" />
     <Compile Include="Clock.cs" />
+    <Compile Include="ContentManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Jint, Version=0.8.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03">

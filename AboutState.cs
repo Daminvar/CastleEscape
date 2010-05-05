@@ -23,7 +23,7 @@ namespace CastleEscape
                 + "\nAllyson Sadwin"
                 + "\nChristina Cruz";
 
-            background = new Image("Content\\main-menu-background.png");
+            background = ContentManager.LoadImage("main-menu-background");
             font = Font.DefaultFont; //TODO fix
         }
 

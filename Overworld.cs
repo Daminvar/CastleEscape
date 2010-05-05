@@ -79,7 +79,7 @@ namespace CastleEscape
         {
             // checks for updates
             handleInput(clock, input);
-            timer += clock.ElapsedTime.Milliseconds;
+            timer += clock.ElapsedTime.Milliseconds / 10;
         }
 
         /// <summary>

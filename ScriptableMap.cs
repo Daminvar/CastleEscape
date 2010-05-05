@@ -21,7 +21,7 @@ namespace CastleEscape
         private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus, double cost);
         private delegate Enemy NewEnemyDelegate(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, ArrayList items);
-        private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
+        private static string MAP_DIRECTORY = string.Format("..{0}..{0}Content{0}maps{0}", System.IO.Path.DirectorySeparatorChar);
 
         protected TMXMap tmxMap;
         protected List<NPE> NPEs;
@@ -213,7 +213,7 @@ namespace CastleEscape
 
         private void js_setBattleTexture(string textureName)
         {
-            battleTexture = new Image("Content\\" + textureName + ".png");
+            battleTexture = ContentManager.LoadImage(textureName);
         }
 
         private void js_setEastMapfile(string filename)
@@ -285,7 +285,7 @@ namespace CastleEscape
         private Enemy js_newEnemy(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, ArrayList items)
         {
-            var enemy = new Enemy(new Image("Content\\" + textureName + ".png"));
+            var enemy = new Enemy(ContentManager.LoadImage(textureName));
             enemy.Name = enemyName;
             enemy.Health = (int)health;
             enemy.Speed = (int)speed;

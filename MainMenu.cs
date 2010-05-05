@@ -38,7 +38,7 @@ namespace CastleEscape
             : base()
         {
             font = Font.DefaultFont; //TODO fix
-            background = new Image("Content\\main-menu-background.png");
+            background = ContentManager.LoadImage("main-menu-background");
             menu = new TextMenu(font, options);
         }
 

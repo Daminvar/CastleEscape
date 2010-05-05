@@ -65,7 +65,7 @@ namespace CastleEscape
 
         public void SetTexture(string textureName)
         {
-            texture = new Image("Content\\" + textureName + ".png");
+            texture = ContentManager.LoadImage(textureName);
         }
 
         public void SetInteractFunc(Action<Player> func)

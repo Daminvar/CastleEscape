@@ -2,7 +2,7 @@ name("Kitchen")
 mapfile("Kitchen1.tmx")
 battleTexture("test-battle-background")
 north("Kitchen2.js")
-south("Hallway1.js")
+south("HallWay1.js")
 
 var cook1 = newNPE()
 var cook2 = newNPE()

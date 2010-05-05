@@ -21,7 +21,7 @@ namespace CastleEscape
         public DrawableMap()
             : base()
         {
-            tileset = new Image("Content\\" + TILESET_RESOURCE_NAME);
+            tileset = ContentManager.LoadImage(TILESET_RESOURCE_NAME);
         }
 
         /// <summary>

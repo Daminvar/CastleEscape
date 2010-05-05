@@ -5,7 +5,7 @@ battleTexture("test-battle-background")
 
 north("Kitchen1.js")
 west("dungeon_4.js")
-east("Hallway2.js")
+east("HallWay2.js")
 
 
 var guardRob = newNPE()

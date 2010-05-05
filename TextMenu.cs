@@ -54,8 +54,8 @@ namespace CastleEscape
         {
             if (!isFinished)
             {
-                selectedStretch = (float)(defaultStretch + Math.Sin(clock.TotalTime.Second * 20));
-                selectedStretch = selectedStretch / options[selectedOption].Length;
+                selectedStretch = (float)(defaultStretch + Math.Sin(clock.TotalTime.Millisecond));
+                selectedStretch = 1 + selectedStretch / options[selectedOption].Length;
             }
             else
             {

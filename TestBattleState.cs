@@ -25,10 +25,10 @@ namespace CastleEscape
 
         public override void Update(Clock clock, Input input)
         {
-            Enemy en = new Enemy(new Image("Content\\ghostie.png"));
+            Enemy en = new Enemy(ContentManager.LoadImage("ghostie"));
             Player pl = new Player(0, 0);
 
-            StateManager.PushState(new Battle(new Image("Content\\test-battle-background.png"), pl, en, true));
+            StateManager.PushState(new Battle(ContentManager.LoadImage("test-battle-background"), pl, en, true));
         }
 
         public override void Draw(RenderWindow window)
