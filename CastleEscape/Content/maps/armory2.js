@@ -15,3 +15,5 @@ boss.SetInteractFunc(function(player) {
 	battle(player, finalBoss)
 	//Wins!
 })
+
+addNPE(boss)

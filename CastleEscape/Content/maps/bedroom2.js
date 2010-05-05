@@ -53,3 +53,8 @@ essay.SetInteractFunc(function(player) {
 })
 
 addNPE(essay)
+
+var spoiledBrat = newEnemy("test-npe", "Spoiled Brat", 1000, 50, 7, 10, 50, null) //TODO
+var royalCaretaker = newEnemy("test-npe", "Royal Caretaker", 500, 20, 10, 10, 10, null)
+addRandomEncounter(spoiledBrat)
+addRandomEncounter(royalCaretaker)

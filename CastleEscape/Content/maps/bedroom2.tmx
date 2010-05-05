@@ -1230,5 +1230,7 @@
   <object name="" x="480" y="288" width="96" height="64"/>
   <object name="" x="96" y="384" width="544" height="96"/>
   <object name="" x="0" y="96" width="32" height="384"/>
+  <object name="" x="320" y="256" width="32" height="32"/>
+  <object name="" x="576" y="320" width="32" height="32"/>
  </objectgroup>
 </map>

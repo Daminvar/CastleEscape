@@ -22,3 +22,8 @@ librarian.SetInteractFunc(function(player) {
 })
 
 addNPE(librarian)
+
+var servant = newEnemy("ghostie", "Fanatic Servant", 100, 50, 10, 10, 30, null)
+var lazyGuard = newEnemy("ghostie", "Lazy Guard", 200, 60, 10, 5, 80, null)
+addRandomEncounter(servant)
+addRandomEncounter(lazyGuard)
