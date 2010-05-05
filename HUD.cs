@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -61,7 +60,7 @@ namespace CastleEscape
             for (int i = 0; i < stats.Length; i++)
             {
 				var statString = new String2D(stats[i], font);
-                statString.Position = new Vector2(xPos + 5, yPos + i * font.LineSpacing + 5);
+                statString.Position = new Vector2(xPos + 5, yPos + i * font.CharacterSize + 5);
                 window.Draw(statString);
             }
         }

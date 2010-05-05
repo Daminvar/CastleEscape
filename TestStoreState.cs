@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -10,8 +9,8 @@ namespace CastleEscape
 {
     class TestStoreState : State
     {
-        public TestStoreState(Game game)
-            : base(game)
+        public TestStoreState()
+            : base()
         {
         }
 
@@ -24,19 +23,19 @@ namespace CastleEscape
             StateManager.PopState();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
-            Player pl = new Player(game, 0, 0);
+            Player pl = new Player(0, 0);
             Item[] inventory = new Item[2];
             inventory[0] = new Item("Bottle of Mead", "A delicious bottle of mead. HP+50,MP+80", 50, 80, 10);
             inventory[0].Cost = 50;
             inventory[1] = new Item("Can of Soda", "A delicious can of soda. HP+50,MP+80", 50, 80, 10);
             inventory[1].Cost = 35;
 
-            StateManager.PushState(new Store(game, pl, inventory));
+            StateManager.PushState(new Store(pl, inventory));
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
         }
     }

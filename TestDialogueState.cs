@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -18,9 +17,9 @@ namespace CastleEscape
     {
         // You will need a Dialogue and a SpriteFont.
         private Dialogue dlog;
-        private SpriteFont font;
+        private Font font;
 
-        public TestDialogueState(Game game) : base(game)
+        public TestDialogueState() : base()
         {
             // Initialize the dialogue by passing in a message and a game
             dlog = new Dialogue("Hello out there|Does this work?|IT'S BECAUSE OF YOU THERE'S A GIANT IN OUR MIDST AND MY WIFE IS DEAD BUT IT ISN'T MY FAULT I WAS GIVEN THOSE BEANS YOU PERSUADED ME TO TRADE AWAY MY COW FOR BEANS|something else|whaaat");
@@ -39,18 +38,18 @@ namespace CastleEscape
         /// Calls the Update method in Dialogue.
         /// </summary>
         /// <param name="gameTime">The game time to be passed in</param>
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
-            dlog.Update(gameTime);
+            dlog.Update(clock, input);
         }
 
         /// <summary>
         /// Calls the Draw method in Dialogue
         /// </summary>
         /// <param name="spriteBatch">The sprite batch to be passed in</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
-            dlog.Draw(spriteBatch);
+            dlog.Draw(window);
         }
     }
 }

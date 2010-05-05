@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -65,26 +64,26 @@ namespace CastleEscape
                 return;
             }
 
-            if (state.IsKeyUp(Keys.Z))
+            if (!input.IsKeyDown(KeyCode.Z))
                 canPressZ = true;
 
-            if (canPressZ && state.IsKeyDown(Keys.Z))
+            if (canPressZ && input.IsKeyDown(KeyCode.Z))
             {
                 isFinished = true;
                 canPressZ = false;
                 selectedStretch = defaultStretch;
             }
 
-            if (state.IsKeyUp(Keys.Up) && state.IsKeyUp(Keys.Down))
+            if (!input.IsKeyDown(KeyCode.Up) && !input.IsKeyDown(KeyCode.Down))
                 canMove = true;
             if (!canMove)
                 return;
-            if (state.IsKeyDown(Keys.Up))
+            if (input.IsKeyDown(KeyCode.Up))
             {
                 selectedOption = selectedOption > 0 ? selectedOption - 1 : options.Length - 1;
                 canMove = false;
             }
-            else if (state.IsKeyDown(Keys.Down))
+            else if (input.IsKeyDown(KeyCode.Down))
             {
                 selectedOption = (selectedOption + 1) % options.Length;
                 canMove = false;

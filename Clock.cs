@@ -16,7 +16,7 @@ namespace CastleEscape
 			snapshot = DateTime.Now;
 		}
 		
-		public DateTime ElapsedTime
+		public TimeSpan ElapsedTime
 		{
 			get { return DateTime.Now - snapshot; }
 		}

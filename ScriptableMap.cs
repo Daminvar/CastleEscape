@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using SFML;
 using SFML.Graphics;
 using SFML.Window;
+using Jint.Delegates;
 
 namespace CastleEscape
 {
@@ -213,7 +213,7 @@ namespace CastleEscape
 
         private void js_setBattleTexture(string textureName)
         {
-            battleTexture = game.Content.Load<Texture2D>(textureName);
+            battleTexture = new Image("Content\\" + textureName + ".png");
         }
 
         private void js_setEastMapfile(string filename)
@@ -285,7 +285,7 @@ namespace CastleEscape
         private Enemy js_newEnemy(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, ArrayList items)
         {
-            var enemy = new Enemy(game.Content.Load<Texture2D>(textureName));
+            var enemy = new Enemy(new Image("Content\\" + textureName + ".png"));
             enemy.Name = enemyName;
             enemy.Health = (int)health;
             enemy.Speed = (int)speed;
@@ -305,7 +305,7 @@ namespace CastleEscape
         {
             StateManager.Running = false;
             int currentStackSize = StateManager.StackSize;
-            StateManager.PushState(new Battle(game, battleTexture, player, enemy, false));
+            StateManager.PushState(new Battle(battleTexture, player, enemy, false));
             StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {

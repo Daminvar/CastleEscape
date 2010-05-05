@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -53,7 +52,7 @@ namespace CastleEscape
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
             if (increaseStats)
             {
@@ -72,10 +71,10 @@ namespace CastleEscape
                 increaseStats = false;
             }
 
-            tMenu.Update(gameTime, Keyboard.GetState());
+            tMenu.Update(clock, input);
             if (tMenu.IsFinished)
             {
-                handleInput(gameTime);
+                handleInput();
                 statIncrease(chosenStat);
                 tMenu.IsFinished = false;
             }
@@ -86,7 +85,7 @@ namespace CastleEscape
             }
         }
 
-        private void handleInput(GameTime gametime)
+        private void handleInput()
         {
             string selectedStat = null;
 
@@ -128,24 +127,31 @@ namespace CastleEscape
 
         public override void Draw(RenderWindow window)
         {
-            Rectangle recLevel = new Rectangle(145, 15, 370, 400);
-            spriteBatch.Draw(combatColor, recLevel, Color.White);
-            tMenu.Draw(spriteBatch, 190, 190, Color.White);
-            spriteBatch.DrawString(font, play.Attack +
+            var bgSprite = new Sprite(combatColor);
+            bgSprite.Position = new Vector2(145, 15);
+            bgSprite.Scale = new Vector2(370, 400);
+            window.Draw(bgSprite);
+            tMenu.Draw(window, 190, 190, Color.White);
+            var statsString = new String2D(play.Attack +
                                          "\n" + play.Defense +
                                          "\n" + play.MagicAtk +
-                                         "\n" + play.Speed,
-                                         new Vector2(385f, 195f), Color.White);
-            spriteBatch.DrawString(font, "Level up points left: " + pointsLeft,
-                new Vector2(200f, 315f), Color.White);
-            spriteBatch.DrawString(fontLevel, "Level: " + play.Level,
-                new Vector2(255f, 130f), Color.White);
+                                         "\n" + play.Speed, font);
+            statsString.Position = new Vector2(385, 195);
+            window.Draw(statsString);
+            var pointsLeftString = new String2D("Level up points left: " + pointsLeft, font);
+            pointsLeftString.Position = new Vector2(200, 315);
+            window.Draw(pointsLeftString);
+            var levelString = new String2D("Level: " + play.Level);
+            levelString.Position = new Vector2(255, 130);
+            window.Draw(levelString);
             if (pointsLeft == 0)
             {
-                spriteBatch.DrawString(font, "Press Z to exit.",
-                    new Vector2(235f, 360f), Color.White);
+                var pressZ = new String2D("Press Z to exit.", font);
+                pressZ.Position = new Vector2(235, 360);
             }
-            spriteBatch.DrawString(fontLevelUp, "LEVEL UP!", new Vector2(165f, 20f), Color.WhiteSmoke);
+            var levelUpString = new String2D("LEVEL UP!", fontLevelUp);
+            levelUpString.Position = new Vector2(165, 20);
+            window.Draw(levelUpString);
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -36,21 +35,21 @@ namespace CastleEscape
         private bool canPressEscape;
 
         // Rectangles
-        Rectangle destinationRectangle;
+        IntRect destinationRectangle;
 
         // create a counter for steps
         int pedometer;
 
         HUD hud;
 
-        public Overworld(Game game, Player player, DrawableMap map)
-            : base(game)
+        public Overworld(Player player, DrawableMap map)
+            : base()
         {
             playerObj = player;
             mappy = map;
 
             //The destination rectangle is the location where the sprite will be drawn.
-            destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
+            destinationRectangle = new IntRect(0, 0, spriteWidth, spriteHeight);
 
             timer = 0;
             canPressZ = false;
@@ -61,7 +60,7 @@ namespace CastleEscape
             movingUp = false;
             movingDown = false;
 
-            hud = new HUD(game, playerObj, mappy);
+            hud = new HUD(playerObj, mappy);
         }
 
         public override void Pause()
@@ -76,31 +75,28 @@ namespace CastleEscape
             
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
             // checks for updates
-            handleInput(gameTime);
-            timer += gameTime.ElapsedGameTime.Milliseconds;
+            handleInput(clock, input);
+            timer += clock.ElapsedTime.Milliseconds;
         }
 
         /// <summary>
         /// Handles the keyboard input by the player to move the character sprite onscreen. Also checks for collisions.
         /// </summary>
-        private void handleInput(GameTime gameTime)
+        private void handleInput(Clock clock, Input input)
         {
-            // handle input
-            KeyboardState kbState = Keyboard.GetState();
-
             if (timer >= 200)
             {
                 playerObj.ModX = 0;
                 playerObj.ModY = 0;
             }
 
-            if (kbState.IsKeyUp(Keys.Z))
+            if (!input.IsKeyDown(KeyCode.Z))
                 canPressZ = true;
 
-            if (canPressZ && kbState.IsKeyDown(Keys.Z))
+            if (canPressZ && input.IsKeyDown(KeyCode.Z))
             {
                 NPE entity = null;
                 if (playerObj.Direction == Player.Directions.East)
@@ -119,7 +115,7 @@ namespace CastleEscape
                 canPressZ = false;
             }
 
-            if ((kbState.IsKeyDown(Keys.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
+            if ((input.IsKeyDown(KeyCode.Left) || movingLeft) && !movingRight && !movingDown && !movingUp)
             {
                 playerObj.Direction = Player.Directions.West;
 
@@ -190,7 +186,7 @@ namespace CastleEscape
                     }
                 }
             }
-            else if ((kbState.IsKeyDown(Keys.Right) || movingRight) && !movingLeft && !movingDown && !movingUp)
+            else if ((input.IsKeyDown(KeyCode.Right) || movingRight) && !movingLeft && !movingDown && !movingUp)
             {
                 playerObj.Direction = Player.Directions.East;
 
@@ -262,7 +258,7 @@ namespace CastleEscape
                     }
                 }
             }
-            else if ((kbState.IsKeyDown(Keys.Up) || movingUp) && !movingLeft && !movingDown && !movingRight)
+            else if ((input.IsKeyDown(KeyCode.Up) || movingUp) && !movingLeft && !movingDown && !movingRight)
             {
                 movingLeft = false;
                 movingDown = false;
@@ -332,7 +328,7 @@ namespace CastleEscape
                     }
                 }
             }
-            else if ((kbState.IsKeyDown(Keys.Down) || movingDown) && !movingLeft && !movingRight && !movingUp)
+            else if ((input.IsKeyDown(KeyCode.Down) || movingDown) && !movingLeft && !movingRight && !movingUp)
             {
                 if (timer <= 150)
                 {
@@ -405,17 +401,16 @@ namespace CastleEscape
 
             }
 
-            if (kbState.IsKeyUp(Keys.Escape))
+            if (!input.IsKeyDown(KeyCode.Escape))
             {
                 canPressEscape = true;
                 return;
             }
 
             //Pauses the game
-            if (kbState.IsKeyDown(Keys.Escape) && canPressEscape)
+            if (input.IsKeyDown(KeyCode.Escape) && canPressEscape)
             {
-
-                StateManager.PushState(new PauseState(game, playerObj));
+                StateManager.PushState(new PauseState(playerObj));
                 return;
             }
         }
@@ -449,20 +444,18 @@ namespace CastleEscape
                 Enemy currentEnemy = mappy.GetRandomEncounter();
                 if (currentEnemy != null)
                 {
-                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
+                    StateManager.PushState(new Battle(mappy.BattleTexture, playerObj, currentEnemy, true));
                 }
                 pedometer = 0;
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
-            game.GraphicsDevice.Clear(Color.Black);
-            // draws player, tells map to draw itself
-            mappy.DrawBase(spriteBatch, 0, 0);
-            playerObj.DrawForOverworld(spriteBatch, mappy, 0, 0);
-            mappy.DrawTop(spriteBatch, 0, 0);
-            hud.Draw(spriteBatch, mappy.MapWidth * mappy.TileSize, 0);
+            mappy.DrawBase(window, 0, 0);
+            playerObj.DrawForOverworld(window, mappy, 0, 0);
+            mappy.DrawTop(window, 0, 0);
+            hud.Draw(window, mappy.MapWidth * mappy.TileSize, 0);
         }
     }
 }

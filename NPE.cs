@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using SFML;
@@ -17,13 +16,11 @@ namespace CastleEscape
     class NPE
     {
         private Action<Player> interactFunc;
-        private Texture2D texture;
+        private Image texture;
         private int xPos, yPos;
-        private Game game;
 
-        public NPE(Game game)
+        public NPE()
         {
-            this.game = game;
         }
 
         public int XPos
@@ -36,25 +33,28 @@ namespace CastleEscape
             get { return yPos; }
         }
 
-        public void DrawBase(SpriteBatch spriteBatch, ScriptableMap map, int x, int y)
+        public void DrawBase(RenderWindow window, ScriptableMap map, int x, int y)
         {
             if (texture == null)
                 return;
-            var sourceRect = new Rectangle(0, texture.Height - map.TileSize, map.TileSize, map.TileSize);
-            var destRect = new Rectangle(x + xPos * map.TileSize, y + yPos * map.TileSize, map.TileSize, map.TileSize);
-            spriteBatch.Draw(texture, destRect, sourceRect, Color.White);
+            var baseSprite = new Sprite(texture);
+            int sourceX = 0;
+            int sourceY = (int)texture.Height - map.TileSize;
+            baseSprite.SubRect = new IntRect(sourceX, sourceY, sourceX + map.TileSize, sourceY + map.TileSize);
+            baseSprite.Position = new Vector2(x + xPos * map.TileSize, y + yPos * map.TileSize);
+            window.Draw(baseSprite);
         }
 
-        public void DrawTop(SpriteBatch spriteBatch, ScriptableMap map, int x, int y)
+        public void DrawTop(RenderWindow window, ScriptableMap map, int x, int y)
         {
             if (texture == null)
                 return;
-
+            var topSprite = new Sprite(texture);
             int renderX = x + xPos * map.TileSize;
-            int renderY = y + yPos * map.TileSize - (texture.Height - map.TileSize);
-            var sourceRect = new Rectangle(0, 0, map.TileSize, texture.Height - map.TileSize);
-            var destRect = new Rectangle(renderX, renderY, map.TileSize, texture.Height - map.TileSize);
-            spriteBatch.Draw(texture, destRect, sourceRect, Color.White);
+            int renderY = (int)(y + yPos * map.TileSize - (texture.Height - map.TileSize));
+            topSprite.SubRect = new IntRect(0, 0, map.TileSize, (int)(texture.Height - map.TileSize));
+            topSprite.Position = new Vector2(renderX, renderY);
+            window.Draw(topSprite);
         }
 
         public void SetPosition(int x, int y)
@@ -65,7 +65,7 @@ namespace CastleEscape
 
         public void SetTexture(string textureName)
         {
-            texture = game.Content.Load<Texture2D>(textureName);
+            texture = new Image("Content\\" + textureName + ".png");
         }
 
         public void SetInteractFunc(Action<Player> func)

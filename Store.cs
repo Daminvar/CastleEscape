@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -22,20 +21,19 @@ namespace CastleEscape
         public const int STORE_HEIGHT = 420;
         private Player player;
         private Item[] storeInventory;
-        private Texture2D storeTexture;
-        private Texture2D background;
-        private SpriteFont spriteFont;
+        private Image storeTexture;
+        private Image background;
+        private Font spriteFont;
         private TextMenu textInventory;
 
-        public Store(Game game, Player pl, Item[] items)
-            : base(game)
+        public Store(Player pl, Item[] items)
+            : base()
         {
             player = pl;
             storeInventory = items;
-            storeTexture = new Texture2D(game.GraphicsDevice, 1, 1);
-            storeTexture.SetData<Color>(new Color[] { new Color(Color.Gray, 255) });
-            background = game.Content.Load<Texture2D>("store-bg");
-            spriteFont = game.Content.Load<SpriteFont>("inventory-list-font");
+            storeTexture = new Image(1, 1, new Color(200, 200, 200, 155));
+            background = new Image("store-bg");
+            spriteFont = Font.DefaultFont; //TODO fix
             textInventory = new TextMenu(spriteFont, this.getItemNames(storeInventory));
         }
 
@@ -59,16 +57,14 @@ namespace CastleEscape
             textInventory = new TextMenu(spriteFont, this.getItemNames(storeInventory));
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
-            KeyboardState kbState = Keyboard.GetState();
-
-            if (kbState.IsKeyDown(Keys.Escape))
+            if (input.IsKeyDown(KeyCode.Escape))
                 StateManager.PopState();
 
             if (storeInventory.Length != 0)
             {
-                textInventory.Update(gameTime, kbState);
+                textInventory.Update(clock, input);
                 if (textInventory.IsFinished)
                 {
                     Item buyItem = storeInventory[textInventory.SelectedOption];
@@ -76,36 +72,54 @@ namespace CastleEscape
                     {
                         player.Gold -= buyItem.Cost;
                         player.Items.Add(buyItem);
-                        StateManager.PushState(new Dialogue(game, "You bought " + buyItem.Name + " for " + buyItem.Cost + " gold!"));
+                        StateManager.PushState(new Dialogue("You bought " + buyItem.Name + " for " + buyItem.Cost + " gold!"));
                     }
                     else
                     {
-                        StateManager.PushState(new Dialogue(game, "You don't have enough gold for that!"));
+                        StateManager.PushState(new Dialogue("You don't have enough gold for that!"));
                     }
                 }
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
-            spriteBatch.Draw(background, new Rectangle(0, 0, 800, 520), Color.White);
-            spriteBatch.Draw(storeTexture, new Rectangle(XPOS, YPOS, STORE_WIDTH, STORE_HEIGHT), new Color(Color.Black, 200));
-            spriteBatch.DrawString(spriteFont, "Welcome to the store. Press 'Esc' to quit.", new Vector2(XPOS + 10, YPOS + 5), Color.White);
-            spriteBatch.DrawString(spriteFont, "Current gold: " + player.Gold, new Vector2(XPOS + 440, YPOS + 5), Color.White);
+            var bgSprite = new Sprite(background);
+            bgSprite.Scale = new Vector2(800, 480);
+            window.Draw(bgSprite);
+            var storeSprite = new Sprite(storeTexture);
+            storeSprite.Position = new Vector2(XPOS, YPOS);
+            storeSprite.Scale = new Vector2(STORE_WIDTH, STORE_HEIGHT);
+            storeSprite.Color = new Color(200, 200, 200, 200);
+            window.Draw(storeSprite);
+
+            var header = new String2D("Welcome to the store. Press 'Esc' to quit.", spriteFont);
+            header.Position = new Vector2(XPOS + 10, YPOS + 5);
+            window.Draw(header);
+            var curGold = new String2D("Current gold: " + player.Gold, spriteFont);
+            curGold.Position = new Vector2(XPOS + 440, YPOS + 5);
+            window.Draw(curGold);
             for (int i = 0; i < storeInventory.Length; i++)
             {
-                textInventory.Draw(spriteBatch, XPOS + 10, YPOS + 30, Color.White);
+                textInventory.Draw(window, XPOS + 10, YPOS + 30, Color.White);
             }
 
-            spriteBatch.Draw(storeTexture, new Rectangle(XPOS + STORE_WIDTH + 10, YPOS, 200, STORE_HEIGHT), new Color(Color.Black, 180));
-            spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(XPOS + STORE_WIDTH + 45, YPOS + 5), Color.Wheat);
+            storeSprite.Position = new Vector2(XPOS + STORE_WIDTH + 10, YPOS);
+            storeSprite.Scale = new Vector2(200, STORE_HEIGHT);
+            storeSprite.Color = new Color(200, 200, 200, 180);
+            window.Draw(storeSprite);
+
+            var inventoryHeader = new String2D("Inventory", spriteFont);
+            inventoryHeader.Position = new Vector2(XPOS + STORE_WIDTH + 45, YPOS + 5);
+            inventoryHeader.Color = Color.Yellow;
+            window.Draw(inventoryHeader);
 
             for (int i = 0; i < player.Items.Count; i++)
             {
-                spriteBatch.DrawString(spriteFont, player.Items[i].Name, new Vector2(XPOS + STORE_WIDTH + 20, YPOS + 5 + ((i + 1) * 14)), Color.White);
+                var itemString = new String2D(player.Items[i].Name, spriteFont);
+                itemString.Position = new Vector2(XPOS + STORE_WIDTH + 20, YPOS + 5 + ((i + 1) * 14));
+                window.Draw(itemString);
             }
-
-
         }
     }
 }

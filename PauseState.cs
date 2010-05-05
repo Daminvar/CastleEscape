@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -23,32 +22,33 @@ namespace CastleEscape
         Player player;
 
 
-        private SpriteFont font;
+        private Font font;
 
-        public PauseState(Game game, Player player)
-            : base(game)
+        public PauseState(Player player)
+            : base()
         {
             transparent = true;
-            height = game.GraphicsDevice.Viewport.Height;
-            font = game.Content.Load<SpriteFont>("hud-font");
+            height = 480; //TODO fix
+            font = Font.DefaultFont; //TODO fix
             this.player = player;
 
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
-            StateManager.PushState(new ItemState(game, player, false));
+            StateManager.PushState(new ItemState(player, false));
         }
 
         //Displays stats when pause state is pushed on to screen
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
-            spriteBatch.DrawString(font, "Attack: " + player.Attack +
+            var pauseString = new String2D("Attack: " + player.Attack +
                                         "\nDefense: " + player.Defense +
                                         "\nSpeed: " + player.Speed +
                                         "\nMagic Atk: " + player.MagicAtk +
-                                        "\nExp: " + player.Exp + " / " + player.ExpToLevel,
-                                        new Vector2(647.0f, (float)((height * 20 / 100) + 30)), Color.WhiteSmoke);
+                                        "\nExp: " + player.Exp + " / " + player.ExpToLevel, font);
+            pauseString.Position = new Vector2(647.0f, (height * 20 / 100) + 30);
+            pauseString.Color = Color.White;
         }
 
         public override void Resume()

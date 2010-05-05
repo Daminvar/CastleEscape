@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -51,7 +50,7 @@ namespace CastleEscape
         {
 			var tileSprite = new Sprite(tileset);
             int tilesize = tmxMap.TileSize;
-            int rowSize = tileset.Width / tilesize;
+            int rowSize = (int)tileset.Width / tilesize;
 
             for (int z = 0; z < layers.Count; z++)
             {

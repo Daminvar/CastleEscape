@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -24,10 +23,10 @@ namespace CastleEscape
             StateManager.PopState();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
             Enemy en = new Enemy(new Image("Content\\ghostie.png"));
-            Player pl = new Player(game, 0, 0);
+            Player pl = new Player(0, 0);
 
             StateManager.PushState(new Battle(new Image("Content\\test-battle-background.png"), pl, en, true));
         }

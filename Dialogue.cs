@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -54,7 +53,7 @@ namespace CastleEscape
             for (int i = 0; i < mArray.Length; i++)
             {
                 // if the line is not too long, add it to the mList list
-                if (font.MeasureString(mArray[i]).X < 800 - 32) //TODO fix
+                if (mArray[i].Length * font.CharacterSize < 800 - 32) //TODO fix
                 {
                     mList.Add(mArray[i]);
                 }
@@ -67,7 +66,7 @@ namespace CastleEscape
                     for (int j = 0; j < longLineArr.Length; j++)
                     {
                         // if the next word + the current string is longer than the width we set, add the current string to the message list
-                        if (font.MeasureString(longLineArr[j] + " " + msg).X > 800 - 64) //TODO fix
+                        if ((longLineArr[j] + " " + msg).Length * font.CharacterSize > 800 - 64) //TODO fix
                         {
                             mList.Add(msg);
                             msg = null;
@@ -139,13 +138,13 @@ namespace CastleEscape
             // draws only the first four lines of the array
 			var boxSprite = new Sprite(bgColor);
             boxSprite.Position = new Vector2(0, window.Height * 3 / 4);
-			boxSprite.Scale = new Vector2(game.GraphicsDevice.Viewport.Width, window.Height - window.Height * 3 / 4);
+			boxSprite.Scale = new Vector2(window.Width, window.Height - window.Height * 3 / 4);
             window.Draw(boxSprite);
             
             for (int i = 0; i < 4 && i < mList.Count; i++)
             {
 				var str = new String2D(mList[i], font);
-				str.Position = new Vector2(32.0f, (float)((game.GraphicsDevice.Viewport.Height * 3 / 4) + 10) + 5 + font.LineSpacing * i);
+				str.Position = new Vector2(32.0f, (float)((480 * 3 / 4) + 10) + 5 + font.CharacterSize * i); //TODO fix
 				window.Draw(str);
             }
         }

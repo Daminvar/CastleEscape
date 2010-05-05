@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -120,7 +119,7 @@ namespace CastleEscape
         {
             foreach (var rect in collisionRects)
             {
-                if (rect.Intersects(new Rectangle(x * tilesize, y * tilesize, tilesize, tilesize)))
+                if (rect.IntersectsWith(new Rectangle(x * tilesize, y * tilesize, tilesize, tilesize)))
                     return true;
             }
             return false;

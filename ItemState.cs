@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -75,7 +74,7 @@ namespace CastleEscape
                     player.Health += itemToUse.HealthBonus;
                     player.Mana += itemToUse.ManaBonus;
                     player.Items.RemoveAt(menu.SelectedOption);
-                    StateManager.PushState(new Dialogue(game, "You used a " + itemToUse.Name + "!"));
+                    StateManager.PushState(new Dialogue("You used a " + itemToUse.Name + "!"));
                 }
             }
 
@@ -100,10 +99,10 @@ namespace CastleEscape
                 menu.Draw(window, XPOS + 5, YPOS + 30, Color.White);
             else
 			{
-				var errorText = new Sprite("You don't have any items!", font);
+				var errorText = new String2D("You don't have any items!", font);
 				errorText.Position = new Vector2(XPOS + 5, YPOS + 50);
 				errorText.Color = Color.White;
-                menu.Draw(errorText);
+                window.Draw(errorText);
 			}
         }
     }

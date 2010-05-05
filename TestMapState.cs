@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -17,9 +16,9 @@ namespace CastleEscape
     {
         private DrawableMap map;
 
-        public TestMapState(Game game) : base(game)
+        public TestMapState() : base()
         {
-            map = new DrawableMap(game);
+            map = new DrawableMap();
             map.LoadMap("testmap.js");
         }
 
@@ -31,16 +30,16 @@ namespace CastleEscape
         {
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Clock clock, Input input)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (input.IsKeyDown(KeyCode.Escape))
                 StateManager.PopState();
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(RenderWindow window)
         {
-            map.DrawBase(spriteBatch, 0, 0);
-            map.DrawTop(spriteBatch, 0, 0);
+            map.DrawBase(window, 0, 0);
+            map.DrawTop(window, 0, 0);
         }
     }
 }

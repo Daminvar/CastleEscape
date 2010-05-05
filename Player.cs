@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SFML;
 using SFML.Graphics;
@@ -31,7 +30,7 @@ namespace CastleEscape
         private int yPos;
         private Directions direction;
 
-        private Rectangle sourceRectangle;
+        private IntRect sourceRectangle;
         private int currentSpriteY;
         private int currentSpriteX;
         private int spriteWidth;
@@ -151,7 +150,6 @@ namespace CastleEscape
 
             set
             {
-
                 if (value >= maxHealth)
                     health = maxHealth;
 
@@ -160,7 +158,6 @@ namespace CastleEscape
 
                 else
                     health = value;
-
             }
         }
 
@@ -289,16 +286,14 @@ namespace CastleEscape
 			int sourceY = currentSpriteY * spriteHeight;
 			playerSprite.SubRect = new IntRect(sourceX, sourceY, sourceX + spriteWidth, sourceY + spriteHeight);
 			window.Draw(playerSprite);
-
-            spriteBatch.Draw(overworldTexture, sourceRectangle, Color.White);
         }
 
-        public void DrawForBattle(SpriteBatch spriteBatch, int x, int y)
+        public void DrawForBattle(RenderWindow window, int x, int y)
         {
-            spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
+            var sprite = new Sprite(battleTexture);
+            sprite.Position = new Vector2(x, y);
+            window.Draw(sprite);
         }
-
-        
 
         public void getAccuracy(string attackType)
         {
