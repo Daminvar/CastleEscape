@@ -1,7 +1,7 @@
 
 name("HallWay 3")
 mapfile("HallWay3.tmx")
-battleTexture("test-battle-background")
+battleTexture("hallway-bg")
 
 
 west("HallWay2.js")

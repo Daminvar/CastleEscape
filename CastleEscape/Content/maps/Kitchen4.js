@@ -14,7 +14,7 @@ treasure1.SetInteractFunc(function(player)
 	if(!getFlag("got-treasure1"))
 	{
 		dialogue("The chest contained Cinnamon!")
-		var cinnamon = newItem("Cinnamon", "Spicy cinnamon of excellent quality", 10, 15, 45)
+		var cinnamon = newItem("Cinnamon", "Spicy cinnamon of excellent quality.", 10, 15, 45)
 		player.AddItem(cinnamon)
 		setFlag("got-treasure1")
 		reloadMap()

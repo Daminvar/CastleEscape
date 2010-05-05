@@ -404,7 +404,7 @@
   <ItemGroup>
     <Compile Include="restaurant-kitchen.png">
       <Name>restaurant-kitchen</Name>
-	  <Importer>TextureImporter</Importer>
+      <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
     <Compile Include="final-boss.png">
@@ -416,6 +416,13 @@
   <ItemGroup>
     <Compile Include="bedroom-bg.jpg">
       <Name>bedroom-bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="hallway-bg.png">
+      <Name>hallway-bg</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
