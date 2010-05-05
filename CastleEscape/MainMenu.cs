@@ -69,8 +69,9 @@ namespace CastleEscape
 
             if (selectedOption == "New Game")
             {
+                //dungeon_1
                 Flags.SetAllFlags(new Dictionary<string, bool>());
-                var player = new Player(game, 0, 9);
+                var player = new Player(game, 2, 9);
                 var map = new DrawableMap(game);
                 map.LoadMap("CourtYard1.js");
                 StateManager.PushState(new Overworld(game, player, map));

@@ -39,19 +39,16 @@ treasureChest1H1.SetTexture("treasure")
 treasureChest1H1.SetPosition(14,4)
 
 treasureChest1H1.SetInteractFunc(function(player) {
-	if(!getFlag("hallway-1-chest"))
-	{
-		
-		dialogue("You found two health potions!")
-		var healthpot = newItem("Health Potion", "Restores hp",25,0,0)
-		player.AddItem(healthpot)
-		player.AddItem(healthpot)
-		setFlag("hallway-1-chest")
-		reloadMap()
-	}
+	dialogue("You found two health potions!")
+	var healthpot = newItem("Health Potion", "Restores hp",25,0,0)
+	player.AddItem(healthpot)
+	player.AddItem(healthpot)
+	setFlag("hallway-1-chest")
+	reloadMap()
 })
 
-addNPE(treasureChest1H1)
+if(!getFlag("hallway-1-chest"))
+	addNPE(treasureChest1H1)
 
 
 var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)

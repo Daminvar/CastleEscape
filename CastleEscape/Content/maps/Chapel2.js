@@ -10,9 +10,26 @@ priest.SetTexture("waiter_front")
 priest.SetPosition(3,3)
 
 priest.SetInteractFunc(function(player){
-	dialogue("Priest Winston: Welcome! | Priest Winston: Have you come to take part in today's services or something else? | Jordan: I need help, I can't get to the armory to talk to NAME. Priest Windston: Why would you want to visit him? He's a rather vile man. | Jordan: Trust me, it's not my decision..|Priest Winston: Well, here take this holy water. I'm sure something like this could be useful.")
-	setFlag("holy-water")
-	
+	if(!getFlag("winston-first-talk"))
+	{
+	dialogue("Priest Winston: Welcome! | Priest Winston: Have you come to take part in today's services or something else? | Jordan: I need help, I can't get to the armory to talk to Kristof. | Priest Windston: If you really want to visit him i can give you a special item to pass the guard, but you'll have to answer a question first. Which king saved Euphor from dire peril with his diplomatic skills? ")
+	setFlag("winston-first-talk")
+	}
+	else if(!getFlag("holy-water"))
+		dialogue("Any luck with finding out which king saved Euphor from dire peril with his diplomatic skills?")
+		
+else{
+		dialogue("Priest Winston: Make good use of that holy water!")
+		return
+	}
+	if(getFlag("pierre-grave-read"))
+	{
+		dialogue("Jordan:  That was King Pierre, who saved Euphor during dark times. | Priest Winston: Why yes! You seem to be well versed in Euphor's history, have this holy water as a reward")
+		setFlag("holy-water")
+	}
+	else	
+		dialogue("Jordan: I have no idea. | Priest Winston: Come back when you have paid your respects for the dead.")
+
 })
 	
 
