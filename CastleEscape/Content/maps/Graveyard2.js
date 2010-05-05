@@ -63,6 +63,7 @@ pierresGrave.SetPosition(14, 5)
 
 pierresGrave.SetInteractFunc(function(player) {
 	dialogue("Here lies the Old King Pierre. His diplomatic skills saved Euphor from many an unnecessary battle. His contributions are great, and he shall be forever missed.")
+	setFlag("pierre-grave-read")
 })
 
 addNPE(pierresGrave)
