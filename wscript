@@ -15,12 +15,10 @@ def configure(conf):
 def build(bld):
     bld(
             features = ["cxx", "cprogram"],
-            source = bld.glob("*.cc") + bld.glob("States/*.cc"),
+            source = bld.glob("*.cc") +
+                bld.glob("States/*.cc") +
+                bld.glob("tinyxml/*.cpp"),
             target = "CastleEscape",
             vnum = "1.0",
             lib = ["sfml-graphics", "sfml-window", "sfml-system"],
     )
-    def copy_content(task):
-        os.symlink(os.path.join(bld.srcnode.abspath(), "Content"),
-                   os.path.join(bld.srcnode.abspath(bld.env), "Content"))
-    bld(rule=copy_content)

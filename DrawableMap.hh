@@ -3,9 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "ScriptableMap.hh"
+
 namespace CastleEscape {
 
-class DrawableMap { //TODO: Add inheritance
+class DrawableMap: public ScriptableMap {
 public:
 	DrawableMap();
 	virtual ~DrawableMap();

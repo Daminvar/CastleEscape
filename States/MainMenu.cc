@@ -9,6 +9,7 @@ using namespace std;
 
 #include "../StateManager.hh"
 #include "../TextMenu.hh"
+#include "Overworld.hh"
 
 namespace CastleEscape {
 
@@ -50,8 +51,8 @@ void MainMenu::Update(const sf::Clock& clock, const sf::Input& input) {
 	string selectedOption = options[menu->GetSelectedOption()];
 
 	if (selectedOption == "New Game") {
-		cout << "Working, at least =/" << endl;
-		menu->Restart(); //TODO: New Game
+		//TODO: Initialize player, etc.
+		StateManager::PushState(new Overworld());
 	} else if (selectedOption == "Load Game") {
 		menu->Restart(); //TODO: Load Game
 	} else if (selectedOption == "About") {
