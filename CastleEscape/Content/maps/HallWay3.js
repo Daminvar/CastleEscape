@@ -25,12 +25,13 @@ armoryGuard.SetInteractFunc(function(player)
 {
 	if(getFlag("holy-water"))
 	{
-		dialogue("Guard Ryan: Well, i can't say no to someone who has holy water. ||||  Our priest would only give that out to the most important of people")
+		dialogue("Guard Ryan: Well, i can't say no to someone who has holy water. ||  Our priest would only give that out to the most important of people")
 		setFlag("armory-open")
+		reloadMap()
 	}	
 	else
 	{
-		dialogue("Guard Ryan: Past this point to the armory is off-limits, I would need something to give me reason to let you by. |||| Jordan: What would that be? |||| Guard Ryan: I won't know until i see it, but people have told me that i'm a holy man")
+		dialogue("Guard Ryan: Past this point to the armory is off-limits, I would need something to give me reason to let you by. || Jordan: What would that be? || Guard Ryan: I won't know until i see it, but people have told me that i'm a holy man")
 			
 	}
 })

@@ -14,7 +14,7 @@ hallway4civ1.SetPosition(10,5)
 
 hallway4civ1.SetInteractFunc(function(player) 
 {
-	dialogue("Kelly: I do love this painting |||| Jordan: Who is that a portrait of? |||| Kelly: How do you not know NAME, he's our castle's best knight. |||| Jordan: (Looks like thats the guy i have to chat with)")	
+	dialogue("Kelly: I do love this painting || Jordan: Who is that a portrait of? || Kelly: How do you not know NAME, he's our castle's best knight. || Jordan: (Looks like thats the guy i have to chat with)")	
 
 })
 
