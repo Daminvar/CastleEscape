@@ -6,7 +6,7 @@ east("Chapel2.js")
 south("Graveyard1.js")
 
 var churchgoer1 = newNPE()
-churchgoer1.SetTexture("snake")
+churchgoer1.SetTexture("man_left")
 
 churchgoer1.SetPosition(14,11)
 
@@ -17,7 +17,7 @@ churchgoer1.SetInteractFunc(function(player){
 addNPE(churchgoer1)
 
 var churchgoer2 = newNPE()
-churchgoer2.SetTexture("ghostie")
+churchgoer2.SetTexture("lady_front")
 
 churchgoer2.SetPosition(7,12)
 
@@ -28,7 +28,7 @@ churchgoer2.SetInteractFunc(function(player){
 addNPE(churchgoer2)
 
 var churchgoer3 = newNPE()
-churchgoer3.SetTexture("test-npe")
+churchgoer3.SetTexture("guyHat-front")
 
 churchgoer3.SetPosition(7,2)
 
@@ -39,7 +39,7 @@ churchgoer3.SetInteractFunc(function(player){
 addNPE(churchgoer3)
 
 var churchgoer4 = newNPE()
-churchgoer4.SetTexture("snake")
+churchgoer4.SetTexture("gGirl-back")
 
 churchgoer4.SetPosition(14,5)
 
@@ -48,3 +48,9 @@ churchgoer4.SetInteractFunc(function(player){
 })
 	
 addNPE(churchgoer4)
+
+var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
+
+addRandomEncounter(snake)
+addRandomEncounter(ghost)

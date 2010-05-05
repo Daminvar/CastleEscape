@@ -5,19 +5,21 @@ battleTexture("test-battle-background")
 west("Chapel1.js")
 
 var priest= newNPE()
-priest.SetTexture("ghostie")
+priest.SetTexture("waiter_front")
 
 priest.SetPosition(3,3)
 
 priest.SetInteractFunc(function(player){
-	dialogue("Priest Winston: Welcome! |||| Priest Winston: Have you come to take part in today's services or something else? |||| Jordan: I need help, I can't get to the armory to talk to NAME. Priest Windston: Why would you want to visit him? He's a rather vile man. |||| Jordan: Trust me, it's not be decision..||||Priest Winston: Well, here take this holy water. It should allow you to pass by any more obstacles on your journey.")
+	dialogue("Priest Winston: Welcome! |||| Priest Winston: Have you come to take part in today's services or something else? |||| Jordan: I need help, I can't get to the armory to talk to NAME. Priest Windston: Why would you want to visit him? He's a rather vile man. |||| Jordan: Trust me, it's not my decision..||||Priest Winston: Well, here take this holy water. I'm sure something like this could be useful.")
+	setFlag("holy-water")
 	//Add something to allow player to enter armory after talking to priest
 })
 	
+
 addNPE(priest)
 
 var churchgoer21 = newNPE()
-churchgoer21.SetTexture("snake")
+churchgoer21.SetTexture("bGuard-back")
 
 churchgoer21.SetPosition(2,9)
 
@@ -37,3 +39,10 @@ churchgoer22.SetInteractFunc(function(player){
 })
 	
 addNPE(churchgoer22)
+
+
+var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
+
+addRandomEncounter(snake)
+addRandomEncounter(ghost)

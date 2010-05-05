@@ -11,7 +11,7 @@ east("HallWay4.js")
 var armoryGuard = newNPE()
 armoryGuard.SetTexture("guard1_left")
 
-if(getFlag("talked-to-ag"))
+if(getFlag("armory-open"))
 { 
 	armoryGuard.SetPosition(9,5)
 	
@@ -23,28 +23,23 @@ else
 
 armoryGuard.SetInteractFunc(function(player) 
 {
-	if(getFlag("talked-to-ag"))
+	if(getFlag("holy-water"))
 	{
-		dialogue("Guard Ryan: Enter the armory if you dare..")
+		dialogue("Guard Ryan: Well, i can't say no to someone who has holy water. ||||  Our priest would only give that out to the most important of people")
+		setFlag("armory-open")
 	}	
 	else
 	{
-		dialogue("Guard Ryan: Past this point is off-limits, I would need someone of authority to tell me to let you through. |||| Jordan: What, like the king? |||| Guard Ryan: That would definitely help, but since i haven't been given orders, you're stuck")
-		//Some sort of test/check to see if they have the neccessary item
-		setFlag("talked-to-ag")
-		reloadMap()
+		dialogue("Guard Ryan: Past this point to the armory is off-limits, I would need something to give me reason to let you by. |||| Jordan: What would that be? |||| Guard Ryan: I won't know until i see it, but people have told me that i'm a holy man")
+			
 	}
 })
 
 addNPE(armoryGuard)
 
 
+var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
 
-
-
-
-
-
-//TODO: Change textures
-//addRandomEncounter("ghostie", "Fanatic Servant", 100, 50, 10, 10, 30, null)
-//addRandomEncounter("ghostie", "Lazy Guard", 200, 60, 10, 5, 80, null)
+addRandomEncounter(snake)
+addRandomEncounter(ghost)

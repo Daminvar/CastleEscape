@@ -9,7 +9,7 @@ south("armory1.js")
 
 
 var hallway4civ1 = newNPE()
-hallway4civ1.SetTexture("lady_left")
+hallway4civ1.SetTexture("gGirl-back")
 hallway4civ1.SetPosition(10,5)
 
 hallway4civ1.SetInteractFunc(function(player) 
@@ -21,7 +21,7 @@ hallway4civ1.SetInteractFunc(function(player)
 addNPE(hallway4civ1)
 
 var hallway4civ2 = newNPE()
-hallway4civ2.SetTexture("waiter_left")
+hallway4civ2.SetTexture("guard2_left")
 hallway4civ2.SetPosition(12,10)
 
 hallway4civ2.SetInteractFunc(function(player) 
@@ -33,6 +33,8 @@ hallway4civ2.SetInteractFunc(function(player)
 addNPE(hallway4civ2)
 
 
-//TODO: Change textures
-//addRandomEncounter("ghostie", "Fanatic Servant", 100, 50, 10, 10, 30, null)
-//addRandomEncounter("ghostie", "Lazy Guard", 200, 60, 10, 5, 80, null)
+var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
+
+addRandomEncounter(snake)
+addRandomEncounter(ghost)
