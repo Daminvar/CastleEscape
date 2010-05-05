@@ -17,6 +17,7 @@ treasure1.SetInteractFunc(function(player)
 		var cinnamon = newItem("Cinnamon", "Spicy cinnamon of excellent quality", 10, 15, 45)
 		player.AddItem(cinnamon)
 		setFlag("got-treasure1")
+		reloadMap()
 	}
 } )
 
@@ -30,6 +31,7 @@ treasure2.SetInteractFunc(function(player)
 		var water = newItem("Water", "A refreshing jug of clean water.", 20, 15, 20)
 		player.AddItem(water)
 		setFlag("got-treasure2")
+		reloadMap()
 	}
 } )
 
@@ -43,6 +45,7 @@ treasure3.SetInteractFunc(function(player)
 		var bread = newItem("Bread", "A homemade loaf of delicious white bread.", 45, 15, 30)
 		player.AddItem(bread)
 		setFlag("got-treasure3")
+		reloadMap()
 	}
 } )
 
