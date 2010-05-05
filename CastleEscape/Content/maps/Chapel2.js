@@ -12,7 +12,7 @@ priest.SetPosition(3,3)
 priest.SetInteractFunc(function(player){
 	dialogue("Priest Winston: Welcome! || Priest Winston: Have you come to take part in today's services or something else? || Jordan: I need help, I can't get to the armory to talk to NAME. Priest Windston: Why would you want to visit him? He's a rather vile man. || Jordan: Trust me, it's not my decision..||Priest Winston: Well, here take this holy water. I'm sure something like this could be useful.")
 	setFlag("holy-water")
-	//Add something to allow player to enter armory after talking to priest
+	
 })
 	
 

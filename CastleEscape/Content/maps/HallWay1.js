@@ -34,20 +34,20 @@ guardRob.SetInteractFunc(function(player) {
 
 addNPE(guardRob)
 
-//var treasureChestH1 = new NPE()
-//treasureChest1H1.SetPosition(14,4)
+var treasureChestH1 = new NPE()
+treasureChestH1.Set
+treasureChest1H1.SetPosition(14,4)
 
-//treasureChest1H1.SetInteractFunc(function(player) {
-//	if(!getFlag("hallway-1-chest"){
-//		dialogue("You found two health potions!")
-		//items[0] = newItem("Health potion", "Restores 50 health points",50,0,0)
-//		setFlag("hallway-1-chest")
-//	} else {
-//		dialogue("The chest is empty")
-//	}
-//})
+treasureChest1H1.SetInteractFunc(function(player) {
+	if(!getFlag("hallway-1-chest"){
+		
+		dialogue("You found two health potions!")
+		player.AddItem("Health Potion", "Restores health", 25,0,0)
+		player.AddItem("Health Potion", "Restores health", 25,0,0)
+	}
+})
 
-//addNpe(treasureChestH1)
+addNpe(treasureChestH1)
 
 
 //TODO: Change textures
