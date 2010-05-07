@@ -161,9 +161,6 @@ namespace CastleEscape
                 if (value >= maxHealth)
                     health = maxHealth;
 
-                else if (value == 0)
-                    health = 0;
-
                 else
                     health = value;
 
@@ -187,10 +184,8 @@ namespace CastleEscape
             }
             set
             {
-                if (mana >= maxMana)
+                if (value >= maxMana)
                     mana = maxMana;
-                else if (value == 0)
-                    mana = 0;
                 else
                     mana = value;
             }
