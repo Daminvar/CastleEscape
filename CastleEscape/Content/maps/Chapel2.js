@@ -55,4 +55,7 @@ churchgoer22.SetInteractFunc(function(player){
 	dialogue("Tyler: Those books on the shelves over there are some of the oldest books I've ever seen. |Jordan: Do any of them even have any useful information in them? |Tyler: EXCUSE ME? Those books are the priest's books! Show some respect, boy.")
 })
 	
+
 addNPE(churchgoer22)
+
+
