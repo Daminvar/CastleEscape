@@ -42,7 +42,7 @@ treasure3.SetInteractFunc(function(player)
 	if(!getFlag("got-treasure3"))
 	{
 		dialogue("The chest contained Bread!")
-		var bread = newItem("Bread", "A homemade loaf of delicious white bread.", 45, 15, 30)
+		var bread = newItem("Bread", "A fresh loaf of delicious white bread.", 45, 15, 30)
 		player.AddItem(bread)
 		setFlag("got-treasure3")
 		reloadMap()

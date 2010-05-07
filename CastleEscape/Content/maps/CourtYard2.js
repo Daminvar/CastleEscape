@@ -12,7 +12,7 @@ courtyard2Civ1.SetPosition(9,8)
 
 courtyard2Civ1.SetInteractFunc(function(player) 
 {
-	dialogue("Dan: I don't believe i've seen you before..| Jordan: Yeah, i get that a lot.")	
+	dialogue("Dan: I don't believe I've seen you before...|Jordan: Yeah, I get that a lot.")	
 
 })
 
@@ -25,7 +25,7 @@ courtyard2Civ2.SetPosition(12,8)
 
 courtyard2Civ2.SetInteractFunc(function(player) 
 {
-	dialogue("Christie: Nothing quite like reading a book on England's kind and peaceful rulers")	
+	dialogue("Christie: Nothing quite like reading a book on England's kind and peaceful rulers.")	
 })
 
 addNPE(courtyard2Civ2)
