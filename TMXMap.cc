@@ -8,9 +8,6 @@ using namespace std;
 
 namespace CastleEscape {
 
-typedef std::vector<std::vector<int> > LayerVector;
-LayerVector parseLayer(TiXmlNode* node, int width, int height);
-
 TMXMap::TMXMap() {
 	//TODO: Constructor
 }
@@ -54,19 +51,19 @@ void TMXMap::ParseTMXFile(string filename) {
 		string name = layers->Attribute("name");
 		TiXmlNode* layerData = layers->FirstChild();
 		if (name == "base")
-			baseLayers.push_back(parseLayer(layerData, mapWidth, mapHeight));
+			baseLayers.push_back(parseLayer(layerData));
 		else if (name == "top")
-			topLayers.push_back(parseLayer(layerData, mapWidth, mapHeight));
+			topLayers.push_back(parseLayer(layerData));
 	}
 	//TODO: Get collision data
 }
 
-LayerVector parseLayer(TiXmlNode* node, int width, int height) { //TODO make a private method
+LayerVector TMXMap::parseLayer(TiXmlNode* node) {
 	LayerVector layer;
-	layer.resize(height);
+	layer.resize(mapHeight);
 	TiXmlElement* curTile = node->FirstChild()->ToElement();
 	for (int i = 0; i < layer.size(); i++) {
-		layer[i].resize(width);
+		layer[i].resize(mapWidth);
 		for (int j = 0; j < layer[i].size(); j++) {
 			curTile->QueryIntAttribute("gid", &layer[i][j]);
 			layer[i][j]--;

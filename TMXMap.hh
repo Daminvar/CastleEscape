@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+class TiXmlNode;
+
 namespace CastleEscape {
 
 struct Rectangle {
@@ -14,6 +16,7 @@ struct Rectangle {
 };
 
 typedef std::vector<std::vector<std::vector<int> > > MapVector;
+typedef std::vector<std::vector<int> > LayerVector;
 
 class TMXMap {
 public:
@@ -34,6 +37,8 @@ private:
 	int mapWidth;
 	int mapHeight;
 	int tilesize;
+
+	LayerVector parseLayer(TiXmlNode* node);
 };
 
 } // namespace CastleEscape
