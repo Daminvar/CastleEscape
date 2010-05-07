@@ -306,7 +306,7 @@ namespace CastleEscape
 
         private void js_addRandomEncounter(Enemy enemy)
         {
-           // randomEncounters.Add(enemy);
+            randomEncounters.Add(enemy);
         }
 
         private void js_battle(Player player, Enemy enemy)
