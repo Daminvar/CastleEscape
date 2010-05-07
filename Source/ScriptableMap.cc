@@ -3,7 +3,11 @@
 #include <string>
 using namespace std;
 
+#include <v8.h>
+
 namespace CastleEscape {
+
+const string MAP_DIRECTORY = "Content/maps/";
 
 ScriptableMap::ScriptableMap() {
 	//TODO: Constructor
@@ -31,7 +35,12 @@ string ScriptableMap::GetMapName() {
 }
 
 void ScriptableMap::LoadMap(string filename) {
-	tmxMap.ParseTMXFile(filename); //TODO fix
+	loadMapAndScript(filename);
+}
+
+void ScriptableMap::loadMapAndScript(string filename) {
+	parseScriptFile(filename);
+	tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
 }
 
 void ScriptableMap::ReloadMap() {
@@ -41,6 +50,10 @@ void ScriptableMap::ReloadMap() {
 bool ScriptableMap::ChangeMap(Directions direction) {
 	//TODO
 	return false;
+}
+
+void ScriptableMap::parseScriptFile(string filename) {
+	//TODO v8::
 }
 
 } // namespace CastleEscape

@@ -28,6 +28,13 @@ public:
 
 protected:
 	TMXMap tmxMap;
+
+private:
+	std::string scriptFilename;
+	std::string tmxMapFilename;
+
+	void parseScriptFile(std::string filename);
+	void loadMapAndScript(std::string filename);
 };
 
 } // namespace CastleEscape

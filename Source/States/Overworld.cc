@@ -5,7 +5,7 @@
 namespace CastleEscape {
 
 Overworld::Overworld() {
-	map.LoadMap("Content/maps/bedroom1.tmx"); //TOOD fix
+	map.LoadMap("Content/maps/bedroom1.js"); //TOOD fix
 }
 
 Overworld::~Overworld() {

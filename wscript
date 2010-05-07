@@ -21,5 +21,5 @@ def build(bld):
                 bld.glob("Source/tinyxml/*.cpp"),
             target = APPNAME,
             vnum = VERSION,
-            lib = ["sfml-graphics", "sfml-window", "sfml-system"],
+            lib = ["sfml-graphics", "sfml-window", "sfml-system", "v8", "pthread"],
     )

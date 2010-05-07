@@ -1,14 +1,14 @@
 
 name("Sir Johnston's Room")
 mapfile("bedroom1.tmx")
-battleTexture("bedroom-bg")
+battleTexture("bedroom-bg.png")
 
 west("bedroom2.js")
 north("HallWay2.js")
 
 //TODO: Change textures
 var john = newNPE()
-john.SetTexture("guyHat-front")
+john.SetTexture("guyHat-front.png")
 
 if (!getFlag("gave-johnston-food")) {
 	john.SetPosition(7, 4)
@@ -35,7 +35,7 @@ john.SetInteractFunc(function(player) {
 addNPE(john)
 
 var treasureChest1 = newNPE()
-treasureChest1.SetTexture("treasure")
+treasureChest1.SetTexture("treasure.png")
 treasureChest1.SetPosition(7, 3)
 
 treasureChest1.SetInteractFunc(function(player) {
@@ -51,7 +51,7 @@ if (!getFlag("bedroom-1-treasure-chest-1")) {
 }
 
 var treasureChest2 = newNPE()
-treasureChest2.SetTexture("treasure")
+treasureChest2.SetTexture("treasure.png")
 treasureChest2.SetPosition(2, 3)
 
 treasureChest2.SetInteractFunc(function(player) {
@@ -67,7 +67,7 @@ if (getFlag("johnston-relieved") && !getFlag("bedroom-1-treasure-chest-2")) {
 }
 
 //TODO: Change textures
-var servant = newEnemy("ghostie", "Fanatic Servant", 100, 50, 10, 10, 30, null)
-var lazyGuard = newEnemy("ghostie", "Lazy Guard", 200, 60, 10, 5, 80, null)
+var servant = newEnemy("ghostie.png", "Fanatic Servant", 100, 50, 10, 10, 30, null)
+var lazyGuard = newEnemy("ghostie.png", "Lazy Guard", 200, 60, 10, 5, 80, null)
 addRandomEncounter(servant)
 addRandomEncounter(lazyGuard)
