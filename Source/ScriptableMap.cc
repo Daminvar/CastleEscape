@@ -31,7 +31,7 @@ string ScriptableMap::GetMapName() {
 }
 
 void ScriptableMap::LoadMap(string filename) {
-	tmxMap.ParseTMXFile(filename);//TODO
+	tmxMap.ParseTMXFile(filename); //TODO fix
 }
 
 void ScriptableMap::ReloadMap() {
