@@ -1,7 +1,7 @@
 
 name("Training Grounds")
 mapfile("armory2.tmx")
-battleTexture("test-battle-background") //TODO
+battleTexture("armory-bg")
 
 north("armory1.js")
 
