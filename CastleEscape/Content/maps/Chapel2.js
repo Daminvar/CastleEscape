@@ -47,7 +47,7 @@ churchgoer21.SetInteractFunc(function(player){
 addNPE(churchgoer21)
 
 var churchgoer22 = newNPE()
-churchgoer22.SetTexture("test-npe")
+churchgoer22.SetTexture("bGuard-back")
 
 churchgoer22.SetPosition(14,4)
 
