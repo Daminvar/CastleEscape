@@ -1,7 +1,7 @@
 
 name("Sir Johnston's Room")
 mapfile("bedroom1.tmx")
-battleTexture("bedroom-bg") //TODO
+battleTexture("bedroom-bg")
 
 west("bedroom2.js")
 north("HallWay2.js")
