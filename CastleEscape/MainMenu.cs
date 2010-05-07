@@ -71,7 +71,7 @@ namespace CastleEscape
             {
                 //dungeon_1
                 Flags.SetAllFlags(new Dictionary<string, bool>());
-                var player = new Player(game, 2, 9);
+                var player = new Player(game, 1, 9);
                 var map = new DrawableMap(game);
                 map.LoadMap("dungeon_1.js");
                 StateManager.PushState(new Overworld(game, player, map));
