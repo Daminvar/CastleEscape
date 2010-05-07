@@ -39,7 +39,7 @@ treasureChest1H1.SetPosition(14,4)
 
 treasureChest1H1.SetInteractFunc(function(player) {
 	dialogue("You found two health potions!")
-	var healthpot = newItem("Health Potion", "Restores hp",25,0,0)
+	var healthpot = newItem("Health Potion", "Restores hp",50,0,0)
 	player.AddItem(healthpot)
 	player.AddItem(healthpot)
 	setFlag("hallway-1-chest")
