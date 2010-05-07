@@ -18,8 +18,8 @@ typedef std::vector<std::vector<std::vector<int> > > MapVector;
 class TMXMap {
 public:
 	TMXMap();
-	MapVector& GetBaseLayers();
-	MapVector& GetTopLayers();
+	const MapVector& GetBaseLayers();
+	const MapVector& GetTopLayers();
 	int GetMapWidth();
 	int GetMapHeight();
 	int GetTileSize();

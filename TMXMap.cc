@@ -15,11 +15,11 @@ TMXMap::TMXMap() {
 	//TODO: Constructor
 }
 
-MapVector& TMXMap::GetBaseLayers() {
+const MapVector& TMXMap::GetBaseLayers() {
 	return baseLayers;
 }
 
-MapVector& TMXMap::GetTopLayers() {
+const MapVector& TMXMap::GetTopLayers() {
 	return topLayers;
 }
 
