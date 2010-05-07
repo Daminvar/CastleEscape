@@ -14,18 +14,15 @@ ScriptableMap::~ScriptableMap() {
 }
 
 int ScriptableMap::GetMapWidth() {
-	//TODO
-	return 20;
+	return tmxMap.GetMapWidth();
 }
 
 int ScriptableMap::GetMapHeight() {
-	//TODO
-	return 15;
+	return tmxMap.GetMapHeight();
 }
 
 int ScriptableMap::GetTileSize() {
-	//TODO
-	return 32;
+	return tmxMap.GetTileSize();
 }
 
 string ScriptableMap::GetMapName() {
@@ -34,7 +31,7 @@ string ScriptableMap::GetMapName() {
 }
 
 void ScriptableMap::LoadMap(string filename) {
-	//TODO
+	tmxMap.ParseTMXFile(filename);//TODO
 }
 
 void ScriptableMap::ReloadMap() {

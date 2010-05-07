@@ -5,7 +5,7 @@
 namespace CastleEscape {
 
 Overworld::Overworld() {
-	//TODO: Overworld constructor
+	map.LoadMap("Content/maps/bedroom1.tmx");
 }
 
 Overworld::~Overworld() {
@@ -25,7 +25,8 @@ void Overworld::Update(const sf::Clock& clock, const sf::Input& input) {
 }
 
 void Overworld::Draw(sf::RenderWindow& window) {
-	//TODO: Overworld draw
+	map.DrawBase(window, 0, 0);
+	map.DrawTop(window, 0, 0);
 }
 
 } // namespace CastleEscape

@@ -16,23 +16,23 @@ TMXMap::TMXMap() {
 }
 
 MapVector TMXMap::GetBaseLayers() {
-	//TODO: Get base layers
+	return baseLayers;
 }
 
 MapVector TMXMap::GetTopLayers() {
-	//TODO: Get top layers
+	return topLayers;
 }
 
 int TMXMap::GetMapWidth() {
-	//TODO
+	return mapWidth;
 }
 
 int TMXMap::GetMapHeight() {
-	//TODO
+	return mapHeight;
 }
 
 int TMXMap::GetTileSize() {
-	//TODO
+	return tilesize;
 }
 
 void TMXMap::ParseTMXFile(string filename) {
@@ -49,7 +49,7 @@ void TMXMap::ParseTMXFile(string filename) {
 	topLayers.clear();
 	collisionRects.clear();
 
-	TiXmlElement* layers = handle.FirstChild("layer").ToElement();
+	TiXmlElement* layers = handle.FirstChild("map").FirstChild("layer").ToElement();
 	for (; layers; layers = layers->NextSiblingElement()) {
 		string name = layers->Attribute("name");
 		TiXmlNode* layerData = layers->FirstChild();
@@ -58,12 +58,11 @@ void TMXMap::ParseTMXFile(string filename) {
 		else if (name == "top")
 			topLayers.push_back(parseLayer(layerData, mapWidth, mapHeight));
 	}
-
 	//TODO: Get collision data
 }
 
-LayerVector parseLayer(TiXmlNode* node, int width, int height) {
-	vector<vector<int> > layer;
+LayerVector parseLayer(TiXmlNode* node, int width, int height) { //TODO make a private method
+	LayerVector layer;
 	layer.resize(height);
 	TiXmlElement* curTile = node->FirstChild()->ToElement();
 	for (int i = 0; i < layer.size(); i++) {

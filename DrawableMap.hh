@@ -11,8 +11,8 @@ class DrawableMap: public ScriptableMap {
 public:
 	DrawableMap();
 	virtual ~DrawableMap();
-	void DrawBase(sf::RenderWindow& window, int x, int y);
-	void DrawTop(sf::RenderWindow& window, int x, int y);
+	void DrawBase(sf::RenderWindow& window, int xPos, int yPos);
+	void DrawTop(sf::RenderWindow& window, int xPos, int yPos);
 
 private:
 	sf::Image tileset;

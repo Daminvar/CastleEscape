@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "TMXMap.hh"
+
 namespace CastleEscape {
 
 class ScriptableMap {
@@ -24,8 +26,8 @@ public:
 	void ReloadMap();
 	bool ChangeMap(Directions direction);
 
-private:
-	//TMXMap tmxMap //TODO
+protected:
+	TMXMap tmxMap;
 };
 
 } // namespace CastleEscape
