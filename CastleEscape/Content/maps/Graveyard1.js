@@ -85,7 +85,7 @@ grave7.SetInteractFunc(function(player) {
 addNPE(grave7)
 
 function fadedGrave(player) {
-	dialogue("The text is too faked to read.")
+	dialogue("The text is too faded to read.")
 }
 
 var grave8 = newNPE()
