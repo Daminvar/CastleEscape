@@ -44,8 +44,8 @@ saveOrb.SetInteractFunc(function(player) {
 addNPE(saveOrb)
 
 
-var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
-var pauper = newEnemy("snake", "Pauper of Evil", 80, 7, 1, 1, 15, null)
+var ghost = newEnemy("ghost1_battle", "Ghost of Doom", 30, 7, 1, 1, 10, null)
+var pauper = newEnemy("skeleton1_battle", "Skeleton of Evil", 50, 5, 1, 1, 10, null)
 
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)

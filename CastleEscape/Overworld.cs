@@ -433,9 +433,9 @@ namespace CastleEscape
             // create a random number generator
             Random rng = new Random();
 
-            int rdmNum = rng.Next(1, 51);
+            int rdmNum = rng.Next(1, 151);
 
-            if (rdmNum < (int)((steps / 6) ^ 2))
+            if (rdmNum < steps)
             {
                 return true;
             }
