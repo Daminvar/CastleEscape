@@ -58,8 +58,3 @@ churchgoer22.SetInteractFunc(function(player){
 addNPE(churchgoer22)
 
 
-var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
-
-addRandomEncounter(snake)
-addRandomEncounter(ghost)

@@ -49,8 +49,8 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
+var guardF = newEnemy("guard2_left", "Castle Guard", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "Ghost", 100, 9, 2, 3, 22, null)
 
-addRandomEncounter(snake)
+addRandomEncounter(guardF)
 addRandomEncounter(ghost)
