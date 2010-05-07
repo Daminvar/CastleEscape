@@ -3,4 +3,5 @@
 .lock-wscript
 .waf*
 Thumbs.db
-build/
+Build/
+Docs/

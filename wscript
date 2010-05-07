@@ -2,8 +2,9 @@ import os
 import os.path
 
 APPNAME = "CastleEscape"
+VERSION = "0.2.0"
 top = "."
-out = "build"
+out = "Build"
 
 def set_options(opt):
     opt.tool_options('compiler_cxx')
@@ -15,10 +16,10 @@ def configure(conf):
 def build(bld):
     bld(
             features = ["cxx", "cprogram"],
-            source = bld.glob("*.cc") +
-                bld.glob("States/*.cc") +
-                bld.glob("tinyxml/*.cpp"),
-            target = "CastleEscape",
-            vnum = "1.0",
+            source = bld.glob("Source/*.cc") +
+                bld.glob("Source/States/*.cc") +
+                bld.glob("Source/tinyxml/*.cpp"),
+            target = APPNAME,
+            vnum = VERSION,
             lib = ["sfml-graphics", "sfml-window", "sfml-system"],
     )
