@@ -1,7 +1,7 @@
 
 name("Dungeon 4") // The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile("dungeon_4.tmx") // The tmx map file being used
-battleTexture("test-battle-background") // The texture for the background in battles
+battleTexture("stone-wall") // The texture for the background in battles
 
 north("dungeon_2.js")
 east("HallWay1.js")
@@ -22,11 +22,11 @@ else
 
 guard.SetInteractFunc(function(player) { //Sets the interact function for the specified NPE
 	if (getFlag("has-hat")) {
-		dialogue("Ceyol: Oh, you must be the plumber!|What are you doing in the dungeon? Please, go on through!|You're needed in the kitchens.||Jordan: (That was... easier than expected.)") // Pushes on a dialogue state with the selected text
+		dialogue("Ceyol: Oh, you must be the plumber! What are you doing in the dungeon? Please, go on through! You're needed in the kitchens.|Jordan: (That was... easier than expected.)") // Pushes on a dialogue state with the selected text
 		setFlag("go-to-kitchen")
 		reloadMap()
 	} else {
-		dialogue("Ceyol: Why are you out of your cell? Out, you!||Jordan: (Ack! I better get out of here before I get thrown into a cell again!!)")
+		dialogue("Ceyol: Why are you out of your cell? Out, you!|Jordan: (Ack! I better get out of here before I get thrown into a cell again!!)")
 	}
 })
 

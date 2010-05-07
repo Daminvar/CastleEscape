@@ -930,7 +930,6 @@
   <object name="" x="447" y="166" width="193" height="20"/>
   <object name="" x="546" y="325" width="89" height="55"/>
   <object name="" x="1" y="388" width="637" height="91"/>
-  <object name="" x="447" y="128" width="28" height="28"/>
  </objectgroup>
  <layer name="base" width="20" height="15">
   <data>
@@ -1332,7 +1331,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="663"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1616,7 +1615,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="809"/>
-   <tile gid="1830"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>

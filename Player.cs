@@ -299,7 +299,10 @@ namespace CastleEscape
             spriteBatch.Draw(battleTexture, new Vector2(x, y), Color.White);
         }
 
-        
+        public void AddItem(Item item)
+        {
+            items.Add(item);
+        }
 
         public void getAccuracy(string attackType)
         {
