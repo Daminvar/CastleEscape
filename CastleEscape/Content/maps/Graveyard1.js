@@ -1,6 +1,6 @@
 name("Graveyard")
 mapfile("Graveyard1.tmx")
-battleTexture("test-battle-background")
+battleTexture("graveyard-bg")
 
 north("Chapel1.js")
 south("Courtyard2.js")
@@ -85,7 +85,7 @@ grave7.SetInteractFunc(function(player) {
 addNPE(grave7)
 
 function fadedGrave(player) {
-	dialogue("The text is too faded to read.")
+	dialogue("The text is too faked to read.")
 }
 
 var grave8 = newNPE()

@@ -1,6 +1,6 @@
 name("Graveyard")
 mapfile("Graveyard2.tmx")
-battleTexture("test-battle-background")
+battleTexture("graveyard-bg")
 
 west("Graveyard1.js")
 

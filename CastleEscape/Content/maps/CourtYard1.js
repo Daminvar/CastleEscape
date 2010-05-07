@@ -14,7 +14,7 @@ courtyard1Civ1.SetPosition(1,5)
 
 courtyard1Civ1.SetInteractFunc(function(player) 
 {
-	dialogue("Lady Victoria: What a lovely day in the courtyard | Susan: This place is beautiful, i can't believe we almost skipped over it on our trip.| Lady Victoria: King NAME and queen NAME put together quite a nice castle here.")	
+	dialogue("Lady Victoria: What a lovely day in the courtyard!|Susan: This place is beautiful... I can't believe we almost skipped over it on our trip.|Lady Victoria: King Mervyn and Queen Nicoline put together quite a nice castle here.")	
 
 })
 
@@ -28,7 +28,7 @@ courtyard1Civ2.SetPosition(3,5)
 
 courtyard1Civ2.SetInteractFunc(function(player) 
 {
-	dialogue("Susan: I'm so happy we agreed to visit this castle.| Lady Victoria: I can't wait to try the food here. Apparentently this castle has the best chef in the area. | Susan: We should go soon then, it's almost lunch time and i want to try out this 'grand' food!")	
+	dialogue("Susan: I'm so happy we agreed to visit this castle.|Lady Victoria: I can't wait to try the food here. Apparentently this castle has the best chef in the area. |Susan: We should go soon then, it's almost lunch time and I want to try out this 'grand' food!")	
 
 })
 
@@ -40,7 +40,7 @@ courtyard1Civ3.SetPosition(13,9)
 
 courtyard1Civ3.SetInteractFunc(function(player) 
 {
-	dialogue("Joe: Look at this garden, the queen must have put a lot of work into it")	
+	dialogue("Joe: Look at this garden, the queen must have put a lot of work into it.")	
 
 })
 
