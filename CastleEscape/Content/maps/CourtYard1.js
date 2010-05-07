@@ -1,7 +1,7 @@
 
 name("CourtYard 1")
 mapfile("CourtYard1.tmx")
-battleTexture("test-battle-background")
+battleTexture("courtyard.2")
 
 
 east("CourtYard2.js")
