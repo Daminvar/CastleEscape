@@ -64,6 +64,7 @@ namespace CastleEscape
             }
             MediaPlayer.Play(game.Content.Load<Song>(LEVEL_UP_SONG));
             MediaPlayer.Volume = .75f;
+            MediaPlayer.IsRepeating = false;
         }
 
         public override void Update(GameTime gameTime)

@@ -59,6 +59,7 @@ namespace CastleEscape
             {
                 MediaPlayer.Play(battleSong);
                 MediaPlayer.Volume = 1;
+                MediaPlayer.IsRepeating = true;
             }
             
             canRun = run;
