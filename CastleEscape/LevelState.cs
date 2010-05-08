@@ -21,7 +21,7 @@ namespace CastleEscape
     /// </summary>
     class LevelState : State
     {
-        private const string LEVEL_UP_SONG = "test-song"; //TODO fix!
+        private const string LEVEL_UP_SONG = "level-up-song";
 
         Player play;
         TextMenu tMenu;
@@ -63,7 +63,7 @@ namespace CastleEscape
                 return;
             }
             MediaPlayer.Play(game.Content.Load<Song>(LEVEL_UP_SONG));
-            MediaPlayer.Volume = 1;
+            MediaPlayer.Volume = .75f;
         }
 
         public override void Update(GameTime gameTime)
