@@ -60,7 +60,7 @@ addNPE(saveOrb)
 
 
 var gardener = newEnemy("guyHat-left", "Gardener", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghostie", "Ghost", 100, 9, 2, 3, 22, null)
+var ghost = newEnemy("ghost1_battle", "Ghost", 100, 9, 2, 3, 22, null)
 
 addRandomEncounter(gardener)
 addRandomEncounter(ghost)

@@ -67,7 +67,7 @@ if (getFlag("johnston-relieved") && !getFlag("bedroom-1-treasure-chest-2")) {
 }
 
 //TODO: Change textures
-var servant = newEnemy("ghostie", "Fanatic Servant", 100, 50, 10, 10, 30, null)
-var lazyGuard = newEnemy("ghostie", "Lazy Guard", 200, 60, 10, 5, 80, null)
+var servant = newEnemy("soldier1_battle", "Fanatic Servant", 100, 50, 10, 10, 30, null)
+var lazyGuard = newEnemy("soldier2_battle", "Lazy Guard", 200, 60, 10, 5, 80, null)
 addRandomEncounter(servant)
 addRandomEncounter(lazyGuard)
