@@ -84,7 +84,7 @@ namespace CastleEscape
             canPressZ = false;
             MediaPlayer.Volume = 1;
             MediaPlayer.IsRepeating = true;
-            if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+            if (mappy.OverworldMusic != null && MediaPlayer.Queue.ActiveSong != null && MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
                 MediaPlayer.Play(mappy.OverworldMusic);
         }
 

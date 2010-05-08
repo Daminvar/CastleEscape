@@ -57,11 +57,10 @@ cook3.SetInteractFunc(function(player)
 		else
 		{
 			dialogue("Bodus: Our specials today are lampreys and herring pie.|Jordan: I'd like some herring pie, please.|Bodus: Coming right up, sir. May I inquire as to how you will be paying?|Jordan: (Payment?! I'm not wasting gold on this stuff!)|Bodus: ...No money?! Out of my sight!")
-			var angryWaiter = newEnemy("ghostie", "Angry Waiter Bodus", 120, 15, 4, 3, 45)
-			battle(player, angryWaiter, "regular-battle-music")
+			var angryWaiter = newEnemy("ghostie", "Angry Waiter Bodus", 120, 15, 4, 3, 45, null)
+			battle(player, angryWaiter, "regular-battle-song")
 			dialogue("Jordan snatches the steaming hot herring pie from the defeated waiter.")
 			setFlag("herring-pie")
-			reloadMap()
 		}
 	}
 	else
