@@ -42,6 +42,7 @@ namespace CastleEscape
             height = game.GraphicsDevice.Viewport.Height;
             font = game.Content.Load<SpriteFont>("hud-font");
             this.player = player;
+            MediaPlayer.Volume = .5f;
 
         }
 

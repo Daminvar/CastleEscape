@@ -83,6 +83,7 @@ namespace CastleEscape
         {
             canPressEscape = false;
             canPressZ = false;
+            MediaPlayer.Volume = 1;
             
         }
 

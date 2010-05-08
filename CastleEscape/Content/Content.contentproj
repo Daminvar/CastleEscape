@@ -455,6 +455,7 @@
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
     <Compile Include="captain1_battle.png">
       <Name>captain1_battle</Name>
       <Importer>TextureImporter</Importer>
