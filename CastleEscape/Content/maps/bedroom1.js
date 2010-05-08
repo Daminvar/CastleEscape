@@ -8,7 +8,7 @@ north("HallWay2.js")
 
 //TODO: Change textures
 var john = newNPE()
-john.SetTexture("test-npe")
+john.SetTexture("guyHat-front")
 
 if (!getFlag("gave-johnston-food")) {
 	john.SetPosition(7, 4)

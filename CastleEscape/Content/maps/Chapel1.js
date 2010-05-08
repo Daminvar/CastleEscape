@@ -81,6 +81,7 @@ else
 
 addNPE(churchgoer4)
 
+
 if(!getFlag("aura-hidden"))
 {
 	var churchgoer5 = newNPE()
@@ -91,3 +92,4 @@ if(!getFlag("aura-hidden"))
 	} )
 	addNPE(churchgoer5)
 }
+

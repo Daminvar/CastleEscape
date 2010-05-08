@@ -39,7 +39,7 @@ treasureChest1H1.SetPosition(14,4)
 
 treasureChest1H1.SetInteractFunc(function(player) {
 	dialogue("You found two health potions!")
-	var healthpot = newItem("Health Potion", "Restores hp",25,0,0)
+	var healthpot = newItem("Health Potion", "Restores hp",50,0,0)
 	player.AddItem(healthpot)
 	player.AddItem(healthpot)
 	setFlag("hallway-1-chest")
@@ -50,8 +50,8 @@ if(!getFlag("hallway-1-chest"))
 	addNPE(treasureChest1H1)
 
 
-var snake = newEnemy("snake", "snake in your boot", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghostie", "ghost from the past", 100, 9, 2, 3, 22, null)
+var guardF = newEnemy("guard2_left", "Castle Guard", 90, 10, 2, 2, 20, null)
+var ghost = newEnemy("ghostie", "Ghost", 100, 9, 2, 3, 22, null)
 
-addRandomEncounter(snake)
+addRandomEncounter(guardF)
 addRandomEncounter(ghost)
