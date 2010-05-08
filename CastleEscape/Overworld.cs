@@ -438,7 +438,7 @@ namespace CastleEscape
             // create a random number generator
             Random rng = new Random();
 
-            int rdmNum = rng.Next(1, 151);
+            int rdmNum = rng.Next(1, 1501);
 
             if (rdmNum < steps)
             {

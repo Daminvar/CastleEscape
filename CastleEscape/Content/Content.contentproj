@@ -579,6 +579,20 @@
       <Name>bedroom-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
+	</Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="brat.png">
+      <Name>brat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="kitchen-song.mp3">
+      <Name>kitchen-song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

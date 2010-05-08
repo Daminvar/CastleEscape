@@ -1,5 +1,7 @@
 name("Kitchen")
 mapfile("Kitchen2.tmx")
+overworldMusic("kitchen-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("restaurant-kitchen")
 south("Kitchen1.js")
 east("Kitchen3.js")
