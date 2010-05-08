@@ -556,6 +556,13 @@
   <ItemGroup>
     <Compile Include="chapel-song.mp3">
       <Name>chapel-song</Name>
+	  <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+	  </Compile>
+	  </ItemGroup>
+	  <ItemGroup>
+    <Compile Include="final-boss-song.mp3">
+      <Name>final-boss-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
@@ -563,6 +570,13 @@
   <ItemGroup>
     <Compile Include="courtyard-song.mp3">
       <Name>courtyard-song</Name>
+	  <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="armory-song.mp3">
+      <Name>armory-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
@@ -570,6 +584,34 @@
   <ItemGroup>
     <Compile Include="hallway-song.mp3">
       <Name>hallway-song</Name>
+	  <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="graveyard-song.mp3">
+      <Name>graveyard-song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bedroom-song.mp3">
+      <Name>bedroom-song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+	</Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="brat.png">
+      <Name>brat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="kitchen-song.mp3">
+      <Name>kitchen-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>

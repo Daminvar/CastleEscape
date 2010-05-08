@@ -201,6 +201,11 @@ namespace CastleEscape
             NPEs = new List<NPE>();
             randomEncounters = new List<Enemy>();
 
+            //Clear battle and music attributes
+            battleTexture = null;
+            overworldMusic = null;
+            randomBattleMusic = null;
+
             var engine = new Jint.JintEngine();
             engine.DisableSecurity(); //Needed so the scripts can call methods on NPE objects.
             engine.SetDebugMode(true);

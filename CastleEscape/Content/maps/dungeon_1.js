@@ -15,7 +15,7 @@ guard.SetPosition(5, 8)
 guard.SetInteractFunc(function(player) { //Sets the interact function for the specified NPE
 		dialogue("Basden: Who are you talking to?! Show yourself to me! Don't make me force you!!")
 		var enemy = newEnemy("soldier1_battle", "Disgruntled Guard Basden", 50, 5, 2, 1, 25, null)
-		battle(player, enemy)
+		battle(player, enemy, "regular-battle-song")
 		setFlag("battled-guard")
 		reloadMap()
 })
