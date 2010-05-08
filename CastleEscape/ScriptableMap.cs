@@ -38,6 +38,7 @@ namespace CastleEscape
         private string tmxMapFilename;
         private string mapName;
         private Texture2D battleTexture;
+        private Song overworldMusic;
         private List<Enemy> randomEncounters;
         private Random rand;
 
@@ -76,6 +77,11 @@ namespace CastleEscape
         public Texture2D BattleTexture
         {
             get { return battleTexture; }
+        }
+
+        public Song OverworldMusic
+        {
+            get { return overworldMusic; }
         }
 
         public enum Directions
@@ -211,6 +217,7 @@ namespace CastleEscape
             engine.SetFunction("newEnemy", new NewEnemyDelegate(js_newEnemy));
             engine.SetFunction("battle", new Action<Player, Enemy>(js_battle));
             engine.SetFunction("store", new Action<Player, ArrayList>(js_store));
+            engine.SetFunction("overworldMusic", new Action<string>(js_overworldMusic));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -344,6 +351,11 @@ namespace CastleEscape
             for (int i = 0; i < items.Length; i++)
                 items[i] = (Item)itemArrayList[i];
             return items;
+        }
+
+        private void js_overworldMusic(string song)
+        {
+            overworldMusic = game.Content.Load<Song>(song);
         }
     }
 }

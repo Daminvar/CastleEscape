@@ -56,6 +56,9 @@ namespace CastleEscape
             playerObj = player;
             mappy = map;
 
+            if (mappy.OverworldMusic != null)
+                MediaPlayer.Play(mappy.OverworldMusic);
+
             //The destination rectangle is the location where the sprite will be drawn.
             destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
 
