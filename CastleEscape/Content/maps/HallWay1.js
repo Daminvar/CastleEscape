@@ -1,6 +1,7 @@
 name("HallWay 1")
 mapfile("HallWay1.tmx")
 overworldMusic("hallway-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("hallway-bg")
 
 north("Kitchen1.js")
