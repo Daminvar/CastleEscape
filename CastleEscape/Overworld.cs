@@ -50,6 +50,8 @@ namespace CastleEscape
 
         HUD hud;
 
+        TimeSpan playPosition;
+
         public Overworld(Game game, Player player, DrawableMap map)
             : base(game)
         {
@@ -76,7 +78,7 @@ namespace CastleEscape
 
         public override void Pause()
         {
-            // stops music and stuff to prepare to go to a new state
+            playPosition = MediaPlayer.PlayPosition;
         }
 
         public override void Resume()
@@ -84,7 +86,11 @@ namespace CastleEscape
             canPressEscape = false;
             canPressZ = false;
             MediaPlayer.Volume = 1;
-            
+            if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+            {
+                MediaPlayer.Play(mappy.OverworldMusic);
+                MediaPlayer.PlayPosition.Add(playPosition);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -460,7 +466,7 @@ namespace CastleEscape
                 Enemy currentEnemy = mappy.GetRandomEncounter();
                 if (currentEnemy != null)
                 {
-                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
+                    StateManager.PushState(new Battle(game, mappy.BattleTexture, mappy.RandomBattleMusic, playerObj, currentEnemy, true));
                 }
                 pedometer = 0;
             }

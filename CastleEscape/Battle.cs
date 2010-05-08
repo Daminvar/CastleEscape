@@ -41,7 +41,7 @@ namespace CastleEscape
         private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-1", "Mind Break MP-2", "Item", "Run" };
 
         // constructor
-        public Battle(Game game, Texture2D bgTex, Player p, Enemy e, bool run)
+        public Battle(Game game, Texture2D bgTex, Song battleSong, Player p, Enemy e, bool run)
             : base(game)
         {
             StateManager.PushState(new LevelState(game, p));
@@ -54,6 +54,12 @@ namespace CastleEscape
             combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150) });
             transparent = true;
             rgen = new Random();
+
+            if (battleSong != null)
+            {
+                MediaPlayer.Play(battleSong);
+                MediaPlayer.Volume = 1;
+            }
             
             canRun = run;
 

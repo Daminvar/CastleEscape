@@ -39,6 +39,7 @@ namespace CastleEscape
         private string mapName;
         private Texture2D battleTexture;
         private Song overworldMusic;
+        private Song randomBattleMusic;
         private List<Enemy> randomEncounters;
         private Random rand;
 
@@ -82,6 +83,11 @@ namespace CastleEscape
         public Song OverworldMusic
         {
             get { return overworldMusic; }
+        }
+
+        public Song RandomBattleMusic
+        {
+            get { return randomBattleMusic; }
         }
 
         public enum Directions
@@ -215,9 +221,10 @@ namespace CastleEscape
             engine.SetFunction("newItem", new NewItemDelegate(js_newItem));
             engine.SetFunction("addRandomEncounter", new Action<Enemy>(js_addRandomEncounter));
             engine.SetFunction("newEnemy", new NewEnemyDelegate(js_newEnemy));
-            engine.SetFunction("battle", new Action<Player, Enemy>(js_battle));
+            engine.SetFunction("battle", new Action<Player, Enemy, string>(js_battle));
             engine.SetFunction("store", new Action<Player, ArrayList>(js_store));
             engine.SetFunction("overworldMusic", new Action<string>(js_overworldMusic));
+            engine.SetFunction("randomBattleMusic", new Action<string>(js_randomBattleMusic));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -316,11 +323,12 @@ namespace CastleEscape
             randomEncounters.Add(enemy);
         }
 
-        private void js_battle(Player player, Enemy enemy)
+        private void js_battle(Player player, Enemy enemy, string song)
         {
             StateManager.Running = false;
             int currentStackSize = StateManager.StackSize;
-            StateManager.PushState(new Battle(game, battleTexture, player, enemy, false));
+            Song battleSong = game.Content.Load<Song>(song);
+            StateManager.PushState(new Battle(game, battleTexture, battleSong, player, enemy, false));
             StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {
@@ -356,6 +364,11 @@ namespace CastleEscape
         private void js_overworldMusic(string song)
         {
             overworldMusic = game.Content.Load<Song>(song);
+        }
+
+        private void js_randomBattleMusic(string song)
+        {
+            randomBattleMusic = game.Content.Load<Song>(song);
         }
     }
 }
