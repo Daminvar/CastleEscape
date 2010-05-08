@@ -1,6 +1,8 @@
 
 name("Sir Johnston's Room")
 mapfile("bedroom1.tmx")
+overworldMusic("bedroom-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("bedroom-bg")
 
 west("bedroom2.js")

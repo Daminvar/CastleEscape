@@ -1,6 +1,8 @@
 
 name("Royal Library")
 mapfile("bedroom4.tmx")
+overworldMusic("bedroom-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("bedroom-bg")
 
 east("bedroom3.js")

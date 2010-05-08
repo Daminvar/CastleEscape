@@ -1,5 +1,7 @@
 name("Graveyard")
 mapfile("Graveyard2.tmx")
+overworldMusic("graveyard-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("graveyard-bg")
 
 west("Graveyard1.js")

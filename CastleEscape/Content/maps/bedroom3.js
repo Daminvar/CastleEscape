@@ -1,6 +1,8 @@
 
 name("Servants' Room")
 mapfile("bedroom3.tmx")
+overworldMusic("bedroom-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("bedroom-bg")
 
 north("bedroom2.js")
