@@ -1,6 +1,6 @@
 name("Chapel")
 mapfile("Chapel2.tmx")
-battleTexture("test-battle-background")
+overworldMusic("chapel-song")
 
 west("Chapel1.js")
 

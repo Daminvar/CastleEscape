@@ -1,6 +1,7 @@
 
 name("CourtYard 1")
 mapfile("CourtYard1.tmx")
+overworldMusic("courtyard-song")
 battleTexture("courtyard.2")
 
 
