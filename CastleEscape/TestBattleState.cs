@@ -16,10 +16,6 @@ namespace CastleEscape
 {
     class TestBattleState : State
     {
-
-
-
-
         public TestBattleState(Game game)
             : base(game)
         {
