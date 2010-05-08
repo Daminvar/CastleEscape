@@ -19,7 +19,7 @@ lillina.SetInteractFunc(function(player) {
 		reloadMap()
 		dialogue("Guard: How dare you threaten the princess. Die scum!")
 		//TODO: Change sprite and stats
-		var guard = newEnemy("test-npe", "Royal Guard", 100, 70, 1, 1, 10, null)
+		var guard = newEnemy("soldier1_battle", "Royal Guard", 100, 70, 1, 1, 10, null)
 		battle(player, guard,"regular-battle-song")
 		setFlag("defeated-lillina-guard")
 		reloadMap()
