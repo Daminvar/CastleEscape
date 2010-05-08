@@ -1,6 +1,7 @@
 
 name("HallWay 3")
 mapfile("HallWay3.tmx")
+overworldMusic("hallway-song")
 battleTexture("hallway-bg")
 
 
