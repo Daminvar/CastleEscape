@@ -2,6 +2,7 @@
 name("CourtYard 2")
 mapfile("CourtYard2.tmx")
 overworldMusic("courtyard-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("courtyard.2")
 
 north("Graveyard1.js")
