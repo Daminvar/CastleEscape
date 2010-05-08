@@ -1,7 +1,7 @@
 
 name("Dungeon 1") // The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile("dungeon_1.tmx") // The tmx map file being used
-overworldMusic("test-song")
+overworldMusic("dungeon-song")
 randomBattleMusic("regular-battle-song")
 battleTexture("stone-wall") // The texture for the background in battles
 
