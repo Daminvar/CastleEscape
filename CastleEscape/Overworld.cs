@@ -50,8 +50,6 @@ namespace CastleEscape
 
         HUD hud;
 
-        TimeSpan playPosition;
-
         public Overworld(Game game, Player player, DrawableMap map)
             : base(game)
         {
@@ -78,7 +76,6 @@ namespace CastleEscape
 
         public override void Pause()
         {
-            playPosition = MediaPlayer.PlayPosition;
         }
 
         public override void Resume()
@@ -86,11 +83,9 @@ namespace CastleEscape
             canPressEscape = false;
             canPressZ = false;
             MediaPlayer.Volume = 1;
+            MediaPlayer.IsRepeating = true;
             if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
-            {
                 MediaPlayer.Play(mappy.OverworldMusic);
-                MediaPlayer.PlayPosition.Add(playPosition);
-            }
         }
 
         public override void Update(GameTime gameTime)
