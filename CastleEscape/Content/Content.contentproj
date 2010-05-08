@@ -449,8 +449,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="test-song.mp3">
-      <Name>test-song</Name>
+    <Compile Include="dungeon-song.mp3">
+      <Name>dungeon-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
@@ -579,7 +579,7 @@
       <Name>bedroom-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-	</Compile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="brat.png">
