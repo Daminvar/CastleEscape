@@ -556,9 +556,9 @@
   <ItemGroup>
     <Compile Include="chapel-song.mp3">
       <Name>chapel-song</Name>
-	  <Importer>Mp3Importer</Importer>
+      <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-	</Compile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="final-boss-song.mp3">
@@ -570,7 +570,7 @@
   <ItemGroup>
     <Compile Include="courtyard-song.mp3">
       <Name>courtyard-song</Name>
-	  <Importer>Mp3Importer</Importer>
+      <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
@@ -584,7 +584,7 @@
   <ItemGroup>
     <Compile Include="hallway-song.mp3">
       <Name>hallway-song</Name>
-	  <Importer>Mp3Importer</Importer>
+      <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
@@ -612,6 +612,13 @@
   <ItemGroup>
     <Compile Include="kitchen-song.mp3">
       <Name>kitchen-song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="win-song.mp3">
+      <Name>win-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>

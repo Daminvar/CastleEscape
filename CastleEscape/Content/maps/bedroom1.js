@@ -8,7 +8,6 @@ battleTexture("bedroom-bg")
 west("bedroom2.js")
 north("HallWay2.js")
 
-//TODO: Change textures
 var john = newNPE()
 john.SetTexture("guyHat-front")
 

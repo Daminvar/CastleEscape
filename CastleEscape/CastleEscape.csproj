@@ -121,6 +121,7 @@
     <Compile Include="TestDialogueState.cs" />
     <Compile Include="TestMapState.cs" />
     <Compile Include="TMXMap.cs" />
+    <Compile Include="WinState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
