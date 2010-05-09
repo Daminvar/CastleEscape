@@ -617,6 +617,35 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+
+    <Compile Include="store-back.png">
+      <Name>store-back</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="store-front.png">
+      <Name>store-front</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="store-left.png">
+      <Name>store-left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="store-right.png">
+      <Name>store-right</Name>
+	  <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="win-song.mp3">
       <Name>win-song</Name>
       <Importer>Mp3Importer</Importer>

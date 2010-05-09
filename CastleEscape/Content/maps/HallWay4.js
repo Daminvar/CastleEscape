@@ -38,13 +38,14 @@ var hallway4civ3 = newNPE()
 hallway4civ3.SetTexture("man_left")
 hallway4civ3.SetPosition(17,11)
 
-hallway4civ2.SetInteractFunc(function(player) 
+hallway4civ3.SetInteractFunc(function(player) 
 {
 	dialogue("Donald: You know, in the original design for this castle, this was to be a large armoire. The builders just got a bit confused.|Jordan: I guess that's what happens when the majority of people are illiterate.")	
 
 })
 
 addNPE(hallway4civ3)
+
 
 var guardF = newEnemy("soldier3_battle", "Castle Guard", 90, 10, 2, 2, 20, null)
 var ghost = newEnemy("ghost1_battle", "Ghost", 100, 9, 2, 3, 22, null)

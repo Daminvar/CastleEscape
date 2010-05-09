@@ -38,7 +38,7 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 addNPE(drunkenGuard)
 
 var bar = newNPE()
-bar.SetTexture("waiter_left")
+bar.SetTexture("store-left")
 bar.SetPosition(4, 4)
 
 bar.SetInteractFunc(function(player) {
