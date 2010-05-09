@@ -19,7 +19,7 @@ lillina.SetInteractFunc(function(player) {
 		reloadMap()
 		dialogue("Guard: How dare you threaten the princess. Die scum!")
 		//TODO: Change sprite and stats
-		var guard = newEnemy("soldier1_battle", "Royal Guard", 100, 70, 1, 1, 10, null)
+		var guard = newEnemy("soldier1_battle", "Royal Guard", 100, 20, 5, 10, 50, null)
 		battle(player, guard,"regular-battle-song")
 		setFlag("defeated-lillina-guard")
 		reloadMap()
@@ -56,7 +56,7 @@ essay.SetInteractFunc(function(player) {
 
 addNPE(essay)
 
-var spoiledBrat = newEnemy("brat", "Spoiled Brat", 1000, 50, 7, 10, 50, null) //TODO
-var royalCaretaker = newEnemy("captain1_battle", "Royal Caretaker", 500, 20, 10, 10, 10, null)
+var spoiledBrat = newEnemy("brat", "Spoiled Brat", 100, 15, 2, 8, 15, null)
+var royalCaretaker = newEnemy("captain1_battle", "Royal Caretaker", 150, 20, 10, 10, 50, null)
 addRandomEncounter(spoiledBrat)
 addRandomEncounter(royalCaretaker)
