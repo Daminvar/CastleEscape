@@ -558,9 +558,9 @@
       <Name>chapel-song</Name>
 	  <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-	  </Compile>
-	  </ItemGroup>
-	  <ItemGroup>
+	</Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="final-boss-song.mp3">
       <Name>final-boss-song</Name>
       <Importer>Mp3Importer</Importer>
