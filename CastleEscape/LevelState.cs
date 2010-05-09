@@ -98,7 +98,6 @@ namespace CastleEscape
             {
                 StateManager.PopState();
             }
-            
         }
 
         private void handleInput(GameTime gametime)
