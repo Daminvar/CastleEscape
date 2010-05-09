@@ -126,7 +126,7 @@ namespace CastleEscape
 
                 if (entity != null)
                 {
-                    entity.Interact(playerObj);
+                    entity.Interact(playerObj, mappy);
                 }
                 canPressZ = false;
             }

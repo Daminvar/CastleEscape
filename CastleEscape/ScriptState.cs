@@ -18,11 +18,13 @@ namespace CastleEscape
     class ScriptState : State
     {
         private Thread scriptThread;
+        private ScriptableMap map;
 
-        public ScriptState(Game game, Thread thread)
+        public ScriptState(Game game, Thread thread, ScriptableMap map)
             : base(game)
         {
             scriptThread = thread;
+            this.map = map;
             transparent = true;
         }
 
@@ -32,6 +34,7 @@ namespace CastleEscape
 
         public override void Resume()
         {
+            MediaPlayer.Stop();
         }
 
         public override void Update(GameTime gameTime)
