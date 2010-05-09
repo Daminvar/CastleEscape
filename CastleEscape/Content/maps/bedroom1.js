@@ -1,5 +1,5 @@
 
-name("Sir Johnston's Room")
+name("Sir J's Room")
 mapfile("bedroom1.tmx")
 overworldMusic("bedroom-song")
 randomBattleMusic("regular-battle-song")

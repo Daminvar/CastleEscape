@@ -1,5 +1,5 @@
 
-name("Training Grounds")
+name("Side Exit")
 mapfile("armory2.tmx")
 overworldMusic("armory-song")
 battleTexture("armory-bg")
