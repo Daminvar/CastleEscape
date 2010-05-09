@@ -1236,5 +1236,6 @@
   <object name="" x="288" y="352" width="96" height="32"/>
   <object name="" x="352" y="384" width="32" height="32"/>
   <object name="" x="32" y="288" width="96" height="32"/>
+  <object name="" x="64" y="96" width="96" height="64"/>
  </objectgroup>
 </map>

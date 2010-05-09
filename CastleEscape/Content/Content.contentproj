@@ -617,7 +617,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="store-back.png">
       <Name>store-back</Name>
       <Importer>TextureImporter</Importer>
@@ -641,7 +640,7 @@
   <ItemGroup>
     <Compile Include="store-right.png">
       <Name>store-right</Name>
-	  <Importer>TextureImporter</Importer>
+      <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
@@ -650,11 +649,18 @@
       <Name>win-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-	</Compile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="waiter_battle.png">
       <Name>waiter_battle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="win-game.png">
+      <Name>win-game</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
