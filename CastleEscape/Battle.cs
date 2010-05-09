@@ -67,7 +67,7 @@ namespace CastleEscape
             backgroundTexture = bgTex;
             hasRun = false;
             currentItemCount = play.Items.Count;
-            CalculateSpeed();
+            calculateSpeed();
         }
 
         public override void Pause()
@@ -92,7 +92,7 @@ namespace CastleEscape
         }
 
         // Sees who attacks first in a battle
-        public void CalculateSpeed()
+        private void calculateSpeed()
         {
             if (play.Speed > en.Speed)
             {
@@ -213,10 +213,8 @@ namespace CastleEscape
                         currentItemCount = play.Items.Count;
                         tMenu.IsFinished = false;
                         StateManager.PushState(new ItemState(game, play, true));
-                        chosenAttack = null;
                         return;
                     }
-                    chosenAttack = null;
                 }
 
                 //If you slay enemy monster
@@ -235,18 +233,14 @@ namespace CastleEscape
                         }
                     }
                 }
-
-                tMenu.IsFinished = false;
             }
             if (!en.IsDead() && !playersTurn)
             {
                 int tempDmg = en.HealthAfterCombat(play);
                 status += "||||Enemy did : " + (play.Health - tempDmg) + " damage";
                 play.Health = tempDmg;
-
                 playersTurn = true;
-                tMenu.IsFinished = false;
-
+                
                 // If enemy monster kills you
                 if (play.IsDead())
                 {
@@ -254,6 +248,7 @@ namespace CastleEscape
                 }
             }
 
+            tMenu.IsFinished = false;
             if (status != "")
                 StateManager.PushState(new Dialogue(game, status.Remove(0, 4)));
         }
@@ -261,13 +256,15 @@ namespace CastleEscape
         private void handleInput(GameTime gametime)
         {
             string selectedChoice = null;
-            if (!tMenu.IsFinished)
+
+            if (!tMenu.IsFinished && !playersTurn)
                 return;
 
             selectedChoice = choices[tMenu.SelectedOption];
 
             //"Light Punch","Double-Punch","Pummel", "Soul Cannon","Mind Break","Item", "Run" };
             //Sets the chosen attack based on what the player selected
+            
             if (selectedChoice == ("Light Punch"))
                 chosenAttack = "Light Punch";
 
