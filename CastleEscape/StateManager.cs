@@ -19,7 +19,7 @@ namespace CastleEscape
     /// 
     /// Author: Dennis Honeyman
     /// </summary>
-    class StateManager
+    static class StateManager
     {
         private static List<State> states;
         private static bool running;

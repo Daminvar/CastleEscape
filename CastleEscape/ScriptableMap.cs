@@ -32,6 +32,7 @@ namespace CastleEscape
         protected Game game;
         protected TMXMap tmxMap;
         protected List<NPE> NPEs;
+        protected object scriptLock = new object();
 
         private string scriptFilename;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
@@ -48,7 +49,11 @@ namespace CastleEscape
         /// </summary>
         public int MapWidth
         {
-            get { return tmxMap.MapWidth; }
+            get 
+            {
+                lock (scriptLock)
+                    return tmxMap.MapWidth;
+            }
         }
 
         /// <summary>
@@ -56,7 +61,11 @@ namespace CastleEscape
         /// </summary>
         public int MapHeight
         {
-            get { return tmxMap.MapHeight; }
+            get
+            {
+                lock (scriptLock)
+                    return tmxMap.MapHeight;
+            }
         }
 
         /// <summary>
@@ -64,7 +73,11 @@ namespace CastleEscape
         /// </summary>
         public int TileSize
         {
-            get { return tmxMap.TileSize; }
+            get
+            {
+                lock (scriptLock)
+                    return tmxMap.TileSize;
+            }
         }
 
         /// <summary>
@@ -72,22 +85,38 @@ namespace CastleEscape
         /// </summary>
         public string MapName
         {
-            get { return mapName; }
+            get
+            {
+                lock (scriptLock)
+                    return mapName;
+            }
         }
 
         public Texture2D BattleTexture
         {
-            get { return battleTexture; }
+            get
+            {
+                lock (scriptLock)
+                    return battleTexture;
+            }
         }
 
         public Song OverworldMusic
         {
-            get { return overworldMusic; }
+            get
+            {
+                lock (scriptLock)
+                    return overworldMusic;
+            }
         }
 
         public Song RandomBattleMusic
         {
-            get { return randomBattleMusic; }
+            get
+            {
+                lock (scriptLock)
+                    return randomBattleMusic;
+            }
         }
 
         public enum Directions
@@ -113,8 +142,11 @@ namespace CastleEscape
 
         private void loadMapAndScript(string filename)
         {
-            parseScriptFile(filename);
-            tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
+            lock (scriptLock)
+            {
+                parseScriptFile(filename);
+                tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
+            }
         }
 
         /// <summary>

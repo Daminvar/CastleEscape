@@ -79,7 +79,7 @@ namespace CastleEscape
             interactFunc = func;
         }
 
-        public void Interact(Player player)
+        public void Interact(Player player, ScriptableMap map)
         {
             var thread = new Thread(new ParameterizedThreadStart(interact));
             thread.Start(player);
