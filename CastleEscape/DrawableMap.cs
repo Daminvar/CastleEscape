@@ -37,9 +37,12 @@ namespace CastleEscape
         /// </summary>
         public void DrawBase(SpriteBatch spriteBatch, int xPos, int yPos)
         {
-            drawLayers(tmxMap.BaseLayers, spriteBatch, xPos, yPos);
-            foreach (var npe in NPEs)
-                npe.DrawBase(spriteBatch, this, xPos, yPos);
+            lock (scriptLock)
+            {
+                drawLayers(tmxMap.BaseLayers, spriteBatch, xPos, yPos);
+                foreach (var npe in NPEs)
+                    npe.DrawBase(spriteBatch, this, xPos, yPos);
+            }
         }
 
         /// <summary>
@@ -48,9 +51,12 @@ namespace CastleEscape
         /// </summary>
         public void DrawTop(SpriteBatch spriteBatch, int xPos, int yPos)
         {
-            foreach (var npe in NPEs)
-                npe.DrawTop(spriteBatch, this, xPos, yPos);
-            drawLayers(tmxMap.TopLayers, spriteBatch, xPos, yPos);
+            lock (scriptLock)
+            {
+                foreach (var npe in NPEs)
+                    npe.DrawTop(spriteBatch, this, xPos, yPos);
+                drawLayers(tmxMap.TopLayers, spriteBatch, xPos, yPos);
+            }
         }
 
         private void drawLayers(List<int[][]> layers, SpriteBatch spriteBatch, int xPos, int yPos)

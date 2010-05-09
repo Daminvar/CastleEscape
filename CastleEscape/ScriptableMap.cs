@@ -32,6 +32,7 @@ namespace CastleEscape
         protected Game game;
         protected TMXMap tmxMap;
         protected List<NPE> NPEs;
+        protected object scriptLock = new object();
 
         private string scriptFilename;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
@@ -42,7 +43,6 @@ namespace CastleEscape
         private Song randomBattleMusic;
         private List<Enemy> randomEncounters;
         private Random rand;
-        private object scriptLock = new object();
 
         /// <summary>
         /// The width of the map in tiles.
