@@ -103,6 +103,7 @@
     <Compile Include="ItemState.cs" />
     <Compile Include="LevelState.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="ScriptState.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="TestItemState.cs" />
     <Compile Include="TestStoreState.cs" />
