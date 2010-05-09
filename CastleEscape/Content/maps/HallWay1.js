@@ -26,7 +26,7 @@ guardRob.SetInteractFunc(function(player) {
 	} else {
 		dialogue("Guard Zach: Hey! You don't belong here!!| Jordan: I'm the plumber, just heading to the kitchen.|Guard Zach: That might have worked on the dungeon guards, but not on us intelligent hallway guards!")
 		var enemy = newEnemy("test-npe", "Guard Robert",50,3,2,2,10,null)
-      		battle(player,enemy,"regular-battle-music")
+      		battle(player,enemy,"regular-battle-song")
 		
 		setFlag("talked-to-guardRob")
 		reloadMap()
