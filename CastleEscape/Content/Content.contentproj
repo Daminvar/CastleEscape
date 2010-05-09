@@ -621,6 +621,13 @@
       <Name>win-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
+	</Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="waiter_battle.png">
+      <Name>waiter_battle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
