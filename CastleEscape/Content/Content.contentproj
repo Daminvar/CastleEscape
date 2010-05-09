@@ -556,9 +556,9 @@
   <ItemGroup>
     <Compile Include="chapel-song.mp3">
       <Name>chapel-song</Name>
-	  <Importer>Mp3Importer</Importer>
+      <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-	</Compile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="final-boss-song.mp3">
@@ -570,7 +570,7 @@
   <ItemGroup>
     <Compile Include="courtyard-song.mp3">
       <Name>courtyard-song</Name>
-	  <Importer>Mp3Importer</Importer>
+      <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
@@ -584,7 +584,7 @@
   <ItemGroup>
     <Compile Include="hallway-song.mp3">
       <Name>hallway-song</Name>
-	  <Importer>Mp3Importer</Importer>
+      <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
@@ -614,6 +614,34 @@
       <Name>kitchen-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="store-back.png">
+      <Name>store-back</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="store-front.png">
+      <Name>store-front</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="store-left.png">
+      <Name>store-left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="store-right.png">
+      <Name>store-right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

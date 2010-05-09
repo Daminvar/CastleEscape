@@ -61,15 +61,15 @@ churchgoer22.SetInteractFunc(function(player){
 addNPE(churchgoer22)
 
 var potionSeller = newNPE()
-potionSeller.SetTexture("guyHat-back")
+potionSeller.SetTexture("store-left")
 potionSeller.SetPosition(13,12)
 
 potionSeller.SetInteractFunc(function(player) {
 	var items = [] //Create a Javascript array as such.
 	
 	items[0] = newItem("Health Potion", "Restores hp",50,0,100)
-	items[1] = newItem("Mana Potion" , "Restores mana", 0,20,125)
-	items[2] = newItem("Rejuvination Potion", "Restores health and mana", 35,12,200)
+	items[1] = newItem("Mana Potion" , "Restores mana", 0,20,75)
+	items[2] = newItem("Mixture Potion", "Restores health and mana", 35,12,200)
 	store(player, items) // Pushes on a store state. Parameters are the player and an array of items.
 })
 
