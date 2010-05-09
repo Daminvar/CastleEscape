@@ -225,7 +225,7 @@ namespace CastleEscape
             attack = 1000;
             maxMana = 10;
             mana = 10;
-            magicAtk = 8;
+            magicAtk = 20;
             currentSpriteY = 2;
             currentSpriteX = 1;
             spriteHeight = 40;
@@ -360,14 +360,14 @@ namespace CastleEscape
                 {
                     if ((magicAtk - enemy.Defense) > 0 && magicAtk >= 2)
                     {
-                        newHealth -= rgen.Next(2, magicAtk + 1) - enemy.Defense;
+                        newHealth -= magicAtk - 5 - enemy.Defense;
                     }
                 }
                 else if (accuracy == 98)
                 {
                     if ((magicAtk - enemy.Defense) > 0 && magicAtk >= 6)
                     {
-                        newHealth -= rgen.Next(4, magicAtk - 1) - enemy.Defense;
+                        newHealth -= magicAtk + 5 - enemy.Defense;
                     }
                 }
 

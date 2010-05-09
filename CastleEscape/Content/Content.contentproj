@@ -650,11 +650,25 @@
       <Name>win-song</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-	</Compile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="waiter_battle.png">
       <Name>waiter_battle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="librarian_battle.png">
+      <Name>librarian_battle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="gardeninja_battle.png">
+      <Name>gardeninja_battle</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
