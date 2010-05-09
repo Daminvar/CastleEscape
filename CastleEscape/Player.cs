@@ -222,7 +222,7 @@ namespace CastleEscape
             health = 60;
             defense = 1;
             speed = 1;
-            attack = 20;
+            attack = 1000;
             maxMana = 10;
             mana = 10;
             magicAtk = 20;
