@@ -262,6 +262,7 @@ namespace CastleEscape
             engine.SetFunction("store", new Action<Player, ArrayList>(js_store));
             engine.SetFunction("overworldMusic", new Action<string>(js_overworldMusic));
             engine.SetFunction("randomBattleMusic", new Action<string>(js_randomBattleMusic));
+            engine.SetFunction("win", new Action(js_win));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -406,6 +407,13 @@ namespace CastleEscape
         private void js_randomBattleMusic(string song)
         {
             randomBattleMusic = game.Content.Load<Song>(song);
+        }
+
+        private void js_win()
+        {
+            StateManager.PopAllStates();
+            StateManager.PushState(new MainMenu(game));
+            StateManager.PushState(new WinState(game));
         }
     }
 }
