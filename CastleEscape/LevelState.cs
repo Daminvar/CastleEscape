@@ -102,24 +102,10 @@ namespace CastleEscape
 
         private void handleInput(GameTime gametime)
         {
-            string selectedStat = null;
-
             if (!tMenu.IsFinished)
                 return;
 
-            selectedStat = choices[tMenu.SelectedOption];
-
-            if (selectedStat == "Attack")
-                chosenStat = "Attack";
-
-            else if (selectedStat == "Defense")
-                chosenStat = "Defense";
-
-            else if (selectedStat == "Magic Attack")
-                chosenStat = "Magic Attack";
-
-            else if (selectedStat == "Speed")
-                chosenStat = "Speed";
+            chosenStat = choices[tMenu.SelectedOption];
         }
         private void statIncrease(string stat)
         {
