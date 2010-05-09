@@ -38,7 +38,7 @@ var hallway4civ3 = newNPE()
 hallway4civ3.SetTexture("man_left")
 hallway4civ3.SetPosition(17,11)
 
-hallway4civ2.SetInteractFunc(function(player) 
+hallway4civ3.SetInteractFunc(function(player) 
 {
 	dialogue("Donald: You know, in the original design for this castle, this was to be a large armoire. The builders just got a bit confused.|Jordan: I guess that's what happens when the majority of people are illiterate.")	
 
