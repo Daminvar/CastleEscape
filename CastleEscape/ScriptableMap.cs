@@ -411,9 +411,11 @@ namespace CastleEscape
 
         private void js_win()
         {
+            StateManager.Running = false;
             StateManager.PopAllStates();
             StateManager.PushState(new MainMenu(game));
             StateManager.PushState(new WinState(game));
+            StateManager.Running = true;
         }
     }
 }
