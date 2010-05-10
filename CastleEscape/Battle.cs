@@ -101,6 +101,7 @@ namespace CastleEscape
             else if (play.Speed < en.Speed)
             {
                 playersTurn = false;
+                tMenu.IsFinished = true;
             }
             else
             {
@@ -110,6 +111,7 @@ namespace CastleEscape
                 if (first == 1)
                 {
                     playersTurn = false;
+                    tMenu.IsFinished = true;
                 }
                 else
                 {
@@ -123,8 +125,8 @@ namespace CastleEscape
         {
             string status = "";
             chosenAttack = null;
-            tMenu.Update(gameTime, Keyboard.GetState());
             handleInput(gameTime);
+            tMenu.Update(gameTime, Keyboard.GetState());
 
             int gold = rgen.Next(0, en.Attack);
 
@@ -132,6 +134,7 @@ namespace CastleEscape
             {
                 if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
                 {
+                    tMenu.IsFinished = false;
                     if (chosenAttack == "Light Punch" || chosenAttack == "Double Punch" || chosenAttack == "Pummel")
                     {
                         play.getAccuracy(chosenAttack);
@@ -234,13 +237,15 @@ namespace CastleEscape
                     }
                 }
             }
+
             if (!en.IsDead() && !playersTurn)
             {
                 int tempDmg = en.HealthAfterCombat(play);
                 status += "||||Enemy did : " + (play.Health - tempDmg) + " damage";
                 play.Health = tempDmg;
                 playersTurn = true;
-                
+                tMenu.IsFinished = false;
+
                 // If enemy monster kills you
                 if (play.IsDead())
                 {
@@ -248,7 +253,6 @@ namespace CastleEscape
                 }
             }
 
-            tMenu.IsFinished = false;
             if (status != "")
                 StateManager.PushState(new Dialogue(game, status.Remove(0, 4)));
         }
@@ -257,7 +261,7 @@ namespace CastleEscape
         {
             string selectedChoice = null;
 
-            if (!tMenu.IsFinished && !playersTurn)
+            if (!tMenu.IsFinished)
                 return;
 
             selectedChoice = choices[tMenu.SelectedOption];
