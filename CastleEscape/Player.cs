@@ -218,13 +218,13 @@ namespace CastleEscape
             // the level 1 attributes of a player
             level = 1;
             exp = 0;
-            maxHealth = 600;
-            health = 600;
+            maxHealth = 100;
+            health = 100;
             defense = 1;
-            speed = 75;
-            attack = 1000;
-            maxMana = 10;
-            mana = 10;
+            speed = 1;
+            attack = 30;
+            maxMana = 20;
+            mana = 20;
             magicAtk = 20;
             currentSpriteY = 2;
             currentSpriteX = 1;

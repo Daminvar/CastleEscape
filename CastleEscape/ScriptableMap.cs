@@ -335,6 +335,8 @@ namespace CastleEscape
         private void js_save(Player player)
         {
             GameData.Save(scriptFilename, player);
+            player.Health = player.MaxHealth;
+            player.Mana = player.MaxMana;
         }
 
         private Item js_newItem(string itemName, string description, double healthBonus, double manaBonus, double cost)
