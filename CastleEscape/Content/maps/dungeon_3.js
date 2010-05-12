@@ -25,7 +25,7 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 		dialogue("Marim: Uuugghhh... my head...|Hey, who're you...?|Jordan: ...No one important... (I need to find an exit somewhere!)||Marim: ...ain't you that prishoner...?|Jordan: (No! He's really drunk... maybe I can fool him!)|No, I'm... a janitor!|Ludovic: <A JANITOR? Really?! That wouldn't convince a fool, kid.>|Marim: ...get backta yer cell!")
 		var drunkItems = []
 		drunkItems[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
-		var enemy = newEnemy("soldier1_battle", "Drunken Guard Marim", 60, 6, 3, 0, 30, null)
+		var enemy = newEnemy("soldier1_battle", "Drunken Guard Marim", 60, 30, 3, 0, 30, null)
 		battle(player, enemy, "regular-battle-song") //Starts a battle with the player and the enemy
 		dialogue("The guard was holding a very bright red hat, which Jordan picks up.")
 		setFlag("has-hat") // Sets a flag to "true"
