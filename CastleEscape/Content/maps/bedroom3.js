@@ -19,7 +19,7 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-var servant = newEnemy("soldier1_battle", "Fanatic Servant", 100, 15, 10, 8, 35, null)
-var lazyGuard = newEnemy("soldier2_battle", "Lazy Guard", 150, 20, 10, 5, 47, null)
+var servant = newEnemy("soldier1_battle", "Fanatic Servant", 200, 65, 10, 8, 45, null)
+var lazyGuard = newEnemy("soldier2_battle", "Lazy Guard", 250, 58, 10, 5, 53, null)
 addRandomEncounter(servant)
 addRandomEncounter(lazyGuard)

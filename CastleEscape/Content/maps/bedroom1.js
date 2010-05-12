@@ -40,8 +40,8 @@ treasureChest1.SetTexture("treasure")
 treasureChest1.SetPosition(7, 3)
 
 treasureChest1.SetInteractFunc(function(player) {
-	dialogue("You found a bottle of peanut butter!")
-	var pb = newItem("Peanut Butter", "A bottle of peanut butter", 40, 0, 0)
+	dialogue("You found a jar of peanut butter!")
+	var pb = newItem("Peanut Butter", "A jar of peanut butter", 200, 0, 0)
 	player.AddItem(pb)
 	setFlag("bedroom-1-treasure-chest-1")
 	reloadMap()
@@ -57,7 +57,7 @@ treasureChest2.SetPosition(2, 3)
 
 treasureChest2.SetInteractFunc(function(player) {
 	dialogue("You found an aged bottle of wine!")
-	var wine = newItem("Wine", "An aged bottle of wine", 0, 30, 0)
+	var wine = newItem("Wine", "An aged bottle of wine", 0, 40, 0)
 	player.AddItem(wine)
 	setFlag("bedroom-1-treasure-chest-2")
 	reloadMap()
@@ -67,7 +67,7 @@ if (getFlag("johnston-relieved") && !getFlag("bedroom-1-treasure-chest-2")) {
 	addNPE(treasureChest2)
 }
 
-var servant = newEnemy("soldier1_battle", "Fanatic Servant", 100, 15, 10, 8, 35, null)
-var lazyGuard = newEnemy("soldier2_battle", "Lazy Guard", 150, 20, 10, 5, 47, null)
+var servant = newEnemy("soldier1_battle", "Fanatic Servant", 200, 65, 10, 8, 45, null)
+var lazyGuard = newEnemy("soldier2_battle", "Lazy Guard", 250, 58, 10, 5, 53, null)
 addRandomEncounter(servant)
 addRandomEncounter(lazyGuard)

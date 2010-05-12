@@ -32,8 +32,8 @@ courtyard2Civ2.SetInteractFunc(function(player)
 
 addNPE(courtyard2Civ2)
 
-var gardener = newEnemy("gardeninja_battle", "Gardeninja", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghost1_battle", "Ghost", 100, 9, 2, 3, 22, null)
+var gardener = newEnemy("gardeninja_battle", "Gardeninja", 250, 78, 2, 30, 55, null)
+var ghost = newEnemy("ghost1_battle", "Ghost", 200, 65, 2, 5, 50, null)
 
 addRandomEncounter(gardener)
 addRandomEncounter(ghost)
