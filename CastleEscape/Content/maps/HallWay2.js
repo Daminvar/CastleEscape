@@ -90,8 +90,8 @@ bedroomGuard.SetInteractFunc(function(player)
 addNPE(bedroomGuard)
 
 
-var guardF = newEnemy("soldier3_battle", "Castle Guard", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghost1_battle", "Ghost", 100, 9, 2, 3, 22, null)
+var guardF = newEnemy("soldier3_battle", "Castle Guard", 90, 45, 2, 2, 20, null)
+var ghost = newEnemy("ghost1_battle", "Ghost", 100, 50, 2, 3, 22, null)
 
 addRandomEncounter(guardF)
 addRandomEncounter(ghost)

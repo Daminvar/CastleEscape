@@ -52,7 +52,7 @@ bar.SetInteractFunc(function(player) {
 addNPE(bar)
 
 var spirits = []
-spirits[0] = newItem("Spirit's Spirit", "An aged bottle of wine.", 20, 20, 10)
+spirits[0] = newItem("Spirit's Spirit", "An aged bottle of wine.", 150, 20, 0)
 
 var ghost = newEnemy("ghost1_battle", "Ghost of Doom", 30, 25, 1, 1, 10, null)
 var pauper = newEnemy("skeleton1_battle", "Skeleton of Evil", 50, 27, 1, 1, 10, null)

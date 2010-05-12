@@ -47,8 +47,8 @@ hallway4civ3.SetInteractFunc(function(player)
 addNPE(hallway4civ3)
 
 
-var guardF = newEnemy("soldier3_battle", "Castle Guard", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghost1_battle", "Ghost", 100, 9, 2, 3, 22, null)
+var guardF = newEnemy("soldier3_battle", "Castle Guard", 200, 105, 2, 2, 50, null)
+var ghost = newEnemy("ghost1_battle", "Ghost", 250, 110, 2, 3, 60, null)
 
 addRandomEncounter(guardF)
 addRandomEncounter(ghost)
