@@ -77,8 +77,8 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 95, 60, 3, 2, 25, null)
-var evSalad = newEnemy("salad_battle", "Evil Salad", 105, 50, 7, 3, 30, null)
+var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 95, 55, 3, 2, 25, null)
+var evSalad = newEnemy("salad_battle", "Evil Salad", 105, 48, 7, 3, 30, null)
 
 addRandomEncounter(vegetable)
 addRandomEncounter(evSalad)

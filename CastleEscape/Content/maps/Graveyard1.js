@@ -105,9 +105,9 @@ grave10.SetPosition(18, 3)
 grave10.SetInteractFunc(fadedGrave)
 addNPE(grave10)
 
-var soul = newEnemy("ghost1_battle", "Forgotten Soul", 300, 85, 2, 2, 70, null)
-var ghost = newEnemy("ghost2_battle", "Lost Spirit", 290, 87, 2, 3, 72, null)
-var skele = newEnemy("skeleton2_battle", "Skeleton of the Past", 310, 80, 10, 2, 74, null)
+var soul = newEnemy("ghost1_battle", "Forgotten Soul", 270, 85, 2, 2, 70, null)
+var ghost = newEnemy("ghost2_battle", "Lost Spirit", 240, 87, 2, 3, 72, null)
+var skele = newEnemy("skeleton2_battle", "Skeleton of the Past", 250, 80, 10, 2, 74, null)
 
 addRandomEncounter(soul)
 addRandomEncounter(ghost)
