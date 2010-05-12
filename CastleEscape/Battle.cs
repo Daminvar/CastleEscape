@@ -38,7 +38,7 @@ namespace CastleEscape
         int currentItemCount;
         Random rgen;
 
-        private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-1", "Mind Break MP-2", "Item", "Run" };
+        private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-2", "Mind Break MP-4", "Item", "Run" };
 
         // constructor
         public Battle(Game game, Texture2D bgTex, Song battleSong, Player p, Enemy e, bool run)
