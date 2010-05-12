@@ -56,8 +56,14 @@ namespace CastleEscape
             playerObj = player;
             mappy = map;
 
-            if (mappy.OverworldMusic != null)
-                MediaPlayer.Play(mappy.OverworldMusic);
+            try
+            {
+                if (mappy.OverworldMusic != null)
+                    MediaPlayer.Play(mappy.OverworldMusic);
+            }
+            catch (Exception)
+            {
+            }
 
             //The destination rectangle is the location where the sprite will be drawn.
             destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
@@ -82,10 +88,16 @@ namespace CastleEscape
         {
             canPressEscape = false;
             canPressZ = false;
-            MediaPlayer.Volume = 1;
-            MediaPlayer.IsRepeating = true;
-            if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
-                MediaPlayer.Play(mappy.OverworldMusic);
+            try
+            {
+                MediaPlayer.Volume = 1;
+                MediaPlayer.IsRepeating = true;
+                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                    MediaPlayer.Play(mappy.OverworldMusic);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public override void Update(GameTime gameTime)
