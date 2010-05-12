@@ -77,8 +77,8 @@ addNPE(cook2)
 addNPE(cook3)
 addNPE(headChef)
 
-var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 90, 58, 3, 2, 22, null)
-var evSalad = newEnemy("salad_battle", "Evil Salad", 100, 47, 5, 3, 27, null)
+var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 90, 50, 3, 2, 22, null)
+var evSalad = newEnemy("salad_battle", "Evil Salad", 100, 43, 5, 3, 27, null)
 
 addRandomEncounter(vegetable)
 addRandomEncounter(evSalad)
