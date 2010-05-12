@@ -50,9 +50,9 @@ namespace CastleEscape
             try
             {
                 Song song = game.Content.Load<Song>("main-menu-song");
+                MediaPlayer.Play(song);
                 MediaPlayer.IsRepeating = true;
                 MediaPlayer.Volume = 1;
-                MediaPlayer.Play(song);
             }
             catch (Exception)
             {
