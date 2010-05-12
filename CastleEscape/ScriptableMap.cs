@@ -27,7 +27,7 @@ namespace CastleEscape
         private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus, double cost);
         private delegate Enemy NewEnemyDelegate(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, ArrayList items);
-        private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
+        private const string MAP_DIRECTORY = "Content\\maps\\";
 
         protected Game game;
         protected TMXMap tmxMap;
