@@ -51,9 +51,6 @@ namespace CastleEscape
             try
             {
                 song = game.Content.Load<Song>("main-menu-song");
-                MediaPlayer.Play(song);
-                MediaPlayer.IsRepeating = true;
-                MediaPlayer.Volume = 1;
             }
             catch (Exception)
             {
@@ -67,6 +64,10 @@ namespace CastleEscape
         public override void Resume()
         {
             menu.IsFinished = false;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
             try
             {
                 if (MediaPlayer.Queue.ActiveSong != song)
@@ -79,10 +80,6 @@ namespace CastleEscape
             catch (Exception)
             {
             }
-        }
-
-        public override void Update(GameTime gameTime)
-        {
             menu.Update(gameTime, Keyboard.GetState());
 
             if (!menu.IsFinished)
