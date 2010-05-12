@@ -49,7 +49,7 @@ namespace CastleEscape
         /// </summary>
         public int MapWidth
         {
-            get 
+            get
             {
                 lock (scriptLock)
                     return tmxMap.MapWidth;
@@ -403,12 +403,24 @@ namespace CastleEscape
 
         private void js_overworldMusic(string song)
         {
-            overworldMusic = game.Content.Load<Song>(song);
+            try
+            {
+                overworldMusic = game.Content.Load<Song>(song);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void js_randomBattleMusic(string song)
         {
-            randomBattleMusic = game.Content.Load<Song>(song);
+            try
+            {
+                randomBattleMusic = game.Content.Load<Song>(song);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void js_win()
