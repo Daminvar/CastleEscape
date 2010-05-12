@@ -204,8 +204,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(mappy.MapWidth - 1, 0);
                             timer = 0;
-                            if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
-                                MediaPlayer.Play(mappy.OverworldMusic);
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {
@@ -278,8 +284,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(-(mappy.MapWidth) + 1, 0);
                             timer = 0;
-                            if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
-                                MediaPlayer.Play(mappy.OverworldMusic);
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {
@@ -350,8 +362,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(0, mappy.MapHeight - 1);
                             timer = 0;
-                            if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
-                                MediaPlayer.Play(mappy.OverworldMusic);
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {
@@ -423,8 +441,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(0, -(mappy.MapHeight) + 1);
                             timer = 0;
-                            if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
-                                MediaPlayer.Play(mappy.OverworldMusic);
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {

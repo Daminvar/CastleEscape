@@ -23,9 +23,16 @@ namespace CastleEscape
             : base(game)
         {
             background = game.Content.Load<Texture2D>("win-game");
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 1;
-            MediaPlayer.Play(game.Content.Load<Song>("win-song"));
+            try
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 1;
+                MediaPlayer.Play(game.Content.Load<Song>("win-song"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             canPressZ = false;
         }
 
