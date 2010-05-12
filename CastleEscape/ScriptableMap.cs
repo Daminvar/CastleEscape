@@ -27,7 +27,7 @@ namespace CastleEscape
         private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus, double cost);
         private delegate Enemy NewEnemyDelegate(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, ArrayList items);
-        private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
+        private const string MAP_DIRECTORY = "Content\\maps\\";
 
         protected Game game;
         protected TMXMap tmxMap;
@@ -49,7 +49,7 @@ namespace CastleEscape
         /// </summary>
         public int MapWidth
         {
-            get 
+            get
             {
                 lock (scriptLock)
                     return tmxMap.MapWidth;
@@ -403,12 +403,24 @@ namespace CastleEscape
 
         private void js_overworldMusic(string song)
         {
-            overworldMusic = game.Content.Load<Song>(song);
+            try
+            {
+                overworldMusic = game.Content.Load<Song>(song);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void js_randomBattleMusic(string song)
         {
-            randomBattleMusic = game.Content.Load<Song>(song);
+            try
+            {
+                randomBattleMusic = game.Content.Load<Song>(song);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void js_win()

@@ -55,11 +55,17 @@ namespace CastleEscape
             transparent = true;
             rgen = new Random();
 
-            if (battleSong != null)
+            try
             {
-                MediaPlayer.Play(battleSong);
-                MediaPlayer.Volume = 1;
-                MediaPlayer.IsRepeating = true;
+                if (battleSong != null)
+                {
+                    MediaPlayer.Play(battleSong);
+                    MediaPlayer.Volume = .5f;
+                    MediaPlayer.IsRepeating = true;
+                }
+            }
+            catch (Exception)
+            {
             }
             
             canRun = run;

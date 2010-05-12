@@ -62,9 +62,15 @@ namespace CastleEscape
                 StateManager.PopState();
                 return;
             }
-            MediaPlayer.Play(game.Content.Load<Song>(LEVEL_UP_SONG));
-            MediaPlayer.Volume = .75f;
-            MediaPlayer.IsRepeating = false;
+            try
+            {
+                MediaPlayer.Play(game.Content.Load<Song>(LEVEL_UP_SONG));
+                MediaPlayer.Volume = .75f;
+                MediaPlayer.IsRepeating = false;
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public override void Update(GameTime gameTime)
