@@ -77,8 +77,14 @@ addNPE(cook2)
 addNPE(cook3)
 addNPE(headChef)
 
-var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 90, 50, 3, 2, 22, null)
-var evSalad = newEnemy("salad_battle", "Evil Salad", 100, 43, 5, 3, 27, null)
+var salad = []
+salad[0] = newItem("Salad", "A fresh green salad.", 130, 10, 0)
+
+var turnip = []
+turnip[0] = newItem("Turnip", "A homegrown turnip.", 70, 30, 0)
+
+var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 90, 50, 3, 2, 22, turnip)
+var evSalad = newEnemy("salad_battle", "Evil Salad", 100, 43, 5, 3, 27, salad)
 
 addRandomEncounter(vegetable)
 addRandomEncounter(evSalad)

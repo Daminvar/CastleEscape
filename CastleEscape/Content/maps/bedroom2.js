@@ -55,7 +55,10 @@ essay.SetInteractFunc(function(player) {
 
 addNPE(essay)
 
-var spoiledBrat = newEnemy("brat", "Spoiled Brat", 100, 15, 2, 8, 15, null)
+var cookie = []
+cookie[0] = newItem("Fancy Cookie", "A very extravagant dessert.", 100, 50, 0)
+
+var spoiledBrat = newEnemy("brat", "Spoiled Brat", 100, 15, 2, 8, 15, cookie)
 var royalCaretaker = newEnemy("captain1_battle", "Royal Caretaker", 210, 55, 10, 10, 60, null)
 addRandomEncounter(spoiledBrat)
 addRandomEncounter(royalCaretaker)
