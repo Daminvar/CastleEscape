@@ -314,13 +314,13 @@ namespace CastleEscape
             {
 
                 accuracy = 99;
-                mana -= 1;
+                mana -= 2;
 
             }
             else if (chosenAttack == ("Mind Break"))
             {
                 accuracy = 98;
-                mana -= 2;
+                mana -= 4;
             }
         }
 

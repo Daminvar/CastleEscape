@@ -284,10 +284,10 @@ namespace CastleEscape
             else if (selectedChoice == ("Pummel"))
                 chosenAttack = "Pummel";
 
-            else if (selectedChoice == ("Soul Cannon MP-1"))
+            else if (selectedChoice == ("Soul Cannon MP-2"))
                 chosenAttack = "Soul Cannon";
 
-            else if (selectedChoice == ("Mind Break MP-2"))
+            else if (selectedChoice == ("Mind Break MP-4"))
                 chosenAttack = "Mind Break";
 
             else if (selectedChoice == ("Item"))
