@@ -25,7 +25,7 @@ guardRob.SetInteractFunc(function(player) {
 	    	dialogue("Guard Zach: You're not that strong...")
 	} else {
 		dialogue("Guard Zach: Hey! You don't belong here!!| Jordan: I'm the plumber, just heading to the kitchen.|Guard Zach: That might have worked on the dungeon guards, but not on us intelligent hallway guards!")
-		var enemy = newEnemy("captain1_battle", "Guard Robert",50,3,2,2,10,null)
+		var enemy = newEnemy("captain1_battle", "Guard Zach",50,3,2,2,10,null)
       		battle(player,enemy,"regular-battle-song")
 		
 		setFlag("talked-to-guardRob")

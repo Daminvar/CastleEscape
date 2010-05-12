@@ -152,20 +152,17 @@ namespace CastleEscape
             {
                 if (health <= 0)
                     return 0;
-
                 else
                     return health;
             }
 
             set
             {
-
                 if (value >= maxHealth)
                     health = maxHealth;
 
                 else
                     health = value;
-
             }
         }
 
@@ -220,8 +217,8 @@ namespace CastleEscape
             // the level 1 attributes of a player
             level = 1;
             exp = 0;
-            maxHealth = 100;
-            health = 100;
+            maxHealth = 500;
+            health = 500;
             defense = 1;
             speed = 1;
             attack = 30;

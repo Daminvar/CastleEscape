@@ -73,8 +73,8 @@ namespace CastleEscape
             {
                 while (play.Exp >= play.ExpToLevel)
                 {
-                    play.MaxHealth += 5;
-                    play.Health += 5;
+                    play.MaxHealth += 25;
+                    play.Health += 25;
                     play.MaxMana += 5;
                     play.Mana += 5;
                     play.Level += 1;

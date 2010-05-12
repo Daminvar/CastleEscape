@@ -14,7 +14,7 @@ guard.SetPosition(5, 8)
 
 guard.SetInteractFunc(function(player) { //Sets the interact function for the specified NPE
 		dialogue("Basden: Who are you talking to?! Show yourself to me! Don't make me force you!!")
-		var enemy = newEnemy("soldier1_battle", "Disgruntled Guard Basden", 50, 5, 2, 1, 25, null)
+		var enemy = newEnemy("soldier1_battle", "Disgruntled Guard Basden", 50, 20, 2, 1, 25, null)
 		battle(player, enemy, "regular-battle-song")
 		setFlag("battled-guard")
 		reloadMap()
@@ -40,8 +40,8 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-var ghost = newEnemy("ghost1_battle", "Ghost of Doom", 30, 7, 1, 1, 10, null)
-var pauper = newEnemy("skeleton1_battle", "Skeleton of Evil", 50, 5, 1, 1, 10, null)
+var ghost = newEnemy("ghost1_battle", "Ghost of Doom", 30, 15, 1, 1, 10, null)
+var pauper = newEnemy("skeleton1_battle", "Skeleton of Evil", 50, 17, 1, 1, 10, null)
 
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)
