@@ -38,10 +38,10 @@ namespace CastleEscape
         int currentItemCount;
         Random rgen;
 
-        private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-1", "Mind Break MP-2", "Item", "Run" };
+        private static string[] choices = { "Light Punch", "Double Punch", "Pummel", "Soul Cannon MP-2", "Mind Break MP-4", "Item", "Run" };
 
         // constructor
-        public Battle(Game game, Texture2D bgTex, Player p, Enemy e, bool run)
+        public Battle(Game game, Texture2D bgTex, Song battleSong, Player p, Enemy e, bool run)
             : base(game)
         {
             StateManager.PushState(new LevelState(game, p));
@@ -54,13 +54,26 @@ namespace CastleEscape
             combatColor.SetData<Color>(new Color[] { new Color(Color.Black, 150) });
             transparent = true;
             rgen = new Random();
+
+            try
+            {
+                if (battleSong != null)
+                {
+                    MediaPlayer.Play(battleSong);
+                    MediaPlayer.Volume = .5f;
+                    MediaPlayer.IsRepeating = true;
+                }
+            }
+            catch (Exception)
+            {
+            }
             
             canRun = run;
 
             backgroundTexture = bgTex;
             hasRun = false;
             currentItemCount = play.Items.Count;
-            CalculateSpeed();
+            calculateSpeed();
         }
 
         public override void Pause()
@@ -85,7 +98,7 @@ namespace CastleEscape
         }
 
         // Sees who attacks first in a battle
-        public void CalculateSpeed()
+        private void calculateSpeed()
         {
             if (play.Speed > en.Speed)
             {
@@ -94,6 +107,7 @@ namespace CastleEscape
             else if (play.Speed < en.Speed)
             {
                 playersTurn = false;
+                tMenu.IsFinished = true;
             }
             else
             {
@@ -103,6 +117,7 @@ namespace CastleEscape
                 if (first == 1)
                 {
                     playersTurn = false;
+                    tMenu.IsFinished = true;
                 }
                 else
                 {
@@ -116,8 +131,8 @@ namespace CastleEscape
         {
             string status = "";
             chosenAttack = null;
-            tMenu.Update(gameTime, Keyboard.GetState());
             handleInput(gameTime);
+            tMenu.Update(gameTime, Keyboard.GetState());
 
             int gold = rgen.Next(0, en.Attack);
 
@@ -125,6 +140,7 @@ namespace CastleEscape
             {
                 if (!en.IsDead() && !play.IsDead() && chosenAttack != null)
                 {
+                    tMenu.IsFinished = false;
                     if (chosenAttack == "Light Punch" || chosenAttack == "Double Punch" || chosenAttack == "Pummel")
                     {
                         play.getAccuracy(chosenAttack);
@@ -206,10 +222,8 @@ namespace CastleEscape
                         currentItemCount = play.Items.Count;
                         tMenu.IsFinished = false;
                         StateManager.PushState(new ItemState(game, play, true));
-                        chosenAttack = null;
                         return;
                     }
-                    chosenAttack = null;
                 }
 
                 //If you slay enemy monster
@@ -228,15 +242,13 @@ namespace CastleEscape
                         }
                     }
                 }
-
-                tMenu.IsFinished = false;
             }
+
             if (!en.IsDead() && !playersTurn)
             {
                 int tempDmg = en.HealthAfterCombat(play);
                 status += "||||Enemy did : " + (play.Health - tempDmg) + " damage";
                 play.Health = tempDmg;
-
                 playersTurn = true;
                 tMenu.IsFinished = false;
 
@@ -254,6 +266,7 @@ namespace CastleEscape
         private void handleInput(GameTime gametime)
         {
             string selectedChoice = null;
+
             if (!tMenu.IsFinished)
                 return;
 
@@ -261,6 +274,7 @@ namespace CastleEscape
 
             //"Light Punch","Double-Punch","Pummel", "Soul Cannon","Mind Break","Item", "Run" };
             //Sets the chosen attack based on what the player selected
+            
             if (selectedChoice == ("Light Punch"))
                 chosenAttack = "Light Punch";
 
@@ -270,10 +284,10 @@ namespace CastleEscape
             else if (selectedChoice == ("Pummel"))
                 chosenAttack = "Pummel";
 
-            else if (selectedChoice == ("Soul Cannon MP-1"))
+            else if (selectedChoice == ("Soul Cannon MP-2"))
                 chosenAttack = "Soul Cannon";
 
-            else if (selectedChoice == ("Mind Break MP-2"))
+            else if (selectedChoice == ("Mind Break MP-4"))
                 chosenAttack = "Mind Break";
 
             else if (selectedChoice == ("Item"))
@@ -291,7 +305,7 @@ namespace CastleEscape
 
             //Player,enemy draw
             play.DrawForBattle(spriteBatch, 380, 240);
-            en.DrawForBattle(spriteBatch, 590, 265);
+            en.DrawForBattle(spriteBatch, 550, 210);
 
             //Transparent rectangle that "holds" the menu
             Rectangle rec = new Rectangle(17, 20, 220, 380);

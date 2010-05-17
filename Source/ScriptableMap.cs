@@ -27,17 +27,20 @@ namespace CastleEscape
         private delegate Item NewItemDelegate(string name, string description, double healthBonus, double manaBonus, double cost);
         private delegate Enemy NewEnemyDelegate(string textureName, string enemyName, double health,
             double attack, double defense, double speed, double exp, ArrayList items);
-        private const string MAP_DIRECTORY = "..\\..\\..\\Content\\maps\\";
+        private const string MAP_DIRECTORY = "Content\\maps\\";
 
         protected Game game;
         protected TMXMap tmxMap;
         protected List<NPE> NPEs;
+        protected object scriptLock = new object();
 
         private string scriptFilename;
         private string eastMapFilename, westMapFilename, northMapFilename, southMapFilename;
         private string tmxMapFilename;
         private string mapName;
         private Texture2D battleTexture;
+        private Song overworldMusic;
+        private Song randomBattleMusic;
         private List<Enemy> randomEncounters;
         private Random rand;
 
@@ -46,7 +49,11 @@ namespace CastleEscape
         /// </summary>
         public int MapWidth
         {
-            get { return tmxMap.MapWidth; }
+            get
+            {
+                lock (scriptLock)
+                    return tmxMap.MapWidth;
+            }
         }
 
         /// <summary>
@@ -54,7 +61,11 @@ namespace CastleEscape
         /// </summary>
         public int MapHeight
         {
-            get { return tmxMap.MapHeight; }
+            get
+            {
+                lock (scriptLock)
+                    return tmxMap.MapHeight;
+            }
         }
 
         /// <summary>
@@ -62,7 +73,11 @@ namespace CastleEscape
         /// </summary>
         public int TileSize
         {
-            get { return tmxMap.TileSize; }
+            get
+            {
+                lock (scriptLock)
+                    return tmxMap.TileSize;
+            }
         }
 
         /// <summary>
@@ -70,12 +85,38 @@ namespace CastleEscape
         /// </summary>
         public string MapName
         {
-            get { return mapName; }
+            get
+            {
+                lock (scriptLock)
+                    return mapName;
+            }
         }
 
         public Texture2D BattleTexture
         {
-            get { return battleTexture; }
+            get
+            {
+                lock (scriptLock)
+                    return battleTexture;
+            }
+        }
+
+        public Song OverworldMusic
+        {
+            get
+            {
+                lock (scriptLock)
+                    return overworldMusic;
+            }
+        }
+
+        public Song RandomBattleMusic
+        {
+            get
+            {
+                lock (scriptLock)
+                    return randomBattleMusic;
+            }
         }
 
         public enum Directions
@@ -101,8 +142,11 @@ namespace CastleEscape
 
         private void loadMapAndScript(string filename)
         {
-            parseScriptFile(filename);
-            tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
+            lock (scriptLock)
+            {
+                parseScriptFile(filename);
+                tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
+            }
         }
 
         /// <summary>
@@ -189,6 +233,11 @@ namespace CastleEscape
             NPEs = new List<NPE>();
             randomEncounters = new List<Enemy>();
 
+            //Clear battle and music attributes
+            battleTexture = null;
+            overworldMusic = null;
+            randomBattleMusic = null;
+
             var engine = new Jint.JintEngine();
             engine.DisableSecurity(); //Needed so the scripts can call methods on NPE objects.
             engine.SetDebugMode(true);
@@ -209,8 +258,11 @@ namespace CastleEscape
             engine.SetFunction("newItem", new NewItemDelegate(js_newItem));
             engine.SetFunction("addRandomEncounter", new Action<Enemy>(js_addRandomEncounter));
             engine.SetFunction("newEnemy", new NewEnemyDelegate(js_newEnemy));
-            engine.SetFunction("battle", new Action<Player, Enemy>(js_battle));
+            engine.SetFunction("battle", new Action<Player, Enemy, string>(js_battle));
             engine.SetFunction("store", new Action<Player, ArrayList>(js_store));
+            engine.SetFunction("overworldMusic", new Action<string>(js_overworldMusic));
+            engine.SetFunction("randomBattleMusic", new Action<string>(js_randomBattleMusic));
+            engine.SetFunction("win", new Action(js_win));
             engine.Run(File.ReadAllText(MAP_DIRECTORY + filename));
         }
 
@@ -282,6 +334,8 @@ namespace CastleEscape
 
         private void js_save(Player player)
         {
+            player.Health = player.MaxHealth;
+            player.Mana = player.MaxMana;
             GameData.Save(scriptFilename, player);
         }
 
@@ -309,11 +363,12 @@ namespace CastleEscape
             randomEncounters.Add(enemy);
         }
 
-        private void js_battle(Player player, Enemy enemy)
+        private void js_battle(Player player, Enemy enemy, string song)
         {
             StateManager.Running = false;
             int currentStackSize = StateManager.StackSize;
-            StateManager.PushState(new Battle(game, battleTexture, player, enemy, false));
+            Song battleSong = game.Content.Load<Song>(song);
+            StateManager.PushState(new Battle(game, battleTexture, battleSong, player, enemy, false));
             StateManager.Running = true;
             while (currentStackSize != StateManager.StackSize && currentStackSize != 0)
             {
@@ -344,6 +399,44 @@ namespace CastleEscape
             for (int i = 0; i < items.Length; i++)
                 items[i] = (Item)itemArrayList[i];
             return items;
+        }
+
+        private void js_overworldMusic(string song)
+        {
+            try
+            {
+                overworldMusic = game.Content.Load<Song>(song);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void js_randomBattleMusic(string song)
+        {
+            try
+            {
+                randomBattleMusic = game.Content.Load<Song>(song);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void js_win()
+        {
+            try
+            {
+                StateManager.Running = false;
+                StateManager.PopAllStates();
+                StateManager.PushState(new MainMenu(game));
+                StateManager.PushState(new WinState(game));
+                StateManager.Running = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

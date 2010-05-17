@@ -16,10 +16,6 @@ namespace CastleEscape
 {
     class TestBattleState : State
     {
-
-
-
-
         public TestBattleState(Game game)
             : base(game)
         {
@@ -39,7 +35,7 @@ namespace CastleEscape
             Enemy en = new Enemy(game.Content.Load<Texture2D>("ghostie"));
             Player pl = new Player(game, 0, 0);
 
-            StateManager.PushState(new Battle(game, game.Content.Load<Texture2D>("test-battle-background"), pl, en, true));
+            StateManager.PushState(new Battle(game, game.Content.Load<Texture2D>("test-battle-background"), null, pl, en, true));
         }
 
         public override void Draw(SpriteBatch spriteBatch)

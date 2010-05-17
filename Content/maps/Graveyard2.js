@@ -1,5 +1,7 @@
 name("Graveyard")
 mapfile("Graveyard2.tmx")
+overworldMusic("graveyard-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("graveyard-bg")
 
 west("Graveyard1.js")
@@ -91,3 +93,10 @@ penguinRight.SetPosition(16, 8)
 penguinRight.SetInteractFunc(penguinText)
 addNPE(penguinRight)
 
+var soul = newEnemy("ghost1_battle", "Forgotten Soul", 240, 85, 2, 2, 70, null)
+var ghost = newEnemy("ghost2_battle", "Lost Spirit", 230, 87, 2, 3, 72, null)
+var skele = newEnemy("skeleton2_battle", "Skeleton of the Past", 290, 80, 10, 2, 74, null)
+
+addRandomEncounter(soul)
+addRandomEncounter(ghost)
+addRandomEncounter(skele)

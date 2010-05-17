@@ -1,12 +1,17 @@
 
-name("Sir Johnston's Room")
+name("Sir J's Room")
 mapfile("bedroom1.tmx")
+<<<<<<< HEAD:Content/maps/bedroom1.js
 battleTexture("bedroom-bg.png")
+=======
+overworldMusic("bedroom-song")
+randomBattleMusic("regular-battle-song")
+battleTexture("bedroom-bg")
+>>>>>>> a2ce46f0bfef883f197d1131694022ed4608951a:CastleEscape/Content/maps/bedroom1.js
 
 west("bedroom2.js")
 north("HallWay2.js")
 
-//TODO: Change textures
 var john = newNPE()
 john.SetTexture("guyHat-front.png")
 
@@ -39,8 +44,8 @@ treasureChest1.SetTexture("treasure.png")
 treasureChest1.SetPosition(7, 3)
 
 treasureChest1.SetInteractFunc(function(player) {
-	dialogue("You found a bottle of peanut butter!")
-	var pb = newItem("Peanut Butter", "A bottle of peanut butter", 40, 0, 0)
+	dialogue("You found a jar of peanut butter!")
+	var pb = newItem("Peanut Butter", "A jar of peanut butter", 200, 0, 0)
 	player.AddItem(pb)
 	setFlag("bedroom-1-treasure-chest-1")
 	reloadMap()
@@ -56,7 +61,7 @@ treasureChest2.SetPosition(2, 3)
 
 treasureChest2.SetInteractFunc(function(player) {
 	dialogue("You found an aged bottle of wine!")
-	var wine = newItem("Wine", "An aged bottle of wine", 0, 30, 0)
+	var wine = newItem("Wine", "An aged bottle of wine", 0, 40, 0)
 	player.AddItem(wine)
 	setFlag("bedroom-1-treasure-chest-2")
 	reloadMap()
@@ -66,8 +71,13 @@ if (getFlag("johnston-relieved") && !getFlag("bedroom-1-treasure-chest-2")) {
 	addNPE(treasureChest2)
 }
 
+<<<<<<< HEAD:Content/maps/bedroom1.js
 //TODO: Change textures
 var servant = newEnemy("ghostie.png", "Fanatic Servant", 100, 50, 10, 10, 30, null)
 var lazyGuard = newEnemy("ghostie.png", "Lazy Guard", 200, 60, 10, 5, 80, null)
+=======
+var servant = newEnemy("soldier1_battle", "Fanatic Servant", 180, 58, 10, 8, 45, null)
+var lazyGuard = newEnemy("soldier2_battle", "Lazy Guard", 200, 55, 10, 5, 53, null)
+>>>>>>> a2ce46f0bfef883f197d1131694022ed4608951a:CastleEscape/Content/maps/bedroom1.js
 addRandomEncounter(servant)
 addRandomEncounter(lazyGuard)

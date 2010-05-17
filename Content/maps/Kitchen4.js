@@ -1,5 +1,7 @@
 name("Kitchen")
 mapfile("Kitchen4.tmx")
+overworldMusic("kitchen-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("restaurant-kitchen")
 south("Kitchen3.js")
 
@@ -14,7 +16,7 @@ treasure1.SetInteractFunc(function(player)
 	if(!getFlag("got-treasure1"))
 	{
 		dialogue("The chest contained Cinnamon!")
-		var cinnamon = newItem("Cinnamon", "Spicy cinnamon of excellent quality.", 10, 15, 45)
+		var cinnamon = newItem("Cinnamon", "Spicy cinnamon of excellent quality.", 130, 15, 0)
 		player.AddItem(cinnamon)
 		setFlag("got-treasure1")
 		reloadMap()
@@ -28,7 +30,7 @@ treasure2.SetInteractFunc(function(player)
 	if(!getFlag("got-treasure2"))
 	{
 		dialogue("The chest contained Water!")
-		var water = newItem("Water", "A refreshing jug of clean water.", 20, 15, 20)
+		var water = newItem("Water", "A refreshing jug of clean water.", 120, 35, 0)
 		player.AddItem(water)
 		setFlag("got-treasure2")
 		reloadMap()
@@ -42,7 +44,7 @@ treasure3.SetInteractFunc(function(player)
 	if(!getFlag("got-treasure3"))
 	{
 		dialogue("The chest contained Bread!")
-		var bread = newItem("Bread", "A fresh loaf of delicious white bread.", 45, 15, 30)
+		var bread = newItem("Bread", "A fresh loaf of delicious white bread.", 145, 15, 0)
 		player.AddItem(bread)
 		setFlag("got-treasure3")
 		reloadMap()
@@ -75,8 +77,14 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
-var salad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
+var salad = []
+salad[0] = newItem("Salad", "A fresh green salad.", 130, 10, 0)
+
+var turnip = []
+turnip[0] = newItem("Turnip", "A homegrown turnip.", 70, 30, 0)
+
+var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 95, 55, 3, 2, 25, turnip)
+var evSalad = newEnemy("salad_battle", "Evil Salad", 105, 48, 7, 3, 30, salad)
 
 addRandomEncounter(vegetable)
-addRandomEncounter(salad)
+addRandomEncounter(evSalad)

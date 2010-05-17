@@ -1,6 +1,8 @@
 
 name("Dungeon 3") // The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile("dungeon_3.tmx") // The tmx map file being used
+overworldMusic("dungeon-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("stone-wall") // The texture for the background in battles
 
 south("dungeon_2.js")
@@ -23,8 +25,8 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 		dialogue("Marim: Uuugghhh... my head...|Hey, who're you...?|Jordan: ...No one important... (I need to find an exit somewhere!)||Marim: ...ain't you that prishoner...?|Jordan: (No! He's really drunk... maybe I can fool him!)|No, I'm... a janitor!|Ludovic: <A JANITOR? Really?! That wouldn't convince a fool, kid.>|Marim: ...get backta yer cell!")
 		var drunkItems = []
 		drunkItems[0] = newItem("Bottle of Mead", "A tasty, tasty bottle of mead.", 100, 30, 10)
-		var enemy = newEnemy("test-npe", "Drunken Guard Marim", 60, 6, 3, 0, 30, null)
-		battle(player, enemy) //Starts a battle with the player and the enemy
+		var enemy = newEnemy("soldier1_battle", "Drunken Guard Marim", 60, 30, 3, 0, 30, null)
+		battle(player, enemy, "regular-battle-song") //Starts a battle with the player and the enemy
 		dialogue("The guard was holding a very bright red hat, which Jordan picks up.")
 		setFlag("has-hat") // Sets a flag to "true"
 		reloadMap() // Reloads the map
@@ -36,7 +38,7 @@ drunkenGuard.SetInteractFunc(function(player) { //Sets the interact function for
 addNPE(drunkenGuard)
 
 var bar = newNPE()
-bar.SetTexture("waiter_left")
+bar.SetTexture("store-left")
 bar.SetPosition(4, 4)
 
 bar.SetInteractFunc(function(player) {
@@ -50,11 +52,11 @@ bar.SetInteractFunc(function(player) {
 addNPE(bar)
 
 var spirits = []
-spirits[0] = newItem("Spirit's Spirit", "An aged bottle of wine.", 20, 20, 10)
+spirits[0] = newItem("Spirit's Spirit", "An aged bottle of wine.", 150, 20, 0)
 
-var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
-var pauper = newEnemy("snake", "Pauper of Evil", 80, 7, 1, 1, 15, null)
-var spirit = newEnemy("ghostie", "Spirit", 85, 5, 1, 2, 17, spirits)
+var ghost = newEnemy("ghost1_battle", "Ghost of Doom", 30, 25, 1, 1, 10, null)
+var pauper = newEnemy("skeleton1_battle", "Skeleton of Evil", 50, 27, 1, 1, 10, null)
+var spirit = newEnemy("ghost2_battle", "Spirit", 85, 22, 1, 2, 17, spirits)
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)
 addRandomEncounter(spirit)

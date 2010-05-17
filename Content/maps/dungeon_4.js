@@ -1,6 +1,8 @@
 
 name("Dungeon 4") // The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile("dungeon_4.tmx") // The tmx map file being used
+overworldMusic("dungeon-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("stone-wall") // The texture for the background in battles
 
 north("dungeon_2.js")
@@ -44,8 +46,8 @@ saveOrb.SetInteractFunc(function(player) {
 addNPE(saveOrb)
 
 
-var ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 10, null)
-var pauper = newEnemy("snake", "Pauper of Evil", 80, 7, 1, 1, 15, null)
+var ghost = newEnemy("ghost1_battle", "Ghost of Doom", 30, 30, 1, 1, 10, null)
+var pauper = newEnemy("skeleton1_battle", "Skeleton of Evil", 50, 25, 1, 1, 10, null)
 
 addRandomEncounter(ghost) //Adds a random encounter to the room
 addRandomEncounter(pauper)

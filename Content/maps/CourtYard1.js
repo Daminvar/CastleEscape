@@ -1,6 +1,8 @@
 
 name("CourtYard 1")
 mapfile("CourtYard1.tmx")
+overworldMusic("courtyard-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("courtyard.2")
 
 
@@ -59,8 +61,8 @@ addNPE(saveOrb)
 
 
 
-var gardener = newEnemy("guyHat-left", "Gardener", 90, 10, 2, 2, 20, null)
-var ghost = newEnemy("ghostie", "Ghost", 100, 9, 2, 3, 22, null)
+var gardener = newEnemy("gardeninja_battle", "Gardeninja", 220, 55, 2, 30, 55, null)
+var ghost = newEnemy("ghost1_battle", "Ghost", 200, 65, 2, 5, 50, null)
 
 addRandomEncounter(gardener)
 addRandomEncounter(ghost)

@@ -56,6 +56,15 @@ namespace CastleEscape
             playerObj = player;
             mappy = map;
 
+            try
+            {
+                if (mappy.OverworldMusic != null)
+                    MediaPlayer.Play(mappy.OverworldMusic);
+            }
+            catch (Exception)
+            {
+            }
+
             //The destination rectangle is the location where the sprite will be drawn.
             destinationRectangle = new Rectangle(0, 0, spriteWidth, spriteHeight);
 
@@ -73,14 +82,22 @@ namespace CastleEscape
 
         public override void Pause()
         {
-            // stops music and stuff to prepare to go to a new state
         }
 
         public override void Resume()
         {
             canPressEscape = false;
             canPressZ = false;
-            
+            try
+            {
+                MediaPlayer.Volume = 1;
+                MediaPlayer.IsRepeating = true;
+                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                    MediaPlayer.Play(mappy.OverworldMusic);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -121,7 +138,7 @@ namespace CastleEscape
 
                 if (entity != null)
                 {
-                    entity.Interact(playerObj);
+                    entity.Interact(playerObj, mappy);
                 }
                 canPressZ = false;
             }
@@ -187,6 +204,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(mappy.MapWidth - 1, 0);
                             timer = 0;
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {
@@ -259,6 +284,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(-(mappy.MapWidth) + 1, 0);
                             timer = 0;
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {
@@ -329,6 +362,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(0, mappy.MapHeight - 1);
                             timer = 0;
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {
@@ -400,6 +441,14 @@ namespace CastleEscape
                         {
                             playerObj.Move(0, -(mappy.MapHeight) + 1);
                             timer = 0;
+                            try
+                            {
+                                if (MediaPlayer.Queue.ActiveSong != mappy.OverworldMusic)
+                                    MediaPlayer.Play(mappy.OverworldMusic);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
                         else
                         {
@@ -433,9 +482,9 @@ namespace CastleEscape
             // create a random number generator
             Random rng = new Random();
 
-            int rdmNum = rng.Next(1, 51);
+            int rdmNum = rng.Next(1, 1501);
 
-            if (rdmNum < (int)((steps / 6) ^ 2))
+            if (rdmNum < steps)
             {
                 return true;
             }
@@ -456,7 +505,7 @@ namespace CastleEscape
                 Enemy currentEnemy = mappy.GetRandomEncounter();
                 if (currentEnemy != null)
                 {
-                    StateManager.PushState(new Battle(game, mappy.BattleTexture, playerObj, currentEnemy, true));
+                    StateManager.PushState(new Battle(game, mappy.BattleTexture, mappy.RandomBattleMusic, playerObj, currentEnemy, true));
                 }
                 pedometer = 0;
             }

@@ -26,6 +26,7 @@ namespace CastleEscape
     [Serializable]
     class Player : IOverworldEntity, IBattleCharacter
     {
+        private const int ATTACK_RANGE = 1;
         private const string PLAYER_OW_TEXTURE = "player-spritesheet";
         [NonSerialized]
         private Texture2D overworldTexture;
@@ -43,6 +44,7 @@ namespace CastleEscape
         private int spriteWidth;
         private int spriteHeight;
         private string chosenAttack;
+        private Random rand;
 
         private List<Item> items;
 
@@ -150,20 +152,17 @@ namespace CastleEscape
             {
                 if (health <= 0)
                     return 0;
-
                 else
                     return health;
             }
 
             set
             {
-
                 if (value >= maxHealth)
                     health = maxHealth;
 
                 else
                     health = value;
-
             }
         }
 
@@ -218,14 +217,14 @@ namespace CastleEscape
             // the level 1 attributes of a player
             level = 1;
             exp = 0;
-            maxHealth = 60;
-            health = 60;
+            maxHealth = 500;
+            health = 500;
             defense = 1;
-            speed = 100;
-            attack = 1000;
-            maxMana = 10;
-            mana = 10;
-            magicAtk = 8;
+            speed = 1;
+            attack = 30;
+            maxMana = 20;
+            mana = 20;
+            magicAtk = 20;
             currentSpriteY = 2;
             currentSpriteX = 1;
             spriteHeight = 40;
@@ -235,6 +234,7 @@ namespace CastleEscape
             gold = 0;
 
             items = new List<Item>();
+            rand = new Random();
         }
 
 
@@ -314,45 +314,45 @@ namespace CastleEscape
             {
 
                 accuracy = 99;
-                mana -= 1;
+                mana -= 2;
 
             }
             else if (chosenAttack == ("Mind Break"))
             {
                 accuracy = 98;
-                mana -= 2;
+                mana -= 4;
             }
         }
 
         public int HealthAfterCombat(IBattleCharacter enemy)
         {
             // create a random number to see if the attack hit!
-            Random rgen = new Random();
-            int didHit = rgen.Next(1, 101);
+            int randAttack = rand.Next(attack - ATTACK_RANGE, attack + ATTACK_RANGE + 1);
+            int didHit = rand.Next(1, 101);
             int newHealth = enemy.Health;
 
             if (didHit <= accuracy)
             {
                 if (accuracy == 100)
                 {
-                    if ((int)((attack / 2) - enemy.Defense) > 0)
+                    if ((int)((randAttack / 2) - enemy.Defense) > 0)
                     {
-                        newHealth -= ((int)((attack / 2) - enemy.Defense));
+                        newHealth -= ((int)((randAttack / 2) - enemy.Defense));
                     }
                 }
 
                 else if (accuracy == 80)
                 {
-                    if ((int)(attack - enemy.Defense) > 0)
+                    if ((int)(randAttack - enemy.Defense) > 0)
                     {
-                        newHealth -= (attack - enemy.Defense);
+                        newHealth -= (randAttack - enemy.Defense);
                     }
                 }
                 else if (accuracy == 55)
                 {
-                    if (((attack * 2) - enemy.Defense) > 0)
+                    if (((randAttack * 2) - enemy.Defense) > 0)
                     {
-                        newHealth -= ((attack * 2) - enemy.Defense);
+                        newHealth -= ((randAttack * 2) - enemy.Defense);
                     }
                 }
 
@@ -360,14 +360,14 @@ namespace CastleEscape
                 {
                     if ((magicAtk - enemy.Defense) > 0 && magicAtk >= 2)
                     {
-                        newHealth -= rgen.Next(2, magicAtk + 1) - enemy.Defense;
+                        newHealth -= magicAtk - enemy.Defense;
                     }
                 }
                 else if (accuracy == 98)
                 {
                     if ((magicAtk - enemy.Defense) > 0 && magicAtk >= 6)
                     {
-                        newHealth -= rgen.Next(4, magicAtk - 1) - enemy.Defense;
+                        newHealth -= magicAtk + 5 - enemy.Defense;
                     }
                 }
 

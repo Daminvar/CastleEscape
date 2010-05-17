@@ -1,6 +1,8 @@
 
 name("Children's Room")
 mapfile("bedroom2.tmx")
+overworldMusic("bedroom-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("bedroom-bg")
 
 east("bedroom1.js")
@@ -16,9 +18,8 @@ lillina.SetInteractFunc(function(player) {
 		setFlag("lillina-guard-attack")
 		reloadMap()
 		dialogue("Guard: How dare you threaten the princess. Die scum!")
-		//TODO: Change sprite and stats
-		var guard = newEnemy("test-npe", "Royal Guard", 100, 70, 1, 1, 10, null)
-		battle(player, guard)
+		var guard = newEnemy("soldier1_battle", "Royal Guard", 220, 50, 8, 10, 100, null)
+		battle(player, guard,"regular-battle-song")
 		setFlag("defeated-lillina-guard")
 		reloadMap()
 		dialogue("Lillina: Please don't kill me, I'll do anything!|Jordan: Er... I'll just go...") // TODO: Possible story event
@@ -54,7 +55,10 @@ essay.SetInteractFunc(function(player) {
 
 addNPE(essay)
 
-var spoiledBrat = newEnemy("test-npe", "Spoiled Brat", 1000, 50, 7, 10, 50, null) //TODO
-var royalCaretaker = newEnemy("test-npe", "Royal Caretaker", 500, 20, 10, 10, 10, null)
+var cookie = []
+cookie[0] = newItem("Fancy Cookie", "A very extravagant dessert.", 100, 50, 0)
+
+var spoiledBrat = newEnemy("brat", "Spoiled Brat", 100, 15, 2, 8, 15, cookie)
+var royalCaretaker = newEnemy("captain1_battle", "Royal Caretaker", 210, 55, 10, 10, 60, null)
 addRandomEncounter(spoiledBrat)
 addRandomEncounter(royalCaretaker)

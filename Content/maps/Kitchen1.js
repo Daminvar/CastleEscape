@@ -1,5 +1,7 @@
 name("Kitchen")
 mapfile("Kitchen1.tmx")
+overworldMusic("kitchen-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("restaurant-kitchen")
 north("Kitchen2.js")
 south("Hallway1.js")
@@ -55,11 +57,10 @@ cook3.SetInteractFunc(function(player)
 		else
 		{
 			dialogue("Bodus: Our specials today are lampreys and herring pie.|Jordan: I'd like some herring pie, please.|Bodus: Coming right up, sir. May I inquire as to how you will be paying?|Jordan: (Payment?! I'm not wasting gold on this stuff!)|Bodus: ...No money?! Out of my sight!")
-			var angryWaiter = newEnemy("ghostie", "Angry Waiter Bodus", 120, 15, 4, 3, 45)
-			battle(player, angryWaiter)
+			var angryWaiter = newEnemy("waiter_battle", "Angry Waiter Bodus", 150, 60, 4, 3, 55, null)
+			battle(player, angryWaiter, "regular-battle-song")
 			dialogue("Jordan snatches the steaming hot herring pie from the defeated waiter.")
 			setFlag("herring-pie")
-			reloadMap()
 		}
 	}
 	else
@@ -107,23 +108,26 @@ treasure.SetInteractFunc(function(player)
 	if(!getFlag("got-treasure"))
 	{
 		dialogue("The chest contained Salad!")
-		var salad = newItem("Salad", "A fresh green salad.", 30, 10, 25)
+		var salad = newItem("Salad", "A fresh green salad.", 130, 10, 0)
 		player.AddItem(salad)
 		setFlag("got-treasure")
 		reloadMap()
 	}
 } )
 
-if(getFlag("got-treasure"))
-{
-}
-else
+if(!getFlag("got-treasure"))
 {
 	addNPE(treasure)
 }
 
-var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
-var evSalad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
+var salad = []
+salad[0] = newItem("Salad", "A fresh green salad.", 130, 10, 0)
+
+var turnip = []
+turnip[0] = newItem("Turnip", "A homegrown turnip.", 70, 30, 0)
+
+var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 90, 40, 3, 2, 20, turnip)
+var evSalad = newEnemy("salad_battle", "Evil Salad", 100, 38, 7, 3, 25, salad)
 
 addRandomEncounter(vegetable)
 addRandomEncounter(evSalad)

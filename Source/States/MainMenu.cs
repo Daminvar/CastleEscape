@@ -39,6 +39,7 @@ namespace CastleEscape
 
         private SpriteFont font;
         private Texture2D background;
+        private Song song;
         private TextMenu menu;
 
         public MainMenu(Game game)
@@ -47,6 +48,13 @@ namespace CastleEscape
             font = game.Content.Load<SpriteFont>("main-menu-font");
             background = game.Content.Load<Texture2D>("main-menu-background");
             menu = new TextMenu(font, options);
+            try
+            {
+                song = game.Content.Load<Song>("main-menu-song");
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public override void Pause()
@@ -60,6 +68,18 @@ namespace CastleEscape
 
         public override void Update(GameTime gameTime)
         {
+            try
+            {
+                if (MediaPlayer.Queue.ActiveSong != song)
+                {
+                    MediaPlayer.Play(song);
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Volume = 1;
+                }
+            }
+            catch (Exception)
+            {
+            }
             menu.Update(gameTime, Keyboard.GetState());
 
             if (!menu.IsFinished)

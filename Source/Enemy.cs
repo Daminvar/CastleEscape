@@ -16,6 +16,7 @@ namespace CastleEscape
 {
     class Enemy : IBattleCharacter
     {
+        private const int ATTACK_RANGE = 3;
         // speed varies on type of enemy
         private string name;
         private int speed;
@@ -24,6 +25,7 @@ namespace CastleEscape
         private int defense;
         private int exp;
         private Item[] items;
+        private Random rand;
 
         Texture2D enemyTexture;
             
@@ -34,6 +36,7 @@ namespace CastleEscape
             attack = 2;
             defense = 1;
             health = 100;
+            rand = new Random();
         }
 
         public Enemy Clone()
@@ -99,10 +102,15 @@ namespace CastleEscape
 
         public int HealthAfterCombat(IBattleCharacter player)
         {
+            int randAttack = rand.Next(attack - ATTACK_RANGE, attack + ATTACK_RANGE + 1);
             int newHealth = player.Health;
-            if (player.Defense < attack)
+            if (player.Defense < randAttack)
             {
-                newHealth -= attack - player.Defense;
+                newHealth -= randAttack - player.Defense;
+            }
+            else
+            {
+                newHealth -= 1; // Always lose at least 1 HP.
             }
 
             return newHealth;

@@ -21,6 +21,8 @@ namespace CastleEscape
     /// </summary>
     class LevelState : State
     {
+        private const string LEVEL_UP_SONG = "level-up-song";
+
         Player play;
         TextMenu tMenu;
         private SpriteFont font;
@@ -58,6 +60,16 @@ namespace CastleEscape
             if (play.Exp < play.ExpToLevel)
             {
                 StateManager.PopState();
+                return;
+            }
+            try
+            {
+                MediaPlayer.Play(game.Content.Load<Song>(LEVEL_UP_SONG));
+                MediaPlayer.Volume = .75f;
+                MediaPlayer.IsRepeating = false;
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -67,10 +79,10 @@ namespace CastleEscape
             {
                 while (play.Exp >= play.ExpToLevel)
                 {
-                    play.MaxHealth += 5;
-                    play.Health += 5;
-                    play.MaxMana += 5;
-                    play.Mana += 5;
+                    play.MaxHealth += 25;
+                    play.Health += 25;
+                    play.MaxMana += 3;
+                    play.Mana += 3;
                     play.Level += 1;
 
                     play.Exp = play.Exp - play.ExpToLevel;
@@ -96,24 +108,10 @@ namespace CastleEscape
 
         private void handleInput(GameTime gametime)
         {
-            string selectedStat = null;
-
             if (!tMenu.IsFinished)
                 return;
 
-            selectedStat = choices[tMenu.SelectedOption];
-
-            if (selectedStat == "Attack")
-                chosenStat = "Attack";
-
-            else if (selectedStat == "Defense")
-                chosenStat = "Defense";
-
-            else if (selectedStat == "Magic Attack")
-                chosenStat = "Magic Attack";
-
-            else if (selectedStat == "Speed")
-                chosenStat = "Speed";
+            chosenStat = choices[tMenu.SelectedOption];
         }
         private void statIncrease(string stat)
         {

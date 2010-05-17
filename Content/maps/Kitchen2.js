@@ -1,5 +1,7 @@
 name("Kitchen")
 mapfile("Kitchen2.tmx")
+overworldMusic("kitchen-song")
+randomBattleMusic("regular-battle-song")
 battleTexture("restaurant-kitchen")
 south("Kitchen1.js")
 east("Kitchen3.js")
@@ -13,7 +15,7 @@ cook1.SetPosition(18,12)
 cook1.SetTexture("chef_left")
 cook1.SetInteractFunc(function(player)
 {
-	dialogue("Doven: Who's there?! I'm off duty, I swear!||||Devon: Oh, it's just some newbie cook.")
+	dialogue("Doven: Who's there?! I'm off duty, I swear!||||Doven: Oh, it's just some newbie cook.")
 } )
 
 cook2.SetPosition(3,6)
@@ -53,8 +55,14 @@ saveOrb.SetInteractFunc(function(player) {
 
 addNPE(saveOrb)
 
-var vegetable = newEnemy("snake", "Deadgetable", 90, 10, 2, 2, 20, null)
-var salad = newEnemy("ghostie", "Evil Salad", 100, 9, 2, 3, 22, null)
+var salad = []
+salad[0] = newItem("Salad", "A fresh green salad.", 130, 10, 0)
+
+var turnip = []
+turnip[0] = newItem("Turnip", "A homegrown turnip.", 70, 30, 0)
+
+var vegetable = newEnemy("deadgetable_battle", "Deadgetable", 90, 45, 2, 2, 20, turnip)
+var evSalad = newEnemy("salad_battle", "Evil Salad", 100, 40, 7, 3, 25, salad)
 
 addRandomEncounter(vegetable)
-addRandomEncounter(salad)
+addRandomEncounter(evSalad)
