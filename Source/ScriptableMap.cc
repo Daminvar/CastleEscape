@@ -7,7 +7,7 @@ using namespace std;
 
 namespace CastleEscape {
 
-const string MAP_DIRECTORY = "Content/maps/";
+const string MAP_DIRECTORY = "Content/Maps/";
 
 ScriptableMap::ScriptableMap() {
 	//TODO: Constructor

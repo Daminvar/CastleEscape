@@ -1,6 +1,3 @@
-import os
-import os.path
-
 APPNAME = "CastleEscape"
 VERSION = "0.2.0"
 top = "."
@@ -17,9 +14,8 @@ def build(bld):
     bld(
             features = ["cxx", "cprogram"],
             source = bld.glob("Source/*.cc") +
-                bld.glob("Source/States/*.cc") +
                 bld.glob("Source/tinyxml/*.cpp"),
             target = APPNAME,
             vnum = VERSION,
-            lib = ["sfml-graphics", "sfml-window", "sfml-system", "v8", "pthread"],
+            lib = ["sfml-graphics", "sfml-window", "sfml-system", "lua"],
     )
