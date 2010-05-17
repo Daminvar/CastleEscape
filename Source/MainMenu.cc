@@ -27,11 +27,10 @@ MainMenu::MainMenu() {
 	options.push_back("Load Game");
 	options.push_back("About");
 	options.push_back("Quit");
-	menu = new TextMenu(options, font);
+	menu.reset(new TextMenu(options, font));
 }
 
 MainMenu::~MainMenu() {
-	delete menu;
 }
 
 void MainMenu::Pause() {

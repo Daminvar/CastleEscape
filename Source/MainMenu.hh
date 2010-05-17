@@ -1,7 +1,10 @@
 #ifndef MAINMENU_HH
 #define MAINMENU_HH
 
+#include <memory>
+
 #include <SFML/Graphics.hpp>
+
 #include "State.hh"
 #include "TextMenu.hh"
 
@@ -20,7 +23,7 @@ private:
 	sf::Image background;
 	sf::Sprite bgSprite;
 	std::vector<std::string> options;
-	TextMenu* menu;
+	std::auto_ptr<TextMenu> menu;
 };
 
 } // namespace CastleEscape
