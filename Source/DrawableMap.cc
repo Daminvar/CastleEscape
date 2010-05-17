@@ -9,7 +9,7 @@ using namespace std;
 namespace CastleEscape {
 
 DrawableMap::DrawableMap() {
-	tileset.LoadFromFile("Content/tileset.png");
+	tileset.LoadFromFile("Content/Graphics/tileset.png");
 	tileset.SetSmooth(false); //necessary to prevent rendering glitches
 }
 

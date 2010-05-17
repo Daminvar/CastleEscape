@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "StateManager.hh"
-#include "States/MainMenu.hh"
+#include "MainMenu.hh"
 using namespace CastleEscape;
 
 int main() {

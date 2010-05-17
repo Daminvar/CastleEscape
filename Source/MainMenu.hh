@@ -2,8 +2,8 @@
 #define MAINMENU_HH
 
 #include <SFML/Graphics.hpp>
-#include "../State.hh"
-#include "../TextMenu.hh"
+#include "State.hh"
+#include "TextMenu.hh"
 
 namespace CastleEscape {
 

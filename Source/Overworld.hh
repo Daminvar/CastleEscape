@@ -3,8 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../DrawableMap.hh"
-#include "../State.hh"
+#include "DrawableMap.hh"
+#include "State.hh"
 
 namespace CastleEscape {
 
