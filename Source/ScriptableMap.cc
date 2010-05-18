@@ -6,6 +6,7 @@ using namespace std;
 
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
+#include <luabind/object.hpp>
 
 namespace CastleEscape {
 
@@ -55,23 +56,20 @@ bool ScriptableMap::ChangeMap(Directions direction) {
 }
 
 void ScriptableMap::parseScriptFile(string filename) {
-	self = this;
+	//self = this;
 	using namespace luabind;
+	/*
 	open(state.get());
 	module(state.get())[
 	                    def("name", &ScriptableMap::js_name),
 	                    def("mapfile", &ScriptableMap::js_mapfile)
 
 	                    ];
+	*/
 	luaL_dofile(state.get(), filename.c_str());
-}
-
-void ScriptableMap::js_name(string name) {
-	self->mapName = name;
-}
-
-void ScriptableMap::js_mapfile(string mapfile) {
-	self->tmxMapFilename = mapfile;
+	object global = globals(state.get());
+	mapName = object_cast<string>(global["name"]);
+	tmxMapFilename = object_cast<string>(global["mapfile"]);
 }
 
 } // namespace CastleEscape

@@ -1,23 +1,23 @@
 
-name("Test Map 1") -- The name of the map (eg. "Kitchen", "Main Hallway", etc.)
-mapfile("testmap.tmx") -- The tmx map file being used
+name = "Test Map 1" -- The name of the map (eg. "Kitchen", "Main Hallway", etc.)
+mapfile = "testmap.tmx" -- The tmx map file being used
 --[[
-battleTexture("test-battle-background") -- The texture for the background in battles
+battleTexture = "test-battle-background" -- The texture for the background in battles
 
-east("testmap2.lua") -- The map to the east.
---west("blah")
+east = "testmap2.lua" -- The map to the east.
+--west = "blah"
 --etc...
 
 local bob = newNPE() -- New NPE creates a new NPE object.
-bob.SetTexture("test-npe.png") -- Sets the overworld texture for the NPE
+bob:SetTexture("test-npe.png") -- Sets the overworld texture for the NPE
 
 if getFlag("talked-to-bob") then --getFlag(<string>) returns true if the key is set, false otherwise
-	bob.SetPosition(5, 5)
+	bob:SetPosition(5, 5)
 else
-	bob.SetPosition(12, 11)
+	bob:SetPosition(12, 11)
 end
 
-bob.SetInteractFunc(function(player) --Sets the interact function for the specified NPE
+bob.Interact = function(player) --Sets the interact function for the specified NPE
 	if getFlag("talked-to-bob") then
 		dialogue("I have nothing more to say to you.") -- Pushes on a dialogue state with the selected text
 	else
@@ -29,20 +29,20 @@ bob.SetInteractFunc(function(player) --Sets the interact function for the specif
 		setFlag("talked-to-bob") -- Sets a flag to "true"
 		reloadMap() -- Reloads the map
 	end
-end)
+end
 
 -- Adds an NPE to the room. It's important that you call this function.
 -- Otherwise, the NPE won't appear in the room.
 addNPE(bob)
 
 local saveOrb = newNPE()
-saveOrb.SetTexture("orb-of-saving")
-saveOrb.SetPosition(1, 8)
+saveOrb:SetTexture("orb-of-saving")
+saveOrb:SetPosition(1, 8)
 
-saveOrb.SetInteractFunc(function(player)
+saveOrb.Interact = function(player)
 	save(player) -- Saves the game. Try to use this function only with the orb of saving.
 	dialogue("Game has been saved.")
-end)
+end
 
 addNPE(saveOrb)
 

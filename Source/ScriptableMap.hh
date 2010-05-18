@@ -40,8 +40,10 @@ private:
 	void loadMapAndScript(std::string filename);
 
 	// Bound Javascript functions
+	/*
 	static void js_name(std::string name);
 	static void js_mapfile(std::string mapfile);
+	*/
 };
 
 } // namespace CastleEscape
