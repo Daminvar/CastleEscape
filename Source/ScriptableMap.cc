@@ -67,12 +67,10 @@ void ScriptableMap::parseScriptFile(string filename) {
 }
 
 void ScriptableMap::js_name(string name) {
-	cout << "Name: " << name << endl;
 	self->mapName = name;
 }
 
 void ScriptableMap::js_mapfile(string mapfile) {
-	cout << "Mapfile: " << mapfile << endl;
 	self->tmxMapFilename = mapfile;
 }
 
