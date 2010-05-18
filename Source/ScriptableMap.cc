@@ -1,20 +1,22 @@
 #include "ScriptableMap.hh"
 
+#include <iostream>
 #include <string>
 using namespace std;
 
-#include <v8.h>
+#include <lua.hpp>
+#include <luabind/luabind.hpp>
 
 namespace CastleEscape {
 
 const string MAP_DIRECTORY = "Content/Maps/";
+ScriptableMap* self;
 
-ScriptableMap::ScriptableMap() {
-	//TODO: Constructor
+ScriptableMap::ScriptableMap() :
+	state(lua_open()) {
 }
 
 ScriptableMap::~ScriptableMap() {
-	//TODO: Destructor
 }
 
 int ScriptableMap::GetMapWidth() {
@@ -30,8 +32,7 @@ int ScriptableMap::GetTileSize() {
 }
 
 string ScriptableMap::GetMapName() {
-	//TODO
-	return "Meh";
+	return mapName;
 }
 
 void ScriptableMap::LoadMap(string filename) {
@@ -39,6 +40,7 @@ void ScriptableMap::LoadMap(string filename) {
 }
 
 void ScriptableMap::loadMapAndScript(string filename) {
+	scriptFilename = filename;
 	parseScriptFile(filename);
 	tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
 }
@@ -53,7 +55,25 @@ bool ScriptableMap::ChangeMap(Directions direction) {
 }
 
 void ScriptableMap::parseScriptFile(string filename) {
-	//TODO v8::
+	self = this;
+	using namespace luabind;
+	open(state.get());
+	module(state.get())[
+	                    def("name", &ScriptableMap::js_name),
+	                    def("mapfile", &ScriptableMap::js_mapfile)
+
+	                    ];
+	luaL_dofile(state.get(), filename.c_str());
+}
+
+void ScriptableMap::js_name(string name) {
+	cout << "Name: " << name << endl;
+	self->mapName = name;
+}
+
+void ScriptableMap::js_mapfile(string mapfile) {
+	cout << "Mapfile: " << mapfile << endl;
+	self->tmxMapFilename = mapfile;
 }
 
 } // namespace CastleEscape

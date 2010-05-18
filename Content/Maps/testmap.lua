@@ -1,6 +1,7 @@
 
 name("Test Map 1") -- The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile("testmap.tmx") -- The tmx map file being used
+--[[
 battleTexture("test-battle-background") -- The texture for the background in battles
 
 east("testmap2.lua") -- The map to the east.
@@ -50,3 +51,4 @@ local ghost = newEnemy("ghostie", "Ghost of Doom", 50, 7, 1, 1, 1000, null)
 local pauper = newEnemy("snake", "Pauper of Evil", 80, 5, 1, 1, 1000, null)
 addRandomEncounter(ghost) --Adds a random encounter to the room
 addRandomEncounter(pauper)
+]]

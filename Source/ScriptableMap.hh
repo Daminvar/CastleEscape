@@ -1,9 +1,10 @@
 #ifndef SCRIPTABLEMAP_HH
 #define SCRIPTABLEMAP_HH
 
+#include <memory>
 #include <string>
 
-#include <SFML/Graphics.hpp>
+#include <lua.hpp>
 
 #include "TMXMap.hh"
 
@@ -32,9 +33,15 @@ protected:
 private:
 	std::string scriptFilename;
 	std::string tmxMapFilename;
+	std::string mapName;
+	std::auto_ptr<lua_State> state;
 
 	void parseScriptFile(std::string filename);
 	void loadMapAndScript(std::string filename);
+
+	// Bound Javascript functions
+	static void js_name(std::string name);
+	static void js_mapfile(std::string mapfile);
 };
 
 } // namespace CastleEscape
