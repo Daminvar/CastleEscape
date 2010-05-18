@@ -3,7 +3,7 @@
 .cproject
 .project
 .lock-wscript
-.waf*
+*waf-*
 Thumbs.db
 Build/
 Docs/
