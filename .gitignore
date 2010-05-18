@@ -1,5 +1,7 @@
 *.o
 .pydevproject
+.cproject
+.project
 .lock-wscript
 .waf*
 Thumbs.db
