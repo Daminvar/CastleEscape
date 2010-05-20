@@ -9,16 +9,6 @@
 namespace CastleEscape {
 
 class TextMenu {
-private:
-	sf::Font font;
-	std::vector<std::string> options;
-	uint selectedOption;
-	float defaultStretch;
-	float selectedStretch;
-	bool canMove;
-	bool isFinished;
-	bool canPressZ;
-
 public:
 	TextMenu(const std::vector<std::string>& options, const sf::Font& font);
 	bool IsFinished();
@@ -28,6 +18,16 @@ public:
 	std::vector<std::string> SetOptions(std::vector<std::string> options);
 	void Update(const sf::Clock& clock, const sf::Input& input);
 	void Draw(sf::RenderWindow& window, int x, int y, const sf::Color& color);
+
+private:
+	sf::Font font;
+	std::vector<std::string> options;
+	uint selectedOption;
+	float defaultStretch;
+	float selectedStretch;
+	bool canMove;
+	bool isFinished;
+	bool canPressZ;
 };
 
 } // namespace CastleEscape
