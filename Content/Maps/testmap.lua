@@ -1,6 +1,11 @@
 
 name = "Test Map 1" -- The name of the map (eg. "Kitchen", "Main Hallway", etc.)
-mapfile = "testmap.tmx" -- The tmx map file being used
+
+if getFlag("poop") then
+    mapfile = "testmap.tmx" -- The tmx map file being used
+else
+    mapfile = "testmap2.tmx"
+end
 --[[
 east = "testmap2.lua" -- The map to the east.
 

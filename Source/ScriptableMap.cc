@@ -58,7 +58,6 @@ bool ScriptableMap::ChangeMap(Directions direction) {
 }
 
 void ScriptableMap::parseScriptFile(string filename) {
-	//self = this;
 	using namespace luabind;
 	open(state.get());
 
