@@ -9,6 +9,7 @@ using namespace std;
 #include <luabind/object.hpp>
 
 #include "GameData.hh"
+#include "NPE.hh"
 
 namespace CastleEscape {
 
@@ -60,9 +61,11 @@ bool ScriptableMap::ChangeMap(Directions direction) {
 void ScriptableMap::parseScriptFile(string filename) {
 	using namespace luabind;
 	open(state.get());
-
 	module(state.get())[
-	                    def("getFlag", &GameData::GetFlag)
+	                    def("getFlag", &GameData::GetFlag),
+	                    class_<NPE>("NPE")
+							.def("SetPosition", &NPE::SetPosition)
+							.def("SetTexture", &NPE::SetTexture)
 	                    ];
 
 	luaL_dofile(state.get(), filename.c_str());

@@ -6,7 +6,7 @@ if getFlag("poop") then
 else
     mapfile = "testmap2.tmx"
 end
---[[
+
 east = "testmap2.lua" -- The map to the east.
 
 local bob = NPE() -- New NPE creates a new NPE object.
@@ -18,6 +18,7 @@ else
 	bob:SetPosition(12, 11)
 end
 
+--[[
 bob.Interact = function(player) --Sets the interact function for the specified NPE
 	if getFlag("talked-to-bob") then
 		dialogue("I have nothing more to say to you.") -- Pushes on a dialogue state with the selected text
