@@ -8,10 +8,6 @@
 namespace CastleEscape {
 
 class StateManager {
-private:
-	static std::vector<State*> states;
-	static bool running;
-
 public:
 	static void Initialize();
 	static int GetStackSize();
@@ -23,6 +19,10 @@ public:
 	static void PopState();
 	static void PopAllStates();
 	static bool IsEmpty();
+
+private:
+	static std::vector<State*> states;
+	static bool running;
 };
 
 } // namespace CastleEscape

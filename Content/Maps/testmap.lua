@@ -2,13 +2,9 @@
 name = "Test Map 1" -- The name of the map (eg. "Kitchen", "Main Hallway", etc.)
 mapfile = "testmap.tmx" -- The tmx map file being used
 --[[
-battleTexture = "test-battle-background" -- The texture for the background in battles
-
 east = "testmap2.lua" -- The map to the east.
---west = "blah"
---etc...
 
-local bob = newNPE() -- New NPE creates a new NPE object.
+local bob = NPE() -- New NPE creates a new NPE object.
 bob:SetTexture("test-npe.png") -- Sets the overworld texture for the NPE
 
 if getFlag("talked-to-bob") then --getFlag(<string>) returns true if the key is set, false otherwise

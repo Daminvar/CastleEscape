@@ -2,12 +2,14 @@
 
 #include <iostream>
 #include <vector>
+using namespace std;
+
 #include <SFML/Graphics.hpp>
 #include "State.hh"
 
 namespace CastleEscape {
 
-std::vector<State*> StateManager::states;
+vector<State*> StateManager::states;
 bool StateManager::running;
 
 void StateManager::Initialize() {

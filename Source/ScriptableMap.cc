@@ -8,6 +8,8 @@ using namespace std;
 #include <luabind/luabind.hpp>
 #include <luabind/object.hpp>
 
+#include "GameData.hh"
+
 namespace CastleEscape {
 
 const string MAP_DIRECTORY = "Content/Maps/";
@@ -58,14 +60,12 @@ bool ScriptableMap::ChangeMap(Directions direction) {
 void ScriptableMap::parseScriptFile(string filename) {
 	//self = this;
 	using namespace luabind;
-	/*
 	open(state.get());
-	module(state.get())[
-	                    def("name", &ScriptableMap::js_name),
-	                    def("mapfile", &ScriptableMap::js_mapfile)
 
+	module(state.get())[
+	                    def("getFlag", &GameData::GetFlag)
 	                    ];
-	*/
+
 	luaL_dofile(state.get(), filename.c_str());
 	object global = globals(state.get());
 	mapName = object_cast<string>(global["name"]);
