@@ -38,6 +38,8 @@ private:
 
 	void parseScriptFile(std::string filename);
 	void loadMapAndScript(std::string filename);
+
+	void lua_test();
 };
 
 } // namespace CastleEscape

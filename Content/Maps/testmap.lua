@@ -18,6 +18,11 @@ else
 	bob:SetPosition(12, 11)
 end
 
+test()
+self:test()
+blah = ScriptableMap()
+blah:test()
+
 --[[
 bob.Interact = function(player) --Sets the interact function for the specified NPE
 	if getFlag("talked-to-bob") then

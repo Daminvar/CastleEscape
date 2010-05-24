@@ -65,13 +65,20 @@ void ScriptableMap::parseScriptFile(string filename) {
 	                    def("getFlag", &GameData::GetFlag),
 	                    class_<NPE>("NPE")
 							.def("SetPosition", &NPE::SetPosition)
-							.def("SetTexture", &NPE::SetTexture)
+							.def("SetTexture", &NPE::SetTexture),
+						class_<ScriptableMap>("ScriptableMap")
+							.def("test", &ScriptableMap::lua_test)
 	                    ];
 
-	luaL_dofile(state.get(), filename.c_str());
 	object global = globals(state.get());
+	global["self"] = this;
+	luaL_dofile(state.get(), filename.c_str());
 	mapName = object_cast<string>(global["name"]);
 	tmxMapFilename = object_cast<string>(global["mapfile"]);
+}
+
+void ScriptableMap::lua_test() {
+	cout << "Heyo!" << endl;
 }
 
 } // namespace CastleEscape
