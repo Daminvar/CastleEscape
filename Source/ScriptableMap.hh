@@ -31,13 +31,13 @@ public:
 
 protected:
 	TMXMap tmxMap;
+	boost::ptr_vector<NPE> NPEs;
 
 private:
 	std::string scriptFilename;
 	std::string tmxMapFilename;
 	std::string mapName;
 	std::auto_ptr<lua_State> state;
-	boost::ptr_vector<NPE> NPEs;
 
 	void parseScriptFile(std::string filename);
 	void loadMapAndScript(std::string filename);

@@ -52,7 +52,11 @@ void DrawableMap::drawLayers(sf::RenderWindow& window, MapVector layers,
 }
 
 void DrawableMap::drawNPEs(sf::RenderWindow& window) {
-	//TODO
+	for (int i = 0; i < NPEs.size(); i++) {
+		int xPos = NPEs[i].GetXPos() * tmxMap.GetTileSize();
+		int yPos = NPEs[i].GetYPos() * tmxMap.GetTileSize();
+		NPEs[i].Draw(window, xPos, yPos);
+	}
 }
 
 } // namespace CastleEscape

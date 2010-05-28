@@ -31,7 +31,9 @@ void NPE::SetTexture(string textureName) {
 }
 
 void NPE::Draw(sf::RenderWindow& window, int x, int y) {
-	//TODO
+	sf::Sprite sprite(texture);
+	sprite.SetPosition(x, y);
+	window.Draw(sprite);
 }
 
 ostream& operator<<(ostream& os, const NPE& npe) {
