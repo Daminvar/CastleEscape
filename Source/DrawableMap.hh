@@ -18,6 +18,7 @@ private:
 	sf::Image tileset;
 	void drawLayers(sf::RenderWindow& window, MapVector layers, int xPos,
 			int yPos);
+	void drawNPEs(sf::RenderWindow& window);
 };
 
 } // namespace CastleEscape

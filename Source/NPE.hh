@@ -1,6 +1,7 @@
 #ifndef NPE_HH
 #define NPE_HH
 
+#include <iostream>
 #include <string>
 
 #include <SFML/Graphics.hpp>
@@ -14,11 +15,14 @@ public:
 	int GetYPos();
 	void SetPosition(int x, int y);
 	void SetTexture(std::string textureName);
+	void Draw(sf::RenderWindow& window, int x, int y);
 
 private:
 	int xPos;
 	int yPos;
 	sf::Image texture;
+
+	friend std::ostream& operator<<(std::ostream& os, const NPE& npe);
 };
 
 } // namespace CastleEscape

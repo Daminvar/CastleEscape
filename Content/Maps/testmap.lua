@@ -1,28 +1,24 @@
 
-name = "Test Map 1" -- The name of the map (eg. "Kitchen", "Main Hallway", etc.)
+name = "Test Map 1"
 
 if getFlag("poop") then
-    mapfile = "testmap.tmx" -- The tmx map file being used
+    mapfile = "testmap.tmx"
 else
     mapfile = "testmap2.tmx"
 end
 
-east = "testmap2.lua" -- The map to the east.
+east = "testmap2.lua"
 
-local bob = NPE() -- New NPE creates a new NPE object.
-bob:SetTexture("test-npe.png") -- Sets the overworld texture for the NPE
+local bob = NPE()
+bob:SetTexture("test-npe.png")
 
-if getFlag("talked-to-bob") then --getFlag(<string>) returns true if the key is set, false otherwise
+if getFlag("talked-to-bob") then
 	bob:SetPosition(5, 5)
 else
 	bob:SetPosition(12, 11)
 end
 
-test()
-self:test()
-blah = ScriptableMap()
-blah:test()
-print("blah")
+self:addNPE(bob)
 --[[
 bob.Interact = function(player) --Sets the interact function for the specified NPE
 	if getFlag("talked-to-bob") then

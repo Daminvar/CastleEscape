@@ -4,8 +4,10 @@
 #include <memory>
 #include <string>
 
+#include <boost/ptr_container/ptr_vector.hpp>
 #include <lua.hpp>
 
+#include "NPE.hh"
 #include "TMXMap.hh"
 
 namespace CastleEscape {
@@ -35,11 +37,12 @@ private:
 	std::string tmxMapFilename;
 	std::string mapName;
 	std::auto_ptr<lua_State> state;
+	boost::ptr_vector<NPE> NPEs;
 
 	void parseScriptFile(std::string filename);
 	void loadMapAndScript(std::string filename);
 
-	void lua_test();
+	void addNPE(NPE* npe);
 };
 
 } // namespace CastleEscape

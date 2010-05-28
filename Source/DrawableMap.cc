@@ -20,6 +20,7 @@ DrawableMap::~DrawableMap() {
 void DrawableMap::DrawBase(sf::RenderWindow& window, int xPos, int yPos) {
 	MapVector baseLayers = tmxMap.GetBaseLayers();
 	drawLayers(window, baseLayers, xPos, yPos);
+	drawNPEs(window);
 
 }
 
@@ -48,6 +49,10 @@ void DrawableMap::drawLayers(sf::RenderWindow& window, MapVector layers,
 			}
 		}
 	}
+}
+
+void DrawableMap::drawNPEs(sf::RenderWindow& window) {
+	//TODO
 }
 
 } // namespace CastleEscape

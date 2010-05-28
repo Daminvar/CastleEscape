@@ -1,7 +1,10 @@
 #include "NPE.hh"
 
+#include <iostream>
 #include <string>
 using namespace std;
+
+#include <SFML/Graphics.hpp>
 
 namespace CastleEscape {
 
@@ -25,6 +28,14 @@ void NPE::SetPosition(int x, int y) {
 void NPE::SetTexture(string textureName) {
 	texture.LoadFromFile("Content/Graphics/" + textureName);
 	texture.SetSmooth(false);
+}
+
+void NPE::Draw(sf::RenderWindow& window, int x, int y) {
+	//TODO
+}
+
+ostream& operator<<(ostream& os, const NPE& npe) {
+	return os << "NPE: (" << npe.xPos << "," << npe.yPos << ")";
 }
 
 } // namespace CastleEscape
