@@ -22,7 +22,7 @@ test()
 self:test()
 blah = ScriptableMap()
 blah:test()
-
+print("blah")
 --[[
 bob.Interact = function(player) --Sets the interact function for the specified NPE
 	if getFlag("talked-to-bob") then

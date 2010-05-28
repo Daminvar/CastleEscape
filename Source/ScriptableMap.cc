@@ -61,17 +61,16 @@ bool ScriptableMap::ChangeMap(Directions direction) {
 void ScriptableMap::parseScriptFile(string filename) {
 	using namespace luabind;
 	open(state.get());
-	module(state.get())[
-	                    def("getFlag", &GameData::GetFlag),
-	                    class_<NPE>("NPE")
-							.def("SetPosition", &NPE::SetPosition)
-							.def("SetTexture", &NPE::SetTexture),
-						class_<ScriptableMap>("ScriptableMap")
-							.def("test", &ScriptableMap::lua_test)
-	                    ];
-
+	module(state.get()) [
+		def("getFlag", &GameData::GetFlag),
+		class_<NPE>("NPE")
+			.def("SetPosition", &NPE::SetPosition)
+			.def("SetTexture", &NPE::SetTexture),
+		class_<ScriptableMap>("ScriptableMap")
+			.def("test", &ScriptableMap::lua_test)
+	];
 	object global = globals(state.get());
-	global["self"] = this;
+	global["_G"] = this;
 	luaL_dofile(state.get(), filename.c_str());
 	mapName = object_cast<string>(global["name"]);
 	tmxMapFilename = object_cast<string>(global["mapfile"]);
