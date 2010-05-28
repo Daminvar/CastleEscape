@@ -5,8 +5,8 @@
 using namespace std;
 
 #include <lua.hpp>
-#include <luabind/luabind.hpp>
-#include <luabind/object.hpp>
+#include "luabind/luabind.hpp"
+#include "luabind/object.hpp"
 
 #include "GameData.hh"
 #include "NPE.hh"

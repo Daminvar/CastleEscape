@@ -14,8 +14,10 @@ def build(bld):
     bld(
             features = ["cxx", "cprogram"],
             source = bld.glob("Source/*.cc") +
-                bld.glob("Source/tinyxml/*.cpp"),
+                bld.glob("Source/tinyxml/*.cpp") +
+                bld.glob("Source/luabind/*.cpp"),
             target = APPNAME,
             vnum = VERSION,
-            lib = ["sfml-graphics", "sfml-window", "sfml-system", "lua", "luabind"],
+            includes = ["Source"],
+            lib = ["sfml-graphics", "sfml-window", "sfml-system", "lua"],
     )
