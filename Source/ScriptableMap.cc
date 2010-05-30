@@ -78,7 +78,6 @@ void ScriptableMap::parseScriptFile(string filename) {
 }
 
 void ScriptableMap::addNPE(NPE* npe) {
-	cout << *npe << endl;
 	NPEs.push_back(npe);
 }
 

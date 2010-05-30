@@ -1,8 +1,9 @@
 ﻿#ifndef STATEMANAGER_HH
 #define STATEMANAGER_HH
 
-#include <vector>
+#include <boost/ptr_container/ptr_vector.hpp>
 #include <SFML/Graphics.hpp>
+
 #include "State.hh"
 
 namespace CastleEscape {
@@ -21,7 +22,7 @@ public:
 	static bool IsEmpty();
 
 private:
-	static std::vector<State*> states;
+	static boost::ptr_vector<State> states;
 	static bool running;
 };
 

@@ -11,6 +11,8 @@ using boost::format;
 
 namespace CastleEscape {
 
+const string ERROR_STRING = "Error: Could not load the map %1%\n";
+
 TMXMap::TMXMap() {
 	//TODO: Constructor
 }
@@ -42,12 +44,22 @@ void TMXMap::ParseTMXFile(string filename) {
 
 	TiXmlHandle map = handle.FirstChild("map");
 	if (!map.ToElement()) {
-		format error = format("Error: Could not load the map %1%\nReason: Could not find the <map> element.") % filename;
+		format error = format(ERROR_STRING
+				+ "Reason: Could not find the <map> element.") % filename;
 		throw runtime_error(error.str());
 	}
-	map.ToElement()->QueryIntAttribute("width", &mapWidth);
-	map.ToElement()->QueryIntAttribute("height", &mapHeight);
-	map.ToElement()->QueryIntAttribute("tilewidth", &tilesize);
+
+	int errorCode = map.ToElement()->QueryIntAttribute("width", &mapWidth);
+	errorCode = errorCode != TIXML_SUCCESS ? errorCode
+			: map.ToElement()->QueryIntAttribute("height", &mapHeight);
+	errorCode = errorCode != TIXML_SUCCESS ? errorCode
+			: map.ToElement()->QueryIntAttribute("tilewidth", &tilesize);
+
+	if (errorCode != TIXML_SUCCESS) {
+		format error = format(ERROR_STRING
+			+ "Reason: The <map> element doesn't have the required attributes.") % filename;
+		throw runtime_error(error.str());
+	}
 
 	baseLayers.clear();
 	topLayers.clear();
@@ -55,13 +67,33 @@ void TMXMap::ParseTMXFile(string filename) {
 
 	TiXmlElement* layers =
 			handle.FirstChild("map").FirstChild("layer").ToElement();
+	if (!layers) {
+		format error = format(ERROR_STRING + "Reason: The map has no layers.") % filename;
+		throw runtime_error(error.str());
+	}
 	for (; layers; layers = layers->NextSiblingElement()) {
-		string name = layers->Attribute("name");
+		string name = layers->Attribute("name") != NULL ?
+				layers->Attribute("name") : "";
+		if (name.empty()) {
+			format error = format(ERROR_STRING
+					+ "Reason: A map layer has no name.") % filename;
+			throw runtime_error(error.str());
+		}
 		TiXmlNode* layerData = layers->FirstChild();
+		if (layerData == NULL) {
+			format error = format(ERROR_STRING
+				+ "Reason: A layer doesn't have a <data> child.") % filename;
+			throw runtime_error(error.str());
+		}
 		if (name == "base")
 			baseLayers.push_back(parseLayer(layerData));
 		else if (name == "top")
 			topLayers.push_back(parseLayer(layerData));
+		else if (layers->ValueStr() != "objectgroup") {
+			format error = format(ERROR_STRING
+				+ "Reason: A layer has an invalid name (%2%).") % filename % name;
+			throw runtime_error(error.str());
+		}
 	}
 	//TODO: Get collision data
 }
