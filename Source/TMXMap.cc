@@ -1,10 +1,13 @@
 #include "TMXMap.hh"
 
+#include <stdexcept>
 #include <string>
 #include <vector>
 using namespace std;
 
+#include <boost/format.hpp>
 #include "tinyxml/tinyxml.h"
+using boost::format;
 
 namespace CastleEscape {
 
@@ -38,6 +41,10 @@ void TMXMap::ParseTMXFile(string filename) {
 	TiXmlHandle handle(&doc);
 
 	TiXmlHandle map = handle.FirstChild("map");
+	if (!map.ToElement()) {
+		format error = format("Error: Could not load the map %1%\nReason: Could not find the <map> element.") % filename;
+		throw runtime_error(error.str());
+	}
 	map.ToElement()->QueryIntAttribute("width", &mapWidth);
 	map.ToElement()->QueryIntAttribute("height", &mapHeight);
 	map.ToElement()->QueryIntAttribute("tilewidth", &tilesize);
@@ -46,7 +53,8 @@ void TMXMap::ParseTMXFile(string filename) {
 	topLayers.clear();
 	collisionRects.clear();
 
-	TiXmlElement* layers = handle.FirstChild("map").FirstChild("layer").ToElement();
+	TiXmlElement* layers =
+			handle.FirstChild("map").FirstChild("layer").ToElement();
 	for (; layers; layers = layers->NextSiblingElement()) {
 		string name = layers->Attribute("name");
 		TiXmlNode* layerData = layers->FirstChild();

@@ -1,6 +1,11 @@
+#include <iostream>
+using namespace std;
+
 #include <SFML/Graphics.hpp>
-#include "StateManager.hh"
+
+#include "ErrorState.hh"
 #include "MainMenu.hh"
+#include "StateManager.hh"
 using namespace CastleEscape;
 
 int main() {
@@ -16,12 +21,18 @@ int main() {
 			if (event.Type == sf::Event::Closed)
 				app.Close();
 		}
-		StateManager::Update(clock, app.GetInput());
-		if (StateManager::IsEmpty())
-			app.Close();
-		app.Clear();
-		StateManager::Draw(app);
-		app.Display();
+		try {
+			StateManager::Update(clock, app.GetInput());
+			if (StateManager::IsEmpty())
+				app.Close();
+			app.Clear();
+			StateManager::Draw(app);
+			app.Display();
+		} catch (const exception& e) {
+			cout << e.what() << endl;
+			StateManager::PopAllStates();
+			StateManager::PushState(new ErrorState(e.what()));
+		}
 	}
 	return 0;
 }
