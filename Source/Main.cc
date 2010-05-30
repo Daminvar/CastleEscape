@@ -29,7 +29,7 @@ int main() {
 			StateManager::Draw(app);
 			app.Display();
 		} catch (const exception& e) {
-			cout << e.what() << endl;
+			cerr << e.what() << endl;
 			StateManager::PopAllStates();
 			StateManager::PushState(new ErrorState(e.what()));
 		}
