@@ -20,14 +20,14 @@ public:
 	void Draw(sf::RenderWindow& window, int x, int y, const sf::Color& color);
 
 private:
-	sf::Font font;
-	std::vector<std::string> options;
-	uint selectedOption;
-	float defaultStretch;
-	float selectedStretch;
-	bool canMove;
-	bool isFinished;
-	bool canPressZ;
+	sf::Font font_;
+	std::vector<std::string> options_;
+	uint selectedOption_;
+	float defaultStretch_;
+	float selectedStretch_;
+	bool canMove_;
+	bool isFinished_;
+	bool canPressZ_;
 };
 
 } // namespace CastleEscape
