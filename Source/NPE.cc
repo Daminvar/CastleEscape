@@ -13,31 +13,31 @@ NPE::NPE() {
 }
 
 int NPE::GetXPos() {
-	return xPos;
+	return xPos_;
 }
 
 int NPE::GetYPos() {
-	return yPos;
+	return yPos_;
 }
 
 void NPE::SetPosition(int x, int y) {
-	xPos = x;
-	yPos = y;
+	xPos_ = x;
+	yPos_ = y;
 }
 
 void NPE::SetTexture(string textureName) {
-	texture.LoadFromFile("Content/Graphics/" + textureName);
-	texture.SetSmooth(false);
+	texture_.LoadFromFile("Content/Graphics/" + textureName);
+	texture_.SetSmooth(false);
 }
 
 void NPE::Draw(sf::RenderWindow& window, int x, int y) {
-	sf::Sprite sprite(texture);
+	sf::Sprite sprite(texture_);
 	sprite.SetPosition(x, y);
 	window.Draw(sprite);
 }
 
 ostream& operator<<(ostream& os, const NPE& npe) {
-	return os << "NPE: (" << npe.xPos << "," << npe.yPos << ")";
+	return os << "NPE: (" << npe.xPos_ << "," << npe.yPos_ << ")";
 }
 
 } // namespace CastleEscape

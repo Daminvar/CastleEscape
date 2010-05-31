@@ -18,9 +18,9 @@ public:
 	void Draw(sf::RenderWindow& window, int x, int y);
 
 private:
-	int xPos;
-	int yPos;
-	sf::Image texture;
+	int xPos_;
+	int yPos_;
+	sf::Image texture_;
 
 	friend std::ostream& operator<<(std::ostream& os, const NPE& npe);
 };
