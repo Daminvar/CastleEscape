@@ -15,7 +15,7 @@ public:
 	void DrawTop(sf::RenderWindow& window, int xPos, int yPos);
 
 private:
-	sf::Image tileset;
+	sf::Image tileset_;
 	void drawLayers(sf::RenderWindow& window, MapVector layers, int xPos,
 			int yPos);
 	void drawNPEs(sf::RenderWindow& window);

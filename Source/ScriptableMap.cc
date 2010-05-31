@@ -17,26 +17,26 @@ const string MAP_DIRECTORY = "Content/Maps/";
 ScriptableMap* self;
 
 ScriptableMap::ScriptableMap() :
-	state(lua_open()) {
+	state_(lua_open()) {
 }
 
 ScriptableMap::~ScriptableMap() {
 }
 
 int ScriptableMap::GetMapWidth() {
-	return tmxMap.GetMapWidth();
+	return tmxMap_.GetMapWidth();
 }
 
 int ScriptableMap::GetMapHeight() {
-	return tmxMap.GetMapHeight();
+	return tmxMap_.GetMapHeight();
 }
 
 int ScriptableMap::GetTileSize() {
-	return tmxMap.GetTileSize();
+	return tmxMap_.GetTileSize();
 }
 
 string ScriptableMap::GetMapName() {
-	return mapName;
+	return mapName_;
 }
 
 void ScriptableMap::LoadMap(string filename) {
@@ -44,9 +44,9 @@ void ScriptableMap::LoadMap(string filename) {
 }
 
 void ScriptableMap::loadMapAndScript(string filename) {
-	scriptFilename = filename;
+	scriptFilename_ = filename;
 	parseScriptFile(filename);
-	tmxMap.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename);
+	tmxMap_.ParseTMXFile(MAP_DIRECTORY + tmxMapFilename_);
 }
 
 void ScriptableMap::ReloadMap() {
@@ -60,8 +60,8 @@ bool ScriptableMap::ChangeMap(Directions direction) {
 
 void ScriptableMap::parseScriptFile(string filename) {
 	using namespace luabind;
-	open(state.get());
-	module(state.get()) [
+	open(state_.get());
+	module(state_.get()) [
 		def("getFlag", &GameData::GetFlag),
 		class_<NPE>("NPE")
 			.def(constructor<>())
@@ -70,15 +70,15 @@ void ScriptableMap::parseScriptFile(string filename) {
 		class_<ScriptableMap>("ScriptableMap")
 			.def("addNPE", &ScriptableMap::addNPE)
 	];
-	object global = globals(state.get());
+	object global = globals(state_.get());
 	global["self"] = this;
-	luaL_dofile(state.get(), filename.c_str());
-	mapName = object_cast<string>(global["name"]);
-	tmxMapFilename = object_cast<string>(global["mapfile"]);
+	luaL_dofile(state_.get(), filename.c_str());
+	mapName_ = object_cast<string>(global["name"]);
+	tmxMapFilename_ = object_cast<string>(global["mapfile"]);
 }
 
 void ScriptableMap::addNPE(NPE* npe) {
-	NPEs.push_back(npe);
+	NPEs_.push_back(npe);
 }
 
 } // namespace CastleEscape
