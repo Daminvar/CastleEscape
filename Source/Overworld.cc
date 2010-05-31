@@ -5,7 +5,7 @@
 namespace CastleEscape {
 
 Overworld::Overworld() {
-	map.LoadMap("Content/Maps/testmap.lua"); //TOOD fix
+	map_.LoadMap("Content/Maps/testmap.lua"); //TOOD fix
 }
 
 Overworld::~Overworld() {
@@ -25,8 +25,8 @@ void Overworld::Update(const sf::Clock& clock, const sf::Input& input) {
 }
 
 void Overworld::Draw(sf::RenderWindow& window) {
-	map.DrawBase(window, 0, 0);
-	map.DrawTop(window, 0, 0);
+	map_.DrawBase(window, 0, 0);
+	map_.DrawTop(window, 0, 0);
 }
 
 } // namespace CastleEscape

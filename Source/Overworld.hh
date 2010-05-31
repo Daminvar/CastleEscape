@@ -18,7 +18,7 @@ public:
 	void Draw(sf::RenderWindow& window);
 
 private:
-	DrawableMap map;
+	DrawableMap map_;
 };
 
 } // namespace CastleEscape
